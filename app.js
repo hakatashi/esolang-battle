@@ -146,10 +146,6 @@ server.listen(app.get('port'), () => {
 });
 
 io.on('connection', (socket) => {
-  socket.emit('greet', { hello: 'Hey there browser!' });
-  socket.on('respond', (data) => {
-    console.log(data);
-  });
   socket.on('disconnect', () => {
     console.log('Socket disconnected');
   });
