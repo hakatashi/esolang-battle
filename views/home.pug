@@ -5,5 +5,17 @@ block content
     - for (let y = 0; y < 10; y++)
       .row
         - for (let x = 0; x < 10; x++)
-          div.language.cell
+          div.language.cell(data-toggle="modal", data-target="#language-modal")
             .name= languages[y * 10 + x].name
+
+  #language-modal.modal.fade(tabindex='-1')
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal')
+            span ×
+          h4.modal-title
+        .modal-body
+        .modal-footer
+          button.btn.btn-default(type='button', data-dismiss='modal') Close
+          button.btn.btn-primary(type='button') Submit

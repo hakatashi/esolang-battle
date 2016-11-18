@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const submissionSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  language: String,
+  language: { type: mongoose.Schema.Types.ObjectId, ref: 'Language' },
   status: Number,
   code: String,
 }, { timestamps: true });
