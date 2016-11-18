@@ -21,6 +21,8 @@ const foursquare = require('node-foursquare')({
   }
 });
 
+const Language = require('../models/Language');
+
 /**
  * GET /api
  * List of API examples.
@@ -28,6 +30,22 @@ const foursquare = require('node-foursquare')({
 exports.getApi = (req, res) => {
   res.render('api/index', {
     title: 'API Examples'
+  });
+};
+
+/**
+ * GET /api/languages/:language
+ * List of API examples.
+ */
+exports.getLanguage = (req, res, next) => {
+  const slug = req.params.language;
+
+  Language.findOne({ slug }, (error, language) => {
+    if (error) {
+      return next(error);
+    }
+
+    res.json(language);
   });
 };
 
