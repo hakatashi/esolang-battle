@@ -68,3 +68,32 @@ textarea {
 .fa {
   margin-right: 6px;
 }
+
+.board {
+  display: flex;
+  flex-direction: column;
+
+  width: 90vh;
+  height: 90vh;
+  margin: 0 auto;
+
+  .row {
+    display: flex;
+
+    flex: 1 1 0;
+
+    .cell {
+      flex: 1 1 0;
+      border: 1px solid #666;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+.language {
+  .name {
+    text-align: center;
+    font-weight: bold;
+  }
+}
