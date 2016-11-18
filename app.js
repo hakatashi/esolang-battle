@@ -29,6 +29,7 @@ dotenv.load({ path: '.env' });
  */
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
+const submissionController = require('./controllers/submission');
 const apiController = require('./controllers/api');
 
 /**
@@ -116,6 +117,7 @@ app.get('/login', userController.getLogin);
 app.get('/logout', userController.logout);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
+app.get('/submissions', passportConfig.isAuthenticated, submissionController.getSubmissions);
 
 /**
  * API examples routes.
