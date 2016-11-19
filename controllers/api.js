@@ -55,7 +55,7 @@ exports.getLanguage = (req, res, next) => {
 
     const clonedLanguageData = Object.assign({}, languageData);
 
-    if (language === null) {
+    if (language === null || language.owner === null) {
       clonedLanguageData.owner = null;
     } else {
       clonedLanguageData.owner = language.owner.profile.name;
@@ -72,29 +72,50 @@ exports.postSubmission = (req, res, next) => {
   req.assert('language', 'Please Specify language').notEmpty();
   req.assert('code', 'Code cannot be empty or longer than 10000 bytes').len(1, 10000);
 
-  Language.findOne({ slug: req.body.slug }).exec((error, language) => {
+  const languageData = languages.find(l => l.slug === req.body.language);
+
+  if (languageData === undefined) {
+    return next(new Error(`Language ${req.body.language} doesn't exist`));
+  }
+
+  Language.findOne({ slug: req.body.language }).exec((error, existingLanguage) => {
     if (error) {
       return next(error);
     }
 
-    if (language === null) {
-      return next(new Error(`Language ${req.body.language} doesn't exist`));
+    const saveSubmission = (language) => {
+      const submission = new Submission({
+        language: language._id,
+        user: req.user._id,
+        code: req.body.code,
+        status: 0,
+      });
+
+      submission.save((error) => {
+        if (error) {
+          return next(error);
+        }
+
+        res.json(submission);
+      });
+    };
+
+    if (existingLanguage !== null) {
+      saveSubmission(existingLanguage);
+    } else {
+      const language = new Language({
+        owner: null,
+        slug: languageData.slug,
+      });
+
+      language.save((error) => {
+        if (error) {
+          return next(error);
+        }
+
+        saveSubmission(language);
+      });
     }
-
-    const submission = new Submission({
-      language: language._id,
-      user: req.user._id,
-      code: req.body.code,
-      status: 0,
-    });
-
-    submission.save((error) => {
-      if (error) {
-        return next(error);
-      }
-
-      res.json(submission);
-    });
   });
 };
 
