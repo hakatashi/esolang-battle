@@ -22,6 +22,7 @@ const foursquare = require('node-foursquare')({
 });
 
 const Language = require('../models/Language');
+const languages = require('../languages');
 
 /**
  * GET /api
@@ -40,12 +41,26 @@ exports.getApi = (req, res) => {
 exports.getLanguage = (req, res, next) => {
   const slug = req.params.language;
 
-  Language.findOne({ slug }, (error, language) => {
+  Language.findOne({ slug }).populate('owner').exec((error, language) => {
     if (error) {
       return next(error);
     }
 
-    res.json(language);
+    const languageData = languages.find(l => l.slug === slug);
+
+    if (!languageData) {
+      return res.json({ error: 'Not Found' });
+    }
+
+    const clonedLanguageData = Object.assign({}, languageData);
+
+    if (language === null) {
+      clonedLanguageData.owner = null;
+    } else {
+      clonedLanguageData.owner = language.owner.profile.name;
+    }
+
+    return res.json(clonedLanguageData);
   });
 };
 
