@@ -104,6 +104,10 @@ exports.postSubmission = (req, res, next) => {
     };
 
     if (existingLanguage !== null) {
+      if (existingLanguage.owner !== null) {
+        return next(new Error('This language is already solved'));
+      }
+
       saveSubmission(existingLanguage);
     } else {
       const language = new Language({
