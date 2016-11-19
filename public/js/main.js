@@ -10,15 +10,15 @@ const api = (method, endpoint, params = {}) => {
       credentials: 'include',
     });
   } else if (method === 'POST') {
-    const formData = new FormData();
-
-    Object.keys(formData).forEach((key) => {
-      formData.append(key, params[key]);
-    });
+    const csrfToken = $('meta[name=csrf-token]').attr('content');
+    params._csrf = csrfToken;
 
     return fetch(url, {
       method: 'POST',
-      body: formData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      },
+      body: $.param(params),
       credentials: 'include',
     });
   }
@@ -42,6 +42,7 @@ $(document).ready(() => {
       $modal.find('.modal-title').text($language.find('.name').text());
 
       $modal.find('.code').hide();
+      $modal.data('language', $language.data('slug'));
 
       api.get(`/languages/${$language.data('slug')}`).then(res => res.json()).then((language) => {
         if (language.engine === 'ideone') {
@@ -59,6 +60,17 @@ $(document).ready(() => {
       });
 
       return true;
+    });
+  });
+
+  $modal.find('.submit-code').click(() => {
+    const language = $modal.data('language');
+
+    api.post('/submission', {
+      language,
+      code: $modal.find('.code').val(),
+    }).then(res => res.json()).then((submission) => {
+      console.log(submission);
     });
   });
 });

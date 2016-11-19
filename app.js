@@ -123,6 +123,7 @@ app.get('/submissions', passportConfig.isAuthenticated, submissionController.get
  * API examples routes.
  */
 app.get('/api', passportConfig.isAuthenticated, apiController.getApi);
+app.post('/api/submission', passportConfig.isAuthenticated, apiController.postSubmission);
 app.get('/api/languages/:language', passportConfig.isAuthenticated, apiController.getLanguage);
 
 /**

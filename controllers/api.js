@@ -22,6 +22,7 @@ const foursquare = require('node-foursquare')({
 });
 
 const Language = require('../models/Language');
+const Submission = require('../models/Submission');
 const languages = require('../languages');
 
 /**
@@ -61,6 +62,39 @@ exports.getLanguage = (req, res, next) => {
     }
 
     return res.json(clonedLanguageData);
+  });
+};
+
+/**
+ * POST /submission
+ */
+exports.postSubmission = (req, res, next) => {
+  req.assert('language', 'Please Specify language').notEmpty();
+  req.assert('code', 'Code cannot be empty or longer than 10000 bytes').len(1, 10000);
+
+  Language.findOne({ slug: req.body.slug }).exec((error, language) => {
+    if (error) {
+      return next(error);
+    }
+
+    if (language === null) {
+      return next(new Error(`Language ${req.body.language} doesn't exist`));
+    }
+
+    const submission = new Submission({
+      language: language._id,
+      user: req.user._id,
+      code: req.body.code,
+      status: 0,
+    });
+
+    submission.save((error) => {
+      if (error) {
+        return next(error);
+      }
+
+      res.json(submission);
+    });
   });
 };
 
