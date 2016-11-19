@@ -40,8 +40,7 @@ const passportConfig = require('./config/passport');
  * Create Express server.
  */
 const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const io = require('./lib/socket-io');
 
 /**
  * Connect to MongoDB.
@@ -142,15 +141,11 @@ app.use(errorHandler());
 /**
  * Start Express server.
  */
-server.listen(app.get('port'), () => {
+const server = app.listen(app.get('port'), () => {
   console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
   console.log('  Press CTRL-C to stop\n');
 });
 
-io.on('connection', (socket) => {
-  socket.on('disconnect', () => {
-    console.log('Socket disconnected');
-  });
-});
+io.attach(server);
 
 module.exports = app;
