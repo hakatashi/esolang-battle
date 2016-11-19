@@ -38,6 +38,7 @@
     "mongoose": "^4.6.6",
     "morgan": "^1.7.0",
     "multer": "^1.2.0",
+    "nightmare": "^2.8.1",
     "node-foursquare": "^0.3.0",
     "node-linkedin": "^0.5.4",
     "node-sass-middleware": "^0.9.8",
