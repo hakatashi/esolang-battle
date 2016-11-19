@@ -4,6 +4,18 @@ const TwitterStrategy = require('passport-twitter').Strategy;
 
 const User = require('../models/User');
 
+const colors = [
+  '#777777',
+  '#b80000',
+  '#1273de',
+  '#fccb00',
+  '#5300eb',
+  '#006b76',
+  '#db3e00',
+  '#004dcf',
+  '#008b02',
+];
+
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -50,18 +62,27 @@ passport.use(new TwitterStrategy({
       if (existingUser) {
         return done(null, existingUser);
       }
-      const user = new User();
-      // Twitter will not provide an email address.  Period.
-      // But a person’s twitter username is guaranteed to be unique
-      // so we can "fake" a twitter email address as follows:
-      user.email = `${profile.username}@twitter.com`;
-      user.twitter = profile.id;
-      user.tokens.push({ kind: 'twitter', accessToken, tokenSecret });
-      user.profile.name = profile.displayName;
-      user.profile.location = profile._json.location;
-      user.profile.picture = profile._json.profile_image_url_https;
-      user.save((err) => {
-        done(err, user);
+
+      User.count({}, (error, count) => {
+        if (error) {
+          return done(error);
+        }
+
+        const user = new User();
+
+        // Twitter will not provide an email address.  Period.
+        // But a person’s twitter username is guaranteed to be unique
+        // so we can "fake" a twitter email address as follows:
+        user.email = `${profile.username}@twitter.com`;
+        user.color = colors[count % colors.length];
+        user.twitter = profile.id;
+        user.tokens.push({ kind: 'twitter', accessToken, tokenSecret });
+        user.profile.name = profile.displayName;
+        user.profile.location = profile._json.location;
+        user.profile.picture = profile._json.profile_image_url_https;
+        user.save((err) => {
+          done(err, user);
+        });
       });
     });
   }

@@ -24,6 +24,7 @@ const foursquare = require('node-foursquare')({
 const Language = require('../models/Language');
 const Submission = require('../models/Submission');
 const languages = require('../languages');
+const validation = require('../lib/validation');
 
 /**
  * GET /api
@@ -88,13 +89,15 @@ exports.postSubmission = (req, res, next) => {
         language: language._id,
         user: req.user._id,
         code: req.body.code,
-        status: 0,
+        status: 'pending',
       });
 
       submission.save((error) => {
         if (error) {
           return next(error);
         }
+
+        validation.validate(req.user, submission, languageData);
 
         res.json(submission);
       });
