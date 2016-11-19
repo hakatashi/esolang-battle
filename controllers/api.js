@@ -112,50 +112,58 @@ exports.postSubmission = (req, res, next) => {
     return next(new Error(`Language ${req.body.language} doesn't exist`));
   }
 
-  Language.findOne({ slug: req.body.language }).exec((error, existingLanguage) => {
-    if (error) {
-      return next(error);
+  Submission.findOne({ user: req.user }).sort({ createdAt: -1 }).exec((error, latestSubmission) => {
+    if (latestSubmission !== null && latestSubmission.createdAt > Date.now() - (60 * 1000)) {
+      return res.status(400).json({
+        error: 'Submission interval is too short',
+      });
     }
 
-    const saveSubmission = (language) => {
-      const submission = new Submission({
-        language: language._id,
-        user: req.user._id,
-        code: req.body.code,
-        status: 'pending',
-      });
-
-      submission.save((error) => {
-        if (error) {
-          return next(error);
-        }
-
-        validation.validate(req.user, submission, languageData);
-
-        res.json(submission);
-      });
-    };
-
-    if (existingLanguage !== null) {
-      if (existingLanguage.owner !== null) {
-        return next(new Error('This language is already solved'));
+    Language.findOne({ slug: req.body.language }).exec((error, existingLanguage) => {
+      if (error) {
+        return next(error);
       }
 
-      saveSubmission(existingLanguage);
-    } else {
-      const language = new Language({
-        owner: null,
-        slug: languageData.slug,
-      });
+      const saveSubmission = (language) => {
+        const submission = new Submission({
+          language: language._id,
+          user: req.user._id,
+          code: req.body.code,
+          status: 'pending',
+        });
 
-      language.save((error) => {
-        if (error) {
-          return next(error);
+        submission.save((error) => {
+          if (error) {
+            return next(error);
+          }
+
+          validation.validate(req.user, submission, languageData);
+
+          res.json(submission);
+        });
+      };
+
+      if (existingLanguage !== null) {
+        if (existingLanguage.owner !== null) {
+          return next(new Error('This language is already solved'));
         }
 
-        saveSubmission(language);
-      });
-    }
+        saveSubmission(existingLanguage);
+      } else {
+        const language = new Language({
+          owner: null,
+          slug: languageData.slug,
+        });
+
+        language.save((error) => {
+          if (error) {
+            return next(error);
+          }
+
+          saveSubmission(language);
+        });
+      }
+    });
   });
 };
 

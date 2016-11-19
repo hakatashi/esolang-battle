@@ -4,7 +4,7 @@
 
 > Win the esolang master!!!
 
-TSG駒場祭ハッカソンでの余興用に作られたesolangバトルシステムです。
+第1回TSG駒場祭ハッカソンでの余興用に作られたesolangバトルシステムです。
 
 ## ルール
 

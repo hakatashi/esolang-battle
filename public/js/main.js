@@ -62,7 +62,7 @@ $(document).ready(() => {
       $modal.find('.modal-title').text($language.find('.name').text());
 
       $modal.find('.code').hide();
-      $modal.find('.submit-code').attr('disabled', false);
+      $modal.find('.submit-code').attr('disabled', true);
       $modal.find('.result').removeClass('bg-warning bg-success').hide();
       $modal.data('language', $language.data('slug'));
 
@@ -76,6 +76,7 @@ $(document).ready(() => {
         if (language.owner === null) {
           $modal.find('.owner-name').text('Not Solved');
           $modal.find('.code').show();
+          $modal.find('.submit-code').attr('disabled', false);
         } else {
           $modal.find('.owner-name').text(language.owner);
         }
@@ -88,12 +89,18 @@ $(document).ready(() => {
   $modal.find('.submit-code').click(() => {
     const language = $modal.data('language');
     $modal.find('.submit-code').attr('disabled', true);
+    $modal.find('.result').removeClass('bg-warning bg-success').hide();
 
     api.post('/submission', {
       language,
       code: $modal.find('.code').val(),
     }).then((submission) => {
-      pendingSubmission = submission;
+      if (submission.error) {
+        $modal.find('.result').addClass('bg-warning').text(submission.error).show();
+        $modal.find('.submit-code').attr('disabled', false);
+      } else {
+        pendingSubmission = submission;
+      }
     });
   });
 
