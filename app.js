@@ -112,7 +112,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 /**
  * Primary app routes.
  */
-app.get('/', homeController.index);
+app.get('/', passportConfig.isAuthenticated, homeController.index);
 app.get('/login', userController.getLogin);
 app.get('/logout', userController.logout);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
@@ -122,8 +122,8 @@ app.get('/submissions', passportConfig.isAuthenticated, submissionController.get
 /**
  * API examples routes.
  */
-app.get('/api', apiController.getApi);
-app.get('/api/languages/:language', apiController.getLanguage);
+app.get('/api', passportConfig.isAuthenticated, apiController.getApi);
+app.get('/api/languages/:language', passportConfig.isAuthenticated, apiController.getLanguage);
 
 /**
  * OAuth authentication routes. (Sign in)

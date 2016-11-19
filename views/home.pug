@@ -17,6 +17,10 @@ block content
             span ×
           h4.modal-title
         .modal-body
+          p Engine: <a class="engine-name" target="_blank"></a>
+          p Owner: <span class="owner-name"></span>
+          textarea.form-control.code(rows=15)
+          p.result
         .modal-footer
           button.btn.btn-default(type='button', data-dismiss='modal') Close
           button.btn.btn-primary(type='button') Submit

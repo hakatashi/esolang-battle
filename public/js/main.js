@@ -7,6 +7,7 @@ const api = (method, endpoint, params = {}) => {
   if (method === 'GET') {
     return fetch(`${url}?${$.param(params)}`, {
       method: 'GET',
+      credentials: 'include',
     });
   } else if (method === 'POST') {
     const formData = new FormData();
@@ -18,6 +19,7 @@ const api = (method, endpoint, params = {}) => {
     return fetch(url, {
       method: 'POST',
       body: formData,
+      credentials: 'include',
     });
   }
 
@@ -30,17 +32,30 @@ api.post = api.bind(null, 'POST');
 $(document).ready(() => {
   const socket = io.connect(window.location.href);
 
-  const $languageModal = $('#language-modal');
+  const $modal = $('#language-modal');
 
   $('.language').each((index, language) => {
     const $language = $(language);
 
     $language.click(() => {
       // Set title
-      $languageModal.find('.modal-title').text($language.find('.name').text());
+      $modal.find('.modal-title').text($language.find('.name').text());
 
-      api.get(`/languages/${$language.data('slug')}`).then(res => res.json()).then((data) => {
-        console.log(data);
+      $modal.find('.code').hide();
+
+      api.get(`/languages/${$language.data('slug')}`).then(res => res.json()).then((language) => {
+        if (language.engine === 'ideone') {
+          $modal.find('.engine-name').attr('href', 'https://ideone.com/').text('ideone');
+        } else {
+          $modal.find('.engine-name').attr('href', `http://${language.id}.tryitonline.net/`).text('Try it online!');
+        }
+
+        if (language.owner === null) {
+          $modal.find('.owner-name').text('Not Solved');
+          $modal.find('.code').show();
+        } else {
+          $modal.find('.owner-name').text(language.owner);
+        }
       });
 
       return true;
