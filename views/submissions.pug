@@ -4,4 +4,20 @@ block content
   .page-header
     h3 Submissions
 
-  p= JSON.stringify(submissions)
+  .table-responsive
+   table.table
+     thead
+       tr
+         th Author
+         th Language
+         th Status
+         th Date
+     tbody
+       - const classes = {pending: 'active', success: 'success', failed: 'warning', error: 'danger'}
+       each submission in submissions
+         tr(class=classes[submission.status])
+           td= submission.user.name()
+           td= submission.language.slug
+           td
+             strong= submission.status
+           td= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')

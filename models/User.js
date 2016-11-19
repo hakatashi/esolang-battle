@@ -43,6 +43,7 @@ userSchema.pre('save', function save(next) {
   });
 });
 
+
 /**
  * Helper method for validating user's password.
  */
@@ -50,6 +51,10 @@ userSchema.methods.comparePassword = function comparePassword(candidatePassword,
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     cb(err, isMatch);
   });
+};
+
+userSchema.methods.name = function name() {
+  return `@${this.email.replace(/@.+$/, '')}`;
 };
 
 /**

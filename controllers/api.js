@@ -59,7 +59,7 @@ exports.getLanguage = (req, res, next) => {
     if (language === null || language.owner === null) {
       clonedLanguageData.owner = null;
     } else {
-      clonedLanguageData.owner = language.owner.profile.name;
+      clonedLanguageData.owner = language.owner.name();
     }
 
     return res.json(clonedLanguageData);

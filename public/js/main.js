@@ -42,6 +42,7 @@ $(document).ready(() => {
       $modal.find('.modal-title').text($language.find('.name').text());
 
       $modal.find('.code').hide();
+      $modal.find('.submit-code').attr('disabled', false);
       $modal.data('language', $language.data('slug'));
 
       api.get(`/languages/${$language.data('slug')}`).then(res => res.json()).then((language) => {
@@ -65,6 +66,7 @@ $(document).ready(() => {
 
   $modal.find('.submit-code').click(() => {
     const language = $modal.data('language');
+    $modal.find('.submit-code').attr('disabled', true);
 
     api.post('/submission', {
       language,
