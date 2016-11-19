@@ -66,8 +66,26 @@ exports.getLanguage = (req, res, next) => {
   });
 };
 
+exports.getSubmission = (req, res, next) => {
+  Submission.findOne({ _id: req.query._id }).populate('user').populate('language').exec((error, submission) => {
+    if (error) {
+      return next(error);
+    }
+
+    if (submission === null) {
+      return res.sendStatus(404);
+    }
+
+    if (!submission.user._id.equals(req.user._id)) {
+      return res.sendStatus(403);
+    }
+
+    return res.json(submission);
+  });
+};
+
 /**
- * POST /submission
+ * POST /api/submission
  */
 exports.postSubmission = (req, res, next) => {
   req.assert('language', 'Please Specify language').notEmpty();

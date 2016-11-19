@@ -102,4 +102,10 @@ textarea {
   .code {
     font-family: monospace;
   }
+
+  .result {
+    word-wrap: break-word;
+    margin: 1em 0;
+    padding: 0.5em;
+  }
 }

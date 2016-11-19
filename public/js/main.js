@@ -8,7 +8,7 @@ const api = (method, endpoint, params = {}) => {
     return fetch(`${url}?${$.param(params)}`, {
       method: 'GET',
       credentials: 'include',
-    });
+    }).then(res => res.json());
   } else if (method === 'POST') {
     const csrfToken = $('meta[name=csrf-token]').attr('content');
     params._csrf = csrfToken;
@@ -20,7 +20,7 @@ const api = (method, endpoint, params = {}) => {
       },
       body: $.param(params),
       credentials: 'include',
-    });
+    }).then(res => res.json());
   }
 
   return Promise.reject();
@@ -30,9 +30,8 @@ api.get = api.bind(null, 'GET');
 api.post = api.bind(null, 'POST');
 
 $(document).ready(() => {
-  const socket = io.connect(window.location.href);
-
   const $modal = $('#language-modal');
+  let pendingSubmission = {};
 
   $('.language').each((index, language) => {
     const $language = $(language);
@@ -43,9 +42,10 @@ $(document).ready(() => {
 
       $modal.find('.code').hide();
       $modal.find('.submit-code').attr('disabled', false);
+      $modal.find('.result').removeClass('bg-warning bg-success').hide();
       $modal.data('language', $language.data('slug'));
 
-      api.get(`/languages/${$language.data('slug')}`).then(res => res.json()).then((language) => {
+      api.get(`/languages/${$language.data('slug')}`).then((language) => {
         if (language.engine === 'ideone') {
           $modal.find('.engine-name').attr('href', 'https://ideone.com/').text('ideone');
         } else {
@@ -71,8 +71,26 @@ $(document).ready(() => {
     api.post('/submission', {
       language,
       code: $modal.find('.code').val(),
-    }).then(res => res.json()).then((submission) => {
-      console.log(submission);
+    }).then((submission) => {
+      pendingSubmission = submission;
     });
+  });
+
+  const socket = io.connect(window.location.href);
+
+  socket.on('update-submission', (data) => {
+    if (data._id === pendingSubmission._id) {
+      api.get('/submission', { _id: data._id }).then((submission) => {
+        // TODO: XSS
+        if (submission.status === 'failed') {
+          $modal.find('.result').addClass('bg-warning')
+          .html(`<strong>Submission failed.</strong> Check out the detail <a href="${submission.url}" target="_blank">here</a>.`);
+          $modal.find('.submit-code').attr('disabled', false);
+        } else if (submission.status === 'success') {
+          $modal.find('.result').addClass('bg-success')
+          .html(`<strong>You won the language!</strong> Check out the detail <a href="${submission.url}" target="_blank">here</a>.`);
+        }
+      });
+    }
   });
 });
