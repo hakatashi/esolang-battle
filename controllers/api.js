@@ -37,8 +37,20 @@ exports.getApi = (req, res) => {
 };
 
 /**
+ * GET /api/languages
+ */
+exports.getLanguages = (req, res, next) => {
+  Language.find().populate('owner').exec((error, languages) => {
+    if (error) {
+      return next(error);
+    }
+
+    return res.json(languages);
+  });
+};
+
+/**
  * GET /api/languages/:language
- * List of API examples.
  */
 exports.getLanguage = (req, res, next) => {
   const slug = req.params.language;
@@ -66,6 +78,9 @@ exports.getLanguage = (req, res, next) => {
   });
 };
 
+/**
+ * GET /api/submission
+ */
 exports.getSubmission = (req, res, next) => {
   Submission.findOne({ _id: req.query._id }).populate('user').populate('language').exec((error, submission) => {
     if (error) {

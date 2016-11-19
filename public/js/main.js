@@ -26,6 +26,27 @@ const api = (method, endpoint, params = {}) => {
   return Promise.reject();
 };
 
+const updateLanguages = () => {
+  api.get('/languages').then((languages) => {
+    $('.language').each((index, languageEl) => {
+      const $language = $(languageEl);
+      const language = languages.find(language => language.slug === $language.data('slug'));
+
+      if (language && language.owner) {
+        $language.css({
+          backgroundColor: language.owner.color,
+          color: 'white',
+        });
+      } else {
+        $language.css({
+          backgroundColor: '',
+          color: '',
+        });
+      }
+    });
+  });
+};
+
 api.get = api.bind(null, 'GET');
 api.post = api.bind(null, 'POST');
 
@@ -76,21 +97,37 @@ $(document).ready(() => {
     });
   });
 
+  updateLanguages();
+
   const socket = io.connect(window.location.href);
 
   socket.on('update-submission', (data) => {
     if (data._id === pendingSubmission._id) {
-      api.get('/submission', { _id: data._id }).then((submission) => {
-        // TODO: XSS
-        if (submission.status === 'failed') {
-          $modal.find('.result').addClass('bg-warning')
-          .html(`<strong>Submission failed.</strong> Check out the detail <a href="${submission.url}" target="_blank">here</a>.`);
-          $modal.find('.submit-code').attr('disabled', false);
-        } else if (submission.status === 'success') {
-          $modal.find('.result').addClass('bg-success')
-          .html(`<strong>You won the language!</strong> Check out the detail <a href="${submission.url}" target="_blank">here</a>.`);
-        }
-      });
+      pendingSubmission = {};
+
+      const getSubmission = () => {
+        api.get('/submission', { _id: data._id }).then((submission) => {
+          // TODO: XSS
+          if (submission.status === 'failed') {
+            $modal.find('.result').addClass('bg-warning')
+            .html(`<strong>Submission failed.</strong> Check out the detail <a href="${submission.url}" target="_blank">here</a>.`)
+            .show();
+            $modal.find('.submit-code').attr('disabled', false);
+          } else if (submission.status === 'success') {
+            $modal.find('.result').addClass('bg-success')
+            .html(`<strong>You won the language!</strong> Check out the detail <a href="${submission.url}" target="_blank">here</a>.`)
+            .show();
+          } else if (submission.status === 'pending') {
+            setTimeout(getSubmission, 1000);
+          }
+        });
+      };
+
+      getSubmission();
     }
+  });
+
+  socket.on('update-languages', () => {
+    updateLanguages();
   });
 });
