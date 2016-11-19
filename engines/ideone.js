@@ -53,10 +53,13 @@ module.exports = ({ id, code, stdin }) => {
     // Wait for the timeout
     .wait(5000)
     // Get the result
-    .evaluate(() => document.querySelector('pre#output-text').textContent)
+    .evaluate(() => ({
+      href: location.href,
+      stdout: document.querySelector('pre#output-text').textContent,
+    }))
   )
-  .then((stdout) => {
-    result = stdout;
+  .then((values) => {
+    result = values;
     // Finish
     return nightmare.end();
   })

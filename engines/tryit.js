@@ -31,7 +31,14 @@ module.exports = ({ id, code, stdin }) => {
         return reject();
       }
 
-      resolve(body.toString().replace(/.+?\n/, ''));
+      const href = `http://${id}.tryitonline.net/#${qs.encode({
+        code: Buffer.from(code).toString('base64'),
+        input: Buffer.from(stdin).toString('base64'),
+      })}`;
+
+      const stdout = body.toString().replace(/.+?\n/, '');
+
+      resolve({ href, stdout });
     });
   });
 };
