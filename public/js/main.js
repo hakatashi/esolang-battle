@@ -61,7 +61,7 @@ $(document).ready(() => {
       // Set title
       $modal.find('.modal-title').text($language.find('.name').text());
 
-      $modal.find('.code').hide();
+      $modal.find('.code').val('').attr('disabled', true);
       $modal.find('.submit-code').attr('disabled', true);
       $modal.find('.result').removeClass('bg-warning bg-success').hide();
       $modal.data('language', $language.data('slug'));
@@ -73,12 +73,13 @@ $(document).ready(() => {
           $modal.find('.engine-name').attr('href', `http://${language.id}.tryitonline.net/`).text('Try it online!');
         }
 
-        if (language.owner === null) {
+        if (language.solution === null) {
           $modal.find('.owner-name').text('Not Solved');
-          $modal.find('.code').show();
+          $modal.find('.code').attr('disabled', false);
           $modal.find('.submit-code').attr('disabled', false);
         } else {
-          $modal.find('.owner-name').text(language.owner);
+          $modal.find('.owner-name').text(language.solution.user);
+          $modal.find('.code').val(language.solution.code);
         }
       });
 
@@ -88,6 +89,7 @@ $(document).ready(() => {
 
   $modal.find('.submit-code').click(() => {
     const language = $modal.data('language');
+    $modal.find('.code').attr('disabled', true);
     $modal.find('.submit-code').attr('disabled', true);
     $modal.find('.result').removeClass('bg-warning bg-success').hide();
 
@@ -97,6 +99,7 @@ $(document).ready(() => {
     }).then((submission) => {
       if (submission.error) {
         $modal.find('.result').addClass('bg-warning').text(submission.error).show();
+        $modal.find('.code').attr('disabled', true);
         $modal.find('.submit-code').attr('disabled', false);
       } else {
         pendingSubmission = submission;

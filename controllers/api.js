@@ -40,12 +40,18 @@ exports.getApi = (req, res) => {
  * GET /api/languages
  */
 exports.getLanguages = (req, res, next) => {
-  Language.find().populate('owner').exec((error, languages) => {
+  Language.find().populate({
+    path: 'solution',
+    populate: { path: 'user' },
+  }).exec((error, languages) => {
     if (error) {
       return next(error);
     }
 
-    return res.json(languages);
+    return res.json(languages.map(language => ({
+      slug: language.slug,
+      owner: language.solution.user,
+    })));
   });
 };
 
@@ -55,7 +61,10 @@ exports.getLanguages = (req, res, next) => {
 exports.getLanguage = (req, res, next) => {
   const slug = req.params.language;
 
-  Language.findOne({ slug }).populate('owner').exec((error, language) => {
+  Language.findOne({ slug }).populate({
+    path: 'solution',
+    populate: { path: 'user' },
+  }).exec((error, language) => {
     if (error) {
       return next(error);
     }
@@ -68,10 +77,13 @@ exports.getLanguage = (req, res, next) => {
 
     const clonedLanguageData = Object.assign({}, languageData);
 
-    if (language === null || language.owner === null) {
-      clonedLanguageData.owner = null;
+    if (language === null || language.solution === null) {
+      clonedLanguageData.solution = null;
     } else {
-      clonedLanguageData.owner = language.owner.name();
+      clonedLanguageData.solution = {
+        user: language.solution.user.name(),
+        code: language.solution.code,
+      };
     }
 
     return res.json(clonedLanguageData);
@@ -144,14 +156,14 @@ exports.postSubmission = (req, res, next) => {
       };
 
       if (existingLanguage !== null) {
-        if (existingLanguage.owner !== null) {
+        if (existingLanguage.solution !== null) {
           return next(new Error('This language is already solved'));
         }
 
         saveSubmission(existingLanguage);
       } else {
         const language = new Language({
-          owner: null,
+          solution: null,
           slug: languageData.slug,
         });
 

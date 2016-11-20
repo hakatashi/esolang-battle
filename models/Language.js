@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const languageSchema = new mongoose.Schema({
-  owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  solution: { type: mongoose.Schema.Types.ObjectId, ref: 'Submission' },
   slug: { type: String, index: { unique: true } },
 }, { timestamps: true });
 
