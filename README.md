@@ -115,6 +115,5 @@ process.stdin.on('end', () => {
 ### Python
 
 ```python
-import sys
-print(int(sys.stdin.read(), 2))
+print(int(raw_input(), 2))
 ```
