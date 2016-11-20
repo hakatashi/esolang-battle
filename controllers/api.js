@@ -50,7 +50,7 @@ exports.getLanguages = (req, res, next) => {
 
     return res.json(languages.map(language => ({
       slug: language.slug,
-      owner: language.solution === null ? null : language.solution.user,
+      owner: language.solution ? language.solution.user : null,
     })));
   });
 };
