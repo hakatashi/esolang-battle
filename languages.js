@@ -14,10 +14,10 @@ module.exports = [{
   id: '3var',
   slug: '3var',
 }, {
-  name: '99',
-  engine: 'tryit',
-  id: '99',
-  slug: '99',
+  name: 'Nemerle',
+  engine: 'ideone',
+  id: '30',
+  slug: 'nemerle',
 }, {
   name: 'Actually',
   engine: 'tryit',
