@@ -77,7 +77,7 @@ exports.getLanguage = (req, res, next) => {
 
     const clonedLanguageData = Object.assign({}, languageData);
 
-    if (language === null || language.solution === null) {
+    if (language === null || !language.solution) {
       clonedLanguageData.solution = null;
     } else {
       clonedLanguageData.solution = {
