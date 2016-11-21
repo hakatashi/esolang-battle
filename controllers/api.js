@@ -156,7 +156,7 @@ exports.postSubmission = (req, res, next) => {
       };
 
       if (existingLanguage !== null) {
-        if (existingLanguage.solution !== null) {
+        if (existingLanguage.solution) {
           return next(new Error('This language is already solved'));
         }
 
