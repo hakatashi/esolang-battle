@@ -61,7 +61,7 @@ $(document).ready(() => {
       // Set title
       $modal.find('.modal-title').text($language.find('.name').text());
 
-      $modal.find('.code').val('').attr('disabled', true);
+      $modal.find('.code').val('').attr('readonly', true);
       $modal.find('.submit-code').attr('disabled', true);
       $modal.find('.result').removeClass('bg-warning bg-success').hide();
       $modal.data('language', $language.data('slug'));
@@ -75,7 +75,7 @@ $(document).ready(() => {
 
         if (language.solution === null) {
           $modal.find('.owner-name').text('Not Solved');
-          $modal.find('.code').attr('disabled', false);
+          $modal.find('.code').attr('readonly', false);
           $modal.find('.submit-code').attr('disabled', false);
         } else {
           $modal.find('.owner-name').text(language.solution.user);
@@ -89,7 +89,7 @@ $(document).ready(() => {
 
   $modal.find('.submit-code').click(() => {
     const language = $modal.data('language');
-    $modal.find('.code').attr('disabled', true);
+    $modal.find('.code').attr('readonly', true);
     $modal.find('.submit-code').attr('disabled', true);
     $modal.find('.result').removeClass('bg-warning bg-success').hide();
 
@@ -99,7 +99,7 @@ $(document).ready(() => {
     }).then((submission) => {
       if (submission.error) {
         $modal.find('.result').addClass('bg-warning').text(submission.error).show();
-        $modal.find('.code').attr('disabled', true);
+        $modal.find('.code').attr('readonly', true);
         $modal.find('.submit-code').attr('disabled', false);
       } else {
         pendingSubmission = submission;
