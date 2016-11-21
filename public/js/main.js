@@ -51,6 +51,10 @@ api.get = api.bind(null, 'GET');
 api.post = api.bind(null, 'POST');
 
 $(document).ready(() => {
+  if (location.pathname !== '/') {
+    return;
+  }
+
   const $modal = $('#language-modal');
   let pendingSubmission = {};
 
