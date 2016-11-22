@@ -11,6 +11,13 @@ module.exports = ({ id, code, stdin }) => {
 
   const url = `http://${id}.tryitonline.net/cgi-bin/backend`;
 
+  if (process.env.NODE_ENV !== 'production') {
+    return Promise.resolve({
+      href: 'http://pyth.tryitonline.net/#code=aXoy&input=MTEwMA',
+      stdout: '',
+    });
+  }
+
   return new Promise((resolve, reject) => {
     request.post({
       url,

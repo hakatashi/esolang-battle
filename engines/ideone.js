@@ -9,6 +9,13 @@ module.exports = ({ id, code, stdin }) => {
   assert(id.match(/^\d+$/));
   assert(code.length < 10000);
 
+  if (process.env.NODE_ENV !== 'production') {
+    return Promise.resolve({
+      href: 'http://pyth.tryitonline.net/#code=aXoy&input=MTEwMA',
+      stdout: '',
+    });
+  }
+
   const nightmare = Nightmare({ show: false });
 
   let result = null;
