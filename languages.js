@@ -9,10 +9,10 @@ module.exports = [{
   id: '2sable',
   slug: '2sable',
 }, {
-  name: '3var',
-  engine: 'tryit',
-  id: '3var',
-  slug: '3var',
+  name: 'PicoLisp',
+  engine: 'ideone',
+  id: '94',
+  slug: 'picolisp',
 }, {
   name: 'Nemerle',
   engine: 'ideone',
@@ -289,10 +289,10 @@ module.exports = [{
   id: 'minkolang',
   slug: 'minkolang',
 }, {
-  name: 'Nice',
+  name: 'Assembler (gcc)',
   engine: 'ideone',
-  id: '25',
-  slug: 'nice',
+  id: '45',
+  slug: 'assembler-gcc',
 }, {
   name: 'Oasis',
   engine: 'tryit',
