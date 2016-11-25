@@ -485,8 +485,8 @@ module.exports = [{
   slug: 'whirl',
 }, {
   name: 'Whitespace',
-  engine: 'ideone',
-  id: '6',
+  engine: 'tryit',
+  id: 'whitespace',
   slug: 'whitespace',
 }, {
   name: 'Woefully',
