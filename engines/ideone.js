@@ -20,6 +20,12 @@ module.exports = ({ id, code, stdin }) => {
 
   let result = null;
 
+  // Unlambdaのインタプリタがおかしいので特殊処理
+  if (id === '115') {
+    code += stdin;
+    stdin = '';
+  }
+
   return nightmare
   .goto('https://ideone.com/')
   // Wait for the load
