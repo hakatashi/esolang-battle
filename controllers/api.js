@@ -115,6 +115,11 @@ exports.getSubmission = (req, res, next) => {
  * POST /api/submission
  */
 exports.postSubmission = (req, res, next) => {
+  return res.status(400).json({
+    error: 'Submission is closed',
+  });
+
+  // eslint-disable-next-line no-unreachable
   req.assert('language', 'Please Specify language').notEmpty();
   req.assert('code', 'Code cannot be empty or longer than 10000 bytes').len(1, 10000);
 

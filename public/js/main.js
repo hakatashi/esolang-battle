@@ -65,8 +65,7 @@ $(document).ready(() => {
       // Set title
       $modal.find('.modal-title').text($language.find('.name').text());
 
-      $modal.find('.code').val('').attr('readonly', true);
-      $modal.find('.submit-code').attr('disabled', true);
+      $modal.find('.code').val('');
       $modal.find('.result').removeClass('bg-warning bg-success').hide();
       $modal.data('language', $language.data('slug'));
 
@@ -79,8 +78,6 @@ $(document).ready(() => {
 
         if (language.solution === null) {
           $modal.find('.owner-name').text('Not Solved');
-          $modal.find('.code').attr('readonly', false);
-          $modal.find('.submit-code').attr('disabled', false);
         } else {
           $modal.find('.owner-name').text(language.solution.user);
           $modal.find('.code').val(language.solution.code);
@@ -93,8 +90,6 @@ $(document).ready(() => {
 
   $modal.find('.submit-code').click(() => {
     const language = $modal.data('language');
-    $modal.find('.code').attr('readonly', true);
-    $modal.find('.submit-code').attr('disabled', true);
     $modal.find('.result').removeClass('bg-warning bg-success').hide();
 
     api.post('/submission', {
@@ -103,8 +98,6 @@ $(document).ready(() => {
     }).then((submission) => {
       if (submission.error) {
         $modal.find('.result').addClass('bg-warning').text(submission.error).show();
-        $modal.find('.code').attr('readonly', true);
-        $modal.find('.submit-code').attr('disabled', false);
       } else {
         pendingSubmission = submission;
       }
@@ -126,7 +119,6 @@ $(document).ready(() => {
             $modal.find('.result').addClass('bg-warning')
             .html(`<strong>Submission failed.</strong> Check out the detail <a href="${submission.url}" target="_blank">here</a>.`)
             .show();
-            $modal.find('.submit-code').attr('disabled', false);
           } else if (submission.status === 'success') {
             $modal.find('.result').addClass('bg-success')
             .html(`<strong>You won the language!</strong> Check out the detail <a href="${submission.url}" target="_blank">here</a>.`)

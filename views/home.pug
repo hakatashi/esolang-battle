@@ -1,6 +1,21 @@
 extends layout
 
 block content
+  p.text-center.notation The competition was closed. Thanks for your participation!
+
+  h2.text-center Final Result
+
+  ol.result
+    li <strong>@kurgm</strong>: 25 languages
+    li <strong>@satos___jp</strong>: 17 languages
+    li <strong>@yamayu832</strong>: 6 languages
+    li <strong>@cookies146</strong>: 4 languages
+    li <strong>@hakatashi</strong>: 4 languages
+    li <strong>@moratorium08</strong>: 3 languages
+    li <strong>@00_</strong>: 2 languages
+
+  p.text-center <strong>61/100</strong> languages was beated by TSG members
+
   .board
     - for (let y = 0; y < 10; y++)
       .row
@@ -19,8 +34,8 @@ block content
         .modal-body
           p Engine: <a class="engine-name" target="_blank"></a>
           p Owner: <span class="owner-name"></span>
-          textarea.form-control.code(rows=15)
+          textarea.form-control.code(rows=15, readonly=true)
           p.result
         .modal-footer
           button.btn.btn-default(type='button', data-dismiss='modal') Close
-          button.btn.btn-primary.submit-code(type='button') Submit
+          button.btn.btn-primary.submit-code(type='button', disabled=true) Submit
