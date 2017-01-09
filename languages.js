@@ -199,10 +199,10 @@ module.exports = [{
   id: 'fission2',
   slug: 'fission2',
 }, {
-  name: 'Foo',
-  engine: 'tryit',
-  id: 'foo',
-  slug: 'foo',
+  name: 'COBOL 85',
+  engine: 'ideone',
+  id: '106',
+  slug: 'cobol85',
 }, {
   name: 'Forth',
   engine: 'ideone',
