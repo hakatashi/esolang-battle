@@ -2,6 +2,8 @@
 
 # Esolang Battle
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/hakatashi/esolang-battle.svg)](https://greenkeeper.io/)
+
 > Win the esolang master!!!
 
 第1回TSG駒場祭ハッカソンでの余興用に作られたesolangバトルシステムです。
