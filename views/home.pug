@@ -1,28 +1,12 @@
 extends layout
 
 block content
-  p.text-center.notation The competition has closed. Thanks for your participation!
-
-  h2.text-center Final Result
-
-  ol.result
-    li <strong>@kurgm</strong>: 25 languages
-    li <strong>@satos___jp</strong>: 17 languages
-    li <strong>@yamayu832</strong>: 6 languages
-    li <strong>@cookies146</strong>: 4 languages
-    li <strong>@hakatashi</strong>: 4 languages
-    li <strong>@moratorium08</strong>: 3 languages
-    li <strong>@00_</strong>: 2 languages
-
-  p.text-center <strong>61/100</strong> languages were beated by TSG members
-
   .board
-    - for (let y = 0; y < 10; y++)
+    - for (let y = 0; y < 9; y++)
       .row
-        - for (let x = 0; x < 10; x++)
-          - const language = languages[y * 10 + x];
-          div.language.cell(data-slug=language.slug, data-toggle="modal", data-target="#language-modal")
-            .name= language.name
+        - for (let x = 0; x < 9; x++)
+          div.language.cell(data-index=y * 9 + x, data-toggle="modal", data-target="#language-modal")
+            .name
 
   #language-modal.modal.fade(tabindex='-1')
     .modal-dialog

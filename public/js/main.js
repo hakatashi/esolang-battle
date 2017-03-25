@@ -30,13 +30,22 @@ const updateLanguages = () => {
   api.get('/languages').then((languages) => {
     $('.language').each((index, languageEl) => {
       const $language = $(languageEl);
-      const language = languages.find(language => language.slug === $language.data('slug'));
+      const language = languages[parseInt($language.data('index'), 10)];
 
-      if (language && language.owner) {
-        $language.css({
-          backgroundColor: language.owner.color,
-          color: 'white',
-        });
+      if (language) {
+        if (typeof language.team === 'number') {
+          $language.css({
+            backgroundColor: language.team === 0 ? 'red' : 'blue',
+            color: 'white',
+          });
+        }
+
+        if (language.type === 'unknown') {
+          $language.css({
+            backgroundColor: 'black',
+            color: 'white',
+          });
+        }
       } else {
         $language.css({
           backgroundColor: '',

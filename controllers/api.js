@@ -27,16 +27,6 @@ const languages = require('../languages');
 const validation = require('../lib/validation');
 
 /**
- * GET /api
- * List of API examples.
- */
-exports.getApi = (req, res) => {
-  res.render('api/index', {
-    title: 'API Examples'
-  });
-};
-
-/**
  * GET /api/languages
  */
 exports.getLanguages = (req, res, next) => {
