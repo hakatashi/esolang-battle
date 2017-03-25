@@ -43,15 +43,73 @@ exports.getLanguages = (req, res, next) => {
   Language.find().populate({
     path: 'solution',
     populate: { path: 'user' },
-  }).exec((error, languages) => {
+  }).exec((error, languageRecords) => {
     if (error) {
       return next(error);
     }
 
-    return res.json(languages.map(language => ({
-      slug: language.slug,
-      owner: language.solution ? { color: language.solution.user.color } : null,
-    })));
+    const languageMap = languages.map((language) => {
+      if (language.type === 'language') {
+        return Object.assign({}, language, {
+          record: languageRecords.find(languageRecord => languageRecord.slug === language.slug),
+        });
+      }
+
+      return Object.assign({}, language);
+    });
+
+    return res.json(languageMap.map((cell, index) => {
+      const x = index % 9;
+      const y = Math.floor(index / 9);
+
+      if (cell.type !== 'base') {
+        if (cell.record && cell.record.solution) {
+          return {
+            type: 'language',
+            solved: true,
+            slug: cell.slug,
+            name: cell.name,
+            team: cell.record.solution.user.team,
+          };
+        } else {
+          const precedingCells = [];
+
+          if (0 <= x - 1) {
+            precedingCells.push(languageMap[(y * 9) + (x - 1)]);
+          }
+
+          if (x + 1 <= 8) {
+            precedingCells.push(languageMap[(y * 9) + (x + 1)]);
+          }
+
+          if (y - 1 >= 0) {
+            precedingCells.push(languageMap[((y - 1) * 9) + x]);
+          }
+
+          if (y + 1 <= 8) {
+            precedingCells.push(languageMap[((y + 1) * 9) + x]);
+          }
+
+          if (precedingCells.some(cell => cell.type === 'base' || (cell.type === 'language' && cell.record && cell.record.solution))) {
+            return {
+              type: 'language',
+              solved: false,
+              slug: cell.slug,
+              name: cell.name,
+            };
+          } else {
+            return {
+              type: 'unknown',
+            };
+          }
+        }
+      } else if (cell.type === 'base') {
+        return {
+          type: 'base',
+          team: cell.team,
+        };
+      }
+    }));
   });
 };
 

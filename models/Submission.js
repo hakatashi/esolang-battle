@@ -5,6 +5,7 @@ const submissionSchema = new mongoose.Schema({
   language: { type: mongoose.Schema.Types.ObjectId, ref: 'Language' },
   status: { type: String, enum: ['pending', 'failed', 'success', 'error'] },
   code: String,
+  size: { type: Number, min: 0 },
   input: String,
   output: String,
   url: String,

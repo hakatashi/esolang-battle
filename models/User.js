@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
   steam: String,
   tokens: Array,
   color: String,
+  team: { type: Number, enum: [0, 1] },
 
   profile: {
     name: String,
