@@ -32,19 +32,36 @@ const updateLanguages = () => {
       const $language = $(languageEl);
       const language = languages[parseInt($language.data('index'), 10)];
 
-      if (language) {
-        if (typeof language.team === 'number') {
-          $language.css({
-            backgroundColor: language.team === 0 ? 'red' : 'blue',
-            color: 'white',
-          });
-        }
+      $language.find('.name').text('');
+      $language.attr('data-toggle', language.available ? 'modal' : false);
 
+      if (language) {
         if (language.type === 'unknown') {
           $language.css({
             backgroundColor: 'black',
             color: 'white',
           });
+        } else if (language.type === 'language') {
+          $language.find('.name').text(language.name);
+
+          if (typeof language.team === 'number') {
+            $language.css({
+              backgroundColor: language.team === 0 ? 'red' : 'blue',
+              color: 'white',
+            });
+          } else {
+            $language.css({
+              backgroundColor: language.available ? 'white' : '#888',
+              color: '',
+            });
+          }
+        } else if (language.type === 'base') {
+          if (typeof language.team === 'number') {
+            $language.css({
+              backgroundColor: language.team === 0 ? 'red' : 'blue',
+              color: 'white',
+            });
+          }
         }
       } else {
         $language.css({

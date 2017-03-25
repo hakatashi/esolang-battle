@@ -38,6 +38,8 @@ exports.getLanguages = (req, res, next) => {
       return next(error);
     }
 
+    const team = req.user && req.user.team;
+
     const languageMap = languages.map((language) => {
       if (language.type === 'language') {
         return Object.assign({}, language, {
@@ -53,6 +55,30 @@ exports.getLanguages = (req, res, next) => {
       const y = Math.floor(index / 9);
 
       if (cell.type !== 'base') {
+        const precedingCells = [];
+
+        if (x - 1 >= 0) {
+          precedingCells.push(languageMap[(y * 9) + (x - 1)]);
+        }
+
+        if (x + 1 <= 8) {
+          precedingCells.push(languageMap[(y * 9) + (x + 1)]);
+        }
+
+        if (y - 1 >= 0) {
+          precedingCells.push(languageMap[((y - 1) * 9) + x]);
+        }
+
+        if (y + 1 <= 8) {
+          precedingCells.push(languageMap[((y + 1) * 9) + x]);
+        }
+
+        let available = false;
+
+        if (precedingCells.some(cell => typeof team === 'number' && cell.team === team)) {
+          available = true;
+        }
+
         if (cell.record && cell.record.solution) {
           return {
             type: 'language',
@@ -60,45 +86,32 @@ exports.getLanguages = (req, res, next) => {
             slug: cell.slug,
             name: cell.name,
             team: cell.record.solution.user.team,
+            available,
           };
-        } else {
-          const precedingCells = [];
-
-          if (0 <= x - 1) {
-            precedingCells.push(languageMap[(y * 9) + (x - 1)]);
-          }
-
-          if (x + 1 <= 8) {
-            precedingCells.push(languageMap[(y * 9) + (x + 1)]);
-          }
-
-          if (y - 1 >= 0) {
-            precedingCells.push(languageMap[((y - 1) * 9) + x]);
-          }
-
-          if (y + 1 <= 8) {
-            precedingCells.push(languageMap[((y + 1) * 9) + x]);
-          }
-
-          if (precedingCells.some(cell => cell.type === 'base' || (cell.type === 'language' && cell.record && cell.record.solution))) {
-            return {
-              type: 'language',
-              solved: false,
-              slug: cell.slug,
-              name: cell.name,
-            };
-          } else {
-            return {
-              type: 'unknown',
-            };
-          }
         }
+
+        if (precedingCells.some(cell => cell.type === 'base' || (cell.type === 'language' && cell.record && cell.record.solution))) {
+
+          return {
+            type: 'language',
+            solved: false,
+            slug: cell.slug,
+            name: cell.name,
+            available,
+          };
+        }
+
+        return {
+          type: 'unknown',
+        };
       } else if (cell.type === 'base') {
         return {
           type: 'base',
           team: cell.team,
         };
       }
+
+      return {};
     }));
   });
 };
