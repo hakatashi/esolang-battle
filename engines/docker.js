@@ -5,6 +5,7 @@ const concatStream = require('concat-stream');
 const Promise = require('bluebird');
 const path = require('path');
 const tmp = require('tmp');
+const shellescape = require('shell-escape');
 const fs = Promise.promisifyAll(require('fs'));
 
 const docker = new Docker();
@@ -14,16 +15,17 @@ module.exports = ({ id, code, stdin }) => {
   assert(typeof code === 'string');
   assert(typeof stdin === 'string');
   assert(code.length < 10000);
+  assert(stdin.length < 10000);
 
   return new Promise((resolve, reject) => {
     tmp.dir({ unsafeCleanup: true }, (error, tmpPath, cleanup) => {
       if (error) {
         reject(error);
       } else {
-        resolve(tmpPath, cleanup);
+        resolve({ tmpPath, cleanup });
       }
     });
-  }).then((tmpPath, cleanup) => {
+  }).then(({ tmpPath, cleanup }) => {
     const stdinPath = path.join(tmpPath, 'INPUT');
     const codePath = path.join(tmpPath, 'CODE');
 
@@ -49,6 +51,14 @@ module.exports = ({ id, code, stdin }) => {
 
       let container;
 
+      const dockerVolumePath = (() => {
+        if (path.sep === '\\') {
+          return tmpPath.replace('C:\\', '/c/').replace(/\\/g, '/');
+        }
+
+        return tmpPath;
+      })();
+
       const containerPromise = docker.createContainer({
         Hostname: '',
         User: '',
@@ -59,14 +69,14 @@ module.exports = ({ id, code, stdin }) => {
         OpenStdin: false,
         StdinOnce: false,
         Env: null,
-        Cmd: ['bash', '-c', 'cat /volume/INPUT'],
+        Cmd: ['bash', '-c', `${shellescape([id, '/volume/CODE'])} < /volume/INPUT`],
         Image: 'hakatashi/esolang-box',
         Volumes: {
           '/volume': {}
         },
         VolumesFrom: [],
         HostConfig: {
-          Binds: [`${tmpPath}:/volume:ro`],
+          Binds: [`${dockerVolumePath}:/volume:ro`],
         },
       }).then((cont) => {
         container = cont;
@@ -89,13 +99,11 @@ module.exports = ({ id, code, stdin }) => {
 
       const runner = Promise.all([stdoutPromise, stderrPromise, containerPromise]);
 
-      runner.timeout(1000).then(([stdout, stderr, data]) => {
+      return runner.timeout(1000).then(([stdout, stderr]) => {
         cleanup();
-        console.log({ stdout, stderr, data });
+        return { stdout, stderr };
       }).catch(Promise.TimeoutError, (error) => {
-        console.error('Timed out');
-        console.error(error);
-        container.kill().then(() => container.remove());
+        container.kill().then(() => container.remove()).then(() => Promise.reject(error));
       });
     });
   });
