@@ -1,4 +1,5 @@
 lib-cov
+languages.js
 *.seed
 *.log
 *.csv
