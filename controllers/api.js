@@ -26,6 +26,31 @@ const Submission = require('../models/Submission');
 const languages = require('../languages');
 const validation = require('../lib/validation');
 
+const getPrecedingIndices = (index) => {
+  const x = index % 9;
+  const y = Math.floor(index / 9);
+
+  const precedingCells = [];
+
+  if (x - 1 >= 0) {
+    precedingCells.push((y * 9) + (x - 1));
+  }
+
+  if (x + 1 <= 8) {
+    precedingCells.push((y * 9) + (x + 1));
+  }
+
+  if (y - 1 >= 0) {
+    precedingCells.push(((y - 1) * 9) + x);
+  }
+
+  if (y + 1 <= 8) {
+    precedingCells.push(((y + 1) * 9) + x);
+  }
+
+  return precedingCells;
+};
+
 /**
  * GET /api/languages
  */
@@ -51,27 +76,8 @@ exports.getLanguages = (req, res, next) => {
     });
 
     return res.json(languageMap.map((cell, index) => {
-      const x = index % 9;
-      const y = Math.floor(index / 9);
-
       if (cell.type !== 'base') {
-        const precedingCells = [];
-
-        if (x - 1 >= 0) {
-          precedingCells.push(languageMap[(y * 9) + (x - 1)]);
-        }
-
-        if (x + 1 <= 8) {
-          precedingCells.push(languageMap[(y * 9) + (x + 1)]);
-        }
-
-        if (y - 1 >= 0) {
-          precedingCells.push(languageMap[((y - 1) * 9) + x]);
-        }
-
-        if (y + 1 <= 8) {
-          precedingCells.push(languageMap[((y + 1) * 9) + x]);
-        }
+        const precedingCells = getPrecedingIndices(index).map(i => languageMap[i]);
 
         let available = false;
 
@@ -91,7 +97,6 @@ exports.getLanguages = (req, res, next) => {
         }
 
         if (precedingCells.some(cell => cell.type === 'base' || (cell.type === 'language' && cell.record && cell.record.solution))) {
-
           return {
             type: 'language',
             solved: false,
@@ -143,7 +148,7 @@ exports.getLanguage = (req, res, next) => {
     } else {
       clonedLanguageData.solution = {
         user: language.solution.user.name(),
-        code: language.solution.code,
+        code: 'solution not available',
       };
     }
 
@@ -185,19 +190,27 @@ exports.postSubmission = (req, res, next) => {
   req.assert('code', 'Code cannot be empty or longer than 10000 bytes').len(1, 10000);
 
   const languageData = languages.find(l => l.slug === req.body.language);
+  const languageIndex = languages.findIndex(l => l.slug === req.body.language);
 
   if (languageData === undefined) {
     return next(new Error(`Language ${req.body.language} doesn't exist`));
   }
 
   Submission.findOne({ user: req.user }).sort({ createdAt: -1 }).exec((error, latestSubmission) => {
+    if (error) {
+      return next(error);
+    }
+
     if (latestSubmission !== null && latestSubmission.createdAt > Date.now() - (60 * 1000)) {
       return res.status(400).json({
         error: 'Submission interval is too short',
       });
     }
 
-    Language.findOne({ slug: req.body.language }).exec((error, existingLanguage) => {
+    Language.findOne({ slug: req.body.language }).populate({
+      path: 'solution',
+      populate: { path: 'user' },
+    }).exec((error, existingLanguage) => {
       if (error) {
         return next(error);
       }
@@ -207,6 +220,7 @@ exports.postSubmission = (req, res, next) => {
           language: language._id,
           user: req.user._id,
           code: req.body.code,
+          size: req.body.code.length,
           status: 'pending',
         });
 
@@ -222,8 +236,8 @@ exports.postSubmission = (req, res, next) => {
       };
 
       if (existingLanguage !== null) {
-        if (existingLanguage.solution) {
-          return next(new Error('This language is already solved'));
+        if (existingLanguage.solution && existingLanguage.solution.size <= req.body.code.length) {
+          return next(new Error('Shorter solution is already submitted'));
         }
 
         saveSubmission(existingLanguage);

@@ -7,8 +7,8 @@ const submissionSchema = new mongoose.Schema({
   code: String,
   size: { type: Number, min: 0 },
   input: String,
-  output: String,
-  url: String,
+  stdout: String,
+  stderr: String,
 }, { timestamps: true });
 
 const Submission = mongoose.model('Submission', submissionSchema);

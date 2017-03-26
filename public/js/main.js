@@ -26,11 +26,14 @@ const api = (method, endpoint, params = {}) => {
   return Promise.reject();
 };
 
+let languageData = [];
+
 const updateLanguages = () => {
   api.get('/languages').then((languages) => {
+    languageData = languages;
     $('.language').each((index, languageEl) => {
       const $language = $(languageEl);
-      const language = languages[parseInt($language.data('index'), 10)];
+      const language = languageData[parseInt($language.data('index'), 10)];
 
       $language.find('.name').text('');
       $language.attr('data-toggle', language.available ? 'modal' : false);
@@ -88,14 +91,21 @@ $(document).ready(() => {
     const $language = $(language);
 
     $language.click(() => {
+      const language = languageData[parseInt($language.data('index'), 10)];
+
+      if (!language.slug || !language.available) {
+        return true;
+      }
+
       // Set title
-      $modal.find('.modal-title').text($language.find('.name').text());
+      $modal.find('.modal-title').text(language.name);
 
-      $modal.find('.code').val('');
+      $modal.find('.code').val('').attr('readonly', true);
+      $modal.find('.submit-code').attr('disabled', true);
       $modal.find('.result').removeClass('bg-warning bg-success').hide();
-      $modal.data('language', $language.data('slug'));
+      $modal.data('language', language.slug);
 
-      api.get(`/languages/${$language.data('slug')}`).then((language) => {
+      api.get(`/languages/${language.slug}`).then((language) => {
         if (language.engine === 'ideone') {
           $modal.find('.engine-name').attr('href', 'https://ideone.com/').text('ideone');
         } else {
@@ -104,6 +114,8 @@ $(document).ready(() => {
 
         if (language.solution === null) {
           $modal.find('.owner-name').text('Not Solved');
+          $modal.find('.code').attr('readonly', false);
+          $modal.find('.submit-code').attr('disabled', false);
         } else {
           $modal.find('.owner-name').text(language.solution.user);
           $modal.find('.code').val(language.solution.code);
@@ -116,6 +128,8 @@ $(document).ready(() => {
 
   $modal.find('.submit-code').click(() => {
     const language = $modal.data('language');
+    $modal.find('.code').attr('readonly', true);
+    $modal.find('.submit-code').attr('disabled', true);
     $modal.find('.result').removeClass('bg-warning bg-success').hide();
 
     api.post('/submission', {
@@ -124,6 +138,8 @@ $(document).ready(() => {
     }).then((submission) => {
       if (submission.error) {
         $modal.find('.result').addClass('bg-warning').text(submission.error).show();
+        $modal.find('.code').attr('readonly', true);
+        $modal.find('.submit-code').attr('disabled', false);
       } else {
         pendingSubmission = submission;
       }
@@ -145,6 +161,7 @@ $(document).ready(() => {
             $modal.find('.result').addClass('bg-warning')
             .html(`<strong>Submission failed.</strong> Check out the detail <a href="${submission.url}" target="_blank">here</a>.`)
             .show();
+            $modal.find('.submit-code').attr('disabled', false);
           } else if (submission.status === 'success') {
             $modal.find('.result').addClass('bg-success')
             .html(`<strong>You won the language!</strong> Check out the detail <a href="${submission.url}" target="_blank">here</a>.`)
