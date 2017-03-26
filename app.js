@@ -17,6 +17,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const expressValidator = require('express-validator');
 const sass = require('node-sass-middleware');
+const multer = require('multer');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -35,6 +36,9 @@ const apiController = require('./controllers/api');
  * API keys and Passport configuration.
  */
 const passportConfig = require('./config/passport');
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage, dest: path.join(__dirname, 'uploads') });
 
 /**
  * Create Express server.
@@ -80,7 +84,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload') {
+  if (req.path === '/api/submission') {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -117,12 +121,13 @@ app.get('/logout', userController.logout);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/submissions', passportConfig.isAuthenticated, submissionController.getSubmissions);
+app.get('/submissions/:submission', passportConfig.isAuthenticated, submissionController.getSubmission);
 
 /**
  * API examples routes.
  */
 app.get('/api/submission', passportConfig.isAuthenticated, apiController.getSubmission);
-app.post('/api/submission', passportConfig.isAuthenticated, apiController.postSubmission);
+app.post('/api/submission', passportConfig.isAuthenticated, upload.fields([{ name: 'file', maxCount: 1 }]), apiController.postSubmission);
 app.get('/api/languages', passportConfig.isAuthenticated, apiController.getLanguages);
 
 /**

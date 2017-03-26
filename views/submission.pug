@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .page-header
+    h3= `Submission by ${submission.user.name()}`
+
+  h4 Language
+  p= submission.language.slug
+
+  h4 Size
+  p= submission.size
+
+  if selfTeam
+    h4 Code
+    p
+      pre= submission.code
+
+    h4 stdin
+    p
+      pre= submission.input
+
+    h4 stdout
+    p
+      pre= submission.stdout
+
+    h4 stderr
+    p
+      pre= submission.stderr
+
+  h4 Result
+  p= submission.status

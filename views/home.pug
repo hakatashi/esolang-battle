@@ -6,7 +6,9 @@ block content
       .row
         - for (let x = 0; x < 9; x++)
           div.language.cell(data-index=y * 9 + x, data-toggle="modal", data-target="#language-modal")
-            .name
+            .language-label
+              .name
+              .size
 
   #language-modal.modal.fade(tabindex='-1')
     .modal-dialog
@@ -19,6 +21,8 @@ block content
           p Owner: <span class="owner-name"></span>
           p Solution: <a class="solution" target="_blank"></a> (<span class="solution-bytes"></span> bytes)
           textarea.form-control.code(rows=15, readonly=true)
+          p Or
+            input.file(type='file', name='myFile')
           p.result
         .modal-footer
           button.btn.btn-default(type='button', data-dismiss='modal') Close

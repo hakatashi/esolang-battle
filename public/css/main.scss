@@ -84,7 +84,7 @@ textarea {
 
     .cell {
       flex: 1 1 0;
-      border: 2px solid #fff;
+      border: 1px solid #fff;
       border-radius: 8px;
       cursor: pointer;
       color: #333;
@@ -100,10 +100,12 @@ textarea {
 
       &.red {
         background: #ef2011;
+        color: white;
       }
 
       &.blue {
         background: #0e30ec;
+        color: white;
       }
 
       &.white {
@@ -116,7 +118,7 @@ textarea {
 .language {
   position: relative;
 
-  .name {
+  .language-label {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -124,6 +126,10 @@ textarea {
 
     text-align: center;
     font-weight: bold;
+
+    .size {
+      font-size: 1.2em;
+    }
   }
 }
 
@@ -145,4 +151,8 @@ textarea {
 
 .notation {
   font-size: 3em;
+}
+
+input[type="file"] {
+  display: inline-block;
 }

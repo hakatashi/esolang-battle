@@ -25,6 +25,7 @@ const Language = require('../models/Language');
 const Submission = require('../models/Submission');
 const languages = require('../languages');
 const validation = require('../lib/validation');
+const assert = require('assert');
 
 const getPrecedingIndices = (index) => {
   const x = index % 9;
@@ -160,7 +161,17 @@ exports.getSubmission = (req, res, next) => {
  */
 exports.postSubmission = (req, res, next) => {
   req.assert('language', 'Please Specify language').notEmpty();
-  req.assert('code', 'Code cannot be empty or longer than 10000 bytes').len(1, 10000);
+
+  let code;
+
+  if (req.files && req.files.file && req.files.file.length === 1) {
+    code = req.files.file[0].buffer;
+  } else {
+    req.assert('code', 'Code cannot be empty or longer than 10000 bytes').len(1, 10000);
+    code = req.body.code;
+  }
+
+  assert(1 <= code.length && code.length <= 10000);
 
   const languageData = languages.find(l => l.slug === req.body.language);
   const languageIndex = languages.findIndex(l => l.slug === req.body.language);
@@ -172,9 +183,7 @@ exports.postSubmission = (req, res, next) => {
   Submission.findOne({ user: req.user }).sort({ createdAt: -1 }).exec()
   .then((latestSubmission) => {
     if (latestSubmission !== null && latestSubmission.createdAt > Date.now() - (60 * 1000)) {
-      return res.status(400).json({
-        error: 'Submission interval is too short',
-      });
+      return Promise.reject(new Error('Submission interval is too short'));
     }
 
     return Language.findOne({ slug: req.body.language }).populate({
@@ -185,7 +194,7 @@ exports.postSubmission = (req, res, next) => {
   // TODO: Check if preceding cell is aleady taken
   .then((existingLanguage) => {
     if (existingLanguage !== null) {
-      if (existingLanguage.solution && existingLanguage.solution.size <= req.body.code.length) {
+      if (existingLanguage.solution && existingLanguage.solution.size <= code.length) {
         return Promise.reject(new Error('Shorter solution is already submitted'));
       }
 
@@ -203,8 +212,8 @@ exports.postSubmission = (req, res, next) => {
     const submission = new Submission({
       language: language._id,
       user: req.user._id,
-      code: req.body.code,
-      size: req.body.code.length,
+      code,
+      size: code.length,
       status: 'pending',
     });
 
@@ -216,7 +225,9 @@ exports.postSubmission = (req, res, next) => {
     res.json(submission);
   })
   .catch((error) => {
-    next(error);
+    return res.status(400).json({
+      error: error.message,
+    });
   });
 };
 

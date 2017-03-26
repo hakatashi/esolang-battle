@@ -5,21 +5,22 @@ block content
     h3 Submissions
 
   .table-responsive
-   table.table
-     thead
-       tr
-         th Author
-         th Language
-         th Size
-         th Status
-         th Date
-     tbody
-       - const classes = {pending: 'active', success: 'success', failed: 'warning', error: 'danger'}
-       each submission in submissions
-         tr(class=classes[submission.status])
-           td= submission.user.name()
-           td= submission.language.slug
-           td= `${submission.size}bytes`
-           td
-             strong= submission.status
-           td= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')
+    table.table
+      thead
+        tr
+          th Author
+          th Language
+          th Size
+          th Status
+          th Date
+      tbody
+        - const classes = {pending: 'active', success: 'success', failed: 'warning', error: 'danger'}
+        each submission in submissions
+          tr(class=classes[submission.status])
+            td= submission.user.name()
+            td= submission.language.slug
+            td= `${submission.size}bytes`
+            td
+              strong= submission.status
+            td
+              a(href=`/submissions/${submission._id}`)= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')
