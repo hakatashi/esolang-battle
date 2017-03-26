@@ -101,7 +101,10 @@ module.exports = ({ id, code, stdin }) => {
 
       return runner.timeout(1000).then(([stdout, stderr]) => {
         cleanup();
-        return { stdout, stderr };
+        return {
+          stdout: Buffer.isBuffer(stdout) ? stdout : Buffer.alloc(0),
+          stderr: Buffer.isBuffer(stderr) ? stderr : Buffer.alloc(0),
+        };
       }).catch(Promise.TimeoutError, (error) => {
         container.kill().then(() => container.remove()).then(() => Promise.reject(error));
       });
