@@ -168,7 +168,7 @@ exports.postSubmission = (req, res, next) => {
     code = req.files.file[0].buffer;
   } else {
     req.assert('code', 'Code cannot be empty or longer than 10000 bytes').len(1, 10000);
-    code = req.body.code;
+    code = Buffer.from(req.body.code, 'utf8');
   }
 
   assert(1 <= code.length && code.length <= 10000);

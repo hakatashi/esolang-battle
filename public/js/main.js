@@ -24,7 +24,6 @@ const api = (method, endpoint, params = {}) => {
     });
 
     form.append('_csrf', csrfToken);
-    console.log(Array.from(form.entries()));
 
     return fetch(url, {
       method: 'POST',
@@ -52,9 +51,7 @@ const updateLanguages = () => {
 
       if (language) {
         if (language.type === 'unknown') {
-          $language.css({
-            color: 'white',
-          }).addClass('black');
+          $language.addClass('black');
         } else if (language.type === 'language') {
           $language.find('.name').text(language.name);
 

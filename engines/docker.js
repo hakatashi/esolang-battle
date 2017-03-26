@@ -12,7 +12,7 @@ const docker = new Docker();
 
 module.exports = ({ id, code, stdin }) => {
   assert(typeof id === 'string');
-  assert(typeof code === 'string');
+  assert(Buffer.isBuffer(code));
   assert(typeof stdin === 'string');
   assert(code.length < 10000);
   assert(stdin.length < 10000);
