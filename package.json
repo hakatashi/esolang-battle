@@ -13,6 +13,7 @@
     "test": "mocha --reporter spec"
   },
   "dependencies": {
+    "array-shuffle": "^1.0.1",
     "async": "^2.1.2",
     "bcrypt-nodejs": "^0.0.3",
     "bignumber.js": "^4.0.0",
