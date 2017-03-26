@@ -10,6 +10,7 @@ block content
        tr
          th Author
          th Language
+         th Size
          th Status
          th Date
      tbody
@@ -18,6 +19,7 @@ block content
          tr(class=classes[submission.status])
            td= submission.user.name()
            td= submission.language.slug
+           td= `${submission.size}bytes`
            td
              strong= submission.status
            td= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')

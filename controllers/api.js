@@ -76,22 +76,33 @@ exports.getLanguages = (req, res, next) => {
     });
 
     return res.json(languageMap.map((cell, index) => {
-      if (cell.type !== 'base') {
+      if (cell.type === 'language') {
         const precedingCells = getPrecedingIndices(index).map(i => languageMap[i]);
 
-        let available = false;
-
-        if (precedingCells.some(cell => typeof team === 'number' && cell.team === team)) {
-          available = true;
-        }
+        const available = typeof team === 'number' && (
+          (
+            cell.team === team ||
+            (cell.record && cell.record.solution && cell.record.solution.user.team === team)
+          ) || (
+            precedingCells.some(cell => (
+              cell.team === team ||
+              (cell.record && cell.record.solution && cell.record.solution.user.team === team)
+            ))
+          )
+        );
 
         if (cell.record && cell.record.solution) {
           return {
             type: 'language',
             solved: true,
+            team: cell.record.solution.user.team,
+            solution: {
+              _id: cell.record.solution._id,
+              size: cell.record.solution.size,
+              user: cell.record.solution.user.name(),
+            },
             slug: cell.slug,
             name: cell.name,
-            team: cell.record.solution.user.team,
             available,
           };
         }
@@ -116,43 +127,10 @@ exports.getLanguages = (req, res, next) => {
         };
       }
 
-      return {};
-    }));
-  });
-};
-
-/**
- * GET /api/languages/:language
- */
-exports.getLanguage = (req, res, next) => {
-  const slug = req.params.language;
-
-  Language.findOne({ slug }).populate({
-    path: 'solution',
-    populate: { path: 'user' },
-  }).exec((error, language) => {
-    if (error) {
-      return next(error);
-    }
-
-    const languageData = languages.find(l => l.slug === slug);
-
-    if (!languageData) {
-      return res.json({ error: 'Not Found' });
-    }
-
-    const clonedLanguageData = Object.assign({}, languageData);
-
-    if (language === null || !language.solution) {
-      clonedLanguageData.solution = null;
-    } else {
-      clonedLanguageData.solution = {
-        user: language.solution.user.name(),
-        code: 'solution not available',
+      return {
+        type: 'unknown',
       };
-    }
-
-    return res.json(clonedLanguageData);
+    }));
   });
 };
 
@@ -181,11 +159,6 @@ exports.getSubmission = (req, res, next) => {
  * POST /api/submission
  */
 exports.postSubmission = (req, res, next) => {
-  return res.status(400).json({
-    error: 'Submission is closed',
-  });
-
-  // eslint-disable-next-line no-unreachable
   req.assert('language', 'Please Specify language').notEmpty();
   req.assert('code', 'Code cannot be empty or longer than 10000 bytes').len(1, 10000);
 
@@ -209,6 +182,7 @@ exports.postSubmission = (req, res, next) => {
       populate: { path: 'user' },
     }).exec();
   })
+  // TODO: Check if preceding cell is aleady taken
   .then((existingLanguage) => {
     if (existingLanguage !== null) {
       if (existingLanguage.solution && existingLanguage.solution.size <= req.body.code.length) {

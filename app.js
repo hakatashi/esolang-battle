@@ -124,7 +124,6 @@ app.get('/submissions', passportConfig.isAuthenticated, submissionController.get
 app.get('/api/submission', passportConfig.isAuthenticated, apiController.getSubmission);
 app.post('/api/submission', passportConfig.isAuthenticated, apiController.postSubmission);
 app.get('/api/languages', passportConfig.isAuthenticated, apiController.getLanguages);
-app.get('/api/languages/:language', passportConfig.isAuthenticated, apiController.getLanguage);
 
 /**
  * OAuth authentication routes. (Sign in)

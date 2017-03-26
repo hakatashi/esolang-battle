@@ -41,29 +41,25 @@ const updateLanguages = () => {
       if (language) {
         if (language.type === 'unknown') {
           $language.css({
-            backgroundColor: 'black',
             color: 'white',
-          });
+          }).addClass('black');
         } else if (language.type === 'language') {
           $language.find('.name').text(language.name);
 
           if (typeof language.team === 'number') {
             $language.css({
-              backgroundColor: language.team === 0 ? 'red' : 'blue',
               color: 'white',
-            });
+            }).addClass(language.team === 0 ? 'red' : 'blue');
           } else {
             $language.css({
-              backgroundColor: language.available ? 'white' : '#888',
               color: '',
-            });
+            }).addClass(language.available ? 'white' : 'gray');
           }
         } else if (language.type === 'base') {
           if (typeof language.team === 'number') {
             $language.css({
-              backgroundColor: language.team === 0 ? 'red' : 'blue',
               color: 'white',
-            });
+            }).addClass(language.team === 0 ? 'red' : 'blue');
           }
         }
       } else {
@@ -105,22 +101,21 @@ $(document).ready(() => {
       $modal.find('.result').removeClass('bg-warning bg-success').hide();
       $modal.data('language', language.slug);
 
-      api.get(`/languages/${language.slug}`).then((language) => {
-        if (language.engine === 'ideone') {
-          $modal.find('.engine-name').attr('href', 'https://ideone.com/').text('ideone');
-        } else {
-          $modal.find('.engine-name').attr('href', `http://${language.id}.tryitonline.net/`).text('Try it online!');
-        }
+      if (language.solved) {
+        const solutionURL = `${location.origin}/submissions/${language.solution._id}`;
+        $modal.find('.owner-name').text(language.solution.user);
+        $modal.find('.solution').text(solutionURL).attr('href', solutionURL);
+        $modal.find('.solution-bytes').text(language.solution.size);
+      } else {
+        $modal.find('.owner-name').text('Not Solved');
+        $modal.find('.solution').text('N/A').attr('href', '');
+        $modal.find('.solution-bytes').text('N/A');
+      }
 
-        if (language.solution === null) {
-          $modal.find('.owner-name').text('Not Solved');
-          $modal.find('.code').attr('readonly', false);
-          $modal.find('.submit-code').attr('disabled', false);
-        } else {
-          $modal.find('.owner-name').text(language.solution.user);
-          $modal.find('.code').val(language.solution.code);
-        }
-      });
+      if (language.available) {
+        $modal.find('.code').attr('readonly', false);
+        $modal.find('.submit-code').attr('disabled', false);
+      }
 
       return true;
     });
