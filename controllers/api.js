@@ -196,66 +196,53 @@ exports.postSubmission = (req, res, next) => {
     return next(new Error(`Language ${req.body.language} doesn't exist`));
   }
 
-  Submission.findOne({ user: req.user }).sort({ createdAt: -1 }).exec((error, latestSubmission) => {
-    if (error) {
-      return next(error);
-    }
-
+  Submission.findOne({ user: req.user }).sort({ createdAt: -1 }).exec()
+  .then((latestSubmission) => {
     if (latestSubmission !== null && latestSubmission.createdAt > Date.now() - (60 * 1000)) {
       return res.status(400).json({
         error: 'Submission interval is too short',
       });
     }
 
-    Language.findOne({ slug: req.body.language }).populate({
+    return Language.findOne({ slug: req.body.language }).populate({
       path: 'solution',
       populate: { path: 'user' },
-    }).exec((error, existingLanguage) => {
-      if (error) {
-        return next(error);
+    }).exec();
+  })
+  .then((existingLanguage) => {
+    if (existingLanguage !== null) {
+      if (existingLanguage.solution && existingLanguage.solution.size <= req.body.code.length) {
+        return Promise.reject(new Error('Shorter solution is already submitted'));
       }
 
-      const saveSubmission = (language) => {
-        const submission = new Submission({
-          language: language._id,
-          user: req.user._id,
-          code: req.body.code,
-          size: req.body.code.length,
-          status: 'pending',
-        });
+      return existingLanguage;
+    }
 
-        submission.save((error) => {
-          if (error) {
-            return next(error);
-          }
-
-          validation.validate(req.user, submission, languageData);
-
-          res.json(submission);
-        });
-      };
-
-      if (existingLanguage !== null) {
-        if (existingLanguage.solution && existingLanguage.solution.size <= req.body.code.length) {
-          return next(new Error('Shorter solution is already submitted'));
-        }
-
-        saveSubmission(existingLanguage);
-      } else {
-        const language = new Language({
-          solution: null,
-          slug: languageData.slug,
-        });
-
-        language.save((error) => {
-          if (error) {
-            return next(error);
-          }
-
-          saveSubmission(language);
-        });
-      }
+    const language = new Language({
+      solution: null,
+      slug: languageData.slug,
     });
+
+    return language.save().then(() => language);
+  })
+  .then((language) => {
+    const submission = new Submission({
+      language: language._id,
+      user: req.user._id,
+      code: req.body.code,
+      size: req.body.code.length,
+      status: 'pending',
+    });
+
+    return submission.save();
+  })
+  .then((submission) => {
+    validation.validate(req.user, submission, languageData);
+
+    res.json(submission);
+  })
+  .catch((error) => {
+    next(error);
   });
 };
 
