@@ -25,7 +25,9 @@ module.exports = ({ id, code, stdin }) => {
         resolve({ tmpPath, cleanup });
       }
     });
-  }).then(({ tmpPath, cleanup }) => {
+  }).then((info) => {
+    console.log('info:', info);
+    const { tmpPath, cleanup } = info;
     const stdinPath = path.join(tmpPath, 'INPUT');
     const codePath = path.join(tmpPath, id === 'c-gcc' ? 'CODE.c' : 'CODE');
 
