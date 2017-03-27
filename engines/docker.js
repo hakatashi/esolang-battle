@@ -100,7 +100,7 @@ module.exports = ({ id, code, stdin }) => {
 
       const runner = Promise.all([stdoutPromise, stderrPromise, containerPromise]);
 
-      return runner.timeout(1000).then(([stdout, stderr]) => {
+      return runner.timeout(5000).then(([stdout, stderr]) => {
         cleanup();
         return {
           stdout: Buffer.isBuffer(stdout) ? stdout : Buffer.alloc(0),

@@ -182,7 +182,7 @@ exports.postSubmission = (req, res, next) => {
 
   Submission.findOne({ user: req.user }).sort({ createdAt: -1 }).exec()
   .then((latestSubmission) => {
-    if (latestSubmission !== null && latestSubmission.createdAt > Date.now() - (20 * 1000)) {
+    if (latestSubmission !== null && latestSubmission.createdAt > Date.now() - (5 * 1000)) {
       return Promise.reject(new Error('Submission interval is too short'));
     }
 
