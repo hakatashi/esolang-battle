@@ -27,7 +27,7 @@ module.exports = ({ id, code, stdin }) => {
     });
   }).then(({ tmpPath, cleanup }) => {
     const stdinPath = path.join(tmpPath, 'INPUT');
-    const codePath = path.join(tmpPath, 'CODE');
+    const codePath = path.join(tmpPath, id === 'c-gcc' ? 'CODE.c' : 'CODE');
 
     return Promise.all([
       fs.writeFileAsync(stdinPath, stdin),
@@ -69,7 +69,7 @@ module.exports = ({ id, code, stdin }) => {
         OpenStdin: false,
         StdinOnce: false,
         Env: null,
-        Cmd: ['bash', '-c', `${shellescape([id, '/volume/CODE'])} < /volume/INPUT`],
+        Cmd: ['bash', '-c', `${shellescape([id, id === 'c-gcc' ? '/volume/CODE.c' : '/volume/CODE'])} < /volume/INPUT`],
         Image: 'hakatashi/esolang-box',
         Volumes: {
           '/volume': {}
