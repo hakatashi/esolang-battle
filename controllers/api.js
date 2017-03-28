@@ -217,10 +217,10 @@ exports.postSubmission = (req, res, next) => {
       status: 'pending',
     });
 
-    return submission.save();
+    return submission.save().then(submission => ({ language, submission }));
   })
-  .then((submission) => {
-    validation.validate(req.user, submission, languageData);
+  .then(({ language, submission }) => {
+    validation.validate(req.user, submission, languageData, language.solution);
 
     res.json(submission);
   })
