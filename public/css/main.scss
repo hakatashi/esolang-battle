@@ -76,6 +76,7 @@ textarea {
   width: 90vh;
   height: 90vh;
   margin: 0 auto;
+  position: relative;
 
   .row {
     display: flex;
@@ -111,6 +112,53 @@ textarea {
       &.white {
         background: white;
       }
+    }
+  }
+
+  .team-info {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: bold;
+    line-height: 1em;
+
+    &.red {
+      right: calc(100% + 30px);
+      color: #ef2011;
+
+      .bar {
+        background-color: #ef2011;
+      }
+    }
+
+    &.blue {
+      left: calc(100% + 30px);
+      color: #0e30ec;
+
+      .bar {
+        background-color: #0e30ec;
+      }
+    }
+
+    .team-name {
+      font-size: 24px;
+      line-height: 1em;
+    }
+
+    .score {
+      font-size: 40px;
+      line-height: 1em;
+    }
+
+    .bar {
+      flex-basis: 0px;
+      width: 100%;
+      transition: flex-basis 1s;
     }
   }
 }

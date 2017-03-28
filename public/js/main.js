@@ -40,6 +40,10 @@ let languageData = [];
 const updateLanguages = () => {
   api.get('/languages').then((languages) => {
     languageData = languages;
+
+    let red = 0;
+    let blue = 0;
+
     $('.language').each((index, languageEl) => {
       const $language = $(languageEl);
       const language = languageData[parseInt($language.data('index'), 10)];
@@ -69,8 +73,20 @@ const updateLanguages = () => {
             $language.addClass(language.team === 0 ? 'red' : 'blue');
           }
         }
+
+        if (language.team === 0) {
+          red++;
+        } else if (language.team === 1) {
+          blue++;
+        }
       }
     });
+
+    $('.team-info.red > .score').text(red);
+    $('.team-info.red > .bar').css({ flexBasis: `${red / (red + blue) * 100}%` });
+
+    $('.team-info.blue > .score').text(blue);
+    $('.team-info.blue > .bar').css({ flexBasis: `${blue / (red + blue) * 100}%` });
   });
 };
 
