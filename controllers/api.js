@@ -162,6 +162,12 @@ exports.getSubmission = (req, res, next) => {
 exports.postSubmission = (req, res, next) => {
   req.assert('language', 'Please Specify language').notEmpty();
 
+  if (new Date() >= new Date('2017-04-03T15:00:00.000Z')) {
+    return res.status(400).json({
+      error: 'Competition has closed',
+    });
+  }
+
   let code;
 
   if (req.files && req.files.file && req.files.file.length === 1) {
