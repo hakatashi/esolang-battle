@@ -5,11 +5,13 @@ const moment = require('moment');
  * GET /submissions
  */
 exports.getSubmissions = (req, res) => {
+  const page = parseInt(req.params.page) || 0;
   Submission
   .find()
   .sort({ _id: -1 })
   .populate('user')
   .populate('language')
+  .skip(500 * page)
   .limit(500)
   .exec((err, submissions) => {
     res.render('submissions', {
