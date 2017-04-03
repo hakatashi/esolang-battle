@@ -80,7 +80,7 @@ exports.getLanguages = (req, res, next) => {
       if (cell.type === 'language') {
         const precedingCells = getPrecedingIndices(index).map(i => languageMap[i]);
 
-        const available = typeof team === 'number' && (
+        const available = false && typeof team === 'number' && (
           (
             cell.team === team ||
             (cell.record && cell.record.solution && cell.record.solution.user.team === team)
@@ -129,7 +129,11 @@ exports.getLanguages = (req, res, next) => {
       }
 
       return {
-        type: 'unknown',
+        type: 'language',
+        solved: false,
+        slug: cell.slug,
+        name: cell.name,
+        available,
       };
     }));
   });
