@@ -107,7 +107,7 @@ $(document).ready(() => {
     $language.click(() => {
       const language = languageData[parseInt($language.data('index'), 10)];
 
-      if (!language.slug || !language.available) {
+      if (!language.slug) {
         return true;
       }
 
