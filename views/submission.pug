@@ -10,7 +10,7 @@ block content
   h4 Size
   p= submission.size
 
-  if selfTeam
+  if selfTeam || new Date() >= new Date('2017-04-03T15:00:00.000Z')
     h4 Code
     p
       pre= submission.code
