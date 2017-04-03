@@ -5,7 +5,7 @@ const moment = require('moment');
  * GET /submissions
  */
 exports.getSubmissions = (req, res) => {
-  const page = parseInt(req.params.page) || 0;
+  const page = parseInt(req.query && req.query.page) || 0;
   Submission
   .find()
   .sort({ _id: -1 })
