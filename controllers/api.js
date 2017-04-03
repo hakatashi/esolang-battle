@@ -119,7 +119,11 @@ exports.getLanguages = (req, res, next) => {
         }
 
         return {
-          type: 'unknown',
+          type: 'language',
+          solved: false,
+          slug: cell.slug,
+          name: cell.name,
+          available,
         };
       } else if (cell.type === 'base') {
         return {
