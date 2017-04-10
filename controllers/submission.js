@@ -1,5 +1,6 @@
 const Submission = require('../models/Submission');
 const User = require('../models/User');
+const Language = require('../models/Language');
 const moment = require('moment');
 const Promise = require('bluebird');
 
@@ -9,16 +10,26 @@ const Promise = require('bluebird');
 exports.getSubmissions = (req, res) => {
   Promise.try(() => {
     if (req.query.author) {
-      return User.findOne({ email: `${req.query.author}@twitter.com` });
+      return User.findOne({ email: `${req.query.author}@twitter.com` }).then(author => ({ author }));
     }
 
-    return null;
-  }).then((author) => {
+    return {};
+  }).then(({ author }) => {
+    if (req.query.language) {
+      return Language.findOne({ slug: req.query.language }).then(language => ({ author, language }));
+    }
+
+    return { author };
+  }).then(({ author, language }) => {
     const page = parseInt(req.query && req.query.page) || 0;
     const query = {};
 
     if (author) {
       query.user = author._id;
+    }
+
+    if (language) {
+      query.language = language._id;
     }
 
     if (req.query.status) {
