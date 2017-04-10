@@ -1,19 +1,38 @@
 const Submission = require('../models/Submission');
+const User = require('../models/User');
 const moment = require('moment');
+const Promise = require('bluebird');
 
 /**
  * GET /submissions
  */
 exports.getSubmissions = (req, res) => {
-  const page = parseInt(req.query && req.query.page) || 0;
-  Submission
-  .find()
-  .sort({ _id: -1 })
-  .populate('user')
-  .populate('language')
-  .skip(500 * page)
-  .limit(500)
-  .exec((err, submissions) => {
+  Promise.try(() => {
+    if (req.query.author) {
+      return User.findOne({ email: `${req.query.author}@twitter.com` });
+    }
+
+    return null;
+  }).then((author) => {
+    const page = parseInt(req.query && req.query.page) || 0;
+    const query = {};
+
+    if (author) {
+      query.user = author._id;
+    }
+
+    if (req.query.status) {
+      query.status = req.query.status;
+    }
+
+    return Submission.find(query)
+    .sort({ _id: -1 })
+    .populate('user')
+    .populate('language')
+    .skip(500 * page)
+    .limit(500)
+    .exec();
+  }).then((submissions) => {
     res.render('submissions', {
       title: 'Submissions',
       submissions,
