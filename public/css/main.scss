@@ -109,6 +109,11 @@ textarea {
         color: white;
       }
 
+      &.green {
+        background: #167516;
+        color: white;
+      }
+
       &.white {
         background: white;
       }
@@ -142,6 +147,15 @@ textarea {
 
       .bar {
         background-color: #0e30ec;
+      }
+    }
+
+    &.green {
+      right: calc(100% + 150px);
+      color: #167516;
+
+      .bar {
+        background-color: #167516;
       }
     }
 

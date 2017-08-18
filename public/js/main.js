@@ -43,6 +43,7 @@ const updateLanguages = () => {
 
     let red = 0;
     let blue = 0;
+    let green = 0;
 
     $('.language').each((index, languageEl) => {
       const $language = $(languageEl);
@@ -51,7 +52,7 @@ const updateLanguages = () => {
       $language.find('.name').text('');
       $language.find('.size').text('');
       $language.attr('data-toggle', language.available ? 'modal' : false);
-      $language.removeClass('red blue white gray black');
+      $language.removeClass('red blue green white gray black');
 
       if (language) {
         if (language.type === 'unknown') {
@@ -64,13 +65,13 @@ const updateLanguages = () => {
           }
 
           if (typeof language.team === 'number') {
-            $language.addClass(language.team === 0 ? 'red' : 'blue');
+            $language.addClass(['red', 'blue', 'green'][language.team]);
           } else {
             $language.addClass(language.available ? 'white' : 'gray');
           }
         } else if (language.type === 'base') {
           if (typeof language.team === 'number') {
-            $language.addClass(language.team === 0 ? 'red' : 'blue');
+            $language.addClass(['red', 'blue', 'green'][language.team]);
           }
         }
 
@@ -78,15 +79,20 @@ const updateLanguages = () => {
           red++;
         } else if (language.team === 1) {
           blue++;
+        } else if (language.team === 2) {
+          green++;
         }
       }
     });
 
     $('.team-info.red > .score').text(red);
-    $('.team-info.red > .bar').css({ flexBasis: `${red / (red + blue) * 100}%` });
+    $('.team-info.red > .bar').css({ flexBasis: `${red / (red + blue + green) * 100}%` });
 
     $('.team-info.blue > .score').text(blue);
-    $('.team-info.blue > .bar').css({ flexBasis: `${blue / (red + blue) * 100}%` });
+    $('.team-info.blue > .bar').css({ flexBasis: `${blue / (red + blue + green) * 100}%` });
+
+    $('.team-info.green > .score').text(blue);
+    $('.team-info.green > .bar').css({ flexBasis: `${green / (red + blue + green) * 100}%` });
   });
 };
 
@@ -121,7 +127,7 @@ $(document).ready(() => {
 
       if (language.solved) {
         const solutionURL = `${location.origin}/submissions/${language.solution._id}`;
-        $modal.find('.owner-name').text(`${language.solution.user} (${language.team === 0 ? 'Red' : 'Blue'})`);
+        $modal.find('.owner-name').text(`${language.solution.user} (${['Red', 'Blue', 'Green'][language.team]})`);
         $modal.find('.solution').text(language.solution._id).attr('href', solutionURL);
         $modal.find('.solution-bytes').text(language.solution.size);
       } else {
