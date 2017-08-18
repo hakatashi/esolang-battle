@@ -50,7 +50,7 @@ const updateLanguages = () => {
 
       $language.find('.name').text('');
       $language.find('.size').text('');
-      $language.attr('data-toggle', 'modal');
+      $language.attr('data-toggle', language.available ? 'modal' : false);
       $language.removeClass('red blue white gray black');
 
       if (language) {
@@ -107,7 +107,7 @@ $(document).ready(() => {
     $language.click(() => {
       const language = languageData[parseInt($language.data('index'), 10)];
 
-      if (!language.slug) {
+      if (!language.slug || !language.available) {
         return true;
       }
 

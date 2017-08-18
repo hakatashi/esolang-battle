@@ -80,7 +80,7 @@ exports.getLanguages = (req, res, next) => {
       if (cell.type === 'language') {
         const precedingCells = getPrecedingIndices(index).map(i => languageMap[i]);
 
-        const available = false && typeof team === 'number' && (
+        const available = typeof team === 'number' && (
           (
             cell.team === team ||
             (cell.record && cell.record.solution && cell.record.solution.user.team === team)
@@ -119,11 +119,7 @@ exports.getLanguages = (req, res, next) => {
         }
 
         return {
-          type: 'language',
-          solved: false,
-          slug: cell.slug,
-          name: cell.name,
-          available,
+          type: 'unknown',
         };
       } else if (cell.type === 'base') {
         return {
@@ -133,11 +129,7 @@ exports.getLanguages = (req, res, next) => {
       }
 
       return {
-        type: 'language',
-        solved: false,
-        slug: cell.slug,
-        name: cell.name,
-        available,
+        type: 'unknown',
       };
     }));
   });
@@ -170,7 +162,7 @@ exports.getSubmission = (req, res, next) => {
 exports.postSubmission = (req, res, next) => {
   req.assert('language', 'Please Specify language').notEmpty();
 
-  if (new Date() >= new Date('2017-04-03T15:00:00.000Z')) {
+  if (new Date() >= new Date('2017-08-26T15:00:00.000Z')) {
     return res.status(400).json({
       error: 'Competition has closed',
     });
@@ -185,7 +177,7 @@ exports.postSubmission = (req, res, next) => {
     code = Buffer.from(req.body.code.replace(/\r\n/g, '\n'), 'utf8');
   }
 
-  assert(1 <= code.length && code.length <= 10000);
+  assert(code.length >= 1 && code.length <= 10000);
 
   const languageData = languages.find(l => l.slug === req.body.language);
   const languageIndex = languages.findIndex(l => l.slug === req.body.language);
@@ -238,11 +230,9 @@ exports.postSubmission = (req, res, next) => {
 
     res.json(submission);
   })
-  .catch((error) => {
-    return res.status(400).json({
-      error: error.message,
-    });
-  });
+  .catch(error => res.status(400).json({
+    error: error.message,
+  }));
 };
 
 /**
