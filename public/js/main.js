@@ -94,7 +94,7 @@ const updateLanguages = () => {
     $('.team-info.blue > .score').text(blue);
     $('.team-info.blue > .bar').css({ flexBasis: `${blue / (red + blue + green) * 100}%` });
 
-    $('.team-info.green > .score').text(blue);
+    $('.team-info.green > .score').text(green);
     $('.team-info.green > .bar').css({ flexBasis: `${green / (red + blue + green) * 100}%` });
   });
 };
@@ -187,13 +187,13 @@ $(document).ready(() => {
           // TODO: XSS
           if (submission.status === 'failed') {
             $modal.find('.result').addClass('bg-warning')
-            .html(`<strong>Submission failed.</strong> Check out the detail <a href="${location.origin}/submissions/${submission._id}" target="_blank">here</a>.`)
-            .show();
+              .html(`<strong>Submission failed.</strong> Check out the detail <a href="${location.origin}/submissions/${submission._id}" target="_blank">here</a>.`)
+              .show();
             $modal.find('.submit-code').attr('disabled', false);
           } else if (submission.status === 'success') {
             $modal.find('.result').addClass('bg-success')
-            .html(`<strong>You won the language!</strong> Check out the detail <a href="${location.origin}/submissions/${submission._id}" target="_blank">here</a>.`)
-            .show();
+              .html(`<strong>You won the language!</strong> Check out the detail <a href="${location.origin}/submissions/${submission._id}" target="_blank">here</a>.`)
+              .show();
           } else if (submission.status === 'pending') {
             setTimeout(getSubmission, 1000);
           }
