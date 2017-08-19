@@ -28,7 +28,15 @@ module.exports = ({ id, code, stdin }) => {
   }).then((info) => {
     const { tmpPath, cleanup } = info;
     const stdinPath = path.join(tmpPath, 'INPUT');
-    const codePath = path.join(tmpPath, id === 'c-gcc' ? 'CODE.c' : 'CODE');
+
+    let filename = 'CODE';
+    if (id === 'rdmd') {
+      filename = 'CODE.d';
+    } else if (id === 'c-gcc') {
+      filename = 'CODE.c';
+    }
+
+    const codePath = path.join(tmpPath, filename);
 
     return Promise.all([
       fs.writeFileAsync(stdinPath, stdin),
@@ -95,8 +103,8 @@ module.exports = ({ id, code, stdin }) => {
 
         return container.start();
       })
-      .then(() => container.wait())
-      .then(() => container.remove());
+        .then(() => container.wait())
+        .then(() => container.remove());
 
       const runner = Promise.all([stdoutPromise, stderrPromise, containerPromise]);
 
