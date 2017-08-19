@@ -181,7 +181,7 @@ exports.postSubmission = (req, res, next) => {
 
   assert(code.length >= 1 && code.length <= 10000);
 
-  const languageData = languages.find(l => l.slug === req.body.language);
+  const languageData = languages.find(l => l && l.slug === req.body.language);
 
   if (languageData === undefined) {
     return next(new Error(`Language ${req.body.language} doesn't exist`));
