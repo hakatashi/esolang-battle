@@ -1,4 +1,5 @@
 const languages = require('../languages');
+const classnames = require('classnames');
 
 /**
  * GET /
@@ -8,5 +9,6 @@ exports.index = (req, res) => {
   res.render('home', {
     title: 'Home',
     languages,
+    classnames,
   });
 };

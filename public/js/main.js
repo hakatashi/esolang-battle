@@ -51,10 +51,11 @@ const updateLanguages = () => {
 
       $language.find('.name').text('');
       $language.find('.size').text('');
-      $language.attr('data-toggle', language.available ? 'modal' : false);
       $language.removeClass('red blue green white gray black');
 
       if (language) {
+        $language.attr('data-toggle', language.available ? 'modal' : false);
+
         if (language.type === 'unknown') {
           $language.addClass('black');
         } else if (language.type === 'language') {
@@ -82,6 +83,8 @@ const updateLanguages = () => {
         } else if (language.team === 2) {
           green++;
         }
+      } else {
+        $language.addClass('black');
       }
     });
 

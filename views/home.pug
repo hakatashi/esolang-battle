@@ -2,10 +2,13 @@ extends layout
 
 block content
   .board
-    - for (let y = 0; y < 9; y++)
+    - for (let y = 0; y < 8; y++)
       .row
-        - for (let x = 0; x < 9; x++)
-          div.language.cell(data-index=y * 9 + x, data-toggle="modal", data-target="#language-modal")
+        - for (let x = 0; x < 15; x++)
+          - const margin = (y < 4) ? (3 - y) : (y - 4)
+          div(class=classnames('language', 'cell', (x + y) % 2 ? 'up' : 'down', {invalid: x < margin || 14 - x < margin}), data-index=y * 15 + x, data-toggle="modal", data-target="#language-modal")
+            svg.triangle-area(viewBox="0 0 1000 866")
+              polygon.triangle(points="0,866 500,0 1000,866")
             .language-label
               .name
               .size

@@ -28,25 +28,27 @@ const validation = require('../lib/validation');
 const assert = require('assert');
 
 const getPrecedingIndices = (index) => {
-  const x = index % 9;
-  const y = Math.floor(index / 9);
+  const x = index % 15;
+  const y = Math.floor(index / 15);
+  const margin = (y < 4) ? (3 - y) : (y - 4);
+  const direction = (x + y) % 2 ? 'up' : 'down';
 
   const precedingCells = [];
 
-  if (x - 1 >= 0) {
-    precedingCells.push((y * 9) + (x - 1));
+  if (x - 1 >= margin) {
+    precedingCells.push((y * 15) + (x - 1));
   }
 
-  if (x + 1 <= 8) {
-    precedingCells.push((y * 9) + (x + 1));
+  if (x + 1 <= 14 - margin) {
+    precedingCells.push((y * 15) + (x + 1));
   }
 
-  if (y - 1 >= 0) {
-    precedingCells.push(((y - 1) * 9) + x);
+  if (direction === 'down' && y - 1 >= 0) {
+    precedingCells.push(((y - 1) * 15) + x);
   }
 
-  if (y + 1 <= 8) {
-    precedingCells.push(((y + 1) * 9) + x);
+  if (direction === 'up' && y + 1 <= 7) {
+    precedingCells.push(((y + 1) * 15) + x);
   }
 
   return precedingCells;
@@ -67,7 +69,7 @@ exports.getLanguages = (req, res, next) => {
     const team = req.user && req.user.team;
 
     const languageMap = languages.map((language) => {
-      if (language.type === 'language') {
+      if (language && language.type === 'language') {
         return Object.assign({}, language, {
           record: languageRecords.find(languageRecord => languageRecord.slug === language.slug),
         });
