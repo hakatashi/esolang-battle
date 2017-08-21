@@ -80,7 +80,7 @@ module.exports = ({ id, code, stdin }) => {
         OpenStdin: false,
         StdinOnce: false,
         Env: null,
-        Cmd: ['bash', '-c', `${shellescape([id, id === 'c-gcc' ? '/volume/CODE.c' : '/volume/CODE'])} < /volume/INPUT`],
+        Cmd: ['bash', '-c', `${shellescape([id, `/volume/${filename}`])} < /volume/INPUT`],
         Image: 'hakatashi/esolang-box',
         Volumes: {
           '/volume': {}
