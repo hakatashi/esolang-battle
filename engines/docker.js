@@ -34,6 +34,8 @@ module.exports = ({ id, code, stdin }) => {
       filename = 'CODE.d';
     } else if (id === 'c-gcc') {
       filename = 'CODE.c';
+    } else if (id === 'concise-folders' || id === 'pure-folders') {
+      filename = 'CODE.zip';
     }
 
     const codePath = path.join(tmpPath, filename);
