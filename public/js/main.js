@@ -45,6 +45,8 @@ const updateLanguages = () => {
     let blue = 0;
     let green = 0;
 
+    const competitionEnd = new Date() >= new Date('2017-08-26T15:00:00.000Z');
+
     $('.language').each((index, languageEl) => {
       const $language = $(languageEl);
       const language = languageData[parseInt($language.data('index'), 10)];
@@ -54,7 +56,7 @@ const updateLanguages = () => {
       $language.removeClass('red blue green white gray black');
 
       if (language) {
-        $language.attr('data-toggle', language.available ? 'modal' : false);
+        $language.attr('data-toggle', (competitionEnd || language.available) ? 'modal' : false);
 
         if (language.type === 'unknown') {
           $language.addClass('black');
@@ -108,6 +110,7 @@ $(document).ready(() => {
   }
 
   const $modal = $('#language-modal');
+  const competitionEnd = new Date() >= new Date('2017-08-26T15:00:00.000Z');
   let pendingSubmission = {};
 
   $('.language').each((index, language) => {
@@ -116,7 +119,7 @@ $(document).ready(() => {
     $language.click(() => {
       const language = languageData[parseInt($language.data('index'), 10)];
 
-      if (!language.slug || !language.available) {
+      if (!competitionEnd && (!language.slug || !language.available)) {
         return true;
       }
 

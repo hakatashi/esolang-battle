@@ -80,6 +80,32 @@ exports.getLanguages = (req, res, next) => {
 
     return res.json(languageMap.map((cell, index) => {
       if (cell.type === 'language') {
+        if (new Date() >= new Date('2017-08-26T15:00:00.000Z')) {
+          if (cell.record && cell.record.solution) {
+            return {
+              type: 'language',
+              solved: true,
+              team: cell.record.solution.user.team,
+              solution: {
+                _id: cell.record.solution._id,
+                size: cell.record.solution.size,
+                user: cell.record.solution.user.name(),
+              },
+              slug: cell.slug,
+              name: cell.name,
+              available: false,
+            };
+          }
+
+          return {
+            type: 'language',
+            solved: false,
+            slug: cell.slug,
+            name: cell.name,
+            available: false,
+          };
+        }
+
         const precedingCells = getPrecedingIndices(index).map(i => languageMap[i]);
 
         const available = typeof team === 'number' && (
@@ -188,52 +214,52 @@ exports.postSubmission = (req, res, next) => {
   }
 
   Submission.findOne({ user: req.user }).sort({ createdAt: -1 }).exec()
-  .then((latestSubmission) => {
-    if (latestSubmission !== null && latestSubmission.createdAt > Date.now() - (5 * 1000)) {
-      return Promise.reject(new Error('Submission interval is too short'));
-    }
-
-    return Language.findOne({ slug: req.body.language }).populate({
-      path: 'solution',
-      populate: { path: 'user' },
-    }).exec();
-  })
-  // TODO: Check if preceding cell is aleady taken
-  .then((existingLanguage) => {
-    if (existingLanguage !== null) {
-      if (existingLanguage.solution && existingLanguage.solution.size <= code.length) {
-        return Promise.reject(new Error('Shorter solution is already submitted'));
+    .then((latestSubmission) => {
+      if (latestSubmission !== null && latestSubmission.createdAt > Date.now() - (5 * 1000)) {
+        return Promise.reject(new Error('Submission interval is too short'));
       }
 
-      return existingLanguage;
-    }
+      return Language.findOne({ slug: req.body.language }).populate({
+        path: 'solution',
+        populate: { path: 'user' },
+      }).exec();
+    })
+  // TODO: Check if preceding cell is aleady taken
+    .then((existingLanguage) => {
+      if (existingLanguage !== null) {
+        if (existingLanguage.solution && existingLanguage.solution.size <= code.length) {
+          return Promise.reject(new Error('Shorter solution is already submitted'));
+        }
 
-    const language = new Language({
-      solution: null,
-      slug: languageData.slug,
-    });
+        return existingLanguage;
+      }
 
-    return language.save().then(() => language);
-  })
-  .then((language) => {
-    const submission = new Submission({
-      language: language._id,
-      user: req.user._id,
-      code,
-      size: code.length,
-      status: 'pending',
-    });
+      const language = new Language({
+        solution: null,
+        slug: languageData.slug,
+      });
 
-    return submission.save().then(submission => ({ language, submission }));
-  })
-  .then(({ language, submission }) => {
-    validation.validate(req.user, submission, languageData, language.solution);
+      return language.save().then(() => language);
+    })
+    .then((language) => {
+      const submission = new Submission({
+        language: language._id,
+        user: req.user._id,
+        code,
+        size: code.length,
+        status: 'pending',
+      });
 
-    res.json(submission);
-  })
-  .catch(error => res.status(400).json({
-    error: error.message,
-  }));
+      return submission.save().then(submission => ({ language, submission }));
+    })
+    .then(({ language, submission }) => {
+      validation.validate(req.user, submission, languageData, language.solution);
+
+      res.json(submission);
+    })
+    .catch(error => res.status(400).json({
+      error: error.message,
+    }));
 };
 
 /**
