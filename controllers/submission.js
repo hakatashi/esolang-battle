@@ -73,7 +73,7 @@ exports.getSubmission = async (req, res) => {
 
   const { code, hexdump } = await new Promise((resolve) => {
     // eslint-disable-next-line no-control-regex
-    if (isValidUTF8(submission.code) && !submission.code.toString().match(/[\x00-\x1F\x7F\x80-\x9F]/)) {
+    if (isValidUTF8(submission.code) && !submission.code.toString().match(/[\x00-\x08\x0b\x0c\x0e-\x1F\x7F\x80-\x9F]/)) {
       return resolve({ code: submission.code.toString(), hexdump: false });
     }
 
