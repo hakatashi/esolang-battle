@@ -7,9 +7,9 @@ html
     meta(name='theme-color' content='#4DA5F4')
     meta(name='csrf-token', content=_csrf)
     title #{title} - Esolang Battler
-    link(rel='shortcut icon', href='/favicon.png')
-    link(rel='stylesheet', href='/css/main.css')
-    script(src='/socket.io/socket.io.js')
+    link(rel='shortcut icon', href=`/favicon.png?${hash}`)
+    link(rel='stylesheet', href=`/css/main.css?${hash}`)
+    script(src=`/socket.io/socket.io.js?${hash}`)
 
   body
     include partials/header
@@ -20,9 +20,9 @@ html
 
     include partials/footer
 
-    script(src='/js/lib/jquery-2.2.4.min.js')
-    script(src='/js/lib/bootstrap.min.js')
-    script(src='/js/main.js')
+    script(src=`/js/lib/jquery-2.2.4.min.js${hash}`)
+    script(src=`/js/lib/bootstrap.min.js?${hash}`)
+    script(src=`/js/main.js?${hash}`)
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID
     script.

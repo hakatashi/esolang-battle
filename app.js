@@ -1,6 +1,9 @@
 /**
  * Module dependencies.
  */
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
 const express = require('express');
 const compression = require('compression');
 const session = require('express-session');
@@ -12,7 +15,6 @@ const lusca = require('lusca');
 const dotenv = require('dotenv');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('express-flash');
-const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const expressValidator = require('express-validator');
@@ -92,8 +94,12 @@ app.use((req, res, next) => {
 });
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
+  const hash = await util.promisify(fs.readFile)(path.resolve(__dirname, '.git/refs/heads/master'));
+
   res.locals.user = req.user;
+  res.locals.hash = hash.toString().trim();
+
   next();
 });
 app.use((req, res, next) => {
