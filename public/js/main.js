@@ -32,7 +32,7 @@ const api = (method, endpoint, params = {}) => {
 		}).then((res) => res.json());
 	}
 
-	return Promise.reject();
+	return Promise.reject(new Error('Unknown method'));
 };
 
 let languageData = [];
@@ -49,7 +49,7 @@ const updateLanguages = () => {
 
 		$('.language').each((index, languageEl) => {
 			const $language = $(languageEl);
-			const language = languageData[parseInt($language.data('index'), 10)];
+			const language = languageData[parseInt($language.data('index'))];
 
 			$language.find('.name').text('');
 			$language.find('.size').text('');
@@ -122,11 +122,11 @@ $(document).ready(() => {
 	const competitionEnd = new Date() >= new Date('2017-08-26T15:00:00.000Z');
 	let pendingSubmission = {};
 
-	$('.language').each((index, language) => {
-		const $language = $(language);
+	$('.language').each((index, languageElement) => {
+		const $language = $(languageElement);
 
 		$language.click(() => {
-			const language = languageData[parseInt($language.data('index'), 10)];
+			const language = languageData[parseInt($language.data('index'))];
 
 			if (!competitionEnd && (!language.slug || !language.available)) {
 				return true;
