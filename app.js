@@ -39,8 +39,7 @@ const apiController = require('./controllers/api');
  */
 const passportConfig = require('./config/passport');
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage, dest: path.join(__dirname, 'uploads') });
+const upload = multer();
 
 /**
  * Create Express server.

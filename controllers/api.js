@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 const graph = require('fbgraph');
 const LastFmNode = require('lastfm').LastFmNode;
 const tumblr = require('tumblr.js');
-const GitHub = require('github');
+const GitHub = require('@octokit/rest');
 const Twit = require('twit');
 const stripe = require('stripe')(process.env.STRIPE_SKEY);
 const twilio = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
@@ -268,32 +268,34 @@ exports.postSubmission = (req, res, next) => {
  */
 exports.getFoursquare = (req, res, next) => {
   const token = req.user.tokens.find(token => token.kind === 'foursquare');
-  async.parallel({
-    trendingVenues: (callback) => {
-      foursquare.Venues.getTrending('40.7222756', '-74.0022724', { limit: 50 }, token.accessToken, (err, results) => {
-        callback(err, results);
-      });
+  async.parallel(
+    {
+      trendingVenues: (callback) => {
+        foursquare.Venues.getTrending('40.7222756', '-74.0022724', { limit: 50 }, token.accessToken, (err, results) => {
+          callback(err, results);
+        });
+      },
+      venueDetail: (callback) => {
+        foursquare.Venues.getVenue('49da74aef964a5208b5e1fe3', token.accessToken, (err, results) => {
+          callback(err, results);
+        });
+      },
+      userCheckins: (callback) => {
+        foursquare.Users.getCheckins('self', null, token.accessToken, (err, results) => {
+          callback(err, results);
+        });
+      }
     },
-    venueDetail: (callback) => {
-      foursquare.Venues.getVenue('49da74aef964a5208b5e1fe3', token.accessToken, (err, results) => {
-        callback(err, results);
-      });
-    },
-    userCheckins: (callback) => {
-      foursquare.Users.getCheckins('self', null, token.accessToken, (err, results) => {
-        callback(err, results);
+    (err, results) => {
+      if (err) { return next(err); }
+      res.render('api/foursquare', {
+        title: 'Foursquare API',
+        trendingVenues: results.trendingVenues,
+        venueDetail: results.venueDetail,
+        userCheckins: results.userCheckins
       });
     }
-  },
-  (err, results) => {
-    if (err) { return next(err); }
-    res.render('api/foursquare', {
-      title: 'Foursquare API',
-      trendingVenues: results.trendingVenues,
-      venueDetail: results.venueDetail,
-      userCheckins: results.userCheckins
-    });
-  });
+  );
 };
 
 /**
@@ -409,64 +411,66 @@ exports.getLastfm = (req, res, next) => {
     api_key: process.env.LASTFM_KEY,
     secret: process.env.LASTFM_SECRET
   });
-  async.parallel({
-    artistInfo: (done) => {
-      lastfm.request('artist.getInfo', {
-        artist: 'Roniit',
-        handlers: {
-          success: (data) => {
-            done(null, data);
-          },
-          error: (err) => {
-            done(err);
+  async.parallel(
+    {
+      artistInfo: (done) => {
+        lastfm.request('artist.getInfo', {
+          artist: 'Roniit',
+          handlers: {
+            success: (data) => {
+              done(null, data);
+            },
+            error: (err) => {
+              done(err);
+            }
           }
-        }
-      });
+        });
+      },
+      artistTopTracks: (done) => {
+        lastfm.request('artist.getTopTracks', {
+          artist: 'Roniit',
+          handlers: {
+            success: (data) => {
+              done(null, data.toptracks.track.slice(0, 10));
+            },
+            error: (err) => {
+              done(err);
+            }
+          }
+        });
+      },
+      artistTopAlbums: (done) => {
+        lastfm.request('artist.getTopAlbums', {
+          artist: 'Roniit',
+          handlers: {
+            success: (data) => {
+              done(null, data.topalbums.album.slice(0, 3));
+            },
+            error: (err) => {
+              done(err);
+            }
+          }
+        });
+      }
     },
-    artistTopTracks: (done) => {
-      lastfm.request('artist.getTopTracks', {
-        artist: 'Roniit',
-        handlers: {
-          success: (data) => {
-            done(null, data.toptracks.track.slice(0, 10));
-          },
-          error: (err) => {
-            done(err);
-          }
-        }
-      });
-    },
-    artistTopAlbums: (done) => {
-      lastfm.request('artist.getTopAlbums', {
-        artist: 'Roniit',
-        handlers: {
-          success: (data) => {
-            done(null, data.topalbums.album.slice(0, 3));
-          },
-          error: (err) => {
-            done(err);
-          }
-        }
+    (err, results) => {
+      if (err) { return next(err); }
+      const artist = {
+        name: results.artistInfo.artist.name,
+        image: results.artistInfo.artist.image.slice(-1)[0]['#text'],
+        tags: results.artistInfo.artist.tags.tag,
+        bio: results.artistInfo.artist.bio.summary,
+        stats: results.artistInfo.artist.stats,
+        similar: results.artistInfo.artist.similar.artist,
+        topAlbums: results.artistTopAlbums,
+        topTracks: results.artistTopTracks
+      };
+      res.render('api/lastfm', {
+        title: 'Last.fm API',
+        artist
       });
     }
-  },
-  (err, results) => {
-    if (err) { return next(err); }
-    const artist = {
-      name: results.artistInfo.artist.name,
-      image: results.artistInfo.artist.image.slice(-1)[0]['#text'],
-      tags: results.artistInfo.artist.tags.tag,
-      bio: results.artistInfo.artist.bio.summary,
-      stats: results.artistInfo.artist.stats,
-      similar: results.artistInfo.artist.similar.artist,
-      topAlbums: results.artistTopAlbums,
-      topTracks: results.artistTopTracks
-    };
-    res.render('api/lastfm', {
-      title: 'Last.fm API',
-      artist
-    });
-  });
+  );
 };
 
 /**
@@ -525,45 +529,47 @@ exports.postTwitter = (req, res, next) => {
 exports.getSteam = (req, res, next) => {
   const steamId = '76561197982488301';
   const params = { l: 'english', steamid: steamId, key: process.env.STEAM_KEY };
-  async.parallel({
-    playerAchievements: (done) => {
-      params.appid = '49520';
-      request.get({ url: 'http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/', qs: params, json: true }, (err, request, body) => {
-        if (request.statusCode === 401) {
-          return done(new Error('Invalid Steam API Key'));
-        }
-        done(err, body);
-      });
+  async.parallel(
+    {
+      playerAchievements: (done) => {
+        params.appid = '49520';
+        request.get({ url: 'http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/', qs: params, json: true }, (err, request, body) => {
+          if (request.statusCode === 401) {
+            return done(new Error('Invalid Steam API Key'));
+          }
+          done(err, body);
+        });
+      },
+      playerSummaries: (done) => {
+        params.steamids = steamId;
+        request.get({ url: 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/', qs: params, json: true }, (err, request, body) => {
+          if (request.statusCode === 401) {
+            return done(new Error('Missing or Invalid Steam API Key'));
+          }
+          done(err, body);
+        });
+      },
+      ownedGames: (done) => {
+        params.include_appinfo = 1;
+        params.include_played_free_games = 1;
+        request.get({ url: 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/', qs: params, json: true }, (err, request, body) => {
+          if (request.statusCode === 401) {
+            return done(new Error('Missing or Invalid Steam API Key'));
+          }
+          done(err, body);
+        });
+      }
     },
-    playerSummaries: (done) => {
-      params.steamids = steamId;
-      request.get({ url: 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/', qs: params, json: true }, (err, request, body) => {
-        if (request.statusCode === 401) {
-          return done(new Error('Missing or Invalid Steam API Key'));
-        }
-        done(err, body);
-      });
-    },
-    ownedGames: (done) => {
-      params.include_appinfo = 1;
-      params.include_played_free_games = 1;
-      request.get({ url: 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/', qs: params, json: true }, (err, request, body) => {
-        if (request.statusCode === 401) {
-          return done(new Error('Missing or Invalid Steam API Key'));
-        }
-        done(err, body);
+    (err, results) => {
+      if (err) { return next(err); }
+      res.render('api/steam', {
+        title: 'Steam Web API',
+        ownedGames: results.ownedGames.response.games,
+        playerAchievemments: results.playerAchievements.playerstats,
+        playerSummary: results.playerSummaries.response.players[0]
       });
     }
-  },
-  (err, results) => {
-    if (err) { return next(err); }
-    res.render('api/steam', {
-      title: 'Steam Web API',
-      ownedGames: results.ownedGames.response.games,
-      playerAchievemments: results.playerAchievements.playerstats,
-      playerSummary: results.playerSummaries.response.players[0]
-    });
-  });
+  );
 };
 
 /**
