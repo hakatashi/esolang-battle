@@ -1,14 +1,15 @@
-const languages = require('../languages');
 const classnames = require('classnames');
+const {getLanguageMap} = require('../controllers/utils');
 
 /*
  * GET /
  * Home page.
  */
-module.exports.index = (req, res) => {
+module.exports.index = async (req, res) => {
+	const languageMap = await getLanguageMap();
 	res.render('home', {
 		title: 'Home',
-		languages,
+		languageMap,
 		classnames,
 	});
 };

@@ -6,39 +6,35 @@ block content
       .row
         - for (let x = 0; x < 15; x++)
           - const margin = (y < 4) ? (3 - y) : (y - 4)
-          div(class=classnames('language', 'cell', (x + y) % 2 ? 'up' : 'down', {invalid: x < margin || 14 - x < margin}), data-index=y * 15 + x, data-toggle="modal", data-target="#language-modal")
+          - const language = languageMap[y * 15 + x]
+          a(
+            class=classnames('language', 'cell', (x + y) % 2 ? 'up' : 'down', {
+              red: language.team === 0,
+              blue: language.team === 1,
+              green: language.team === 2,
+              gray: language.team === undefined,
+              invalid: x < margin || 14 - x < margin,
+            }),
+            href=language.solution ? `/submissions/${language.solution._id}` : '',
+            target='_blank'
+          )
             svg.triangle-area(viewBox="0 0 1000 866")
               polygon.triangle(points="0,866 500,0 1000,866")
             .language-label
-              .name
-              .size
+              .name= language.name
+              .size= language.solution ? language.solution.size : ''
+    - const red = languageMap.filter(({team}) => team === 0).length
+    - const blue = languageMap.filter(({team}) => team === 1).length
+    - const green = languageMap.filter(({team}) => team === 2).length
     .team-info.red
       .team-name Red
-      .score 0
-      .bar
+      .score= red
+      .bar(style={'flex-basis': `${red / (red + blue + green) * 100}%`})
     .team-info.blue
       .team-name Blue
-      .score 0
-      .bar
+      .score= blue
+      .bar(style={'flex-basis': `${blue / (red + blue + green) * 100}%`})
     .team-info.green
       .team-name Green
-      .score 0
-      .bar
-
-  #language-modal.modal.fade(tabindex='-1')
-    .modal-dialog
-      .modal-content
-        .modal-header
-          button.close(type='button', data-dismiss='modal')
-            span ×
-          h4.modal-title
-        .modal-body
-          p Owner: <span class="owner-name"></span>
-          p Solution: <a class="solution" target="_blank"></a> (<span class="solution-bytes"></span> bytes)
-          textarea.form-control.code(rows=15, readonly=true)
-          p Or
-            input.file(type='file', name='myFile')
-          p.result
-        .modal-footer
-          button.btn.btn-default(type='button', data-dismiss='modal') Close
-          button.btn.btn-primary.submit-code(type='button', disabled=true) Submit
+      .score= green
+      .bar(style={'flex-basis': `${green / (red + blue + green) * 100}%`})

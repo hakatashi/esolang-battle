@@ -2,156 +2,20 @@ const Language = require('../models/Language');
 const Submission = require('../models/Submission');
 const languages = require('../languages');
 const validation = require('../lib/validation');
+const {getLanguageMap} = require('../controllers/utils');
 const assert = require('assert');
-
-const getPrecedingIndices = (index) => {
-	const x = index % 15;
-	const y = Math.floor(index / 15);
-	const margin = y < 4 ? 3 - y : y - 4;
-	const direction = (x + y) % 2 ? 'up' : 'down';
-
-	const precedingCells = [];
-
-	if (x - 1 >= margin) {
-		precedingCells.push(y * 15 + (x - 1));
-	}
-
-	if (x + 1 <= 14 - margin) {
-		precedingCells.push(y * 15 + (x + 1));
-	}
-
-	if (direction === 'down' && y - 1 >= 0) {
-		precedingCells.push((y - 1) * 15 + x);
-	}
-
-	if (direction === 'up' && y + 1 <= 7) {
-		precedingCells.push((y + 1) * 15 + x);
-	}
-
-	return precedingCells;
-};
 
 /*
  * GET /api/languages
  */
-module.exports.getLanguages = (req, res, next) => {
-	Language.find()
-		.populate({
-			path: 'solution',
-			populate: {path: 'user'},
-		})
-		.exec((error, languageRecords) => {
-			if (error) {
-				return next(error);
-			}
-
-			const team = req.user && req.user.team;
-
-			const languageCells = languages.map((language) => {
-				if (language && language.type === 'language') {
-					return Object.assign({}, language, {
-						record: languageRecords.find(
-							(languageRecord) => languageRecord.slug === language.slug
-						),
-					});
-				}
-
-				return Object.assign({}, language);
-			});
-
-			return res.json(
-				languageCells.map((cell, index) => {
-					if (cell.type === 'language') {
-						if (new Date() >= new Date('2017-08-26T15:00:00.000Z')) {
-							if (cell.record && cell.record.solution) {
-								return {
-									type: 'language',
-									solved: true,
-									team: cell.record.solution.user.team,
-									solution: {
-										_id: cell.record.solution._id,
-										size: cell.record.solution.size,
-										user: cell.record.solution.user.name(),
-									},
-									slug: cell.slug,
-									name: cell.name,
-									available: false,
-								};
-							}
-
-							return {
-								type: 'language',
-								solved: false,
-								slug: cell.slug,
-								name: cell.name,
-								available: false,
-							};
-						}
-
-						const precedingCells = getPrecedingIndices(index).map(
-							(i) => languageCells[i]
-						);
-
-						const available =
-							typeof team === 'number' &&
-							(cell.team === team ||
-								(cell.record &&
-									cell.record.solution &&
-									cell.record.solution.user.team === team) ||
-								precedingCells.some(
-									(c) => c.team === team ||
-										(c.record &&
-											c.record.solution &&
-											c.record.solution.user.team === team)
-								));
-
-						if (cell.record && cell.record.solution) {
-							return {
-								type: 'language',
-								solved: true,
-								team: cell.record.solution.user.team,
-								solution: {
-									_id: cell.record.solution._id,
-									size: cell.record.solution.size,
-									user: cell.record.solution.user.name(),
-								},
-								slug: cell.slug,
-								name: cell.name,
-								available,
-							};
-						}
-
-						if (
-							precedingCells.some(
-								(c) => c.type === 'base' ||
-									(c.type === 'language' && c.record && c.record.solution)
-							)
-						) {
-							return {
-								type: 'language',
-								solved: false,
-								slug: cell.slug,
-								name: cell.name,
-								available,
-							};
-						}
-
-						return {
-							type: 'unknown',
-						};
-					} else if (cell.type === 'base') {
-						return {
-							type: 'base',
-							team: cell.team,
-						};
-					}
-
-					return {
-						type: 'unknown',
-					};
-				})
-			);
-		});
+module.exports.getLanguages = async (req, res, next) => {
+	try {
+		const languageMap = await getLanguageMap({team: req.user && req.user.team});
+		res.json(languageMap);
+	} catch (error) {
+		next(error);
+		return undefined;
+	}
 };
 
 /*
