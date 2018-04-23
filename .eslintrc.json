@@ -3,6 +3,8 @@
     "rules": {
         "camelcase": "off",
         "no-console": "off",
-        "max-len": "off"
+        "max-len": "off",
+        "no-underscore-dangle": "off",
+        "private-props/no-use-outside": "off"
     }
 }

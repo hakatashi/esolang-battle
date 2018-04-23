@@ -53,11 +53,11 @@ const io = require('./lib/socket-io');
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
 mongoose.connection.on('error', () => {
-	console.log(
-		'%s MongoDB connection error. Please make sure MongoDB is running.',
-		chalk.red('✗')
+	throw new Error(
+		`${chalk.red(
+			'✗'
+		)} MongoDB connection error. Please make sure MongoDB is running.`
 	);
-	process.exit();
 });
 
 /*
@@ -94,9 +94,10 @@ app.use(flash());
 app.use((req, res, next) => {
 	if (req.path === '/api/submission') {
 		next();
-	} else {
-		lusca.csrf()(req, res, next);
+		return;
 	}
+
+	lusca.csrf()(req, res, next);
 });
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));

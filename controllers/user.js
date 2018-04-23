@@ -2,9 +2,10 @@
  * GET /login
  * Login page.
  */
-exports.getLogin = (req, res) => {
+module.exports.getLogin = (req, res) => {
 	if (req.user) {
-		return res.redirect('/');
+		res.redirect('/');
+		return;
 	}
 	res.render('account/login', {
 		title: 'Login',
@@ -15,7 +16,7 @@ exports.getLogin = (req, res) => {
  * GET /logout
  * Log out.
  */
-exports.logout = (req, res) => {
+module.exports.logout = (req, res) => {
 	req.logout();
 	res.redirect('/');
 };
@@ -24,7 +25,7 @@ exports.logout = (req, res) => {
  * GET /account
  * Profile page.
  */
-exports.getAccount = (req, res) => {
+module.exports.getAccount = (req, res) => {
 	res.render('account/profile', {
 		title: 'Account Management',
 	});

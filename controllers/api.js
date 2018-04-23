@@ -34,7 +34,7 @@ const getPrecedingIndices = (index) => {
 /*
  * GET /api/languages
  */
-exports.getLanguages = (req, res, next) => {
+module.exports.getLanguages = (req, res, next) => {
 	Language.find()
 		.populate({
 			path: 'solution',
@@ -47,7 +47,7 @@ exports.getLanguages = (req, res, next) => {
 
 			const team = req.user && req.user.team;
 
-			const languageMap = languages.map((language) => {
+			const languageCells = languages.map((language) => {
 				if (language && language.type === 'language') {
 					return Object.assign({}, language, {
 						record: languageRecords.find(
@@ -60,7 +60,7 @@ exports.getLanguages = (req, res, next) => {
 			});
 
 			return res.json(
-				languageMap.map((cell, index) => {
+				languageCells.map((cell, index) => {
 					if (cell.type === 'language') {
 						if (new Date() >= new Date('2017-08-26T15:00:00.000Z')) {
 							if (cell.record && cell.record.solution) {
@@ -89,7 +89,7 @@ exports.getLanguages = (req, res, next) => {
 						}
 
 						const precedingCells = getPrecedingIndices(index).map(
-							(i) => languageMap[i]
+							(i) => languageCells[i]
 						);
 
 						const available =
@@ -99,10 +99,10 @@ exports.getLanguages = (req, res, next) => {
 									cell.record.solution &&
 									cell.record.solution.user.team === team) ||
 								precedingCells.some(
-									(cell) => cell.team === team ||
-										(cell.record &&
-											cell.record.solution &&
-											cell.record.solution.user.team === team)
+									(c) => c.team === team ||
+										(c.record &&
+											c.record.solution &&
+											c.record.solution.user.team === team)
 								));
 
 						if (cell.record && cell.record.solution) {
@@ -123,10 +123,8 @@ exports.getLanguages = (req, res, next) => {
 
 						if (
 							precedingCells.some(
-								(cell) => cell.type === 'base' ||
-									(cell.type === 'language' &&
-										cell.record &&
-										cell.record.solution)
+								(c) => c.type === 'base' ||
+									(c.type === 'language' && c.record && c.record.solution)
 							)
 						) {
 							return {
@@ -159,7 +157,7 @@ exports.getLanguages = (req, res, next) => {
 /*
  * GET /api/submission
  */
-exports.getSubmission = (req, res, next) => {
+module.exports.getSubmission = (req, res, next) => {
 	Submission.findOne({_id: req.query._id})
 		.populate('user')
 		.populate('language')
@@ -183,16 +181,15 @@ exports.getSubmission = (req, res, next) => {
 /*
  * POST /api/submission
  */
-exports.postSubmission = (req, res, next) => {
+module.exports.postSubmission = async (req, res, next) => {
 	req.assert('language', 'Please Specify language').notEmpty();
 
 	if (new Date() >= new Date('2017-08-26T15:00:00.000Z')) {
-		return res.status(400).json({
-			error: 'Competition has closed',
-		});
+		res.status(400).json({error: 'Competition has closed'});
+		return;
 	}
 
-	let code;
+	let code = null;
 
 	if (req.files && req.files.file && req.files.file.length === 1) {
 		code = req.files.file[0].buffer;
@@ -208,71 +205,60 @@ exports.postSubmission = (req, res, next) => {
 	const languageData = languages.find((l) => l && l.slug === req.body.language);
 
 	if (languageData === undefined) {
-		return next(new Error(`Language ${req.body.language} doesn't exist`));
+		next(new Error(`Language ${req.body.language} doesn't exist`));
+		return;
 	}
 
-	Submission.findOne({user: req.user})
+	const latestSubmission = await Submission.findOne({user: req.user})
 		.sort({createdAt: -1})
-		.exec()
-		.then((latestSubmission) => {
-			if (
-				latestSubmission !== null &&
-				latestSubmission.createdAt > Date.now() - 5 * 1000
-			) {
-				return Promise.reject(new Error('Submission interval is too short'));
-			}
+		.exec();
+	if (
+		latestSubmission !== null &&
+		latestSubmission.createdAt > Date.now() - 5 * 1000
+	) {
+		throw new Error('Submission interval is too short');
+	}
 
-			return Language.findOne({slug: req.body.language})
-				.populate({
-					path: 'solution',
-					populate: {path: 'user'},
-				})
-				.exec();
-		})
+	const existingLanguage = await Language.findOne({slug: req.body.language})
+		.populate({path: 'solution', populate: {path: 'user'}})
+		.exec();
+
+	const language = await new Promise((resolve, reject) => {
 		// TODO: Check if preceding cell is aleady taken
-		.then((existingLanguage) => {
-			if (existingLanguage !== null) {
-				if (
-					existingLanguage.solution &&
-					existingLanguage.solution.size <= code.length
-				) {
-					return Promise.reject(
-						new Error('Shorter solution is already submitted')
-					);
-				}
-
-				return existingLanguage;
+		if (existingLanguage !== null) {
+			if (
+				existingLanguage.solution &&
+				existingLanguage.solution.size <= code.length
+			) {
+				reject(new Error('Shorter solution is already submitted'));
+				return;
 			}
 
-			const language = new Language({
-				solution: null,
-				slug: languageData.slug,
-			});
+			resolve(existingLanguage);
+			return;
+		}
 
-			return language.save().then(() => language);
-		})
-		.then((language) => {
-			const submission = new Submission({
-				language: language._id,
-				user: req.user._id,
-				code,
-				size: code.length,
-				status: 'pending',
-			});
+		const newLanguage = new Language({
+			solution: null,
+			slug: languageData.slug,
+		});
 
-			return submission.save().then((submission) => ({language, submission}));
-		})
-		.then(({language, submission}) => {
-			validation.validate(
-				req.user,
-				submission,
-				languageData,
-				language.solution
-			);
+		newLanguage.save().then(() => {
+			resolve(newLanguage);
+		});
+	});
 
-			res.json(submission);
-		})
-		.catch((error) => res.status(400).json({
-			error: error.message,
-		}));
+	const submissionRecord = new Submission({
+		language: language._id,
+		user: req.user._id,
+		code,
+		size: code.length,
+		status: 'pending',
+	});
+
+	const submission = await submissionRecord.save();
+
+	validation.validate(req.user, submission, languageData, language.solution);
+
+	res.json(submission);
 };

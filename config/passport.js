@@ -36,71 +36,62 @@ passport.use(
 			callbackURL: '/auth/twitter/callback',
 			passReqToCallback: true,
 		},
-		(req, accessToken, tokenSecret, profile, done) => {
-			if (req.user) {
-				User.findOne({twitter: profile.id}, (err, existingUser) => {
-					if (err) {
-						return done(err);
-					}
+		// eslint-disable-next-line max-params
+		async (req, accessToken, tokenSecret, profile, done) => {
+			try {
+				if (req.user) {
+					const existingUser = await User.findOne({twitter: profile.id});
+
 					if (existingUser) {
 						req.flash('errors', {
 							msg:
 								'There is already a Twitter account that belongs to you. Sign in with that account or delete it, then link it with your current account.',
 						});
-						done(err);
-					} else {
-						User.findById(req.user.id, (err, user) => {
-							if (err) {
-								return done(err);
-							}
-							user.twitter = profile.id;
-							user.tokens.push({kind: 'twitter', accessToken, tokenSecret});
-							user.profile.name = user.profile.name || profile.displayName;
-							user.profile.location =
-								user.profile.location || profile._json.location;
-							user.profile.picture =
-								user.profile.picture || profile._json.profile_image_url_https;
-							user.save((err) => {
-								if (err) {
-									return done(err);
-								}
-								req.flash('info', {msg: 'Twitter account has been linked.'});
-								done(err, user);
-							});
-						});
+						done();
+						return;
 					}
-				});
-			} else {
-				User.findOne({twitter: profile.id}, (err, existingUser) => {
-					if (err) {
-						return done(err);
-					}
+
+					const user = await User.findById(req.user.id);
+
+					user.twitter = profile.id;
+					user.tokens.push({kind: 'twitter', accessToken, tokenSecret});
+					user.profile.name = user.profile.name || profile.displayName;
+					user.profile.location =
+						user.profile.location || profile._json.location;
+					user.profile.picture =
+						user.profile.picture || profile._json.profile_image_url_https;
+
+					await user.save();
+					req.flash('info', {msg: 'Twitter account has been linked.'});
+					done(null, user);
+				} else {
+					const existingUser = await User.findOne({twitter: profile.id});
 					if (existingUser) {
-						return done(null, existingUser);
+						done(null, existingUser);
+						return;
 					}
 
-					User.count({}, (error, count) => {
-						if (error) {
-							return done(error);
-						}
+					const count = User.count({});
+					const user = new User();
 
-						const user = new User();
+					// Twitter will not provide an email address.  Period.
+					// But a person’s twitter username is guaranteed to be unique
+					// so we can "fake" a twitter email address as follows:
+					user.email = `${profile.username}@twitter.com`;
+					user.color = colors[count % colors.length];
+					user.twitter = profile.id;
+					user.tokens.push({kind: 'twitter', accessToken, tokenSecret});
+					user.profile.name = profile.displayName;
+					user.profile.location = profile._json.location;
+					user.profile.picture = profile._json.profile_image_url_https;
+					await user.save();
 
-						// Twitter will not provide an email address.  Period.
-						// But a person’s twitter username is guaranteed to be unique
-						// so we can "fake" a twitter email address as follows:
-						user.email = `${profile.username}@twitter.com`;
-						user.color = colors[count % colors.length];
-						user.twitter = profile.id;
-						user.tokens.push({kind: 'twitter', accessToken, tokenSecret});
-						user.profile.name = profile.displayName;
-						user.profile.location = profile._json.location;
-						user.profile.picture = profile._json.profile_image_url_https;
-						user.save((err) => {
-							done(err, user);
-						});
-					});
-				});
+					done(null, user);
+				}
+			} catch (error) {
+				if (error) {
+					done(error);
+				}
 			}
 		}
 	)
@@ -109,9 +100,10 @@ passport.use(
 /*
  * Login Required middleware.
  */
-exports.isAuthenticated = (req, res, next) => {
+module.exports.isAuthenticated = (req, res, next) => {
 	if (req.isAuthenticated()) {
-		return next();
+		next();
+		return;
 	}
 	res.redirect('/login');
 };
@@ -119,12 +111,13 @@ exports.isAuthenticated = (req, res, next) => {
 /*
  * Authorization Required middleware.
  */
-exports.isAuthorized = (req, res, next) => {
+module.exports.isAuthorized = (req, res, next) => {
 	const provider = req.path.split('/').slice(-1)[0];
 
 	if (_.find(req.user.tokens, {kind: provider})) {
 		next();
-	} else {
-		res.redirect(`/auth/${provider}`);
+		return;
 	}
+
+	res.redirect(`/auth/${provider}`);
 };
