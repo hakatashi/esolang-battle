@@ -31,7 +31,7 @@ const getPrecedingIndices = (index) => {
 	return precedingCells;
 };
 
-/**
+/*
  * GET /api/languages
  */
 exports.getLanguages = (req, res, next) => {
@@ -156,7 +156,7 @@ exports.getLanguages = (req, res, next) => {
 		});
 };
 
-/**
+/*
  * GET /api/submission
  */
 exports.getSubmission = (req, res, next) => {
@@ -180,7 +180,7 @@ exports.getSubmission = (req, res, next) => {
 		});
 };
 
-/**
+/*
  * POST /api/submission
  */
 exports.postSubmission = (req, res, next) => {

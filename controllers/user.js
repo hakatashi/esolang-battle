@@ -1,4 +1,4 @@
-/**
+/*
  * GET /login
  * Login page.
  */
@@ -11,7 +11,7 @@ exports.getLogin = (req, res) => {
 	});
 };
 
-/**
+/*
  * GET /logout
  * Log out.
  */
@@ -20,7 +20,7 @@ exports.logout = (req, res) => {
 	res.redirect('/');
 };
 
-/**
+/*
  * GET /account
  * Profile page.
  */

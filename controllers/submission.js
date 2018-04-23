@@ -7,7 +7,7 @@ const Hexdump = require('hexdump-stream');
 const concatStream = require('concat-stream');
 const isValidUTF8 = require('utf-8-validate');
 
-/**
+/*
  * GET /submissions
  */
 exports.getSubmissions = (req, res) => {
@@ -62,7 +62,7 @@ exports.getSubmissions = (req, res) => {
 		});
 };
 
-/**
+/*
  * GET /submissions/:submission
  */
 exports.getSubmission = async (req, res) => {

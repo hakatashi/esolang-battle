@@ -1,7 +1,7 @@
 const languages = require('../languages');
 const classnames = require('classnames');
 
-/**
+/*
  * GET /
  * Home page.
  */

@@ -1,4 +1,4 @@
-/**
+/*
  * Module dependencies.
  */
 const fs = require('fs');
@@ -21,12 +21,12 @@ const expressValidator = require('express-validator');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 
-/**
+/*
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.load({path: '.env'});
 
-/**
+/*
  * Controllers (route handlers).
  */
 const homeController = require('./controllers/home');
@@ -34,20 +34,20 @@ const userController = require('./controllers/user');
 const submissionController = require('./controllers/submission');
 const apiController = require('./controllers/api');
 
-/**
+/*
  * API keys and Passport configuration.
  */
 const passportConfig = require('./config/passport');
 
 const upload = multer();
 
-/**
+/*
  * Create Express server.
  */
 const app = express();
 const io = require('./lib/socket-io');
 
-/**
+/*
  * Connect to MongoDB.
  */
 mongoose.Promise = global.Promise;
@@ -60,7 +60,7 @@ mongoose.connection.on('error', () => {
 	process.exit();
 });
 
-/**
+/*
  * Express configuration.
  */
 app.set('port', process.env.PORT || 3000);
@@ -127,7 +127,7 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, 'public'), {maxAge: 31557600000}));
 
-/**
+/*
  * Primary app routes.
  */
 app.get('/', passportConfig.isAuthenticated, homeController.index);
@@ -145,7 +145,7 @@ app.get(
 	submissionController.getSubmission
 );
 
-/**
+/*
  * API examples routes.
  */
 app.get(
@@ -165,7 +165,7 @@ app.get(
 	apiController.getLanguages
 );
 
-/**
+/*
  * OAuth authentication routes. (Sign in)
  */
 app.get('/auth/twitter', passport.authenticate('twitter'));
@@ -177,12 +177,12 @@ app.get(
 	}
 );
 
-/**
+/*
  * Error Handler.
  */
 app.use(errorHandler());
 
-/**
+/*
  * Start Express server.
  */
 const server = app.listen(app.get('port'), () => {

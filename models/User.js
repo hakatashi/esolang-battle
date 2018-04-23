@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema(
 	{timestamps: true}
 );
 
-/**
+/*
  * Password hash middleware.
  */
 userSchema.pre('save', function save(next) {
@@ -53,7 +53,7 @@ userSchema.pre('save', function save(next) {
 	});
 });
 
-/**
+/*
  * Helper method for validating user's password.
  */
 userSchema.methods.comparePassword = function comparePassword(
@@ -69,7 +69,7 @@ userSchema.methods.name = function name() {
 	return `@${this.email.replace(/@.+$/, '')}`;
 };
 
-/**
+/*
  * Helper method for getting user's gravatar.
  */
 userSchema.methods.gravatar = function gravatar(size) {

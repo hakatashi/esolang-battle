@@ -106,7 +106,7 @@ passport.use(
 	)
 );
 
-/**
+/*
  * Login Required middleware.
  */
 exports.isAuthenticated = (req, res, next) => {
@@ -116,7 +116,7 @@ exports.isAuthenticated = (req, res, next) => {
 	res.redirect('/login');
 };
 
-/**
+/*
  * Authorization Required middleware.
  */
 exports.isAuthorized = (req, res, next) => {
