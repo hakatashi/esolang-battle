@@ -12,6 +12,9 @@
     "start": "node app.js",
     "test": "mocha --reporter spec"
   },
+  "engines": {
+    "node": "^8.0.0"
+  },
   "dependencies": {
     "@octokit/rest": "^15.2.6",
     "array-shuffle": "^1.0.1",
@@ -76,11 +79,13 @@
     "validator": "^9.4.1"
   },
   "devDependencies": {
+    "@hakatashi/eslint-config": "^1.4.0",
     "chai": "^4.1.1",
     "eslint": "^5.0.0-alpha.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.7.0",
     "mocha": "^5.1.1",
+    "prettier-eslint-cli": "^4.7.1",
     "sinon": "^5.0.1-next.1",
     "sinon-mongoose": "^2.0.2",
     "supertest": "^3.0.0"

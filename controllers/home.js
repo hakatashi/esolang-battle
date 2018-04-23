@@ -6,9 +6,9 @@ const classnames = require('classnames');
  * Home page.
  */
 exports.index = (req, res) => {
-  res.render('home', {
-    title: 'Home',
-    languages,
-    classnames,
-  });
+	res.render('home', {
+		title: 'Home',
+		languages,
+		classnames,
+	});
 };
