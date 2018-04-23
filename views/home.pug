@@ -15,7 +15,7 @@ block content
               gray: language.team === undefined,
               invalid: x < margin || 14 - x < margin,
             }),
-            href=language.solution ? `/submissions/${language.solution._id}` : '',
+            href=language.solution ? `/submissions/${language.solution._id}` : undefined,
             target='_blank'
           )
             svg.triangle-area(viewBox="0 0 1000 866")
