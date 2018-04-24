@@ -40,12 +40,13 @@ mongoose.Promise = global.Promise;
 
 		await mongoose.connect(`mongodb://localhost:27017/${db}`);
 
-		const submissions = await Submission.find().populate('user').populate('slug').exec();
+		const submissions = await Submission.find().populate('user').populate('language').exec();
 		const newSubmissions = submissions.map((submission) => ({
-			...pick(submission, ['createdAt', 'updatedAt', 'status', 'code', 'size', 'input', 'stderr', 'url']),
+			...pick(submission, ['createdAt', 'updatedAt', 'status', 'code', 'input', 'stderr', 'url']),
 			stdout: submission.stdout || submission.output,
 			user: newUsers.find((u) => u.email === submission.user.email),
 			language: insertedLanguages.find((l) => l.slug === submission.language.slug),
+			size: submission.size || submission.code.length,
 			contest,
 		}));
 
@@ -76,4 +77,6 @@ mongoose.Promise = global.Promise;
 			newLanguage.save();
 		}
 	});
+
+	mongoose.connection.close();
 })();

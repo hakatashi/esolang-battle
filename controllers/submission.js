@@ -5,6 +5,7 @@ const moment = require('moment');
 const Hexdump = require('hexdump-stream');
 const concatStream = require('concat-stream');
 const isValidUTF8 = require('utf-8-validate');
+const qs = require('querystring');
 
 /*
  * GET /submissions
@@ -14,12 +15,16 @@ module.exports.getSubmissions = async (req, res) => {
 
 	if (req.query.author) {
 		const author = await User.findOne({email: `${req.query.author}@twitter.com`});
-		query.user = author._id;
+		if (author) {
+			query.user = author._id;
+		}
 	}
 
 	if (req.query.language) {
 		const language = await Language.findOne({slug: req.query.language});
-		query.language = language._id;
+		if (language) {
+			query.language = language._id;
+		}
 	}
 
 	const page = parseInt(req.query && req.query.page) || 0;
@@ -39,6 +44,7 @@ module.exports.getSubmissions = async (req, res) => {
 	res.render('submissions', {
 		title: 'Submissions',
 		submissions,
+		encode: qs.encode,
 		moment,
 	});
 };

@@ -11,6 +11,8 @@ const submissionSchema = new mongoose.Schema(
 		input: String,
 		stdout: String,
 		stderr: String,
+		url: String,
+		output: String,
 	},
 	{timestamps: true}
 );

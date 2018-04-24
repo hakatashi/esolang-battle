@@ -4,7 +4,8 @@ const languageSchema = new mongoose.Schema(
 	{
 		solution: {type: mongoose.Schema.Types.ObjectId, ref: 'Submission'},
 		contest: {type: mongoose.Schema.Types.ObjectId, ref: 'Contest'},
-		slug: {type: String, index: {unique: true}},
+		oldId: {type: String},
+		slug: {type: String},
 	},
 	{timestamps: true}
 );
