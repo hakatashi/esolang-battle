@@ -33,6 +33,7 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const submissionController = require('./controllers/submission');
 const apiController = require('./controllers/api');
+const contestController = require('./controllers/contest');
 
 /*
  * API keys and Passport configuration.
@@ -132,7 +133,11 @@ app.use(express.static(path.join(__dirname, 'public'), {maxAge: 31557600000}));
  * Primary app routes.
  */
 app.get('/', passportConfig.isAuthenticated, homeController.index);
-app.get('/contests/:contest', passportConfig.isAuthenticated, homeController.index);
+app.get(
+	'/contests/:contest',
+	passportConfig.isAuthenticated,
+	contestController.index
+);
 app.get('/login', userController.getLogin);
 app.get('/logout', userController.logout);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);

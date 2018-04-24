@@ -1,6 +1,7 @@
 const Submission = require('../models/Submission');
 const User = require('../models/User');
 const Language = require('../models/Language');
+require('../models/Contest');
 const moment = require('moment');
 const Hexdump = require('hexdump-stream');
 const concatStream = require('concat-stream');
@@ -14,7 +15,9 @@ module.exports.getSubmissions = async (req, res) => {
 	const query = {};
 
 	if (req.query.author) {
-		const author = await User.findOne({email: `${req.query.author}@twitter.com`});
+		const author = await User.findOne({
+			email: `${req.query.author}@twitter.com`,
+		});
 		if (author) {
 			query.user = author._id;
 		}
@@ -58,7 +61,15 @@ module.exports.getSubmission = async (req, res) => {
 	const submission = await Submission.findOne({_id})
 		.populate('user')
 		.populate('language')
+		.populate('contest')
 		.exec();
+
+	if (submission.contest.index.toString() !== req.params.contest) {
+		res.redirect(
+			`/contests/${submission.contest.index}/submissions/${submission._id}`
+		);
+		return;
+	}
 
 	if (submission === null) {
 		res.sendStatus(404);
@@ -102,8 +113,7 @@ module.exports.getOldSubmission = async (req, res) => {
 	const _id = req.params.submission;
 
 	const submission = await Submission.findOne({_id})
-		.populate('user')
-		.populate('language')
+		.populate('contest')
 		.exec();
 
 	if (submission === null) {
@@ -111,5 +121,7 @@ module.exports.getOldSubmission = async (req, res) => {
 		return;
 	}
 
-	res.redirect('/');
+	res.redirect(
+		`/contests/${submission.contest.index}/submissions/${submission._id}`
+	);
 };

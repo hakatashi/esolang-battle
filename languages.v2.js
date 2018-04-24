@@ -1,37 +1,9 @@
 module.exports = [
 	// Line 1
-	null,
-	null,
-	null,
 	{
 		type: 'language',
-		slug: 'malbolge',
-		name: 'Malbolge',
-	},
-	{
-		type: 'language',
-		slug: 'lolcode',
-		name: 'LOLCODE',
-	},
-	{
-		type: 'language',
-		slug: 'minus',
-		name: 'Minus',
-	},
-	{
-		type: 'language',
-		slug: 'beatnik',
-		name: 'Beatnik',
-	},
-	{
-		type: 'language',
-		slug: 'minimal2d',
-		name: 'Minimal-2D',
-	},
-	{
-		type: 'language',
-		slug: 'convex',
-		name: 'Convex',
+		slug: 'cubix',
+		name: 'Cubix',
 	},
 	{
 		type: 'language',
@@ -40,21 +12,14 @@ module.exports = [
 	},
 	{
 		type: 'language',
-		slug: 'braille',
-		name: 'Braille',
+		slug: 'element',
+		name: 'Element',
 	},
 	{
 		type: 'language',
-		slug: 'python2',
-		name: 'Python 2',
+		slug: 'hbcht',
+		name: 'Half-Broken Car in Heavy Traffic',
 	},
-	null,
-	null,
-	null,
-
-	// Line 2
-	null,
-	null,
 	{
 		type: 'language',
 		slug: 'goto10',
@@ -62,23 +27,30 @@ module.exports = [
 	},
 	{
 		type: 'language',
-		slug: '05ab1e',
-		name: '05AB1E',
+		slug: 'aheui',
+		name: 'Aheui',
 	},
 	{
 		type: 'language',
-		slug: 'vim',
-		name: 'Vim',
+		slug: 'zucchini',
+		name: 'Zucchini',
 	},
 	{
 		type: 'language',
-		slug: 'blc',
-		name: 'Binary lambda calculus',
+		slug: 'ubergenes',
+		name: 'UberGenes',
 	},
 	{
 		type: 'language',
-		slug: 'whitespace',
-		name: 'Whitespace',
+		slug: '3var',
+		name: '3var',
+	},
+
+	// Line 2
+	{
+		type: 'language',
+		slug: 'japt',
+		name: 'Japt',
 	},
 	{
 		type: 'language',
@@ -87,116 +59,65 @@ module.exports = [
 	},
 	{
 		type: 'language',
-		slug: 'recurse',
-		name: 'Recurse',
+		slug: 'cjam',
+		name: 'CJam',
+	},
+	{
+		type: 'language',
+		slug: 'emmental',
+		name: 'Emmental',
+	},
+	{
+		type: 'language',
+		slug: 'goruby',
+		name: 'Goruby',
+	},
+	{
+		type: 'language',
+		slug: 'unreadable',
+		name: 'Unreadable',
+	},
+	{
+		type: 'language',
+		slug: 'fish',
+		name: '><>',
+	},
+	{
+		type: 'language',
+		slug: 'glass',
+		name: 'Glass',
 	},
 	{
 		type: 'language',
 		slug: 'fernando',
 		name: 'FerNANDo',
 	},
-	{
-		type: 'language',
-		slug: 'streem',
-		name: 'Streem',
-	},
-	{
-		type: 'language',
-		slug: 'concise-folders',
-		name: 'Concise Folders',
-	},
-	{
-		type: 'language',
-		slug: 'd-gdc',
-		name: 'D (GDC)',
-	},
-	null,
-	null,
 
 	// Line 3
-	null,
 	{
 		type: 'language',
-		slug: 'zucchini',
-		name: 'Zucchini',
+		slug: 'cardinal',
+		name: 'Cardinal',
 	},
 	{
 		type: 'language',
-		slug: 'cubix',
-		name: 'Cubix',
+		slug: 'befunge98',
+		name: 'Befunge-98',
 	},
 	{
 		type: 'language',
-		slug: 'grass',
-		name: 'Grass',
+		slug: 'notenglish',
+		name: '~English',
 	},
 	{
 		type: 'language',
-		slug: 'gs2',
-		name: 'gs2',
+		slug: 'whitespace',
+		name: 'Whitespace',
 	},
 	{
 		type: 'language',
-		slug: 'powershell',
-		name: 'PowerShell',
-	},
-	{
-		type: 'language',
-		slug: 'js-rhino',
-		name: 'JavaScript (Rhino)',
-	},
-	{
-		type: 'language',
-		slug: 'bash-pure',
-		name: 'Bash (pure)',
-	},
-	{
-		type: 'language',
-		slug: 'emojicode',
-		name: 'Emojicode',
-	},
-	{
-		type: 'language',
-		slug: 'rdmd',
-		name: 'D (DMD)',
-	},
-	{
-		type: 'language',
-		slug: 'adjust',
-		name: 'ADJUST',
-	},
-	{
-		type: 'language',
-		slug: 'starry',
-		name: 'Starry',
-	},
-	{
-		type: 'language',
-		slug: 'cy',
-		name: 'Cy',
-	},
-	{
-		type: 'language',
-		slug: 'seed',
-		name: 'Seed',
-	},
-	null,
-
-	// Line 4
-	{
-		type: 'language',
-		slug: 'stuck',
-		name: 'Stuck',
-	},
-	{
-		type: 'language',
-		slug: 'labyrinth',
-		name: 'Labyrinth',
-	},
-	{
-		type: 'language',
-		slug: 'taxi',
-		name: 'Taxi',
+		slug: 'brainfuck',
+		name: 'Brainfuck',
 	},
 	{
 		type: 'language',
@@ -205,8 +126,82 @@ module.exports = [
 	},
 	{
 		type: 'language',
+		slug: 'emoji',
+		name: 'Emoji',
+	},
+	{
+		type: 'language',
+		slug: 'snowman',
+		name: 'Snowman',
+	},
+	{
+		type: 'language',
+		slug: 'jellyfish',
+		name: 'Jellyfish',
+	},
+
+	// Line 4
+	{
+		type: 'language',
+		slug: 'wierd',
+		name: 'Wierd',
+	},
+	{
+		type: 'language',
+		slug: 'ppap',
+		name: 'PPAP',
+	},
+	{
+		type: 'language',
+		slug: 'csharp',
+		name: 'C#',
+	},
+	{
+		type: 'language',
+		slug: 'node',
+		name: 'Node.js',
+	},
+	{
+		type: 'language',
+		slug: 'ruby2.4',
+		name: 'Ruby 2.4',
+	},
+	{
+		type: 'language',
 		slug: 'php',
-		name: 'PHP 7.0',
+		name: 'PHP',
+	},
+	{
+		type: 'language',
+		slug: 'bash-pure',
+		name: 'Bash (builtins)',
+	},
+	{
+		type: 'language',
+		slug: 'pure-folders',
+		name: 'Pure Folders',
+	},
+	{
+		type: 'language',
+		slug: 'ruby2',
+		name: 'Word!CPU',
+	},
+
+	// Line 5
+	{
+		type: 'language',
+		slug: 'grass',
+		name: 'Grass',
+	},
+	{
+		type: 'language',
+		slug: 'emojicode',
+		name: 'Emojicode',
+	},
+	{
+		type: 'language',
+		slug: 'gs2',
+		name: 'gs2',
 	},
 	{
 		type: 'base',
@@ -218,65 +213,8 @@ module.exports = [
 		name: 'Perl',
 	},
 	{
-		type: 'language',
-		slug: 'sqlite3',
-		name: 'SQLite3',
-	},
-	{
-		type: 'language',
-		slug: 'python3',
-		name: 'Python 3',
-	},
-	{
 		type: 'base',
 		team: 1,
-	},
-	{
-		type: 'language',
-		slug: 'octave',
-		name: 'Octave',
-	},
-	{
-		type: 'language',
-		slug: 'rail',
-		name: 'Rail',
-	},
-	{
-		type: 'language',
-		slug: 'ppap',
-		name: 'PPAP',
-	},
-	{
-		type: 'language',
-		slug: 'jellyfish',
-		name: 'Jellyfish',
-	},
-	{
-		type: 'language',
-		slug: 'pure-folders',
-		name: 'Pure Folders',
-	},
-
-	// Line 5
-	{
-		type: 'language',
-		slug: 'fugue',
-		name: 'Fugue',
-	},
-	{
-		type: 'language',
-		slug: 'beam',
-		name: 'Beam',
-	},
-	{
-		type: 'language',
-		slug: 'glass',
-		name: 'Glass',
-	},
-	{
-		type: 'language',
-		slug: 'snowman',
-		name: 'Snowman',
 	},
 	{
 		type: 'language',
@@ -285,71 +223,20 @@ module.exports = [
 	},
 	{
 		type: 'language',
-		slug: 'brainfuck',
-		name: 'Brainfuck',
+		slug: 'fugue',
+		name: 'Fugue',
 	},
 	{
 		type: 'language',
-		slug: 'c-gcc',
-		name: 'C (GCC)',
-	},
-	{
-		type: 'language',
-		slug: 'ruby2.4',
-		name: 'Ruby 2.4',
-	},
-	{
-		type: 'language',
-		slug: 'verilog',
-		name: 'Verilog',
-	},
-	{
-		type: 'language',
-		slug: 'csharp',
-		name: 'C# (Mono)',
-	},
-	{
-		type: 'language',
-		slug: 'goruby',
-		name: 'goruby',
-	},
-	{
-		type: 'language',
-		slug: 'simula',
-		name: 'Simula',
-	},
-	{
-		type: 'language',
-		slug: 'cardinal',
-		name: 'Cardinal',
-	},
-	{
-		type: 'language',
-		slug: 'irc',
-		name: 'IRC',
-	},
-	{
-		type: 'language',
-		slug: 'japt',
-		name: 'Japt',
+		slug: 'stuck',
+		name: 'Stuck',
 	},
 
 	// Line 6
-	null,
 	{
 		type: 'language',
-		slug: 'aheui',
-		name: 'Aheui',
-	},
-	{
-		type: 'language',
-		slug: 'z80',
-		name: 'Z80',
-	},
-	{
-		type: 'language',
-		slug: 'befunge98',
-		name: 'Befunge-98',
+		slug: 'ffb',
+		name: 'Foobar and Foobaz and Barbaz, oh my!',
 	},
 	{
 		type: 'language',
@@ -358,28 +245,41 @@ module.exports = [
 	},
 	{
 		type: 'language',
-		slug: 'jelly',
-		name: 'Jelly',
+		slug: 'streem',
+		name: 'Streem',
 	},
 	{
 		type: 'language',
-		slug: 'crystal',
-		name: 'Crystal',
-	},
-	{
-		type: 'base',
-		team: 2,
+		slug: 'python3',
+		name: 'Python 3',
 	},
 	{
 		type: 'language',
-		slug: 'node',
-		name: 'Node.js',
+		slug: 'c-gcc',
+		name: 'C (GCC)',
 	},
 	{
 		type: 'language',
-		slug: 'fish',
-		name: '><>',
+		slug: 'd-gdc',
+		name: 'D (GDC)',
 	},
+	{
+		type: 'language',
+		slug: 'z80',
+		name: 'Z80',
+	},
+	{
+		type: 'language',
+		slug: 'logicode',
+		name: 'Logicode',
+	},
+	{
+		type: 'language',
+		slug: '2sable',
+		name: '2sable',
+	},
+
+	// Line 7
 	{
 		type: 'language',
 		slug: 'axo',
@@ -387,28 +287,60 @@ module.exports = [
 	},
 	{
 		type: 'language',
-		slug: '2sable',
-		name: '2sable',
+		slug: 'lolcode',
+		name: 'LOLCODE',
 	},
 	{
 		type: 'language',
-		slug: 'wordcpu',
-		name: 'Word!CPU',
+		slug: 'concise-folders',
+		name: 'Concise Folders',
 	},
 	{
 		type: 'language',
-		slug: 'hbcht',
-		name: 'Half-Broken Car in Heavy Traffic',
+		slug: 'octave',
+		name: 'Octave',
 	},
-	null,
+	{
+		type: 'language',
+		slug: 'cy',
+		name: 'Cy',
+	},
+	{
+		type: 'language',
+		slug: 'vim',
+		name: 'Vim',
+	},
+	{
+		type: 'language',
+		slug: 'minus',
+		name: 'Minus',
+	},
+	{
+		type: 'language',
+		slug: 'blc',
+		name: 'Binary lambda calculus',
+	},
+	{
+		type: 'language',
+		slug: 'beam',
+		name: 'Beam',
+	},
 
-	// Line 7
-	null,
-	null,
+	// Line 8
 	{
 		type: 'language',
-		slug: 'floater',
-		name: 'Floater',
+		slug: 'trumpscript',
+		name: 'TrumpScript',
+	},
+	{
+		type: 'language',
+		slug: 'stackcats',
+		name: 'Stackcats',
+	},
+	{
+		type: 'language',
+		slug: 'Unlambda',
+		name: 'unlambda',
 	},
 	{
 		type: 'language',
@@ -417,38 +349,45 @@ module.exports = [
 	},
 	{
 		type: 'language',
-		slug: 'wake',
-		name: 'wake',
+		slug: '05ab1e',
+		name: '05AB1E',
 	},
 	{
 		type: 'language',
-		slug: 'emmental',
-		name: 'Emmental',
+		slug: 'rail',
+		name: 'Rail',
 	},
 	{
 		type: 'language',
-		slug: 'cjam',
-		name: 'CJam',
+		slug: 'starry',
+		name: 'Starry',
 	},
 	{
 		type: 'language',
-		slug: 'arcyou',
-		name: 'Arcyóu',
+		slug: 'jelly',
+		name: 'Jelly',
 	},
 	{
 		type: 'language',
-		slug: 'emoji',
-		name: 'Emoji',
+		slug: 'minimal2d',
+		name: 'Minimal-2D',
+	},
+
+	// Line 9
+	{
+		type: 'language',
+		slug: 'velato',
+		name: 'Velato',
 	},
 	{
 		type: 'language',
-		slug: 'unlambda',
-		name: 'Unlambda',
+		slug: 'zombie',
+		name: 'ZOMBIE',
 	},
 	{
 		type: 'language',
-		slug: 'make',
-		name: 'Make',
+		slug: 'recurse',
+		name: 'Recurse',
 	},
 	{
 		type: 'language',
@@ -457,62 +396,27 @@ module.exports = [
 	},
 	{
 		type: 'language',
-		slug: 'wierd',
-		name: 'Wierd',
-	},
-	null,
-	null,
-
-	// Line 8
-	null,
-	null,
-	null,
-	{
-		type: 'language',
-		slug: 'ruby1.8',
-		name: 'Ruby 1.8',
+		slug: 'slashes',
+		name: '///',
 	},
 	{
 		type: 'language',
-		slug: 'Dis',
-		name: 'dis',
+		slug: 'labyrinth',
+		name: 'Labyrinth',
 	},
 	{
 		type: 'language',
-		slug: 'unreadable',
-		name: 'Unreadable',
+		slug: 'floater',
+		name: 'Floater',
 	},
 	{
 		type: 'language',
-		slug: 'ffb',
-		name: 'Foobar and Foobaz and Barbaz, oh my!',
+		slug: 'haystack',
+		name: 'Haystack',
 	},
 	{
 		type: 'language',
-		slug: 'toadskin',
-		name: 'Toadskin',
+		slug: 'malbolge',
+		name: 'Malbolge',
 	},
-	{
-		type: 'language',
-		slug: 'stackcats',
-		name: 'Stack Cats',
-	},
-	{
-		type: 'language',
-		slug: 'aubergine',
-		name: 'Aubergine',
-	},
-	{
-		type: 'language',
-		slug: 'element',
-		name: 'Element',
-	},
-	{
-		type: 'language',
-		slug: 'ubergenes',
-		name: 'Ubergenes',
-	},
-	null,
-	null,
-	null,
 ];
