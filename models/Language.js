@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const languageSchema = new mongoose.Schema(
 	{
 		solution: {type: mongoose.Schema.Types.ObjectId, ref: 'Submission'},
+		contest: {type: mongoose.Schema.Types.ObjectId, ref: 'Contest'},
 		slug: {type: String, index: {unique: true}},
 	},
 	{timestamps: true}

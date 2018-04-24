@@ -2,7 +2,6 @@ const Submission = require('../models/Submission');
 const User = require('../models/User');
 const Language = require('../models/Language');
 const moment = require('moment');
-const Promise = require('bluebird');
 const Hexdump = require('hexdump-stream');
 const concatStream = require('concat-stream');
 const isValidUTF8 = require('utf-8-validate');
@@ -10,56 +9,38 @@ const isValidUTF8 = require('utf-8-validate');
 /*
  * GET /submissions
  */
-module.exports.getSubmissions = (req, res) => {
-	Promise.try(() => {
-		if (req.query.author) {
-			return User.findOne({email: `${req.query.author}@twitter.com`}).then(
-				(author) => ({author})
-			);
-		}
+module.exports.getSubmissions = async (req, res) => {
+	const query = {};
 
-		return {};
-	})
-		.then(({author}) => {
-			if (req.query.language) {
-				return Language.findOne({slug: req.query.language}).then(
-					(language) => ({author, language})
-				);
-			}
+	if (req.query.author) {
+		const author = await User.findOne({email: `${req.query.author}@twitter.com`});
+		query.user = author._id;
+	}
 
-			return {author};
-		})
-		.then(({author, language}) => {
-			const page = parseInt(req.query && req.query.page) || 0;
-			const query = {};
+	if (req.query.language) {
+		const language = await Language.findOne({slug: req.query.language});
+		query.language = language._id;
+	}
 
-			if (author) {
-				query.user = author._id;
-			}
+	const page = parseInt(req.query && req.query.page) || 0;
 
-			if (language) {
-				query.language = language._id;
-			}
+	if (req.query.status) {
+		query.status = req.query.status;
+	}
 
-			if (req.query.status) {
-				query.status = req.query.status;
-			}
+	const submissions = await Submission.find(query)
+		.sort({_id: -1})
+		.populate('user')
+		.populate('language')
+		.skip(500 * page)
+		.limit(500)
+		.exec();
 
-			return Submission.find(query)
-				.sort({_id: -1})
-				.populate('user')
-				.populate('language')
-				.skip(500 * page)
-				.limit(500)
-				.exec();
-		})
-		.then((submissions) => {
-			res.render('submissions', {
-				title: 'Submissions',
-				submissions,
-				moment,
-			});
-		});
+	res.render('submissions', {
+		title: 'Submissions',
+		submissions,
+		moment,
+	});
 };
 
 /*
@@ -109,4 +90,20 @@ module.exports.getSubmission = async (req, res) => {
 			typeof req.user.team === 'number' &&
 			req.user.team === submission.user.team,
 	});
+};
+
+module.exports.getOldSubmission = async (req, res) => {
+	const _id = req.params.submission;
+
+	const submission = await Submission.findOne({_id})
+		.populate('user')
+		.populate('language')
+		.exec();
+
+	if (submission === null) {
+		res.sendStatus(404);
+		return;
+	}
+
+	res.redirect('/');
 };
