@@ -133,33 +133,40 @@ app.use(express.static(path.join(__dirname, 'public'), {maxAge: 31557600000}));
  * Primary app routes.
  */
 app.get('/', passportConfig.isAuthenticated, homeController.index);
-app.get(
-	'/contests/:contest',
-	passportConfig.isAuthenticated,
-	contestController.index
-);
 app.get('/login', userController.getLogin);
 app.get('/logout', userController.logout);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
 app.get(
+	'/contests/:contest',
+	passportConfig.isAuthenticated,
+	contestController.base,
+	contestController.index
+);
+app.get(
 	'/contests/:contest/submissions',
 	passportConfig.isAuthenticated,
+	contestController.base,
 	submissionController.getSubmissions
 );
+app.get(
+	'/contests/:contest/submissions/:submission',
+	passportConfig.isAuthenticated,
+	contestController.base,
+	submissionController.getSubmission
+);
+app.get(
+	'/contests/:contest/submissions/:submission/raw',
+	passportConfig.isAuthenticated,
+	contestController.base,
+	submissionController.getRawSubmission
+);
+
 app.get(
 	'/submissions/:submission',
 	passportConfig.isAuthenticated,
 	submissionController.getOldSubmission
 );
-app.get(
-	'/contests/:contest/submissions/:submission',
-	passportConfig.isAuthenticated,
-	submissionController.getSubmission
-);
 
-/*
- * API examples routes.
- */
 app.get(
 	'/api/submission',
 	passportConfig.isAuthenticated,

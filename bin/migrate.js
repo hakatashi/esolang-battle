@@ -6,29 +6,87 @@ const Language = require('../models/Language.js');
 const User = require('../models/User.js');
 const Submission = require('../models/Submission.js');
 
+const oldUserSchema = new mongoose.Schema(
+	{
+		email: {type: String, unique: true},
+		password: String,
+		passwordResetToken: String,
+		passwordResetExpires: Date,
+
+		twitter: String,
+		tokens: Array,
+		color: String,
+		team: {type: Number, enum: [0, 1, 2]},
+
+		profile: {
+			name: String,
+			gender: String,
+			location: String,
+			website: String,
+			picture: String,
+		},
+	},
+	{timestamps: true, collection: 'users'}
+);
+
+const OldUser = mongoose.model('OldUser', oldUserSchema);
+
 mongoose.Promise = global.Promise;
 
 (async () => {
 	const userMap = new Map();
 
+	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
+	await Contest.insertMany([
+		{
+			name: '第1回 esolang陣取り大会',
+			id: '1',
+		},
+		{
+			name: '第2回 esolang陣取り大会',
+			id: '2',
+		},
+		{
+			name: '第3回 コードゴルフ大会',
+			id: '3',
+		},
+	]);
+
 	await Promise.mapSeries(
 		['esolang', 'esolang-new', 'esolang3'],
-		async (db) => {
+		async (db, index) => {
+			await mongoose.connect('mongodb://localhost:27017/esolang-battle');
+			console.log(db);
+
+			const contest = await Contest.findOne({
+				id: (index + 1).toString(),
+			});
+
 			await mongoose.connect(`mongodb://localhost:27017/${db}`);
 
-			const users = await User.find();
+			const users = await OldUser.find();
 			for (const user of users) {
-				userMap.set(
-					user.email,
-					pick(user, [
+				userMap.set(user.email, {
+					...pick(user, [
 						'createdAt',
 						'updatedAt',
 						'twitter',
 						'email',
 						'profile',
 						'tokens',
-					])
-				);
+					]),
+					team: [
+						...(userMap.has(user.email) ? userMap.get(user.email).team : []),
+						...(user.team === undefined
+							? []
+							: [
+								{
+									contest,
+									value: user.team,
+								},
+							  ]),
+					],
+				});
 			}
 		}
 	);
@@ -42,9 +100,8 @@ mongoose.Promise = global.Promise;
 			await mongoose.connect('mongodb://localhost:27017/esolang-battle');
 
 			console.log(index);
-			const contest = await Contest.create({
-				name: (index + 1).toString(),
-				index: index + 1,
+			const contest = await Contest.findOne({
+				id: (index + 1).toString(),
 			});
 
 			await mongoose.connect(`mongodb://localhost:27017/${db}`);

@@ -25,4 +25,4 @@ block content
             td
               strong= submission.status
             td
-              a(href=`/contests/1/submissions/${submission._id}`)= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')
+              a(href=`./submissions/${submission._id}`)= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')

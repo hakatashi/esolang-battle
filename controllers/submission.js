@@ -12,7 +12,9 @@ const qs = require('querystring');
  * GET /submissions
  */
 module.exports.getSubmissions = async (req, res) => {
-	const query = {};
+	const query = {
+		contest: req.contest,
+	};
 
 	if (req.query.author) {
 		const author = await User.findOne({
@@ -24,7 +26,10 @@ module.exports.getSubmissions = async (req, res) => {
 	}
 
 	if (req.query.language) {
-		const language = await Language.findOne({slug: req.query.language});
+		const language = await Language.findOne({
+			slug: req.query.language,
+			contest: req.contest,
+		});
 		if (language) {
 			query.language = language._id;
 		}
@@ -45,7 +50,7 @@ module.exports.getSubmissions = async (req, res) => {
 		.exec();
 
 	res.render('submissions', {
-		title: 'Submissions',
+		contest: req.contest,
 		submissions,
 		encode: qs.encode,
 		moment,
@@ -64,15 +69,15 @@ module.exports.getSubmission = async (req, res) => {
 		.populate('contest')
 		.exec();
 
-	if (submission.contest.index.toString() !== req.params.contest) {
-		res.redirect(
-			`/contests/${submission.contest.index}/submissions/${submission._id}`
-		);
+	if (submission === null) {
+		res.sendStatus(404);
 		return;
 	}
 
-	if (submission === null) {
-		res.sendStatus(404);
+	if (submission.contest.id !== req.params.contest) {
+		res.redirect(
+			`/contests/${submission.contest.id}/submissions/${submission._id}`
+		);
 		return;
 	}
 
@@ -122,6 +127,27 @@ module.exports.getOldSubmission = async (req, res) => {
 	}
 
 	res.redirect(
-		`/contests/${submission.contest.index}/submissions/${submission._id}`
+		`/contests/${submission.contest.id}/submissions/${submission._id}`
 	);
+};
+
+/*
+ * GET /contest/:contest/submissions/:submission/raw
+ */
+module.exports.getRawSubmission = async (req, res) => {
+	const _id = req.params.submission;
+
+	const submission = await Submission.findOne({_id});
+
+	if (submission === null) {
+		res.sendStatus(404);
+		return;
+	}
+
+	res.set({
+		'Content-Type': 'text/plain',
+		'Content-Disposition': 'attachment',
+	});
+
+	res.send(submission.code);
 };

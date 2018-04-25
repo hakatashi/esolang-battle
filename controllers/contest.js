@@ -3,20 +3,28 @@ const Contest = require('../models/Contest');
 const {getLanguageMap} = require('../controllers/utils');
 
 /*
- * GET /
- * Home page.
+ * Middleware for all /contest/:contest routes
  */
-module.exports.index = async (req, res) => {
-	const contest = await Contest.findOne({index: parseInt(req.params.contest)});
+module.exports.base = async (req, res, next) => {
+	const contest = await Contest.findOne({id: req.params.contest});
 
 	if (!contest) {
 		res.sendStatus(404);
 		return;
 	}
 
-	const languageMap = await getLanguageMap();
+	req.contest = contest;
+	next();
+};
+
+/*
+ * GET /
+ * Home page.
+ */
+module.exports.index = async (req, res) => {
+	const languageMap = await getLanguageMap({contest: req.contest});
 	res.render('contest', {
-		title: `第${contest.index}回 コードゴルフ大会`,
+		contest: req.contest,
 		languageMap,
 		classnames,
 	});

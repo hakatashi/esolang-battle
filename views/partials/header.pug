@@ -8,13 +8,14 @@
         span.icon-bar
       a.navbar-brand(href='/')
         i.fa.fa-cube
-        = title || 'Esolang Battler'
+        = contest ? contest.name : 'Esolang Battler'
     .collapse.navbar-collapse
-      ul.nav.navbar-nav
-        li(class=(title == 'Home') ? 'active' : undefined)
-          a(href='/') Home
-        li(class=(title == 'Submissions') ? 'active' : undefined)
-          a(href='/submissions') Submissions
+      if contest
+        ul.nav.navbar-nav
+          li(class=(title == 'Home') ? 'active' : undefined)
+            a(href=`/contest/${contest.id}`) Home
+          li(class=(title == 'Submissions') ? 'active' : undefined)
+            a(href=`/contest/${contest.id}/submissions`) Submissions
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)

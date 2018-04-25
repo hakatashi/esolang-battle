@@ -1,4 +1,3 @@
-const qs = require('querystring');
 const Language = require('../models/Language');
 const languages = require('../languages');
 
@@ -31,8 +30,8 @@ const getPrecedingIndices = (index) => {
 
 module.exports.getPrecedingIndices = getPrecedingIndices;
 
-module.exports.getLanguageMap = async ({team} = {}) => {
-	const languageRecords = await Language.find()
+module.exports.getLanguageMap = async ({team, contest} = {}) => {
+	const languageRecords = await Language.find({contest})
 		.populate({
 			path: 'solution',
 			populate: {path: 'user'},
@@ -53,12 +52,18 @@ module.exports.getLanguageMap = async ({team} = {}) => {
 
 	return languageCells.map((cell, index) => {
 		if (cell.type === 'language') {
+			const solvedTeamInfo =
+				cell.record &&
+				cell.record.solution &&
+				cell.record.solution.user.team.find((t) => t.contest.equals(contest._id));
+			const solvedTeam = solvedTeamInfo && solvedTeamInfo.value;
+
 			if (new Date() >= new Date('2017-08-26T15:00:00.000Z')) {
 				if (cell.record && cell.record.solution) {
 					return {
 						type: 'language',
 						solved: true,
-						team: cell.record.solution.user.team,
+						team: solvedTeam,
 						solution: {
 							_id: cell.record.solution._id,
 							size: cell.record.solution.size,
@@ -86,21 +91,14 @@ module.exports.getLanguageMap = async ({team} = {}) => {
 			const available =
 				typeof team === 'number' &&
 				(cell.team === team ||
-					(cell.record &&
-						cell.record.solution &&
-						cell.record.solution.user.team === team) ||
-					precedingCells.some(
-						(c) => c.team === team ||
-							(c.record &&
-								c.record.solution &&
-								c.record.solution.user.team === team)
-					));
+					solvedTeam === team ||
+					precedingCells.some((c) => c.team === team || solvedTeam === team));
 
 			if (cell.record && cell.record.solution) {
 				return {
 					type: 'language',
 					solved: true,
-					team: cell.record.solution.user.team,
+					team: solvedTeam,
 					solution: {
 						_id: cell.record.solution._id,
 						size: cell.record.solution.size,
