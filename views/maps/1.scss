@@ -1,0 +1,80 @@
+@import "node_modules/material-colors/dist/colors.sass";
+
+.board {
+  display: flex;
+  flex-direction: column;
+
+  width: 90vh;
+  height: 90vh;
+  margin: 0 auto;
+  position: relative;
+
+  .row {
+    display: flex;
+
+    flex: 1 1 0;
+
+    .cell {
+      flex: 1 1 0;
+      border: 1px solid #fff;
+      border-radius: 8px;
+      background: $md-grey-500;
+      color: $md-grey-800;
+
+      &.user-cookies146 {
+        background: $md-red-500;
+        color: white;
+      }
+
+      &.user-satos___jp {
+        background: $md-deep-purple-500;
+        color: white;
+      }
+
+      &.user-kurgm {
+        background: $md-orange-900;
+        color: white;
+      }
+
+      &.user-yamayu832 {
+        background: $md-green-800;
+        color: white;
+      }
+
+      &.user-hakatashi {
+        background: $md-light-blue-800;
+        color: white;
+      }
+
+      &.user-00_ {
+        background: $md-brown-500;
+        color: white;
+      }
+
+      &.user-moratorium08 {
+        background: $md-lime-900;
+        color: white;
+      }
+    }
+  }
+}
+
+.language {
+  position: relative;
+
+  .language-label {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5vmin;
+
+    .size {
+      font-size: 1.2em;
+    }
+  }
+}

@@ -23,7 +23,6 @@ module.exports.base = async (req, res, next) => {
  */
 module.exports.index = async (req, res) => {
 	const languageMap = await getLanguageMap({contest: req.contest});
-	console.log(languageMap);
 	res.render('contest', {
 		contest: req.contest,
 		languageMap,

@@ -2,14 +2,18 @@ extends layout
 
 block head
   style
-    if contest.id === '2'
+    if contest.id === '1'
+      include:scss maps/1.scss
+    else if contest.id === '2'
       include:scss maps/2.scss
     else if contest.id === '3'
       include:scss maps/3.scss
 
 block content
   .board
-    if contest.id === '2'
+    if contest.id === '1'
+      include maps/1.pug
+    else if contest.id === '2'
       include maps/2.pug
     else if contest.id === '3'
       include maps/3.pug

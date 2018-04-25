@@ -1,0 +1,12 @@
+- for (let y = 0; y < 10; y++)
+  .row
+    - for (let x = 0; x < 10; x++)
+      - const language = languageMap[y * 10 + x]
+      a.language.cell(
+        class=classnames(language.solution && `user-${language.solution.user.slice(1)}`),
+        href=language.solution ? `/contests/${contest.id}/submissions/${language.solution._id}` : undefined,
+        target='_blank'
+      )
+        .language-label
+          .name= language.name
+          .size= language.solution ? language.solution.size : ''
