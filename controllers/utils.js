@@ -1,5 +1,5 @@
 const Language = require('../models/Language');
-const languages = require('../languages');
+const languages = require('../data/languages');
 
 const getPrecedingIndices = (index) => {
 	const x = index % 15;
@@ -38,7 +38,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 		})
 		.exec();
 
-	const languageCells = languages.map((language) => {
+	const languageCells = languages[contest.id].map((language) => {
 		if (language && language.type === 'language') {
 			return Object.assign({}, language, {
 				record: languageRecords.find(

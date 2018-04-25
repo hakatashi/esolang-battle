@@ -1,0 +1,26 @@
+- for (let y = 0; y < 9; y++)
+  .row
+    - for (let x = 0; x < 9; x++)
+      - const language = languageMap[y * 9 + x]
+      a.language.cell(
+        class=classnames({
+          red: language.team === 0,
+          blue: language.team === 1,
+          gray: language.team === undefined,
+        }),
+        href=language.solution ? `/contests/${contest.id}/submissions/${language.solution._id}` : undefined,
+        target='_blank'
+      )
+        .language-label
+          .name= language.name
+          .size= language.solution ? language.solution.size : ''
+- const red = languageMap.filter(({team}) => team === 0).length
+- const blue = languageMap.filter(({team}) => team === 1).length
+.team-info.red
+  .team-name Red
+  .score= red
+  .bar(style={'flex-basis': `${red / (red + blue) * 100}%`})
+.team-info.blue
+  .team-name Blue
+  .score= blue
+  .bar(style={'flex-basis': `${blue / (red + blue) * 100}%`})

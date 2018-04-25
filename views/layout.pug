@@ -10,6 +10,7 @@ html
     link(rel='shortcut icon', href=`/favicon.png?${hash}`)
     link(rel='stylesheet', href=`/css/main.css?${hash}`)
     script(src=`/socket.io/socket.io.js?${hash}`)
+    block head
 
   body
     include partials/header

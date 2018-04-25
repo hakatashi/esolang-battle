@@ -37,6 +37,7 @@
     "express-status-monitor": "^1.0.0",
     "express-validator": "^5.1.2",
     "hexdump-stream": "^0.0.1",
+    "jstransformer-scss": "^1.0.0",
     "lodash": "^4.17.4",
     "lusca": "^1.5.1",
     "moment": "^2.18.1",

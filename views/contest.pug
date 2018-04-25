@@ -1,40 +1,15 @@
 extends layout
 
+block head
+  style
+    if contest.id === '2'
+      include:scss maps/2.scss
+    else if contest.id === '3'
+      include:scss maps/3.scss
+
 block content
   .board
-    - for (let y = 0; y < 8; y++)
-      .row
-        - for (let x = 0; x < 15; x++)
-          - const margin = (y < 4) ? (3 - y) : (y - 4)
-          - const language = languageMap[y * 15 + x]
-          a(
-            class=classnames('language', 'cell', (x + y) % 2 ? 'up' : 'down', {
-              red: language.team === 0,
-              blue: language.team === 1,
-              green: language.team === 2,
-              gray: language.team === undefined,
-              invalid: x < margin || 14 - x < margin,
-            }),
-            href=language.solution ? `/submissions/${language.solution._id}` : undefined,
-            target='_blank'
-          )
-            svg.triangle-area(viewBox="0 0 1000 866")
-              polygon.triangle(points="0,866 500,0 1000,866")
-            .language-label
-              .name= language.name
-              .size= language.solution ? language.solution.size : ''
-    - const red = languageMap.filter(({team}) => team === 0).length
-    - const blue = languageMap.filter(({team}) => team === 1).length
-    - const green = languageMap.filter(({team}) => team === 2).length
-    .team-info.red
-      .team-name Red
-      .score= red
-      .bar(style={'flex-basis': `${red / (red + blue + green) * 100}%`})
-    .team-info.blue
-      .team-name Blue
-      .score= blue
-      .bar(style={'flex-basis': `${blue / (red + blue + green) * 100}%`})
-    .team-info.green
-      .team-name Green
-      .score= green
-      .bar(style={'flex-basis': `${green / (red + blue + green) * 100}%`})
+    if contest.id === '2'
+      include maps/2.pug
+    else if contest.id === '3'
+      include maps/3.pug
