@@ -14,9 +14,12 @@ block content
           th Status
           th Date
       tbody
-        - const classes = {pending: 'table-active', success: 'table-success', failed: 'table-warning', error: 'table-danger'}
         each submission in submissions
-          tr(class=classes[submission.status])
+          -
+            const tableClass = {pending: 'table-active', success: 'table-success', failed: 'table-warning', error: 'table-danger'}[submission.status]
+            const badgeClass = {pending: 'badge-active', success: 'badge-success', failed: 'badge-warning', error: 'badge-danger'}[submission.status]
+            const badgeText = {pending: 'WJ', success: 'AC', failed: 'WA', error: 'ERROR'}[submission.status]
+          tr(class=tableClass)
             td
               a(href=`?${encode({author: submission.user.email.replace(/@.+$/, '')})}`)= submission.user.name()
             td
@@ -24,7 +27,7 @@ block content
                 a(href=`?${encode({language: submission.language.slug})}`)= submission.language.slug
             td= `${submission.size}bytes`
             td
-              span.badge(class={success: 'badge-primary', failed: 'badge-warning', error: 'badge-danger'}[submission.status])
-                = submission.status
+              span.badge(class=badgeClass)
+                = badgeText
             td
               a(href=`./submissions/${submission._id}`)= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')

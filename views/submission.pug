@@ -2,13 +2,13 @@ extends layout
 
 block content
   .page-header
-    h3= `Submission by ${submission.user.name()}`
+    h3
+      strong= `${submission.language.slug}, ${submission.size} bytes`
+    
+    p= ` by ${submission.user.name()}`
 
-  h4 Language
-  p= submission.language.slug
-
-  h4 Size
-  p= submission.size
+  h4 Result
+  p= submission.status
 
   if selfTeam || new Date() >= new Date('2017-08-26T15:00:00.000Z')
     h4
@@ -30,6 +30,3 @@ block content
     h4 stderr
     p
       pre= submission.stderr
-
-  h4 Result
-  p= submission.status
