@@ -1,32 +1,33 @@
 extends layout
 
 block content
-  .page-header
-    h3
-      strong= `${submission.language.slug}, ${submission.size} bytes`
-    
-    p= ` by ${submission.user.name()}`
+  .container
+    .page-header
+      h3
+        strong= `${submission.language.slug}, ${submission.size} bytes`
+      
+      p= ` by ${submission.user.name()}`
 
-  h4 Result
-  p= submission.status
+    h4 Result
+    p= submission.status
 
-  if selfTeam || new Date() >= new Date('2017-08-26T15:00:00.000Z')
-    h4
-      | Code
-      = ' '
-      small
-        a(href=`${submission._id}/raw`) [DL]
-    p
-      pre(class = isHexdump ? 'hexdump' : '')= code
+    if selfTeam || new Date() >= new Date('2017-08-26T15:00:00.000Z')
+      h4
+        | Code
+        = ' '
+        small
+          a(href=`${submission._id}/raw`) [DL]
+      p
+        pre(class = isHexdump ? 'hexdump' : '')= code
 
-    h4 stdin
-    p
-      pre= submission.input
+      h4 stdin
+      p
+        pre= submission.input
 
-    h4 stdout
-    p
-      pre= submission.stdout
+      h4 stdout
+      p
+        pre= submission.stdout
 
-    h4 stderr
-    p
-      pre= submission.stderr
+      h4 stderr
+      p
+        pre= submission.stderr

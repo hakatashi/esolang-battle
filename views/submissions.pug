@@ -1,33 +1,34 @@
 extends layout
 
 block content
-  .page-header
-    h3 Submissions
+  .container
+    .page-header
+      h3 Submissions
 
-  .table-responsive
-    table.table
-      thead
-        tr
-          th Author
-          th Language
-          th Size
-          th Status
-          th Date
-      tbody
-        each submission in submissions
-          -
-            const tableClass = {pending: 'table-active', success: 'table-success', failed: 'table-warning', error: 'table-danger'}[submission.status]
-            const badgeClass = {pending: 'badge-active', success: 'badge-success', failed: 'badge-warning', error: 'badge-danger'}[submission.status]
-            const badgeText = {pending: 'WJ', success: 'AC', failed: 'WA', error: 'ERROR'}[submission.status]
-          tr(class=tableClass)
-            td
-              a(href=`?${encode({author: submission.user.email.replace(/@.+$/, '')})}`)= submission.user.name()
-            td
-              strong
-                a(href=`?${encode({language: submission.language.slug})}`)= submission.language.slug
-            td= `${submission.size}bytes`
-            td
-              span.badge(class=badgeClass)
-                = badgeText
-            td
-              a(href=`./submissions/${submission._id}`)= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')
+    .table-responsive
+      table.table
+        thead
+          tr
+            th Author
+            th Language
+            th Size
+            th Status
+            th Date
+        tbody
+          each submission in submissions
+            -
+              const tableClass = {pending: 'table-active', success: 'table-success', failed: 'table-warning', error: 'table-danger'}[submission.status]
+              const badgeClass = {pending: 'badge-active', success: 'badge-success', failed: 'badge-warning', error: 'badge-danger'}[submission.status]
+              const badgeText = {pending: 'WJ', success: 'AC', failed: 'WA', error: 'ERROR'}[submission.status]
+            tr(class=tableClass)
+              td
+                a(href=`?${encode({author: submission.user.email.replace(/@.+$/, '')})}`)= submission.user.name()
+              td
+                strong
+                  a(href=`?${encode({language: submission.language.slug})}`)= submission.language.slug
+              td= `${submission.size}bytes`
+              td
+                span.badge(class=badgeClass)
+                  = badgeText
+              td
+                a(href=`./submissions/${submission._id}`)= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')

@@ -13,20 +13,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
-  margin-bottom: 75px;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 45px;
-  line-height: 45px;
-
-  p, ul {
-    margin-bottom: 0;
-  }
+  padding-top: 56px;
 }
 
 // Input Fields
@@ -68,28 +55,8 @@ textarea {
   margin-right: 6px;
 }
 
-#language-modal {
-  .code {
-    font-family: monospace;
-    white-space: pre;
-    overflow-wrap: normal;
-    overflow-x: scroll;
-    line-height: 1;
-  }
-
-  .result {
-    word-wrap: break-word;
-    margin: 1em 0;
-    padding: 0.5em;
-  }
-}
-
 .notation {
   font-size: 3em;
-}
-
-input[type="file"] {
-  display: inline-block;
 }
 
 pre {
