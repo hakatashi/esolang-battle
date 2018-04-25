@@ -1,12 +1,16 @@
 const {sample} = require('lodash');
+const Contest = require('../models/Contest');
 
 /*
  * GET /
  * Home page.
  */
 module.exports.index = async (req, res) => {
+	const contests = await Contest.find().sort({_id: -1}).exec();
+
 	res.render('home', {
 		title: 'Home',
+		contests,
 		helloworld: sample([
 			'"Hello, World!', // abe
 			'iiisa-<*>P/>is+iP>PPm-iiiPi<O/<m/>+<O+d<+<O+><kkkOP->siskkkOP</>P', // 3var
@@ -17,6 +21,7 @@ module.exports.index = async (req, res) => {
 			'"Hello, World!" print', // Cy
 			'.-$"Hello, World!"', // Asciidots
 			'💬Hello, World!💬➡', // Emoji
+			'🏁 🍇 😀 🔤Hello, World!🔤 🍉', // Emojicode
 			'aeeeaeeewueuueweeueeuewwaaaweaaewaeaawueweeeaeeewaaawueeueweeaweeeueuw', // Evil
 			'"!dlroW ,olleH"l?!;oe0.', // <><
 			'{M[m(_o)O!"Hello, World!\\n"(_o)o.?]}', // Grass

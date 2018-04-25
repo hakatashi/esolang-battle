@@ -39,15 +39,15 @@ mongoose.Promise = global.Promise;
 	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
 	await Contest.insertMany([
 		{
-			name: '第1回 esolang陣取り大会',
+			name: 'Esolang Battle #1',
 			id: '1',
 		},
 		{
-			name: '第2回 esolang陣取り大会',
+			name: 'Esolang Codegolf Contest #2',
 			id: '2',
 		},
 		{
-			name: '第3回 コードゴルフ大会',
+			name: 'Esolang Codegolf Contest #3',
 			id: '3',
 		},
 	]);

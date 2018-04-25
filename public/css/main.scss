@@ -1,6 +1,7 @@
 @import "themes/default/variables";
 
 @import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/material-colors/dist/colors.sass";
 @import "lib/font-awesome/font-awesome";
 
 
@@ -69,4 +70,25 @@ pre {
 
 pre.hexdump {
   color: darkgray;
+}
+
+.jumbotron-wrap {
+  color: white;
+}
+
+.jumbotron-wrap:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.contest-1 {
+  background: $md-lime-700;
+}
+
+.contest-2 {
+  background: $md-blue-500;
+}
+
+.contest-3 {
+  background: $md-red-500;
 }
