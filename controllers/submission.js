@@ -103,7 +103,7 @@ module.exports.getSubmission = async (req, res) => {
 	});
 
 	res.render('submission', {
-		title: 'Submission',
+		contest: req.contest,
 		submission,
 		code,
 		isHexdump,

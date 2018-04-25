@@ -1,9 +1,8 @@
 @import "themes/default/variables";
 
-@import "lib/bootstrap/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
 @import "lib/font-awesome/font-awesome";
 
-@import "themes/default/default";
 
 // Scaffolding
 // -------------------------
@@ -265,6 +264,14 @@ textarea {
 
 input[type="file"] {
   display: inline-block;
+}
+
+pre {
+  background-color: #364549;
+  color: #e3e3e3;
+  padding: 1em;
+  border-radius: 5px;
+  line-height: 1.2em;
 }
 
 pre.hexdump {
