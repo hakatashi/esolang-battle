@@ -32,3 +32,22 @@ block content
                   = badgeText
               td
                 a(href=`./submissions/${submission._id}`)= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')
+                    
+    
+    nav(aria-label='Submission result pages')
+      ul.pagination.justify-content-center
+        li.page-item(class=page === 0 ? 'disabled' : '')
+          a.page-link(href=`?${encode(Object.assign({}, query, {page: page - 1}))}`, aria-label='Previous', rel='prev')
+            span(aria-hidden='true') «
+            span.sr-only Previous
+        each index in [...Array(totalPages).keys()]
+          - const current = page === index
+          li.page-item(class=current ? 'active' : '')
+            a.page-link(href=`?${encode(Object.assign({}, query, {page: index}))}`, aria-current=current ? 'true' : '')
+              = index + 1
+              if current
+                span.sr-only (current)
+        li.page-item(class=page === totalPages - 1 ? 'disabled' : '')
+          a.page-link(href=`?${encode(Object.assign({}, query, {page: page + 1}))}`, aria-label='Next', rel='next')
+            span(aria-hidden='true') »
+            span.sr-only Next

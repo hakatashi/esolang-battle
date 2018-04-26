@@ -49,10 +49,15 @@ module.exports.getSubmissions = async (req, res) => {
 		.limit(500)
 		.exec();
 
+	const totalSubmissions = await Submission.find(query).count().exec();
+
 	res.render('submissions', {
 		contest: req.contest,
 		title: 'Submissions',
 		submissions,
+		page,
+		query: req.query || {},
+		totalPages: Math.ceil(totalSubmissions / 500),
 		encode: qs.encode,
 		moment,
 	});

@@ -8,7 +8,13 @@ block content
 
       p= ` by ${submission.user.name()}`
 
-    h4 Result
+    h4
+      | Result
+      if submission.url
+        = ' '
+        small
+          a(href=submission.url, target='_blank') [link]
+        
     p= submission.status
 
     if selfTeam || new Date() >= new Date('2017-08-26T15:00:00.000Z')
