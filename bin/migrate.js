@@ -164,7 +164,7 @@ mongoose.Promise = global.Promise;
 
 					## Output
 
-					* Print \`1\` if given binary number is a triangular number, otherwise print \`1\`. 50 characters are printed altogether.
+					* Print \`1\` if given binary number is a triangular number, otherwise print \`1\`. In total, 50 characters will be printed.
 					* 0 is a triangular number.
 					* Space characters around the output integer are ignored.
 					* Do not print any characters except for \`0\`, \`1\`, or space characters.
@@ -213,6 +213,7 @@ mongoose.Promise = global.Promise;
 								},
 							  ]),
 					],
+					admin: false,
 				});
 			}
 		}

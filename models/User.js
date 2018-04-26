@@ -5,25 +5,15 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema(
 	{
 		email: {type: String, unique: true},
-		password: String,
-		passwordResetToken: String,
-		passwordResetExpires: Date,
-
-		facebook: String,
 		twitter: String,
-		google: String,
-		github: String,
-		instagram: String,
-		linkedin: String,
-		steam: String,
 		tokens: Array,
-		color: String,
 		team: [
 			{
 				contest: {type: mongoose.Schema.Types.ObjectId, ref: 'Contest'},
 				value: {type: Number, enum: [0, 1, 2]},
 			},
 		],
+		admin: {type: Boolean, default: false},
 
 		profile: {
 			name: String,
