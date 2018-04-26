@@ -41,14 +41,20 @@ mongoose.Promise = global.Promise;
 		{
 			name: 'Esolang Battle #1',
 			id: '1',
+			start: new Date('2016-11-20T10:00:00+0900'),
+			end: new Date('2016-12-24T23:59:59+0900'),
 		},
 		{
 			name: 'Esolang Codegolf Contest #2',
 			id: '2',
+			start: new Date('2017-03-27T10:00:00+0900'),
+			end: new Date('2017-04-03T23:59:59+0900'),
 		},
 		{
 			name: 'Esolang Codegolf Contest #3',
 			id: '3',
+			start: new Date('2017-08-19T12:00:00+0900'),
+			end: new Date('2017-08-26T23:59:59+0900'),
 		},
 	]);
 

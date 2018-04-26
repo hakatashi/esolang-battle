@@ -39,48 +39,53 @@ const userSchema = new mongoose.Schema(
 /*
  * Password hash middleware.
  */
-userSchema.pre('save', function save(next) {
-	const user = this;
-	if (!user.isModified('password')) {
-		return next();
+userSchema.pre('save', async function(next) {
+	if (!this.isModified('password')) {
+		next();
+		return;
 	}
-	bcrypt.genSalt(10, (err, salt) => {
-		if (err) {
-			return next(err);
-		}
-		bcrypt.hash(user.password, salt, null, (err, hash) => {
-			if (err) {
-				return next(err);
+
+	const salt = await new Promise((resolve, reject) => {
+		bcrypt.genSalt(10, (error, dSalt) => {
+			if (error) {
+				reject(error);
+			} else {
+				resolve(dSalt);
 			}
-			user.password = hash;
-			next();
 		});
 	});
+
+	const hash = await new Promise((resolve, reject) => {
+		bcrypt.hash(this.password, salt, null, (error, dHash) => {
+			if (error) {
+				reject(error);
+			} else {
+				resolve(dHash);
+			}
+		});
+	});
+
+	this.password = hash;
+	next();
 });
 
 /*
  * Helper method for validating user's password.
  */
-userSchema.methods.comparePassword = function comparePassword(
-	candidatePassword,
-	cb
-) {
+userSchema.methods.comparePassword = function(candidatePassword, cb) {
 	bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
 		cb(err, isMatch);
 	});
 };
 
-userSchema.methods.name = function name() {
+userSchema.methods.name = function() {
 	return `@${this.email.replace(/@.+$/, '')}`;
 };
 
 /*
  * Helper method for getting user's gravatar.
  */
-userSchema.methods.gravatar = function gravatar(size) {
-	if (!size) {
-		size = 200;
-	}
+userSchema.methods.gravatar = function(size = 200) {
 	if (!this.email) {
 		return `https://gravatar.com/avatar/?s=${size}&d=retro`;
 	}

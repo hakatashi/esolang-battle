@@ -5,12 +5,14 @@ block content
     .container
       h1.display-4(style={'word-wrap': 'break-word'})= helloworld
       hr.my-4
-      p This is base system for codegolf competition held by TSG. Hang tight to see the new contest or check out the shining records of the past!
+      p Welcome to Esolang Ballter. This is base system of codegolf competitions held by TSG. Hang tight to match new contest or check out the shining records of the past contests!
 
   .container
     each contest in contests
       a.jumbotron-wrap(href=`/contests/${contest.id}`)
         .jumbotron(class=`contest-${contest.id}`)
           h1.display-4= contest.name
+          p.lead
+            strong= contest.spanText()
           p.lead
             .btn.btn-dark.btn-lg(href=`/contests/${contest.id}`, role='button') View Result

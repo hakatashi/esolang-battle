@@ -1,6 +1,7 @@
 .navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
   a.navbar-brand(href=contest ? `/contests/${contest.id}` : '/')
     = contest ? contest.name : 'Esolang Battler'
+    = ' '
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
     span.navbar-toggler-icon
   .collapse.navbar-collapse#navbarSupportedContent
@@ -10,6 +11,10 @@
           a.nav-link(href=`/contests/${contest.id}`) Home
         li.nav-item(class=(title == 'Submissions') ? 'active' : undefined)
           a.nav-link(href=`/contests/${contest.id}/submissions`) Submissions
+    ul.navbar-nav
+      li.nav-item
+        small.nav-link
+          = contest ? contest.spanText() : ''
     ul.navbar-nav
       if user
         li.nav-item.dropdown
