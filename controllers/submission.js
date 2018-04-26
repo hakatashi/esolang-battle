@@ -1,8 +1,6 @@
 const Submission = require('../models/Submission');
 const User = require('../models/User');
 const Language = require('../models/Language');
-require('../models/Contest');
-const moment = require('moment');
 const Hexdump = require('hexdump-stream');
 const concatStream = require('concat-stream');
 const isValidUTF8 = require('utf-8-validate');
@@ -49,7 +47,9 @@ module.exports.getSubmissions = async (req, res) => {
 		.limit(500)
 		.exec();
 
-	const totalSubmissions = await Submission.find(query).count().exec();
+	const totalSubmissions = await Submission.find(query)
+		.count()
+		.exec();
 
 	res.render('submissions', {
 		contest: req.contest,
@@ -59,7 +59,6 @@ module.exports.getSubmissions = async (req, res) => {
 		query: req.query || {},
 		totalPages: Math.ceil(totalSubmissions / 500),
 		encode: qs.encode,
-		moment,
 	});
 };
 
@@ -110,7 +109,9 @@ module.exports.getSubmission = async (req, res) => {
 
 	res.render('submission', {
 		contest: req.contest,
-		title: `Submission by ${submission.user.name()} (${submission.language.slug}, ${submission.size} bytes)`,
+		title: `Submission by ${submission.user.name()} (${
+			submission.language.slug
+		}, ${submission.size} bytes)`,
 		submission,
 		code,
 		isHexdump,

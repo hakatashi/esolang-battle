@@ -136,15 +136,11 @@ app.get('/', homeController.index);
 app.get('/login', userController.getLogin);
 app.get('/logout', userController.logout);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
-app.get(
-	'/contests/:contest',
-	contestController.base,
-	contestController.index
-);
+app.get('/contests/:contest', contestController.base, contestController.index);
 app.get(
 	'/contests/:contest/rule',
 	contestController.base,
-	contestController.rule,
+	contestController.rule
 );
 app.get(
 	'/contests/:contest/submissions',
@@ -162,10 +158,7 @@ app.get(
 	submissionController.getRawSubmission
 );
 
-app.get(
-	'/submissions/:submission',
-	submissionController.getOldSubmission
-);
+app.get('/submissions/:submission', submissionController.getOldSubmission);
 
 app.get(
 	'/api/submission',

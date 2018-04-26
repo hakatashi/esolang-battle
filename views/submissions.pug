@@ -35,7 +35,7 @@ block content
                 span.badge(class=badgeClass)
                   = badgeText
               td
-                a(href=`./submissions/${submission._id}`)= moment(submission.createdAt).format('YYYY/MM/DD HH:mm:ss')
+                a(href=`./submissions/${submission._id}`)= submission.timeText()
                     
     
     nav(aria-label='Submission result pages')

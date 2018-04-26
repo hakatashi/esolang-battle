@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const submissionSchema = new mongoose.Schema(
 	{
@@ -16,6 +17,12 @@ const submissionSchema = new mongoose.Schema(
 	},
 	{timestamps: true}
 );
+
+submissionSchema.methods.timeText = function() {
+	return moment(this.createdAt)
+		.utcOffset(9)
+		.format('YYYY/MM/DD HH:mm:ss');
+};
 
 const Submission = mongoose.model('Submission', submissionSchema);
 
