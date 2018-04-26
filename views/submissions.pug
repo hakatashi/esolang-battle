@@ -1,5 +1,7 @@
 extends layout
 
+include mixins
+
 block content
   .container.content
     if contest.start > new Date()
@@ -21,8 +23,6 @@ block content
             each submission in submissions
               -
                 const tableClass = {pending: 'table-active', success: 'table-success', failed: 'table-warning', error: 'table-danger'}[submission.status]
-                const badgeClass = {pending: 'badge-active', success: 'badge-success', failed: 'badge-warning', error: 'badge-danger'}[submission.status]
-                const badgeText = {pending: 'WJ', success: 'AC', failed: 'WA', error: 'ERROR'}[submission.status]
               tr(class=tableClass)
                 td
                   a(href=`?${encode({author: submission.user.email.replace(/@.+$/, '')})}`)
@@ -35,8 +35,7 @@ block content
                     a(href=`?${encode({language: submission.language.slug})}`)= submission.language.slug
                 td= `${submission.size}bytes`
                 td
-                  span.badge(class=badgeClass)
-                    = badgeText
+                  +submissionBadge(submission)
                 td
                   a(href=`./submissions/${submission._id}`)= submission.timeText()
                       

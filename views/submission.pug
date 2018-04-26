@@ -1,5 +1,7 @@
 extends layout
 
+include mixins
+
 block content
   .container.content
     .page-header
@@ -20,10 +22,13 @@ block content
         small
           a(href=submission.url, target='_blank') [link]
         
-    p= submission.status
+    p
+      +submissionBadge(submission)
+      if submission.duration
+        = ` (${submission.duration}ms)`
     
-    if submission.errorDetail
-      pre= submission.errorDetail
+    if submission.error && submission.error.stack
+      pre= submission.error.stack
 
     if selfTeam || new Date() >= new Date('2017-08-26T15:00:00.000Z')
       h4

@@ -65,9 +65,11 @@ module.exports.postSubmission = async (req, res) => {
 	try {
 		req.assert('language', 'Please Specify language').notEmpty();
 
+		/*
 		if (new Date() >= new Date('2017-08-26T15:00:00.000Z')) {
 			throw new Error('Competition has closed');
 		}
+		*/
 
 		let code = null;
 
@@ -145,7 +147,7 @@ module.exports.postSubmission = async (req, res) => {
 			solution: language.solution,
 		});
 
-		res.json(submission);
+		res.json({_id: submission._id});
 	} catch (error) {
 		// eslint-disable-next-line callback-return
 		res.status(400).json({error: error.message});

@@ -163,8 +163,9 @@ app.get(
 app.get('/submissions/:submission', submissionController.getOldSubmission);
 
 app.get(
-	'/api/submission',
+	'/api/contest/:contest/submission',
 	passportConfig.isAuthenticated,
+	apiController.contest,
 	apiController.getSubmission
 );
 app.post(
@@ -175,8 +176,9 @@ app.post(
 	apiController.postSubmission
 );
 app.get(
-	'/api/languages',
+	'/api/contest/:contest/languages',
 	passportConfig.isAuthenticated,
+	apiController.contest,
 	apiController.getLanguages
 );
 
