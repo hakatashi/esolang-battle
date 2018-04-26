@@ -93,7 +93,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-	if (req.path === '/api/submission') {
+	// FIXME
+	if (req.path.startsWith('/api')) {
 		next();
 		return;
 	}
@@ -167,8 +168,9 @@ app.get(
 	apiController.getSubmission
 );
 app.post(
-	'/api/submission',
+	'/api/contest/:contest/submission',
 	passportConfig.isAuthenticated,
+	apiController.contest,
 	upload.fields([{name: 'file', maxCount: 1}]),
 	apiController.postSubmission
 );

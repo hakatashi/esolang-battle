@@ -21,6 +21,9 @@ block content
           a(href=submission.url, target='_blank') [link]
         
     p= submission.status
+    
+    if submission.errorDetail
+      pre= submission.errorDetail
 
     if selfTeam || new Date() >= new Date('2017-08-26T15:00:00.000Z')
       h4
