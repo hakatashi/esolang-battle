@@ -1,12 +1,10 @@
 extends ../layout
 
 block content
-  .page-header
-    h3 Sign in
-  form.form-horizontal(method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    .form-group
-      .col-sm-offset-3.col-sm-7
-        a.btn.btn-block.btn-twitter.btn-social(href='/auth/twitter')
+  .container.content
+    form.form-horizontal(method='POST', style={margin: '5em 0'})
+      input(type='hidden', name='_csrf', value=_csrf)
+      .form-group
+        a.btn.btn-primary.btn-lg.btn-block(href='/auth/twitter')
           i.fa.fa-twitter
           | Sign in with Twitter
