@@ -120,6 +120,7 @@ module.exports = async ({id, code, stdin}) => {
 			containerPromise,
 		]);
 
+		const executionStart = Date.now();
 		const [stdout, stderr] = await runner.timeout(15000);
 		const executionEnd = Date.now();
 
@@ -128,7 +129,7 @@ module.exports = async ({id, code, stdin}) => {
 		return {
 			stdout: Buffer.isBuffer(stdout) ? stdout : Buffer.alloc(0),
 			stderr: Buffer.isBuffer(stderr) ? stderr : Buffer.alloc(0),
-			executionEnd,
+			duration: executionEnd - executionStart,
 		};
 	} catch (error) {
 		await container.kill().catch();

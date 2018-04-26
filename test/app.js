@@ -1,3 +1,5 @@
+/* eslint-env mocha */
+
 const request = require('supertest');
 const app = require('../app.js');
 

@@ -83,7 +83,9 @@ module.exports.postSubmission = async (req, res) => {
 		assert(code.length >= 1, 'Code cannot be empty');
 		assert(code.length <= 10000, 'Code cannot be longer than 10,000 bytes');
 
-		const languageData = languages[req.contest.id].find((l) => l && l.slug === req.body.language);
+		const languageData = languages[req.contest.id].find(
+			(l) => l && l.slug === req.body.language
+		);
 
 		if (languageData === undefined) {
 			throw new Error(`Language ${req.body.language} doesn't exist`);
@@ -94,7 +96,7 @@ module.exports.postSubmission = async (req, res) => {
 			.exec();
 		if (
 			latestSubmission !== null &&
-		latestSubmission.createdAt > Date.now() - 5 * 1000
+			latestSubmission.createdAt > Date.now() - 5 * 1000
 		) {
 			throw new Error('Submission interval is too short');
 		}
@@ -108,7 +110,7 @@ module.exports.postSubmission = async (req, res) => {
 			if (existingLanguage !== null) {
 				if (
 					existingLanguage.solution &&
-				existingLanguage.solution.size <= code.length
+					existingLanguage.solution.size <= code.length
 				) {
 					reject(new Error('Shorter solution is already submitted'));
 					return;

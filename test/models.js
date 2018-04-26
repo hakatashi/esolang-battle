@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+/* eslint-env mocha */
+
 const {expect} = require('chai');
 const sinon = require('sinon');
 require('sinon-mongoose');
@@ -14,7 +15,7 @@ describe('User Model', () => {
 
 		UserMock.expects('save').yields(null);
 
-		user.save((err, result) => {
+		user.save((err) => {
 			UserMock.verify();
 			UserMock.restore();
 			expect(err).to.be.null;
@@ -77,6 +78,7 @@ describe('User Model', () => {
 			.yields(null, expectedUser);
 
 		User.findOne({email: 'test@gmail.com'}, (err, result) => {
+			expect(err).to.be.null;
 			userMock.verify();
 			userMock.restore();
 			expect(result.email).to.equal('test@gmail.com');
