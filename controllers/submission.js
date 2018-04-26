@@ -51,6 +51,7 @@ module.exports.getSubmissions = async (req, res) => {
 
 	res.render('submissions', {
 		contest: req.contest,
+		title: 'Submissions',
 		submissions,
 		encode: qs.encode,
 		moment,
@@ -104,6 +105,7 @@ module.exports.getSubmission = async (req, res) => {
 
 	res.render('submission', {
 		contest: req.contest,
+		title: `Submission by ${submission.user.name()} (${submission.language.slug}, ${submission.size} bytes)`,
 		submission,
 		code,
 		isHexdump,

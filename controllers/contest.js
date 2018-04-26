@@ -35,6 +35,7 @@ module.exports.rule = (req, res) => {
 	const markdown = new MarkdownIt();
 	res.render('rule', {
 		contest: req.contest,
+		title: 'Rule',
 		description: {
 			ja: markdown.render(req.contest.description.ja),
 			en: markdown.render(req.contest.description.en),

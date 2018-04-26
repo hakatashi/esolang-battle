@@ -4,7 +4,7 @@
     = ' '
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
     span.navbar-toggler-icon
-  .collapse.navbar-collapse#navbarSupportedContent
+  .collapse.navbar-collapse.justify-content-end#navbarSupportedContent
     if contest
       ul.navbar-nav.mr-auto
         li.nav-item(class=(title == 'Home') ? 'active' : undefined)
@@ -18,7 +18,11 @@
         small.nav-link
           = contest ? contest.spanText() : ''
     ul.navbar-nav
-      if user
+      if !user
+        if title !== 'Login'
+          li.nav-item
+            a.nav-link(href='/login') Login
+      else
         li.nav-item.dropdown
           a.nav-link.dropdown-toggle#navbarDropdown(href='#', data-toggle='dropdown')
             if user.profile.picture
@@ -28,6 +32,6 @@
             span= user.name() || user.email || user.id
             i.caret
           .dropdown-menu
-            a.dropdown-item(href='/') Home
+            a.dropdown-item(href='/') Top
             a.dropdown-item(href='/account') My Account
             a.dropdown-item(href='/logout') Logout
