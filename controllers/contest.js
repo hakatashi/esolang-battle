@@ -1,4 +1,5 @@
 const classnames = require('classnames');
+const MarkdownIt = require('markdown-it');
 const Contest = require('../models/Contest');
 const {getLanguageMap} = require('../controllers/utils');
 
@@ -27,5 +28,13 @@ module.exports.index = async (req, res) => {
 		contest: req.contest,
 		languageMap,
 		classnames,
+	});
+};
+
+module.exports.rule = (req, res) => {
+	const markdown = new MarkdownIt();
+	res.render('rule', {
+		contest: req.contest,
+		description: markdown.render(req.contest.description),
 	});
 };

@@ -9,6 +9,8 @@
       ul.navbar-nav.mr-auto
         li.nav-item(class=(title == 'Home') ? 'active' : undefined)
           a.nav-link(href=`/contests/${contest.id}`) Home
+        li.nav-item
+          a.nav-link(href=`/contests/${contest.id}/rule`) Rule
         li.nav-item(class=(title == 'Submissions') ? 'active' : undefined)
           a.nav-link(href=`/contests/${contest.id}/submissions`) Submissions
     ul.navbar-nav

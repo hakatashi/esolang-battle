@@ -143,6 +143,12 @@ app.get(
 	contestController.index
 );
 app.get(
+	'/contests/:contest/rule',
+	passportConfig.isAuthenticated,
+	contestController.base,
+	contestController.rule,
+);
+app.get(
 	'/contests/:contest/submissions',
 	passportConfig.isAuthenticated,
 	contestController.base,
