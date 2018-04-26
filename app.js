@@ -109,6 +109,7 @@ app.use(async (req, res, next) => {
 
 	res.locals.user = req.user;
 	res.locals.hash = hash.toString().trim();
+	res.locals.env = process.env.NODE_ENV;
 
 	next();
 });

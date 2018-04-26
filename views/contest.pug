@@ -11,10 +11,14 @@ block head
 
 block content
   .container
-    .board
-      if contest.id === '1'
-        include maps/1.pug
-      else if contest.id === '2'
-        include maps/2.pug
-      else if contest.id === '3'
-        include maps/3.pug
+    if contest.start > new Date()
+      .content
+        include partials/countdown.pug
+    else
+      .board
+        if contest.id === '1'
+          include maps/1.pug
+        else if contest.id === '2'
+          include maps/2.pug
+        else if contest.id === '3'
+          include maps/3.pug

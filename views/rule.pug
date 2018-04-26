@@ -1,20 +1,14 @@
 extends layout
 
-block head
-  style
-    if contest.id === '1'
-      include:scss maps/1.scss
-    else if contest.id === '2'
-      include:scss maps/2.scss
-    else if contest.id === '3'
-      include:scss maps/3.scss
-
 block content
   .container.content
-    h1 Rule
-    != description.en
-    
-    hr(style={margin: '5em 0'})
-    
-    h1 ルール
-    != description.ja
+    if contest.start > new Date()
+      include partials/countdown.pug
+    else
+      h1 Rule
+      != description.en
+      
+      hr(style={margin: '5em 0'})
+      
+      h1 ルール
+      != description.ja

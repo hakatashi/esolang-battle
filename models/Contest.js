@@ -13,11 +13,13 @@ const contestSchema = new mongoose.Schema({
 });
 
 contestSchema.methods.spanText = function() {
-	return `${moment(this.start)
+	const startText = moment(this.start)
 		.utcOffset(9)
-		.format('YYYY/MM/DD HH:mm:ss')} - ${moment(this.end)
+		.format('YYYY/MM/DD HH:mm:ss');
+	const endText = moment(this.end)
 		.utcOffset(9)
-		.format('YYYY/MM/DD HH:mm:ss')}`;
+		.format('YYYY/MM/DD HH:mm:ss');
+	return `${startText} - ${endText}`;
 };
 
 const Contest = mongoose.model('Contest', contestSchema);

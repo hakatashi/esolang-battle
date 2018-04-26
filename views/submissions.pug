@@ -2,56 +2,59 @@ extends layout
 
 block content
   .container.content
-    .page-header
-      h3 Submissions
+    if contest.start > new Date()
+      include partials/countdown.pug
+    else
+      .page-header
+        h3 Submissions
 
-    .table-responsive
-      table.table
-        thead
-          tr
-            th Author
-            th Language
-            th Size
-            th Status
-            th Date
-        tbody
-          each submission in submissions
-            -
-              const tableClass = {pending: 'table-active', success: 'table-success', failed: 'table-warning', error: 'table-danger'}[submission.status]
-              const badgeClass = {pending: 'badge-active', success: 'badge-success', failed: 'badge-warning', error: 'badge-danger'}[submission.status]
-              const badgeText = {pending: 'WJ', success: 'AC', failed: 'WA', error: 'ERROR'}[submission.status]
-            tr(class=tableClass)
-              td
-                a(href=`?${encode({author: submission.user.email.replace(/@.+$/, '')})}`)
-                  - const team = submission.user.team.find((t) => t.contest.equals(contest._id))
-                  if team
-                    span.team-badge(class=`team-${team.value}`)
-                  = submission.user.name()
-              td
-                strong
-                  a(href=`?${encode({language: submission.language.slug})}`)= submission.language.slug
-              td= `${submission.size}bytes`
-              td
-                span.badge(class=badgeClass)
-                  = badgeText
-              td
-                a(href=`./submissions/${submission._id}`)= submission.timeText()
-                    
-    
-    nav(aria-label='Submission result pages')
-      ul.pagination.justify-content-center
-        li.page-item(class=page === 0 ? 'disabled' : '')
-          a.page-link(href=`?${encode(Object.assign({}, query, {page: page - 1}))}`, aria-label='Previous', rel='prev')
-            span(aria-hidden='true') «
-            span.sr-only Previous
-        each index in [...Array(totalPages).keys()]
-          - const current = page === index
-          li.page-item(class=current ? 'active' : '')
-            a.page-link(href=`?${encode(Object.assign({}, query, {page: index}))}`, aria-current=current ? 'true' : '')
-              = index + 1
-              if current
-                span.sr-only (current)
-        li.page-item(class=page === totalPages - 1 ? 'disabled' : '')
-          a.page-link(href=`?${encode(Object.assign({}, query, {page: page + 1}))}`, aria-label='Next', rel='next')
-            span(aria-hidden='true') »
-            span.sr-only Next
+      .table-responsive
+        table.table
+          thead
+            tr
+              th Author
+              th Language
+              th Size
+              th Status
+              th Date
+          tbody
+            each submission in submissions
+              -
+                const tableClass = {pending: 'table-active', success: 'table-success', failed: 'table-warning', error: 'table-danger'}[submission.status]
+                const badgeClass = {pending: 'badge-active', success: 'badge-success', failed: 'badge-warning', error: 'badge-danger'}[submission.status]
+                const badgeText = {pending: 'WJ', success: 'AC', failed: 'WA', error: 'ERROR'}[submission.status]
+              tr(class=tableClass)
+                td
+                  a(href=`?${encode({author: submission.user.email.replace(/@.+$/, '')})}`)
+                    - const team = submission.user.team.find((t) => t.contest.equals(contest._id))
+                    if team
+                      span.team-badge(class=`team-${team.value}`)
+                    = submission.user.name()
+                td
+                  strong
+                    a(href=`?${encode({language: submission.language.slug})}`)= submission.language.slug
+                td= `${submission.size}bytes`
+                td
+                  span.badge(class=badgeClass)
+                    = badgeText
+                td
+                  a(href=`./submissions/${submission._id}`)= submission.timeText()
+                      
+      
+      nav(aria-label='Submission result pages')
+        ul.pagination.justify-content-center
+          li.page-item(class=page === 0 ? 'disabled' : '')
+            a.page-link(href=`?${encode(Object.assign({}, query, {page: page - 1}))}`, aria-label='Previous', rel='prev')
+              span(aria-hidden='true') «
+              span.sr-only Previous
+          each index in [...Array(totalPages).keys()]
+            - const current = page === index
+            li.page-item(class=current ? 'active' : '')
+              a.page-link(href=`?${encode(Object.assign({}, query, {page: index}))}`, aria-current=current ? 'true' : '')
+                = index + 1
+                if current
+                  span.sr-only (current)
+          li.page-item(class=page === totalPages - 1 ? 'disabled' : '')
+            a.page-link(href=`?${encode(Object.assign({}, query, {page: page + 1}))}`, aria-label='Next', rel='next')
+              span(aria-hidden='true') »
+              span.sr-only Next
