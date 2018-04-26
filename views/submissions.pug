@@ -22,7 +22,11 @@ block content
               const badgeText = {pending: 'WJ', success: 'AC', failed: 'WA', error: 'ERROR'}[submission.status]
             tr(class=tableClass)
               td
-                a(href=`?${encode({author: submission.user.email.replace(/@.+$/, '')})}`)= submission.user.name()
+                a(href=`?${encode({author: submission.user.email.replace(/@.+$/, '')})}`)
+                  - const team = submission.user.team.find((t) => t.contest.equals(contest._id))
+                  if team
+                    span.team-badge(class=`team-${team.value}`)
+                  = submission.user.name()
               td
                 strong
                   a(href=`?${encode({language: submission.language.slug})}`)= submission.language.slug

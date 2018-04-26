@@ -96,3 +96,25 @@ pre.hexdump {
 .contest-3 {
   background: $md-red-500;
 }
+
+.team-badge {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  vertical-align: middle;
+  border-radius: 1em;
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+
+  &.team-0 {
+    background-color: #ef2011;
+  }
+
+  &.team-1 {
+    background-color: #0e30ec;
+  }
+
+  &.team-2 {
+    background-color: #167516;
+  }
+}
