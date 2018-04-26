@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  .container
+  .container.content
     .page-header
-      h3
+      h1
         strong= `${submission.language.slug}, ${submission.size} bytes`
       
       p= ` by ${submission.user.name()}`

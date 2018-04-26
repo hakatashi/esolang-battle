@@ -6,7 +6,10 @@ const contestSchema = new mongoose.Schema({
 	id: {type: String, index: {unique: true}},
 	start: {type: Date},
 	end: {type: Date},
-	description: {type: String},
+	description: {
+		ja: {type: String},
+		en: {type: String},
+	},
 });
 
 contestSchema.methods.spanText = function () {

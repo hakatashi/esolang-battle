@@ -10,6 +10,11 @@ block head
       include:scss maps/3.scss
 
 block content
-  .container
+  .container.content
     h1 Rule
-    != description
+    != description.en
+    
+    hr(style={margin: '5em 0'})
+    
+    h1 ルール
+    != description.ja
