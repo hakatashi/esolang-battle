@@ -24,8 +24,10 @@ block content
         
     p
       +submissionBadge(submission)
-      if submission.duration
-        = ` (${submission.duration}ms)`
+
+    if submission.duration
+      h4 Duration
+      p= `${submission.duration}ms`
     
     if submission.error && submission.error.stack
       pre= submission.error.stack

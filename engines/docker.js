@@ -85,7 +85,7 @@ module.exports = async ({id, code, stdin}) => {
 				Cmd: [
 					'sh',
 					'-c',
-					`${shellescape([id, `/volume/${filename}`])} < /volume/INPUT`,
+					`${shellescape(['script', `/volume/${filename}`])} < /volume/INPUT`,
 				],
 				Image: `esolang/${id}`,
 				Volumes: {

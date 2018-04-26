@@ -65,11 +65,9 @@ module.exports.postSubmission = async (req, res) => {
 	try {
 		req.assert('language', 'Please Specify language').notEmpty();
 
-		/*
 		if (new Date() >= new Date('2017-08-26T15:00:00.000Z')) {
 			throw new Error('Competition has closed');
 		}
-		*/
 
 		let code = null;
 
