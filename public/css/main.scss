@@ -86,15 +86,24 @@ pre.hexdump {
 }
 
 .contest-1 {
-  background: $md-lime-700;
+  background-color: $md-lime-700;
+  background-image: url('/img/contest/1-headline.svg');
+  background-size: cover;
+  background-position: center;
 }
 
 .contest-2 {
-  background: $md-blue-500;
+  background-color: $md-blue-500;
+  background-image: url('/img/contest/2-headline.svg');
+  background-size: cover;
+  background-position: center;
 }
 
 .contest-3 {
-  background: $md-red-500;
+  background-color: $md-red-500;
+  background-image: url('/img/contest/3-headline.svg');
+  background-size: cover;
+  background-position: center;
 }
 
 .team-badge {
