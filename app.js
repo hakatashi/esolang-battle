@@ -20,6 +20,9 @@ const passport = require('passport');
 const expressValidator = require('express-validator');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 
 /*
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -34,6 +37,13 @@ const userController = require('./controllers/user');
 const submissionController = require('./controllers/submission');
 const apiController = require('./controllers/api');
 const contestController = require('./controllers/contest');
+
+/*
+ * Build-up Webpack compiler
+ */
+const webpackConfigGenerator = require('./webpack.config.js');
+const webpackConfig = webpackConfigGenerator({}, {mode: process.env.NODE_ENV});
+const compiler = webpack(webpackConfig);
 
 /*
  * API keys and Passport configuration.
@@ -74,6 +84,12 @@ app.use(
 		dest: path.join(__dirname, 'public'),
 	})
 );
+app.use(
+	webpackDevMiddleware(compiler, {publicPath: webpackConfig.output.publicPath})
+);
+if (process.env.NODE_ENV === 'development') {
+	app.use(webpackHotMiddleware(compiler));
+}
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

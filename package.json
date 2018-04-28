@@ -11,6 +11,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "mocha --reporter spec",
+    "dev": "nodemon app.js --ignore public",
     "lint": "prettier-eslint **/*.js --ignore public/js/lib/** --write && eslint **/*.js --ignore-pattern public/js/lib/**"
   },
   "engines": {
@@ -70,7 +71,8 @@
     "validator": "^9.4.1",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15",
-    "webpack-dev-middleware": "^3.1.3"
+    "webpack-dev-middleware": "^3.1.3",
+    "webpack-hot-middleware": "^2.22.1"
   },
   "devDependencies": {
     "@hakatashi/eslint-config": "^1.4.0",

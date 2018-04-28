@@ -1,13 +1,17 @@
 extends layout
 
 block head
-  style
-    if contest.id === '1'
-      include:scss maps/1.scss
-    else if contest.id === '2'
-      include:scss maps/2.scss
-    else if contest.id === '3'
-      include:scss maps/3.scss
+  if contest.isStarted()
+    style
+      if contest.id === '1'
+        include:scss maps/1.scss
+      else if contest.id === '2'
+        include:scss maps/2.scss
+      else if contest.id === '3'
+        include:scss maps/3.scss
+      
+    if contest.id === '4'
+      script(src='/js/contests/4/index.js', async)
 
 block content
   .container
