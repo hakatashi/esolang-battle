@@ -3,20 +3,22 @@ const TrackballControls = require('three-trackballcontrols');
 
 const snubDodecahedron = require('./snub-dodecahedron.js');
 
-module.exports = (element) => {
+module.exports = (element, onFacesUpdate) => {
 	const renderer = new THREE.WebGLRenderer({alpha: true});
 	const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1e4);
 	const scene = new THREE.Scene();
 
 	scene.add(camera);
-	camera.position.set(0, 0, 300);
+	camera.position.set(0, 0, 280);
 	camera.lookAt(scene.position);
 	element.appendChild(renderer.domElement);
 
 	const controls = new TrackballControls(camera, renderer.domElement);
 	controls.noPan = true;
+	controls.noZoom = true;
 
 	const material = new THREE.MeshBasicMaterial({color: 0x111111});
+	const medians = [];
 
 	for (const [index, polygons] of [snubDodecahedron.triangles, snubDodecahedron.pentagons].entries()) {
 		for (const polygon of polygons) {
@@ -32,6 +34,7 @@ module.exports = (element) => {
 
 			const median = vertices.reduce((a, b) => a.clone().add(b)).divideScalar(index === 0 ? 3 : 5);
 			geometry.vertices = vertices.map((v) => v.clone().lerp(median, index === 0 ? 0.1 : 0.05));
+			medians.push(median);
 
 			if (index === 0) {
 				geometry.faces.push(new THREE.Face3(0, 1, 2));
@@ -52,6 +55,16 @@ module.exports = (element) => {
 	const update = () => {
 		renderer.render(scene, camera);
 		controls.update();
+
+		const faces = medians.map((median) => {
+			const vector = median.clone();
+			vector.project(camera);
+			const x = Math.round((vector.x + 1) * renderer.domElement.width / 2);
+			const y = Math.round((-vector.y + 1) * renderer.domElement.height / 2);
+			return {x, y, z: vector.z};
+		});
+		onFacesUpdate(faces);
+
 		requestAnimationFrame(update);
 	};
 	requestAnimationFrame(update);
