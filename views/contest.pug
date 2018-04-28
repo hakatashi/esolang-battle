@@ -14,11 +14,14 @@ block head
       script(src='/js/contests/4/index.js', async)
 
 block content
-  .container
-    if !contest.isStarted()
+  if !contest.isStarted()
+    .container
       .content
         include partials/countdown.pug
-    else
+  else if contest.id === '4'
+    #app
+  else
+    .container
       .board
         if contest.id === '1'
           include maps/1.pug
