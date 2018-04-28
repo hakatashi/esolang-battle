@@ -4,7 +4,7 @@ include mixins
 
 block content
   .container.content
-    if contest.start > new Date()
+    if !contest.isStarted()
       include partials/countdown.pug
     else
       .page-header

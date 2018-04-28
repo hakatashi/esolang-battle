@@ -11,7 +11,7 @@ block head
 
 block content
   .container
-    if contest.start > new Date()
+    if !contest.isStarted()
       .content
         include partials/countdown.pug
     else

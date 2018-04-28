@@ -12,7 +12,22 @@ const contestSchema = new mongoose.Schema({
 	},
 });
 
-contestSchema.methods.spanText = function() {
+contestSchema.methods.isOpen = function () {
+	const now = new Date();
+	return this.start <= now && now <= this.end;
+};
+
+contestSchema.methods.isStarted = function () {
+	const now = new Date();
+	return this.start <= now;
+};
+
+contestSchema.methods.isEnded = function () {
+	const now = new Date();
+	return this.end < now;
+};
+
+contestSchema.methods.spanText = function () {
 	const startText = moment(this.start)
 		.utcOffset(9)
 		.format('YYYY/MM/DD HH:mm:ss');

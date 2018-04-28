@@ -62,7 +62,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 				cell.record.solution.user.team.find((t) => t.contest.equals(contest._id));
 			const solvedTeam = solvedTeamInfo && solvedTeamInfo.value;
 
-			if (new Date() >= new Date('2017-08-26T15:00:00.000Z')) {
+			if (!contest.isOpen()) {
 				if (cell.record && cell.record.solution) {
 					return {
 						type: 'language',

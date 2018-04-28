@@ -32,7 +32,7 @@ block content
     if submission.error && submission.error.stack
       pre= submission.error.stack
 
-    if selfTeam || new Date() >= new Date('2017-08-26T15:00:00.000Z')
+    if selfTeam || contest.isEnded()
       h4
         | Code
         = ' '

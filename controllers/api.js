@@ -65,7 +65,7 @@ module.exports.postSubmission = async (req, res) => {
 	try {
 		req.assert('language', 'Please Specify language').notEmpty();
 
-		if (new Date() >= new Date('2017-08-26T15:00:00.000Z')) {
+		if (!req.contest.isOpen()) {
 			throw new Error('Competition has closed');
 		}
 
@@ -74,9 +74,6 @@ module.exports.postSubmission = async (req, res) => {
 		if (req.files && req.files.file && req.files.file.length === 1) {
 			code = req.files.file[0].buffer;
 		} else {
-			req
-				.assert('code', 'Code cannot be empty or longer than 10000 bytes')
-				.len(1, 10000);
 			code = Buffer.from(req.body.code.replace(/\r\n/g, '\n'), 'utf8');
 		}
 
@@ -106,7 +103,7 @@ module.exports.postSubmission = async (req, res) => {
 			.exec();
 
 		const language = await new Promise((resolve, reject) => {
-			// TODO: Check if preceding cell is aleady taken
+			// FIXME: Check if preceding cell is aleady taken
 			if (existingLanguage !== null) {
 				if (
 					existingLanguage.solution &&
