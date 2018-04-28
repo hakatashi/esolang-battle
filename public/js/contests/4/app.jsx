@@ -33,13 +33,13 @@ class App extends React.Component {
 							key={index}
 							style={{
 								position: 'absolute',
-								width: '100px',
+								width: '300px',
 								height: '10px',
 								color: 'white',
 								textAlign: 'center',
-								top: `${face.y}px`,
-								left: `${face.x}px`,
-								transform: 'translate(-50%, -50%)',
+								top: '0',
+								left: '0',
+								transform: `translate(${face.x - 150}px, ${face.y - 5}px)`,
 							}}
 						>
 							{index}

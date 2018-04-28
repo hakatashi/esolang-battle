@@ -117,8 +117,7 @@ module.exports.getSubmission = async (req, res) => {
 		isHexdump,
 		selfTeam:
 			req.user &&
-			typeof req.user.team === 'number' &&
-			req.user.team === submission.user.team,
+			req.user.getTeam(req.contest) === submission.user.getTeam(req.contest),
 	});
 };
 

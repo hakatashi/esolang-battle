@@ -28,6 +28,7 @@ module.exports.index = async (req, res) => {
 		contest: req.contest,
 		languageMap,
 		classnames,
+		hideFooter: true,
 	});
 };
 

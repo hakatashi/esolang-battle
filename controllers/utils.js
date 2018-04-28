@@ -1,32 +1,7 @@
 const Language = require('../models/Language');
 const languages = require('../data/languages');
 
-const getPrecedingIndices = (index) => {
-	const x = index % 15;
-	const y = Math.floor(index / 15);
-	const margin = y < 4 ? 3 - y : y - 4;
-	const direction = (x + y) % 2 ? 'up' : 'down';
-
-	const precedingCells = [];
-
-	if (x - 1 >= margin) {
-		precedingCells.push(y * 15 + (x - 1));
-	}
-
-	if (x + 1 <= 14 - margin) {
-		precedingCells.push(y * 15 + (x + 1));
-	}
-
-	if (direction === 'down' && y - 1 >= 0) {
-		precedingCells.push((y - 1) * 15 + x);
-	}
-
-	if (direction === 'up' && y + 1 <= 7) {
-		precedingCells.push((y + 1) * 15 + x);
-	}
-
-	return precedingCells;
-};
+const getPrecedingIndices = () => [];
 
 module.exports.getPrecedingIndices = getPrecedingIndices;
 
@@ -56,13 +31,12 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 
 	return languageCells.map((cell, index) => {
 		if (cell.type === 'language') {
-			const solvedTeamInfo =
+			const solvedTeam =
 				cell.record &&
 				cell.record.solution &&
-				cell.record.solution.user.team.find((t) => t.contest.equals(contest._id));
-			const solvedTeam = solvedTeamInfo && solvedTeamInfo.value;
+				cell.record.solution.user.getTeam(contest);
 
-			if (!contest.isOpen()) {
+			if (!contest.isOpen() || contest.id !== '4') {
 				if (cell.record && cell.record.solution) {
 					return {
 						type: 'language',

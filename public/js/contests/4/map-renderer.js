@@ -9,7 +9,7 @@ module.exports = (element, onFacesUpdate) => {
 	const scene = new THREE.Scene();
 
 	scene.add(camera);
-	camera.position.set(0, 0, 280);
+	camera.position.set(-60, 30, 260);
 	camera.lookAt(scene.position);
 	element.appendChild(renderer.domElement);
 
@@ -71,7 +71,7 @@ module.exports = (element, onFacesUpdate) => {
 
 	const onResize = () => {
 		const width = window.innerWidth;
-		const height = window.innerHeight - 100;
+		const height = window.innerHeight - 70;
 		renderer.setSize(width, height);
 		camera.aspect = width / height;
 		camera.updateProjectionMatrix();

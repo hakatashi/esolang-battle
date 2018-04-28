@@ -72,6 +72,19 @@ userSchema.methods.name = function() {
 	return `@${this.email.replace(/@.+$/, '')}`;
 };
 
+userSchema.methods.getTeam = function(contest) {
+	if (!this.team) {
+		return null;
+	}
+
+	const teamInfo = this.team.find((team) => team.contest.equals(contest._id));
+	if (!teamInfo) {
+		return null;
+	}
+
+	return teamInfo.value;
+};
+
 /*
  * Helper method for getting user's gravatar.
  */

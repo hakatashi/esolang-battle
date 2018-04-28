@@ -107,8 +107,10 @@ pre.hexdump {
 }
 
 .contest-4 {
-  background-color: #050505;
-  background-image: url('/img/contest/noise.png');
+  background-color: $md-orange-500;
+  background-image: url('/img/contest/4-headline.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .team-badge {
