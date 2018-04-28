@@ -15,29 +15,36 @@ module.exports = (element) => {
 
 	const controls = new TrackballControls(camera, renderer.domElement);
 	controls.noPan = true;
-	controls.rotateSpeed = 3;
 
-	const material = new THREE.MeshBasicMaterial({color: 0xFF0000});
+	const material = new THREE.MeshBasicMaterial({color: 0x111111});
 
-	for (const triangle of snubDodecahedron.triangles) {
-		const geometry = new THREE.Geometry();
+	for (const [index, polygons] of [snubDodecahedron.triangles, snubDodecahedron.pentagons].entries()) {
+		for (const polygon of polygons) {
+			const geometry = new THREE.Geometry();
 
-		const vertices = [];
+			const vertices = [];
 
-		for (const pointIndex of triangle) {
-			const vertex = snubDodecahedron.points[pointIndex];
-			const vector = new THREE.Vector3(...vertex.map((value) => value * 100));
-			vertices.push(vector);
+			for (const pointIndex of polygon) {
+				const vertex = snubDodecahedron.points[pointIndex];
+				const vector = new THREE.Vector3(...vertex.map((value) => value * 100));
+				vertices.push(vector);
+			}
+
+			const median = vertices.reduce((a, b) => a.clone().add(b)).divideScalar(index === 0 ? 3 : 5);
+			geometry.vertices = vertices.map((v) => v.clone().lerp(median, index === 0 ? 0.1 : 0.05));
+
+			if (index === 0) {
+				geometry.faces.push(new THREE.Face3(0, 1, 2));
+			} else if (index === 1) {
+				geometry.faces.push(new THREE.Face3(0, 1, 2));
+				geometry.faces.push(new THREE.Face3(0, 2, 3));
+				geometry.faces.push(new THREE.Face3(0, 3, 4));
+			}
+			geometry.computeFaceNormals();
+
+			const mesh = new THREE.Mesh(geometry, material);
+			scene.add(mesh);
 		}
-
-		const median = vertices.reduce((a, b) => a.clone().add(b)).divideScalar(3);
-		geometry.vertices = vertices.map((v) => v.clone().lerp(median, 0.1));
-
-		geometry.faces.push(new THREE.Face3(0, 1, 2));
-		geometry.computeFaceNormals();
-
-		const mesh = new THREE.Mesh(geometry, material);
-		scene.add(mesh);
 	}
 
 	renderer.render(scene, camera);
