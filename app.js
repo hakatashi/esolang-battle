@@ -93,6 +93,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(upload.fields([{name: 'file', maxCount: 1}]));
 app.use(expressValidator());
 app.use(
 	session({
@@ -109,12 +110,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-	// FIXME
-	if (req.path.startsWith('/api')) {
-		next();
-		return;
-	}
-
 	lusca.csrf()(req, res, next);
 });
 app.use(lusca.xframe('SAMEORIGIN'));
@@ -188,7 +183,6 @@ app.post(
 	'/api/contests/:contest/submission',
 	passportConfig.isAuthenticated,
 	apiController.contest,
-	upload.fields([{name: 'file', maxCount: 1}]),
 	apiController.postSubmission
 );
 app.get(
