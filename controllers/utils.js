@@ -59,7 +59,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 					solved: false,
 					slug: cell.slug,
 					name: cell.name,
-					available: false,
+					available: true,
 				};
 			}
 
