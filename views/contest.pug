@@ -16,7 +16,7 @@ block head
       script(src='/js/contests/4/index.js', async)
 
 block content
-  if !contest.isStarted()
+  if !contest.isStarted() && !user.admin
     .container
       .content
         include partials/countdown.pug
