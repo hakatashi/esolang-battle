@@ -1,5 +1,6 @@
 const THREE = require('three');
 const TrackballControls = require('three-trackballcontrols');
+const OrbitControls = require('three-orbitcontrols');
 
 const snubDodecahedron = require('../../../../data/snub-dodecahedron.js');
 
@@ -18,12 +19,19 @@ module.exports = class {
 		this.camera.lookAt(this.scene.position);
 		this.element.appendChild(this.renderer.domElement);
 
-		this.controls = new TrackballControls(
-			this.camera,
-			this.renderer.domElement
-		);
-		this.controls.noPan = true;
-		this.controls.noZoom = true;
+		const login = document.querySelector('meta[name=login]').getAttribute('content') === 'true';
+
+		if (login) {
+			this.controls = new TrackballControls(
+				this.camera,
+				this.renderer.domElement
+			);
+			this.controls.noPan = true;
+			this.controls.noZoom = true;
+		} else {
+			this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+			this.controls.autoRotate = true;
+		}
 
 		this.faceMedians = [];
 		this.faceColors = Array(92).fill('black');

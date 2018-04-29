@@ -193,7 +193,6 @@ app.post(
 );
 app.get(
 	'/api/contests/:contest/languages',
-	passportConfig.isAuthenticated,
 	apiController.contest,
 	apiController.getLanguages
 );
