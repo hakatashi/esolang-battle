@@ -2,7 +2,7 @@ extends layout
 
 block content
   .container.content
-    if !contest.isStarted() && !user.admin
+    if !contest.isStarted() && (!user || !user.admin)
       include partials/countdown.pug
     else
       h1 Rule
