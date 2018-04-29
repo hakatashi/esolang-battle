@@ -1,5 +1,5 @@
 const React = require('react');
-const mapRenderer = require('./map-renderer.js');
+const Map = require('./map.js');
 
 class App extends React.Component {
 	constructor(props, context) {
@@ -13,7 +13,7 @@ class App extends React.Component {
 		this.canvas = node;
 		if (!this.mapInited) {
 			this.mapInited = true;
-			mapRenderer(this.canvas, this.handleFacesUpdate);
+			this.map = new Map(this.canvas, this.handleFacesUpdate);
 		}
 	}
 
