@@ -125,5 +125,6 @@ module.exports = Array(92)
 			type: 'language',
 			slug: languages[index],
 			name: langDatum ? langDatum.name : '',
+			link: langDatum ? langDatum.link : '',
 		};
 	});

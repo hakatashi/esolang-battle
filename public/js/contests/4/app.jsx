@@ -250,7 +250,13 @@ class App extends React.Component {
 					toggle={this.handleCloseModal}
 					className="language-modal"
 				>
-					<ModalHeader>{selectedLanguage.name}</ModalHeader>
+					<ModalHeader>
+						{selectedLanguage.name}
+						{' '}
+						<small>
+							<a href={selectedLanguage.link} target="_blank">[detail]</a>
+						</small>
+					</ModalHeader>
 					<ModalBody>
 						{selectedLanguage.solution ? (
 							<React.Fragment>

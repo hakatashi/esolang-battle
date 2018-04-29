@@ -67,6 +67,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 						},
 						slug: cell.slug,
 						name: cell.name,
+						link: cell.link,
 						available: false,
 					};
 				}
@@ -76,6 +77,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 					solved: false,
 					slug: cell.slug,
 					name: cell.name,
+					link: cell.link,
 					available: false,
 				};
 			}
@@ -107,6 +109,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 					},
 					slug: cell.slug,
 					name: cell.name,
+					link: cell.link,
 					available,
 				};
 			}
@@ -122,6 +125,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 					solved: false,
 					slug: cell.slug,
 					name: cell.name,
+					link: cell.link,
 					available,
 				};
 			}
