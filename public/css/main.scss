@@ -113,6 +113,11 @@ pre.hexdump {
   background-position: center;
 }
 
+.contest-unknown {                                                 
+  background-color: #050505;
+  background-image: url('/img/contest/noise.png');
+}
+
 .team-badge {
   display: inline-block;
   width: 0.6em;
