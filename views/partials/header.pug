@@ -1,5 +1,5 @@
 .navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
-  a.navbar-brand(href=contest ? `/contests/${contest.id}` : '/')
+  a.navbar-brand.contest-title(href=contest ? `/contests/${contest.id}` : '/')
     = contest ? contest.name : 'Esolang Battler'
     = ' '
   button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
@@ -32,6 +32,7 @@
             span= user.name() || user.email || user.id
             i.caret
           .dropdown-menu
-            a.dropdown-item(href='/') Top
             a.dropdown-item(href='/account') My Account
             a.dropdown-item(href='/logout') Logout
+      li.nav-item
+        a.nav-link.btn.btn-outline-secondary.btn-sm(href='/') Top
