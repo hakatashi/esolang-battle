@@ -51,14 +51,16 @@ class App extends React.Component {
 		});
 	};
 
-	handleClickModalCancel = () => {
+	handleChangeFile = (event) => {
 		this.setState({
-			selectedLanguage: null,
+			files: event.target.files,
 		});
-	}
+	};
 
-	handleToggleModal = () => {
+	handleCloseModal = () => {
 		this.setState({
+			code: '',
+			files: [],
 			selectedLanguage: null,
 		});
 	}
@@ -66,23 +68,16 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<div className="map" style={{position: 'relative'}}>
+				<div className="map">
 					<div ref={this.handleRefCanvas}/>
-					<div className="labels" style={{pointerEvents: 'none'}}>
+					<div className="language-labels">
 						{[...this.state.faces.entries()]
 							.filter(([, face]) => face.z < 0.99915)
 							.map(([index, face]) => (
 								<div
 									key={index}
+									className="language-label"
 									style={{
-										position: 'absolute',
-										width: '200px',
-										lineHeight: '42px',
-										color: 'white',
-										fontSize: '30px',
-										textAlign: 'center',
-										top: '0',
-										left: '0',
 										transform: `translate(${face.x}px, ${face.y}px) translate(-50%, -50%) scale(${(0.99915 - face.z) * 3000})`,
 									}}
 								>
@@ -91,33 +86,29 @@ class App extends React.Component {
 							))}
 					</div>
 				</div>
-				<Modal isOpen={this.state.selectedLanguage !== null} toggle={this.handleToggleModal}>
+				<Modal isOpen={this.state.selectedLanguage !== null} toggle={this.handleCloseModal} className="language-modal">
 					<ModalHeader>{this.state.selectedLanguage && this.state.selectedLanguage.name}</ModalHeader>
 					<ModalBody>
 						<Form>
-							<FormGroup>
+							<FormGroup
+								disabled={!this.state.files || this.state.files.length === 0}
+							>
 								<Input
 									type="textarea"
+									className="code"
 									value={this.state.code}
 									onChange={this.handleChangeCode}
-									style={{
-										height: '200px',
-										fontFamily: 'monospace',
-										whiteSpace: 'pre',
-										overflowWrap: 'normal',
-										overflowX: 'scroll',
-										lineHeight: 1,
-									}}
+									disabled={this.state.files && this.state.files.length > 0}
 								/>
 							</FormGroup>
 							<FormGroup>
-								<Input type="file"/>
+								<Input type="file" onChange={this.handleChangeFile}/>
 							</FormGroup>
 						</Form>
 					</ModalBody>
 					<ModalFooter>
 						<Button color="primary" onClick={this.handleClickModalSend}>Send</Button>{' '}
-						<Button color="secondary" onClick={this.handleClickModalCancel}>Cancel</Button>
+						<Button color="secondary" onClick={this.handleCloseModal}>Cancel</Button>
 					</ModalFooter>
 				</Modal>
 			</div>

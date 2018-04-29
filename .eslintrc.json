@@ -10,6 +10,7 @@
         "max-len": "off",
         "no-underscore-dangle": "off",
         "private-props/no-use-outside": "off",
-        "react/forbid-component-props": "off"
+        "react/forbid-component-props": "off",
+        "react/jsx-handler-names": "off"
     }
 }

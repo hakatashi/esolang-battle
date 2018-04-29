@@ -1,0 +1,30 @@
+.map {
+	position: relative;
+
+	.language-labels {
+		pointer-events: none;
+	}
+
+	.language-label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 200px;
+
+		line-height: 42px;
+		font-size: 30px;
+		text-align: center;
+		color: white;
+	}
+}
+
+.language-modal {
+	.code {
+		height: 200px;
+		font-family: monospace;
+		white-space: pre;
+		overflow-wrap: normal;
+		overflow-x: scroll;
+		line-height: 1;
+	}
+}
