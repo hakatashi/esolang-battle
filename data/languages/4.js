@@ -36,7 +36,7 @@ const languages = {
 	32: 'function2d',
 	33: 'labyrinth',
 	34: 'z80',
-	35: 'js-rhino',
+	35: 'swift',
 	36: 'convex',
 	37: 'stuck',
 	38: 'fish',
