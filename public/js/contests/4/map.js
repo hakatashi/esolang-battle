@@ -22,6 +22,10 @@ module.exports = class {
 		this.controls.noZoom = true;
 
 		this.faceMedians = [];
+		this.faceColors = Array(92).fill(0);
+		this.faceColors[0] = 1;
+		this.faceColors[8] = 2;
+		this.faceColors[10] = 3;
 		let faceIndex = 0;
 
 		for (const [index, polygons] of [snubDodecahedron.triangles, snubDodecahedron.pentagons].entries()) {
@@ -65,7 +69,11 @@ module.exports = class {
 		window.addEventListener('resize', this.handleResize);
 		this.handleResize();
 
-		window.addEventListener('mousemove', this.handleMouseMove);
+		this.renderer.domElement.addEventListener('mousemove', this.handleMouseMove);
+	}
+
+	setFaceColors(faceColors) {
+		this.faceColors = faceColors;
 	}
 
 	handleAnimationFrame = () => {
@@ -75,10 +83,17 @@ module.exports = class {
 		const intersects = this.raycaster.intersectObjects(this.scene.children).map((intersect) => intersect.object.index);
 		for (const mesh of this.scene.children) {
 			if (mesh.type === 'Mesh') {
+				const color = [
+					[0x11, 0x11, 0x11],
+					[0xef, 0x20, 0x11],
+					[0x0e, 0x30, 0xec],
+					[0x16, 0x75, 0x16],
+				][this.faceColors[mesh.index]];
+
 				if (intersects.includes(mesh.index)) {
-					mesh.material.color.setHex(0x333333);
+					mesh.material.color.setRGB(...color.map((v) => v / 0xff)).lerp(new THREE.Color('white'), 0.2);
 				} else {
-					mesh.material.color.setHex(0x111111);
+					mesh.material.color.setRGB(...color.map((v) => v / 0xff));
 				}
 			}
 		}

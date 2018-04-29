@@ -15,4 +15,8 @@ block content
           p.lead
             strong= contest.spanText()
           p.lead
-            .btn.btn-dark.btn-lg(href=`/contests/${contest.id}`, role='button') View Result
+            .btn.btn-lg(class=contest.isEnded() ? 'btn-dark' : 'btn-primary', href=`/contests/${contest.id}`, role='button')
+              if contest.isEnded()
+                | View Result
+              else
+                | Join Now!
