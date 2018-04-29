@@ -1,0 +1,558 @@
+[
+  {
+    "slug": "base",
+    "name": null
+  },
+  {
+    "slug": "build-base",
+    "name": null
+  },
+  {
+    "slug": "3var",
+    "name": "3var"
+  },
+  {
+    "slug": "axo",
+    "name": "Axo"
+  },
+  {
+    "slug": "befunge93",
+    "name": "Befunge-93"
+  },
+  {
+    "slug": "befunge98",
+    "name": "Befunge-98"
+  },
+  {
+    "slug": "seed",
+    "name": "Seed"
+  },
+  {
+    "slug": "brainfuck-esotope",
+    "name": "Brainfuck (esotope)"
+  },
+  {
+    "slug": "c-gcc",
+    "name": "C (GCC)"
+  },
+  {
+    "slug": "dis",
+    "name": "Dis"
+  },
+  {
+    "slug": "glass",
+    "name": "Glass"
+  },
+  {
+    "slug": "ruby",
+    "name": "Ruby 2.5.0"
+  },
+  {
+    "slug": "golfscript",
+    "name": "GolfScript"
+  },
+  {
+    "slug": "hexagony",
+    "name": "Hexagony"
+  },
+  {
+    "slug": "stackcats",
+    "name": "Stack Cats"
+  },
+  {
+    "slug": "ppap",
+    "name": "PPAP"
+  },
+  {
+    "slug": "starry",
+    "name": "Starry"
+  },
+  {
+    "slug": "cy",
+    "name": "Cy"
+  },
+  {
+    "slug": "labyrinth",
+    "name": "Labyrinth"
+  },
+  {
+    "slug": "typhon",
+    "name": "Typhon"
+  },
+  {
+    "slug": "alice",
+    "name": "Alice"
+  },
+  {
+    "slug": "goruby",
+    "name": "goruby"
+  },
+  {
+    "slug": "ruby1",
+    "name": "Ruby 1.8"
+  },
+  {
+    "slug": "grass",
+    "name": "Grass"
+  },
+  {
+    "slug": "modanshogi",
+    "name": "ModanShogi"
+  },
+  {
+    "slug": "make",
+    "name": "Make"
+  },
+  {
+    "slug": "malbolge",
+    "name": "Malbolge"
+  },
+  {
+    "slug": "piet",
+    "name": "Piet"
+  },
+  {
+    "slug": "python1",
+    "name": "Python 1"
+  },
+  {
+    "slug": "rail",
+    "name": "Rail"
+  },
+  {
+    "slug": "simula",
+    "name": "Simula"
+  },
+  {
+    "slug": "snowman",
+    "name": "Snowman"
+  },
+  {
+    "slug": "streem",
+    "name": "Streem"
+  },
+  {
+    "slug": "unlambda",
+    "name": "Unlambda"
+  },
+  {
+    "slug": "verilog",
+    "name": "Verilog (Icarus Verilog)"
+  },
+  {
+    "slug": "wierd",
+    "name": "Wierd"
+  },
+  {
+    "slug": "wordcpu",
+    "name": "Word!CPU"
+  },
+  {
+    "slug": "aheui",
+    "name": "Aheui"
+  },
+  {
+    "slug": "whitespace",
+    "name": "Whitespace"
+  },
+  {
+    "slug": "beatnik",
+    "name": "Beatnik"
+  },
+  {
+    "slug": "blc",
+    "name": "Binary lambda calculus"
+  },
+  {
+    "slug": "z80",
+    "name": "Z80"
+  },
+  {
+    "slug": "spl",
+    "name": "Shakespeare"
+  },
+  {
+    "slug": "emojicode",
+    "name": "Emojicode"
+  },
+  {
+    "slug": "intercal",
+    "name": "INTERCAL"
+  },
+  {
+    "slug": "lolcode",
+    "name": "LOLCODE"
+  },
+  {
+    "slug": "minus",
+    "name": "Minus"
+  },
+  {
+    "slug": "sqlite3",
+    "name": "SQLite3"
+  },
+  {
+    "slug": "taxi",
+    "name": "Taxi"
+  },
+  {
+    "slug": "adjust",
+    "name": "ADJUST"
+  },
+  {
+    "slug": "wake",
+    "name": "wake"
+  },
+  {
+    "slug": "braille",
+    "name": "Braille"
+  },
+  {
+    "slug": "rust",
+    "name": "Rust"
+  },
+  {
+    "slug": "cubically",
+    "name": "Cubically"
+  },
+  {
+    "slug": "sceql",
+    "name": "Sceql"
+  },
+  {
+    "slug": "apl",
+    "name": "APL"
+  },
+  {
+    "slug": "wat",
+    "name": "WebAssembly Text Format"
+  },
+  {
+    "slug": "lazyk",
+    "name": "Lazy-K"
+  },
+  {
+    "slug": "doubleplusungood",
+    "name": "Doubleplusungood"
+  },
+  {
+    "slug": "llvm-ir",
+    "name": "LLVM IR"
+  },
+  {
+    "slug": "cmm",
+    "name": "C--"
+  },
+  {
+    "slug": "java",
+    "name": "Java"
+  },
+  {
+    "slug": "arnoidc",
+    "name": "ArnoidC"
+  },
+  {
+    "slug": "evil",
+    "name": "Evil"
+  },
+  {
+    "slug": "js-rhino",
+    "name": "JavaScript (Rhino)"
+  },
+  {
+    "slug": "floater",
+    "name": "Floater"
+  },
+  {
+    "slug": "cjam",
+    "name": "CJam"
+  },
+  {
+    "slug": "convex",
+    "name": "Convex"
+  },
+  {
+    "slug": "kotlin",
+    "name": "Kotlin"
+  },
+  {
+    "slug": "python2",
+    "name": "Python 2"
+  },
+  {
+    "slug": "csharp",
+    "name": "C# (Mono)"
+  },
+  {
+    "slug": "velato",
+    "name": "Velato"
+  },
+  {
+    "slug": "pure-folders",
+    "name": "Pure Folders"
+  },
+  {
+    "slug": "concise-folders",
+    "name": "Concise Folders"
+  },
+  {
+    "slug": "function2d",
+    "name": "Function"
+  },
+  {
+    "slug": "haystack",
+    "name": "Haystack"
+  },
+  {
+    "slug": "stuck",
+    "name": "Stuck"
+  },
+  {
+    "slug": "unicat",
+    "name": "Unicat"
+  },
+  {
+    "slug": "unreadable",
+    "name": "Unreadable"
+  },
+  {
+    "slug": "zombie",
+    "name": "ZOMBIE"
+  },
+  {
+    "slug": "ffb",
+    "name": "Foobar and Foobaz and Barbaz, oh my!"
+  },
+  {
+    "slug": "aubergine",
+    "name": "Aubergine"
+  },
+  {
+    "slug": "ubergenes",
+    "name": "UberGenes"
+  },
+  {
+    "slug": "path",
+    "name": "PATH"
+  },
+  {
+    "slug": "recurse",
+    "name": "Recurse"
+  },
+  {
+    "slug": "fernando",
+    "name": "FerNANDo"
+  },
+  {
+    "slug": "gs2",
+    "name": "gs2"
+  },
+  {
+    "slug": "logicode",
+    "name": "Logicode"
+  },
+  {
+    "slug": "minimal2d",
+    "name": "Minimal-2D"
+  },
+  {
+    "slug": "i4004asm",
+    "name": "Intel 4004 Assembly"
+  },
+  {
+    "slug": "suzy",
+    "name": "Suzy"
+  },
+  {
+    "slug": "jq",
+    "name": "jq"
+  },
+  {
+    "slug": "node",
+    "name": "Node.js"
+  },
+  {
+    "slug": "beam",
+    "name": "Beam"
+  },
+  {
+    "slug": "cubix",
+    "name": "Cubix"
+  },
+  {
+    "slug": "japt",
+    "name": "Japt"
+  },
+  {
+    "slug": "stop",
+    "name": "STOP"
+  },
+  {
+    "slug": "htms",
+    "name": "htms"
+  },
+  {
+    "slug": "maybelater",
+    "name": "Maybe Later"
+  },
+  {
+    "slug": "nadesiko",
+    "name": "なでしこ3"
+  },
+  {
+    "slug": "octave",
+    "name": "Octave"
+  },
+  {
+    "slug": "matl",
+    "name": "MATL"
+  },
+  {
+    "slug": "perl",
+    "name": "Perl"
+  },
+  {
+    "slug": "slashes",
+    "name": "///"
+  },
+  {
+    "slug": "element",
+    "name": "Element"
+  },
+  {
+    "slug": "php",
+    "name": "PHP 7.0"
+  },
+  {
+    "slug": "irc",
+    "name": "IRC"
+  },
+  {
+    "slug": "python3",
+    "name": "Python 3"
+  },
+  {
+    "slug": "trumpscript",
+    "name": "TrumpScript"
+  },
+  {
+    "slug": "05ab1e",
+    "name": "05AB1E"
+  },
+  {
+    "slug": "2sable",
+    "name": "2sable"
+  },
+  {
+    "slug": "fish",
+    "name": "><>"
+  },
+  {
+    "slug": "arcyou",
+    "name": "Arcyóu"
+  },
+  {
+    "slug": "emoji",
+    "name": "Emoji"
+  },
+  {
+    "slug": "zucchini",
+    "name": "Zucchini"
+  },
+  {
+    "slug": "cardinal",
+    "name": "Cardinal"
+  },
+  {
+    "slug": "hbcht",
+    "name": "Half-Broken Car in Heavy Traffic"
+  },
+  {
+    "slug": "jelly",
+    "name": "Jelly"
+  },
+  {
+    "slug": "jellyfish",
+    "name": "Jellyfish"
+  },
+  {
+    "slug": "width",
+    "name": "Width"
+  },
+  {
+    "slug": "asciidots",
+    "name": "AsciiDots"
+  },
+  {
+    "slug": "vim",
+    "name": "Vim"
+  },
+  {
+    "slug": "cmd",
+    "name": "cmd.exe"
+  },
+  {
+    "slug": "lua",
+    "name": "Lua"
+  },
+  {
+    "slug": "rprogn",
+    "name": "Reverse Programmer Notation"
+  },
+  {
+    "slug": "ocaml",
+    "name": "OCaml"
+  },
+  {
+    "slug": "ubuntu-base",
+    "name": null
+  },
+  {
+    "slug": "crystal",
+    "name": "Crystal"
+  },
+  {
+    "slug": "d-dmd",
+    "name": "D (DMD)"
+  },
+  {
+    "slug": "d-gdc",
+    "name": "D (GDC)"
+  },
+  {
+    "slug": "powershell",
+    "name": "PowerShell"
+  },
+  {
+    "slug": "ruby0.49",
+    "name": "Ruby 0.49"
+  },
+  {
+    "slug": "fugue",
+    "name": "Fugue"
+  },
+  {
+    "slug": "x86asm-nasm",
+    "name": "x86 Assembly (nasm)"
+  },
+  {
+    "slug": "swift",
+    "name": "Swift"
+  },
+  {
+    "slug": "hack",
+    "name": "Hack"
+  },
+  {
+    "slug": "brainfuck-bfi",
+    "name": "Brainfuck (BFI)"
+  },
+  {
+    "slug": "bash-pure",
+    "name": "Bash (pure)"
+  },
+  {
+    "slug": "bash-busybox",
+    "name": "Bash (busybox)"
+  }
+]
