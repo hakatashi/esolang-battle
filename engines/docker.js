@@ -121,7 +121,7 @@ module.exports = async ({id, code, stdin}) => {
 		]);
 
 		const executionStart = Date.now();
-		const [stdout, stderr] = await runner.timeout(15000);
+		const [stdout, stderr] = await runner.timeout(10000);
 		const executionEnd = Date.now();
 
 		cleanup();
@@ -133,8 +133,12 @@ module.exports = async ({id, code, stdin}) => {
 		};
 	} catch (error) {
 		if (container) {
-			await container.kill().catch();
-			await container.remove().catch();
+			await container.kill().catch((e) => {
+				console.error('error:', e);
+			});
+			await container.remove().catch((e) => {
+				console.error('error:', e);
+			});
 		}
 		throw error;
 	}

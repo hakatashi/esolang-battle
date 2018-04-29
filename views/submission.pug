@@ -29,7 +29,7 @@ block content
       h4 Duration
       p= `${submission.duration}ms`
     
-    if submission.error && submission.error.stack
+    if user.admin && submission.error && submission.error.stack
       pre= submission.error.stack
 
     if selfTeam || contest.isEnded()

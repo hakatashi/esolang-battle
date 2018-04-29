@@ -162,6 +162,13 @@ class App extends React.Component {
 				messageDetail: data._id,
 				isPending: false,
 			});
+		} else if (submission.status === 'error') {
+			this.setState({
+				message: 'Execution timed out.',
+				messageType: 'danger',
+				messageDetail: data._id,
+				isPending: false,
+			});
 		} else if (submission.status === 'success') {
 			this.setState({
 				message: 'You won the language!',
