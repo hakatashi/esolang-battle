@@ -2,7 +2,21 @@ const Language = require('../models/Language');
 const languages = require('../data/languages');
 const snubDodecahedron = require('../data/snub-dodecahedron.js');
 
-const getPrecedingIndices = () => [];
+const getPrecedingIndices = (cellIndex) => {
+	const faces = [...snubDodecahedron.triangles, ...snubDodecahedron.pentagons];
+	const face = faces[cellIndex];
+
+	return Array(92).fill().map((_, index) => index).filter((index) => {
+		if (index === cellIndex) {
+			return false;
+		}
+
+		const testFace = faces[index];
+		const sharedVertices = testFace.filter((vertice) => face.includes(vertice));
+
+		return sharedVertices.length === 2;
+	});
+};
 
 module.exports.getPrecedingIndices = getPrecedingIndices;
 
@@ -37,7 +51,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 				cell.record.solution &&
 				cell.record.solution.user.getTeam(contest);
 
-			if (!contest.isEnded() || true) {
+			if (contest.isEnded()) {
 				if (cell.record && cell.record.solution) {
 					return {
 						type: 'language',
@@ -59,7 +73,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 					solved: false,
 					slug: cell.slug,
 					name: cell.name,
-					available: true,
+					available: false,
 				};
 			}
 

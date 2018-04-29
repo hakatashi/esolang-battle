@@ -20,7 +20,20 @@ class App extends React.Component {
 	handleUpdateLanguages = async () => {
 		const languages = await api('GET', '/contests/4/languages');
 		this.setState({languages});
-		this.map && this.map.setFaceColors(languages.map((language) => language.team === undefined ? 0 : language.team + 2));
+		this.map && this.map.setFaceColors(languages.map((language) => {
+			if (language.type === 'unknown') {
+				return 'black';
+			}
+
+			if (language.team === undefined) {
+				if (language.available === true) {
+					return 'white';
+				}
+				return 'grey';
+			}
+
+			return ['red', 'blue', 'green'][language.team];
+		}));
 	}
 
 	handleRefCanvas = (node) => {
@@ -78,10 +91,11 @@ class App extends React.Component {
 									key={index}
 									className="language-label"
 									style={{
+										color: (this.state.languages[index] && this.state.languages[index].team === undefined) ? '#222' : 'white',
 										transform: `translate(${face.x}px, ${face.y}px) translate(-50%, -50%) scale(${(0.99915 - face.z) * 3000})`,
 									}}
 								>
-									{(this.state.languages[index] && this.state.languages[index].name) || index}
+									{(this.state.languages[index] && this.state.languages[index].name) || ''}
 								</div>
 							))}
 					</div>
@@ -107,7 +121,7 @@ class App extends React.Component {
 						</Form>
 					</ModalBody>
 					<ModalFooter>
-						<Button color="primary" onClick={this.handleClickModalSend}>Send</Button>{' '}
+						<Button color="primary" onClick={this.handleSend}>Send</Button>{' '}
 						<Button color="secondary" onClick={this.handleCloseModal}>Cancel</Button>
 					</ModalFooter>
 				</Modal>

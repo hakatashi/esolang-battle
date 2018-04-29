@@ -26,7 +26,7 @@ module.exports = class {
 		this.controls.noZoom = true;
 
 		this.faceMedians = [];
-		this.faceColors = Array(92).fill(0);
+		this.faceColors = Array(92).fill('black');
 		let faceIndex = 0;
 
 		for (const [index, polygons] of [
@@ -102,18 +102,21 @@ module.exports = class {
 			.map((intersect) => intersect.object.index);
 		for (const mesh of this.scene.children) {
 			if (mesh.type === 'Mesh') {
-				const color = [
-					[0x11, 0x11, 0x11],
-					[0xff, 0xff, 0xff],
-					[0xef, 0x20, 0x11],
-					[0x0e, 0x30, 0xec],
-					[0x16, 0x75, 0x16],
-				][this.faceColors[mesh.index]];
+				const faceColor = this.faceColors[mesh.index];
+				const color = {
+					black: [0x11, 0x11, 0x11],
+					grey: [0x55, 0x55, 0x55],
+					white: [0xff, 0xff, 0xff],
+					red: [0xef, 0x20, 0x11],
+					blue: [0x0e, 0x30, 0xec],
+					green: [0x16, 0x75, 0x16],
+				}[faceColor];
 
-				if (intersects.includes(mesh.index)) {
+				if (faceColor !== 'grey' && faceColor !== 'black' && intersects.includes(mesh.index)) {
+					const lerpTarget = new THREE.Color(this.faceColors[mesh.index] === 'white' ? 'black' : 'white');
 					mesh.material.color
 						.setRGB(...color.map((v) => v / 0xff))
-						.lerp(new THREE.Color('white'), 0.2);
+						.lerp(lerpTarget, 0.2);
 				} else {
 					mesh.material.color.setRGB(...color.map((v) => v / 0xff));
 				}

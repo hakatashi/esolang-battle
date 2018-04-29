@@ -26,7 +26,7 @@ module.exports.contest = async (req, res, next) => {
  */
 module.exports.getLanguages = async (req, res, next) => {
 	try {
-		const languageMap = await getLanguageMap({team: req.user && req.user.team, contest: req.contest});
+		const languageMap = await getLanguageMap({team: req.user.getTeam(req.contest), contest: req.contest});
 		res.json(languageMap);
 	} catch (error) {
 		return next(error);
