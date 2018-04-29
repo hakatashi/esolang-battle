@@ -19,7 +19,9 @@ module.exports = class {
 		this.camera.lookAt(this.scene.position);
 		this.element.appendChild(this.renderer.domElement);
 
-		const login = document.querySelector('meta[name=login]').getAttribute('content') === 'true';
+		const login =
+			document.querySelector('meta[name=login]').getAttribute('content') ===
+			'true';
 
 		if (login) {
 			this.controls = new TrackballControls(
@@ -120,8 +122,14 @@ module.exports = class {
 					green: [0x16, 0x75, 0x16],
 				}[faceColor];
 
-				if (faceColor !== 'grey' && faceColor !== 'black' && intersects.includes(mesh.index)) {
-					const lerpTarget = new THREE.Color(this.faceColors[mesh.index] === 'white' ? 'black' : 'white');
+				if (
+					faceColor !== 'grey' &&
+					faceColor !== 'black' &&
+					intersects.includes(mesh.index)
+				) {
+					const lerpTarget = new THREE.Color(
+						this.faceColors[mesh.index] === 'white' ? 'black' : 'white'
+					);
 					mesh.material.color
 						.setRGB(...color.map((v) => v / 0xff))
 						.lerp(lerpTarget, 0.2);

@@ -76,7 +76,10 @@ module.exports.postSubmission = async (req, res) => {
 		let code = null;
 
 		if (req.files && req.files.file && req.files.file.length === 1) {
-			assert(req.files.file[0].size <= 10000, 'Code cannot be longer than 10,000 bytes');
+			assert(
+				req.files.file[0].size <= 10000,
+				'Code cannot be longer than 10,000 bytes'
+			);
 			code = await new Promise((resolve) => {
 				const stream = concatStream(resolve);
 				req.files.file[0].stream.pipe(stream);
@@ -106,7 +109,10 @@ module.exports.postSubmission = async (req, res) => {
 			throw new Error('Submission interval is too short');
 		}
 
-		const existingLanguage = await Language.findOne({slug: req.body.language})
+		const existingLanguage = await Language.findOne({
+			slug: req.body.language,
+			contest: req.contest,
+		})
 			.populate({path: 'solution', populate: {path: 'user'}})
 			.exec();
 
@@ -128,6 +134,7 @@ module.exports.postSubmission = async (req, res) => {
 			const newLanguage = new Language({
 				solution: null,
 				slug: languageData.slug,
+				contest: req.contest,
 			});
 
 			newLanguage.save().then(() => {
@@ -150,6 +157,7 @@ module.exports.postSubmission = async (req, res) => {
 			submission,
 			language: languageData,
 			solution: language.solution,
+			contest: req.contest,
 		});
 
 		res.json({_id: submission._id});

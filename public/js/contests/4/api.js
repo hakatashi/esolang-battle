@@ -10,7 +10,9 @@ module.exports = async (method, endpoint, params = {}) => {
 		});
 		return res.json();
 	} else if (method === 'POST') {
-		const csrfToken = document.querySelector('meta[name=csrf-token]').getAttribute('content');
+		const csrfToken = document
+			.querySelector('meta[name=csrf-token]')
+			.getAttribute('content');
 
 		const form = new FormData();
 		for (const param of Object.keys(params)) {

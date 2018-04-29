@@ -95,33 +95,35 @@ const languages = {
 	91: 'pure-folders',
 };
 
-module.exports = Array(92).fill().map((_, index) => {
-	if (index === 0) {
+module.exports = Array(92)
+	.fill()
+	.map((_, index) => {
+		if (index === 0) {
+			return {
+				type: 'base',
+				team: 0,
+			};
+		}
+
+		if (index === 8) {
+			return {
+				type: 'base',
+				team: 1,
+			};
+		}
+
+		if (index === 10) {
+			return {
+				type: 'base',
+				team: 2,
+			};
+		}
+
+		const langDatum = langsData.find((lang) => lang.slug === languages[index]);
+
 		return {
-			type: 'base',
-			team: 0,
+			type: 'language',
+			slug: languages[index],
+			name: langDatum ? langDatum.name : '',
 		};
-	}
-
-	if (index === 8) {
-		return {
-			type: 'base',
-			team: 1,
-		};
-	}
-
-	if (index === 10) {
-		return {
-			type: 'base',
-			team: 2,
-		};
-	}
-
-	const langDatum = langsData.find((lang) => lang.slug === languages[index]);
-
-	return {
-		type: 'language',
-		slug: languages[index],
-		name: langDatum ? langDatum.name : '',
-	};
-});
+	});

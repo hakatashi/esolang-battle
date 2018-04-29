@@ -1,5 +1,14 @@
 const React = require('react');
-const {Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input} = require('reactstrap');
+const {
+	Button,
+	Modal,
+	ModalHeader,
+	ModalBody,
+	ModalFooter,
+	Form,
+	FormGroup,
+	Input,
+} = require('reactstrap');
 const Map = require('./map.js');
 const api = require('./api.js');
 
@@ -31,27 +40,34 @@ class App extends React.Component {
 	updateLanguages = async () => {
 		const languages = await api('GET', '/contests/4/languages');
 		this.setState({languages});
-		this.map && this.map.setFaceColors(languages.map((language) => {
-			if (language.type === 'unknown') {
-				return 'black';
-			}
+		this.map &&
+			this.map.setFaceColors(
+				languages.map((language) => {
+					if (language.type === 'unknown') {
+						return 'black';
+					}
 
-			if (language.team === undefined) {
-				if (language.available === true) {
-					return 'white';
-				}
-				return 'grey';
-			}
+					if (language.team === undefined) {
+						if (language.available === true) {
+							return 'white';
+						}
+						return 'grey';
+					}
 
-			return ['red', 'blue', 'green'][language.team];
-		}));
-	}
+					return ['red', 'blue', 'green'][language.team];
+				})
+			);
+	};
 
 	handleRefCanvas = (node) => {
 		this.canvas = node;
 		if (!this.mapInited) {
 			this.mapInited = true;
-			this.map = new Map(this.canvas, this.handleFacesUpdate, this.handleClickFace);
+			this.map = new Map(
+				this.canvas,
+				this.handleFacesUpdate,
+				this.handleClickFace
+			);
 		}
 	};
 
@@ -89,7 +105,7 @@ class App extends React.Component {
 			messageDetail: null,
 			selectedLanguage: null,
 		});
-	}
+	};
 
 	handleSend = async () => {
 		if (this.state.isPending) {
@@ -104,7 +120,9 @@ class App extends React.Component {
 
 		const result = await api('POST', '/contests/4/submission', {
 			language: this.state.selectedLanguage.slug,
-			...(this.state.files.length > 0 ? {file: this.state.files[0]} : {code: this.state.code}),
+			...(this.state.files.length > 0
+				? {file: this.state.files[0]}
+				: {code: this.state.code}),
 		});
 
 		if (result.error) {
@@ -117,7 +135,7 @@ class App extends React.Component {
 		}
 
 		this.pendingSubmission = result._id;
-	}
+	};
 
 	handleUpdateSubmission = async (data) => {
 		if (this.pendingSubmission !== data._id) {
@@ -125,7 +143,9 @@ class App extends React.Component {
 		}
 
 		this.pendingSubmission = null;
-		const submission = await api('GET', '/contests/4/submission', {_id: data._id});
+		const submission = await api('GET', '/contests/4/submission', {
+			_id: data._id,
+		});
 
 		if (submission.status === 'failed') {
 			this.setState({
@@ -137,12 +157,16 @@ class App extends React.Component {
 		} else if (submission.status === 'success') {
 			this.setState({
 				message: 'You won the language!',
-				messageType: 'danger',
+				messageType: 'success',
 				messageDetail: data._id,
 				isPending: false,
 			});
 		}
-	}
+	};
+
+	handleUpdateLanguages = () => {
+		this.updateLanguages();
+	};
 
 	render() {
 		const selectedLanguage = this.state.selectedLanguage || {};
@@ -158,24 +182,46 @@ class App extends React.Component {
 									key={index}
 									className="language-label"
 									style={{
-										color: (this.state.languages[index] && this.state.languages[index].team === undefined) ? '#222' : 'white',
-										transform: `translate(${face.x}px, ${face.y}px) translate(-50%, -50%) scale(${(0.99915 - face.z) * 3000})`,
+										color:
+											this.state.languages[index] &&
+											this.state.languages[index].team === undefined
+												? '#222'
+												: 'white',
+										transform: `translate(${face.x}px, ${
+											face.y
+										}px) translate(-50%, -50%) scale(${(0.99915 - face.z) *
+											3000})`,
 									}}
 								>
-									{(this.state.languages[index] && this.state.languages[index].name) || ''}
+									{(this.state.languages[index] &&
+										this.state.languages[index].name) ||
+										''}
 								</div>
 							))}
 					</div>
 				</div>
-				<Modal isOpen={this.state.selectedLanguage !== null} toggle={this.handleCloseModal} className="language-modal">
+				<Modal
+					isOpen={this.state.selectedLanguage !== null}
+					toggle={this.handleCloseModal}
+					className="language-modal"
+				>
 					<ModalHeader>{selectedLanguage.name}</ModalHeader>
 					<ModalBody>
 						{selectedLanguage.solution ? (
 							<React.Fragment>
-								<p>Owner: {selectedLanguage.solution.user} ({selectedLanguage.team})</p>
+								<p>
+									Owner: {selectedLanguage.solution.user} ({
+										selectedLanguage.team
+									})
+								</p>
 								<p>
 									{'Solution: '}
-									<a href={`/contests/4/submissions/${selectedLanguage.solution._id}`} target="_blank">
+									<a
+										href={`/contests/4/submissions/${
+											selectedLanguage.solution._id
+										}`}
+										target="_blank"
+									>
 										{selectedLanguage.solution._id}
 									</a>
 									{` (${selectedLanguage.solution.size} bytes)`}
@@ -209,15 +255,30 @@ class App extends React.Component {
 								{this.state.messageDetail && (
 									<React.Fragment>
 										{' Check out the detail '}
-										<a href={`/contests/4/submissions/${this.state.messageDetail}`} target="_blank">here</a>.
+										<a
+											href={`/contests/4/submissions/${
+												this.state.messageDetail
+											}`}
+											target="_blank"
+										>
+											here
+										</a>.
 									</React.Fragment>
 								)}
 							</p>
 						)}
 					</ModalBody>
 					<ModalFooter>
-						<Button color="primary" onClick={this.handleSend} disabled={this.state.isPending}>Send</Button>{' '}
-						<Button color="secondary" onClick={this.handleCloseModal}>Cancel</Button>
+						<Button
+							color="primary"
+							onClick={this.handleSend}
+							disabled={this.state.isPending}
+						>
+							Send
+						</Button>{' '}
+						<Button color="secondary" onClick={this.handleCloseModal}>
+							Cancel
+						</Button>
 					</ModalFooter>
 				</Modal>
 			</div>

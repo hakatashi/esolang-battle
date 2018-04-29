@@ -6,16 +6,19 @@ const getPrecedingIndices = (cellIndex) => {
 	const faces = [...snubDodecahedron.triangles, ...snubDodecahedron.pentagons];
 	const face = faces[cellIndex];
 
-	return Array(92).fill().map((_, index) => index).filter((index) => {
-		if (index === cellIndex) {
-			return false;
-		}
+	return Array(92)
+		.fill()
+		.map((_, index) => index)
+		.filter((index) => {
+			if (index === cellIndex) {
+				return false;
+			}
 
-		const testFace = faces[index];
-		const sharedVertices = testFace.filter((vertice) => face.includes(vertice));
+			const testFace = faces[index];
+			const sharedVertices = testFace.filter((vertice) => face.includes(vertice));
 
-		return sharedVertices.length === 2;
-	});
+			return sharedVertices.length === 2;
+		});
 };
 
 module.exports.getPrecedingIndices = getPrecedingIndices;
@@ -85,7 +88,12 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 				typeof team === 'number' &&
 				(cell.team === team ||
 					solvedTeam === team ||
-					precedingCells.some((c) => c.team === team || solvedTeam === team));
+					precedingCells.some(
+						(c) => c.team === team ||
+							(c.record &&
+								c.record.solution &&
+								c.record.solution.user.getTeam(contest)) === team
+					));
 
 			if (cell.record && cell.record.solution) {
 				return {
