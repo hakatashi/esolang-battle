@@ -151,15 +151,17 @@ module.exports.postExecution = async (req, res) => {
 			user: req.user,
 			code,
 			input,
-			stdout,
-			stderr,
+			stdout: stdout.toString(),
+			stderr: stderr.toString(),
 			duration,
 		});
 
 		await executionRecord.save();
 
 		res.json({
-			stdout, stderr, duration,
+			stdout: stdout.toString(),
+			stderr: stderr.toString(),
+			duration,
 		});
 	} catch (error) {
 		// eslint-disable-next-line callback-return

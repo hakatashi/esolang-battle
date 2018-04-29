@@ -185,6 +185,12 @@ app.post(
 	apiController.contest,
 	apiController.postSubmission
 );
+app.post(
+	'/api/contests/:contest/execution',
+	passportConfig.isAuthenticated,
+	apiController.contest,
+	apiController.postExecution
+);
 app.get(
 	'/api/contests/:contest/languages',
 	apiController.contest,

@@ -1,24 +1,82 @@
-.map {
-	position: relative;
+.world {
+	display: flex;
+	justify-content: space-between;
 
-	.language-labels {
-		pointer-events: none;
+	.spacer {
+		width: 200px;
 	}
 
-	.language-label {
-		position: absolute;
-		top: 0;
-		left: 0;
+	.map {
+		position: relative;
+
+		.language-labels {
+			pointer-events: none;
+		}
+
+		.language-label {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 200px;
+
+			line-height: 42px;
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+			color: white;
+
+			.language-size {
+				font-size: 1.3em;
+			}
+		}
+	}
+
+	.teams {
+		display: flex;
 		width: 200px;
 
-		line-height: 42px;
-		font-size: 30px;
-		font-weight: bold;
-		text-align: center;
-		color: white;
+		.team {
+			width: 50px;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			margin-right: 15px;
 
-		.language-size {
-			font-size: 1.3em;
+			&.red .bar {
+				background-color: #ef2011;
+				color: #ef2011;
+			}
+
+			&.blue .bar {
+				background-color: #0e30ec;
+				color: #0e30ec;
+			}
+
+			&.green .bar {
+				background-color: #167516;
+				color: #167516;
+			}
+
+			.bar {
+				position: relative;
+			}
+
+			.count {
+				position: absolute;
+				bottom: 100%;
+				text-align: center;
+				width: 100%;
+				font-weight: bold;
+				font-size: 32px;
+			}
+
+			.team-name {
+				position: absolute;
+				bottom: calc(100% + 35px);
+				text-align: center;
+				width: 100%;
+				font-weight: bold;
+			}
 		}
 	}
 }

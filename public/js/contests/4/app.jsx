@@ -185,10 +185,16 @@ class App extends React.Component {
 
 	render() {
 		const selectedLanguage = this.state.selectedLanguage || {};
+		const cellCounts = Array(3).fill().map((_, index) => (
+			this.state.languages.filter((language) => language.team === index).length
+		));
+		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
+
 		return (
-			<div>
+			<div className="world">
+				<div className="spacer"/>
 				<div className="map">
-					<div ref={this.handleRefCanvas}/>
+					<div className="canvas-wrap" ref={this.handleRefCanvas}/>
 					<div className="language-labels">
 						{[...this.state.faces.entries()]
 							.filter(([, face]) => face.z < 0.99915)
@@ -222,6 +228,22 @@ class App extends React.Component {
 								</div>
 							))}
 					</div>
+				</div>
+				<div className="teams">
+					{['Red', 'Blue', 'Green'].map((color, index) => (
+						<div
+							key={color}
+							className={`team ${color.toLowerCase()}`}
+						>
+							<div
+								className="bar"
+								style={{flexBasis: `${cellCounts[index] / totalCellCounts * 100}%`}}
+							>
+								<div className="count">{cellCounts[index]}</div>
+								<div className="team-name">{color}</div>
+							</div>
+						</div>
+					))}
 				</div>
 				<Modal
 					isOpen={this.state.selectedLanguage !== null}

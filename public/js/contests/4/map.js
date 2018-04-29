@@ -158,8 +158,9 @@ module.exports = class {
 	handleResize = () => {
 		const width = window.innerWidth;
 		const height = window.innerHeight - 70;
-		this.renderer.setSize(width, height);
-		this.camera.aspect = width / height;
+		const size = Math.min(width, height);
+		this.renderer.setSize(size, size);
+		this.camera.aspect = 1;
 		this.camera.updateProjectionMatrix();
 	};
 
