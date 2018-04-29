@@ -4,8 +4,9 @@ const TrackballControls = require('three-trackballcontrols');
 const snubDodecahedron = require('./snub-dodecahedron.js');
 
 module.exports = class {
-	constructor(element, onFacesUpdate) {
+	constructor(element, onFacesUpdate, onClick) {
 		this.onFacesUpdate = onFacesUpdate;
+		this.onClick = onClick;
 		this.element = element;
 
 		this.renderer = new THREE.WebGLRenderer({alpha: true});
@@ -63,13 +64,16 @@ module.exports = class {
 
 		this.raycaster = new THREE.Raycaster();
 		this.mouse = {x: 0, y: 0};
+		this.mouseDown = {x: 0, y: 0};
 
 		requestAnimationFrame(this.handleAnimationFrame);
 
 		window.addEventListener('resize', this.handleResize);
 		this.handleResize();
 
+		this.renderer.domElement.addEventListener('mousedown', this.handleMouseDown);
 		this.renderer.domElement.addEventListener('mousemove', this.handleMouseMove);
+		this.renderer.domElement.addEventListener('mouseup', this.handleMouseUp);
 	}
 
 	setFaceColors(faceColors) {
@@ -124,4 +128,19 @@ module.exports = class {
 		this.mouse.x = 2 * (event.offsetX / this.renderer.domElement.width) - 1;
 		this.mouse.y = 1 - 2 * (event.offsetY / this.renderer.domElement.height);
 	};
+
+	handleMouseDown = (event) => {
+		this.mouseDown.x = event.pageX;
+		this.mouseDown.y = event.pageY;
+	};
+
+	handleMouseUp = (event) => {
+		if (this.mouseDown.x === event.pageX && this.mouseDown.y === event.pageY) {
+			this.raycaster.setFromCamera(this.mouse, this.camera);
+			const intersects = this.raycaster.intersectObjects(this.scene.children);
+			if (intersects.length > 0) {
+				this.onClick(intersects[0].object.index);
+			}
+		}
+	}
 };

@@ -13,7 +13,9 @@ class App extends React.Component {
 		this.canvas = node;
 		if (!this.mapInited) {
 			this.mapInited = true;
-			this.map = new Map(this.canvas, this.handleFacesUpdate);
+			this.map = new Map(this.canvas, this.handleFacesUpdate, (index) => {
+				console.log(index);
+			});
 		}
 	}
 
