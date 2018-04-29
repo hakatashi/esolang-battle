@@ -27,9 +27,6 @@ module.exports = class {
 
 		this.faceMedians = [];
 		this.faceColors = Array(92).fill(0);
-		this.faceColors[0] = 1;
-		this.faceColors[8] = 2;
-		this.faceColors[10] = 3;
 		let faceIndex = 0;
 
 		for (const [index, polygons] of [

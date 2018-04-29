@@ -22,11 +22,11 @@ module.exports.contest = async (req, res, next) => {
 };
 
 /*
- * GET /api/languages
+ * GET /api/contests/:contest/languages
  */
 module.exports.getLanguages = async (req, res, next) => {
 	try {
-		const languageMap = await getLanguageMap({team: req.user && req.user.team});
+		const languageMap = await getLanguageMap({team: req.user && req.user.team, contest: req.contest});
 		res.json(languageMap);
 	} catch (error) {
 		return next(error);
@@ -35,7 +35,7 @@ module.exports.getLanguages = async (req, res, next) => {
 };
 
 /*
- * GET /api/submission
+ * GET /api/contests/:contest/submission
  */
 module.exports.getSubmission = (req, res, next) => {
 	Submission.findOne({_id: req.query._id})

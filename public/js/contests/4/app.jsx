@@ -1,12 +1,23 @@
 const React = require('react');
 const Map = require('./map.js');
+const api = require('./api.js');
 
 class App extends React.Component {
 	constructor(props, context) {
 		super(props, context);
+
 		this.state = {
 			faces: [],
+			languages: [],
 		};
+
+		this.handleUpdateLanguages();
+	}
+
+	handleUpdateLanguages = async () => {
+		const languages = await api('GET', '/contests/4/languages');
+		this.setState({languages});
+		this.map && this.map.setFaceColors(languages.map((language) => language.team === undefined ? 0 : language.team + 1));
 	}
 
 	handleRefCanvas = (node) => {

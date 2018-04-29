@@ -179,20 +179,20 @@ app.get(
 app.get('/submissions/:submission', submissionController.getOldSubmission);
 
 app.get(
-	'/api/contest/:contest/submission',
+	'/api/contests/:contest/submission',
 	passportConfig.isAuthenticated,
 	apiController.contest,
 	apiController.getSubmission
 );
 app.post(
-	'/api/contest/:contest/submission',
+	'/api/contests/:contest/submission',
 	passportConfig.isAuthenticated,
 	apiController.contest,
 	upload.fields([{name: 'file', maxCount: 1}]),
 	apiController.postSubmission
 );
 app.get(
-	'/api/contest/:contest/languages',
+	'/api/contests/:contest/languages',
 	passportConfig.isAuthenticated,
 	apiController.contest,
 	apiController.getLanguages
