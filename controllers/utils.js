@@ -1,5 +1,6 @@
 const Language = require('../models/Language');
 const languages = require('../data/languages');
+const snubDodecahedron = require('../data/snub-dodecahedron.js');
 
 const getPrecedingIndices = () => [];
 
@@ -36,7 +37,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 				cell.record.solution &&
 				cell.record.solution.user.getTeam(contest);
 
-			if (!contest.isOpen() || contest.id !== '4') {
+			if (!contest.isEnded() || true) {
 				if (cell.record && cell.record.solution) {
 					return {
 						type: 'language',

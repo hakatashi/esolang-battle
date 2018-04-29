@@ -46,16 +46,18 @@ class App extends React.Component {
 								key={index}
 								style={{
 									position: 'absolute',
-									width: '300px',
-									height: '10px',
+									width: '200px',
+									height: '50px',
+									lineHeight: '50px',
 									color: 'white',
+									fontSize: '30px',
 									textAlign: 'center',
 									top: '0',
 									left: '0',
-									transform: `translate(${face.x - 150}px, ${face.y - 5}px)`,
+									transform: `translate(${face.x - 100}px, ${face.y - 25}px) scale(${(0.99915 - face.z) * 3000})`,
 								}}
 							>
-								{index}
+								{(this.state.languages[index] && this.state.languages[index].name) || index}
 							</div>
 						))}
 				</div>

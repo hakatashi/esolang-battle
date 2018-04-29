@@ -1,7 +1,7 @@
 const THREE = require('three');
 const TrackballControls = require('three-trackballcontrols');
 
-const snubDodecahedron = require('./snub-dodecahedron.js');
+const snubDodecahedron = require('../../../../data/snub-dodecahedron.js');
 
 module.exports = class {
 	constructor(element, onFacesUpdate, onClick) {
