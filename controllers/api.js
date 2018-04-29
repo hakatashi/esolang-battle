@@ -5,6 +5,7 @@ const languages = require('../data/languages');
 const validation = require('../lib/validation');
 const {getLanguageMap} = require('../controllers/utils');
 const assert = require('assert');
+const concatStream = require('concat-stream');
 
 /*
  * Middleware for all /api/contest/:contest routes
@@ -75,7 +76,11 @@ module.exports.postSubmission = async (req, res) => {
 		let code = null;
 
 		if (req.files && req.files.file && req.files.file.length === 1) {
-			code = req.files.file[0].buffer;
+			assert(req.files.file[0].size <= 10000, 'Code cannot be longer than 10,000 bytes');
+			code = await new Promise((resolve) => {
+				const stream = concatStream(resolve);
+				req.files.file[0].stream.pipe(stream);
+			});
 		} else {
 			code = Buffer.from(req.body.code.replace(/\r\n/g, '\n'), 'utf8');
 		}

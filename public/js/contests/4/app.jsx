@@ -9,15 +9,26 @@ class App extends React.Component {
 
 		this.state = {
 			code: '',
+			files: [],
 			faces: [],
 			languages: [],
 			selectedLanguage: null,
+			isPending: false,
+			message: null,
+			messageType: 'success',
+			messageDetail: null,
 		};
 
-		this.handleUpdateLanguages();
+		this.pendingSubmission = null;
+
+		this.updateLanguages();
+
+		this.socket = window.io(location.origin);
+		this.socket.on('update-submission', this.handleUpdateSubmission);
+		this.socket.on('update-languages', this.handleUpdateLanguages);
 	}
 
-	handleUpdateLanguages = async () => {
+	updateLanguages = async () => {
 		const languages = await api('GET', '/contests/4/languages');
 		this.setState({languages});
 		this.map && this.map.setFaceColors(languages.map((language) => {
@@ -74,11 +85,67 @@ class App extends React.Component {
 		this.setState({
 			code: '',
 			files: [],
+			message: null,
+			messageDetail: null,
 			selectedLanguage: null,
 		});
 	}
 
+	handleSend = async () => {
+		if (this.state.isPending) {
+			return;
+		}
+
+		this.setState({
+			isPending: true,
+			message: null,
+			messageDetail: null,
+		});
+
+		const result = await api('POST', '/contests/4/submission', {
+			language: this.state.selectedLanguage.slug,
+			...(this.state.files.length > 0 ? {file: this.state.files[0]} : {code: this.state.code}),
+		});
+
+		if (result.error) {
+			this.setState({
+				message: result.error,
+				messageType: 'danger',
+				messageDetail: null,
+				isPending: false,
+			});
+		}
+
+		this.pendingSubmission = result._id;
+	}
+
+	handleUpdateSubmission = async (data) => {
+		if (this.pendingSubmission !== data._id) {
+			return;
+		}
+
+		this.pendingSubmission = null;
+		const submission = await api('GET', '/contests/4/submission', {_id: data._id});
+
+		if (submission.status === 'failed') {
+			this.setState({
+				message: 'Submission failed.',
+				messageType: 'danger',
+				messageDetail: data._id,
+				isPending: false,
+			});
+		} else if (submission.status === 'success') {
+			this.setState({
+				message: 'You won the language!',
+				messageType: 'danger',
+				messageDetail: data._id,
+				isPending: false,
+			});
+		}
+	}
+
 	render() {
+		const selectedLanguage = this.state.selectedLanguage || {};
 		return (
 			<div>
 				<div className="map">
@@ -101,8 +168,25 @@ class App extends React.Component {
 					</div>
 				</div>
 				<Modal isOpen={this.state.selectedLanguage !== null} toggle={this.handleCloseModal} className="language-modal">
-					<ModalHeader>{this.state.selectedLanguage && this.state.selectedLanguage.name}</ModalHeader>
+					<ModalHeader>{selectedLanguage.name}</ModalHeader>
 					<ModalBody>
+						{selectedLanguage.solution ? (
+							<React.Fragment>
+								<p>Owner: {selectedLanguage.solution.user} ({selectedLanguage.team})</p>
+								<p>
+									{'Solution: '}
+									<a href={`/contests/4/submissions/${selectedLanguage.solution._id}`} target="_blank">
+										{selectedLanguage.solution._id}
+									</a>
+									{` (${selectedLanguage.solution.size} bytes)`}
+								</p>
+							</React.Fragment>
+						) : (
+							<React.Fragment>
+								<p>Owner: N/A</p>
+								<p>Solution: N/A</p>
+							</React.Fragment>
+						)}
 						<Form>
 							<FormGroup
 								disabled={!this.state.files || this.state.files.length === 0}
@@ -119,9 +203,20 @@ class App extends React.Component {
 								<Input type="file" onChange={this.handleChangeFile}/>
 							</FormGroup>
 						</Form>
+						{this.state.message && (
+							<p className={`p-3 mb-2 bg-${this.state.messageType} text-white`}>
+								{this.state.message}
+								{this.state.messageDetail && (
+									<React.Fragment>
+										{' Check out the detail '}
+										<a href={`/contests/4/submissions/${this.state.messageDetail}`} target="_blank">here</a>.
+									</React.Fragment>
+								)}
+							</p>
+						)}
 					</ModalBody>
 					<ModalFooter>
-						<Button color="primary" onClick={this.handleSend}>Send</Button>{' '}
+						<Button color="primary" onClick={this.handleSend} disabled={this.state.isPending}>Send</Button>{' '}
 						<Button color="secondary" onClick={this.handleCloseModal}>Cancel</Button>
 					</ModalFooter>
 				</Modal>

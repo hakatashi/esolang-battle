@@ -132,8 +132,10 @@ module.exports = async ({id, code, stdin}) => {
 			duration: executionEnd - executionStart,
 		};
 	} catch (error) {
-		await container.kill().catch();
-		await container.remove().catch();
+		if (container) {
+			await container.kill().catch();
+			await container.remove().catch();
+		}
 		throw error;
 	}
 };
