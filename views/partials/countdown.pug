@@ -1,6 +1,6 @@
 h1.p-4 Contest will start in <strong id="countdown">***</strong>
 script(async).
-  setInterval(() => {
+  const update = () => {
     const countdown = document.getElementById('countdown');
     const contestStart = Date.parse(document.querySelector('meta[data-name="contest-start"]').getAttribute('content'));
     const now = Date.now();
@@ -20,4 +20,6 @@ script(async).
     const seconds = Math.floor(remaining / 1000) % 60;
     
     countdown.textContent = `${days === 0 ? '' : `${days} days + `}${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }, 1000);
+  };
+  setInterval(update, 1000);
+  update();
