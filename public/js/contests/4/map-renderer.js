@@ -17,8 +17,9 @@ module.exports = (element, onFacesUpdate) => {
 	controls.noPan = true;
 	controls.noZoom = true;
 
-	const material = new THREE.MeshBasicMaterial({color: 0x111111});
 	const medians = [];
+	const faceColors = Array(92).fill(0);
+	let faceIndex = 0;
 
 	for (const [index, polygons] of [snubDodecahedron.triangles, snubDodecahedron.pentagons].entries()) {
 		for (const polygon of polygons) {
@@ -45,16 +46,33 @@ module.exports = (element, onFacesUpdate) => {
 			}
 			geometry.computeFaceNormals();
 
+			const material = new THREE.MeshBasicMaterial({color: 0x111111});
 			const mesh = new THREE.Mesh(geometry, material);
+			mesh.index = faceIndex;
+			faceIndex++;
 			scene.add(mesh);
 		}
 	}
 
 	renderer.render(scene, camera);
 
+	const raycaster = new THREE.Raycaster();
+	const mouse = {x: 0, y: 0};
+
 	const update = () => {
-		renderer.render(scene, camera);
 		controls.update();
+		renderer.render(scene, camera);
+		raycaster.setFromCamera(mouse, camera);
+		const intersects = raycaster.intersectObjects(scene.children).map((intersect) => intersect.object.index);
+		for (const mesh of scene.children) {
+			if (mesh.type === 'Mesh') {
+				if (intersects.includes(mesh.index)) {
+					mesh.material.color.setHex(0x333333);
+				} else {
+					mesh.material.color.setHex(0x111111);
+				}
+			}
+		}
 
 		const faces = medians.map((median) => {
 			const vector = median.clone();
@@ -78,4 +96,10 @@ module.exports = (element, onFacesUpdate) => {
 	};
 	window.addEventListener('resize', onResize);
 	onResize();
+
+	const onMouseMove = (event) => {
+		mouse.x = 2 * (event.offsetX / renderer.domElement.width) - 1;
+		mouse.y = 1 - 2 * (event.offsetY / renderer.domElement.height);
+	};
+	window.addEventListener('mousemove', onMouseMove);
 };

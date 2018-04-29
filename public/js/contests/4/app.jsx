@@ -28,7 +28,7 @@ class App extends React.Component {
 					ref={this.handleRefCanvas}
 				/>
 				<div className="labels" style={{pointerEvents: 'none'}}>
-					{[...this.state.faces.entries()].filter(([, face]) => face.z < 0.9992).map(([index, face]) => (
+					{[...this.state.faces.entries()].filter(([, face]) => face.z < 0.99915).map(([index, face]) => (
 						<div
 							key={index}
 							style={{
