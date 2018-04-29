@@ -31,11 +31,19 @@ class App extends React.Component {
 		this.pendingSubmission = null;
 
 		this.updateLanguages();
+		this.initSocket();
+	}
+
+	initSocket = () => {
+		if (!window.io) {
+			setTimeout(this.initSocket, 1000);
+			return;
+		}
 
 		this.socket = window.io(location.origin);
 		this.socket.on('update-submission', this.handleUpdateSubmission);
 		this.socket.on('update-languages', this.handleUpdateLanguages);
-	}
+	};
 
 	updateLanguages = async () => {
 		const languages = await api('GET', '/contests/4/languages');
@@ -193,9 +201,17 @@ class App extends React.Component {
 											3000})`,
 									}}
 								>
-									{(this.state.languages[index] &&
-										this.state.languages[index].name) ||
-										''}
+									<div className="language-name">
+										{this.state.languages[index]
+											? this.state.languages[index].name
+											: ''}
+									</div>
+									<div className="language-size">
+										{this.state.languages[index] &&
+										this.state.languages[index].solution
+											? this.state.languages[index].solution.size
+											: ''}
+									</div>
 								</div>
 							))}
 					</div>
