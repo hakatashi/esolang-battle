@@ -54,7 +54,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 				cell.record.solution &&
 				cell.record.solution.user.getTeam(contest);
 
-			if (contest.isEnded() || true) {
+			if (contest.isEnded()) {
 				if (cell.record && cell.record.solution) {
 					return {
 						type: 'language',

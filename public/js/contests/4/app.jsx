@@ -215,9 +215,9 @@ class App extends React.Component {
 									}}
 								>
 									<div className="language-name">
-										{(this.state.languages[index]
+										{this.state.languages[index]
 											? this.state.languages[index].name
-											: '') || index}
+											: ''}
 									</div>
 									<div className="language-size">
 										{this.state.languages[index] &&
