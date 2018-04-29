@@ -1,7 +1,7 @@
 extends layout
 
 block head
-  if contest.isStarted()
+  if contest.isStarted() || (user && user.admin)
     style
       if contest.id === '1'
         include:scss maps/1.scss
