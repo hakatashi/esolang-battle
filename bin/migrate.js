@@ -40,6 +40,40 @@ mongoose.Promise = global.Promise;
 			* 四面体の体積は整数であることが保証される。
 			* 四面体の体積は5000以上であることが保証される。
 			* 右手系の座標系において点 \`A\` から三角形 \`BCD\` を見たとき、点 \`B\`, \`C\`, \`D\` がこの順で時計回りに並んでいることが保証される。
+
+			## 例1
+
+			### 入力
+
+			\`\`\`
+			00 00 00
+			20 00 00
+			00 50 00
+			00 00 60
+			\`\`\`
+
+			### 出力
+
+			\`\`\`
+			10000
+			\`\`\`
+
+			## 例2
+
+			### 入力
+
+			\`\`\`
+			29 84 73
+			03 02 69
+			95 01 17
+			51 22 95
+			\`\`\`
+
+			### 出力
+
+			\`\`\`
+			61150
+			\`\`\`
 		`,
 		en: stripIndent`
 			\`\`\`
@@ -67,6 +101,40 @@ mongoose.Promise = global.Promise;
 			* The volume of tetrahedron is guaranteed to be integer.
 			* The volume of tetrahedron is guaranteed to be above or equal to 5000.
 			* In right-handed coordinate system, it is guaranteed that points \`B\`, \`C\`, \`D\` are ordered clockwise when you see triangle \`BCD\` from the view of point \`A\`,.
+
+			## Example 1
+
+			### Input
+
+			\`\`\`
+			00 00 00
+			20 00 00
+			00 50 00
+			00 00 60
+			\`\`\`
+
+			### Output
+
+			\`\`\`
+			10000
+			\`\`\`
+
+			## Example 2
+
+			### Input
+
+			\`\`\`
+			29 84 73
+			03 02 69
+			95 01 17
+			51 22 95
+			\`\`\`
+
+			### Output
+
+			\`\`\`
+			61150
+			\`\`\`
 		`,
 	};
 

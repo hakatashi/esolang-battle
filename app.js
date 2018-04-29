@@ -170,6 +170,12 @@ app.get(
 	contestController.base,
 	submissionController.getRawSubmission
 );
+app.get(
+	'/contests/:contest/admin',
+	passportConfig.isAuthenticated,
+	contestController.base,
+	submissionController.getAdmin
+);
 
 app.get('/submissions/:submission', submissionController.getOldSubmission);
 

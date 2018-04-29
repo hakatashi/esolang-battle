@@ -158,3 +158,31 @@ module.exports.getRawSubmission = async (req, res) => {
 
 	res.send(submission.code);
 };
+
+/*
+ * GET /contest/:contest/admin
+ */
+module.exports.getAdmin = async (req, res) => {
+	if (!req.user.admin) {
+		res.sendStatus(403);
+		return;
+	}
+
+	if (req.query.user && req.query.team) {
+		const user = await User.findOne({_id: req.query.user});
+		user.setTeam(req.contest, req.query.team);
+		await user.save();
+		res.redirect(`/contests/${req.params.contest}/admin`);
+		return;
+	}
+
+	const users = await User.find();
+
+	res.render('admin', {
+		contest: req.contest,
+		users,
+		teams: ['Red', 'Blue', 'Green'],
+		colors: ['#ef2011', '#0e30ec', '#167516'],
+		qs,
+	});
+};
