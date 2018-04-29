@@ -39,6 +39,7 @@ mongoose.Promise = global.Promise;
 			* 各座標のX軸、Y軸、Z軸の値は1以上99以下の整数である。
 			* 四面体の体積は整数であることが保証される。
 			* 四面体の体積は5000以上であることが保証される。
+			* 与えられる12個の数値には10未満の数が1つ以上含まれる。
 			* 右手系の座標系において点 \`A\` から三角形 \`BCD\` を見たとき、点 \`B\`, \`C\`, \`D\` がこの順で時計回りに並んでいることが保証される。
 
 			## 例1
@@ -100,6 +101,7 @@ mongoose.Promise = global.Promise;
 			* Each value of each coordinates are intergers above 0 and below 100.
 			* The volume of tetrahedron is guaranteed to be integer.
 			* The volume of tetrahedron is guaranteed to be above or equal to 5000.
+			* At least one number less than 10 are included in the input 12 numbers.
 			* In right-handed coordinate system, it is guaranteed that points \`B\`, \`C\`, \`D\` are ordered clockwise when you see triangle \`BCD\` from the view of point \`A\`,.
 
 			## Example 1
