@@ -12,7 +12,7 @@
     "start": "node app.js",
     "test": "mocha --reporter spec",
     "dev": "nodemon app.js --ignore public",
-    "lint": "prettier-eslint **/*.js --ignore public/js/lib/** --write && eslint **/*.js --ignore-pattern public/js/lib/**"
+    "lint": "prettier-eslint **/*.js **/*.jsx --ignore public/js/lib/** --write && eslint **/*.js --ignore-pattern public/js/lib/**"
   },
   "engines": {
     "node": "^8.0.0"

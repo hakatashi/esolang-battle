@@ -18,7 +18,10 @@ module.exports = class {
 		this.camera.lookAt(this.scene.position);
 		this.element.appendChild(this.renderer.domElement);
 
-		this.controls = new TrackballControls(this.camera, this.renderer.domElement);
+		this.controls = new TrackballControls(
+			this.camera,
+			this.renderer.domElement
+		);
 		this.controls.noPan = true;
 		this.controls.noZoom = true;
 
@@ -29,7 +32,10 @@ module.exports = class {
 		this.faceColors[10] = 3;
 		let faceIndex = 0;
 
-		for (const [index, polygons] of [snubDodecahedron.triangles, snubDodecahedron.pentagons].entries()) {
+		for (const [index, polygons] of [
+			snubDodecahedron.triangles,
+			snubDodecahedron.pentagons,
+		].entries()) {
 			for (const polygon of polygons) {
 				const geometry = new THREE.Geometry();
 
@@ -37,11 +43,15 @@ module.exports = class {
 
 				for (const pointIndex of polygon) {
 					const vertex = snubDodecahedron.points[pointIndex];
-					const vector = new THREE.Vector3(...vertex.map((value) => value * 100));
+					const vector = new THREE.Vector3(
+						...vertex.map((value) => value * 100)
+					);
 					vertices.push(vector);
 				}
 
-				const median = vertices.reduce((a, b) => a.clone().add(b)).divideScalar(index === 0 ? 3 : 5);
+				const median = vertices
+					.reduce((a, b) => a.clone().add(b))
+					.divideScalar(index === 0 ? 3 : 5);
 				geometry.vertices = vertices.map((v) => v.clone().lerp(median, index === 0 ? 0.1 : 0.05));
 				this.faceMedians.push(median);
 
@@ -71,8 +81,14 @@ module.exports = class {
 		window.addEventListener('resize', this.handleResize);
 		this.handleResize();
 
-		this.renderer.domElement.addEventListener('mousedown', this.handleMouseDown);
-		this.renderer.domElement.addEventListener('mousemove', this.handleMouseMove);
+		this.renderer.domElement.addEventListener(
+			'mousedown',
+			this.handleMouseDown
+		);
+		this.renderer.domElement.addEventListener(
+			'mousemove',
+			this.handleMouseMove
+		);
 		this.renderer.domElement.addEventListener('mouseup', this.handleMouseUp);
 	}
 
@@ -84,7 +100,9 @@ module.exports = class {
 		this.controls.update();
 
 		this.raycaster.setFromCamera(this.mouse, this.camera);
-		const intersects = this.raycaster.intersectObjects(this.scene.children).map((intersect) => intersect.object.index);
+		const intersects = this.raycaster
+			.intersectObjects(this.scene.children)
+			.map((intersect) => intersect.object.index);
 		for (const mesh of this.scene.children) {
 			if (mesh.type === 'Mesh') {
 				const color = [
@@ -95,7 +113,9 @@ module.exports = class {
 				][this.faceColors[mesh.index]];
 
 				if (intersects.includes(mesh.index)) {
-					mesh.material.color.setRGB(...color.map((v) => v / 0xff)).lerp(new THREE.Color('white'), 0.2);
+					mesh.material.color
+						.setRGB(...color.map((v) => v / 0xff))
+						.lerp(new THREE.Color('white'), 0.2);
 				} else {
 					mesh.material.color.setRGB(...color.map((v) => v / 0xff));
 				}
@@ -106,7 +126,9 @@ module.exports = class {
 			const vector = median.clone();
 			vector.project(this.camera);
 			const x = Math.round((vector.x + 1) * this.renderer.domElement.width / 2);
-			const y = Math.round((-vector.y + 1) * this.renderer.domElement.height / 2);
+			const y = Math.round(
+				(-vector.y + 1) * this.renderer.domElement.height / 2
+			);
 			return {x, y, z: vector.z};
 		});
 		this.onFacesUpdate(faces);
@@ -142,5 +164,5 @@ module.exports = class {
 				this.onClick(intersects[0].object.index);
 			}
 		}
-	}
+	};
 };

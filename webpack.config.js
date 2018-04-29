@@ -21,7 +21,8 @@ module.exports = (env, argv = {}) => {
 	return {
 		entry: [
 			...(argv.mode === 'development'
-				? ['webpack-hot-middleware/client?reload=true'] : []),
+				? ['webpack-hot-middleware/client?reload=true']
+				: []),
 			'./public/js/contests/4/index.babel.js',
 		],
 		mode: argv.mode || 'development',
