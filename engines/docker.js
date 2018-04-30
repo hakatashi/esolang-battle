@@ -30,7 +30,7 @@ module.exports = async ({id, code, stdin}) => {
 	const stdinPath = path.join(tmpPath, 'INPUT');
 
 	let filename = 'CODE';
-	if (id === 'rdmd') {
+	if (id === 'd-dmd') {
 		filename = 'CODE.d';
 	} else if (id === 'c-gcc') {
 		filename = 'CODE.c';
