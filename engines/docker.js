@@ -38,6 +38,8 @@ module.exports = async ({id, code, stdin}) => {
 		filename = 'CODE.tar';
 	} else if (id === 'cmd') {
 		filename = 'CODE.bat';
+	} else if (id === 'nadesiko') {
+		filename = 'CODE.nako3';
 	}
 
 	const codePath = path.join(tmpPath, filename);
