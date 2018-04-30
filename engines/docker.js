@@ -36,6 +36,8 @@ module.exports = async ({id, code, stdin}) => {
 		filename = 'CODE.c';
 	} else if (id === 'concise-folders' || id === 'pure-folders') {
 		filename = 'CODE.tar';
+	} else if (id === 'cmd') {
+		filename = 'CODE.bat';
 	}
 
 	const codePath = path.join(tmpPath, filename);
