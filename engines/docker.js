@@ -14,7 +14,7 @@ module.exports = async ({id, code, stdin}) => {
 	assert(typeof id === 'string');
 	assert(Buffer.isBuffer(code));
 	assert(typeof stdin === 'string');
-	assert(code.length < 10000);
+	assert(code.length <= 10000 || (code.length <= 100000 && ['fernando', 'unlambda', 'blc'].includes(id)));
 	assert(stdin.length < 10000);
 
 	const {tmpPath, cleanup} = await new Promise((resolve, reject) => {
