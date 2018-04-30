@@ -40,7 +40,7 @@ const languages = {
 	36: 'convex',
 	37: 'stuck',
 	38: 'fish',
-	39: 'bash-pure',
+	39: 'bash-busybox',
 	40: 'cmd',
 	41: 'lua',
 	42: 'verilog',
