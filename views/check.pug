@@ -17,12 +17,17 @@ block content
             option(value=language.slug)= language.name
       .form-group
         label Code
-        p.text-secondary 0 bytes
+        p.text-secondary
+          span.checker-count 0
+          = ' '
+          | bytes
         textarea.form-control.code.checker-code
+      .form-group
+        input.form-contril-file.checker-file(type='file')
       .form-group
         label stdin
         textarea.form-control.code.checker-stdin
-      button.btn.btn-primary.submit(type='button') Submit
+      button.btn.btn-primary.checker-submit(type='button') Submit
       hr
       .form-group
         label stdout

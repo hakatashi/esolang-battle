@@ -9,6 +9,7 @@ html
     meta(name='login', content=user ? 'true' : 'false')
     meta(name='google-site-verification', content='KtZjmWdS59LVbodX-T7iwVZ-05QUhf_4D4gG2HUHUUc')
     if contest
+      meta(name='contest-id', content=contest.id)
       meta(data-name='contest-start', content=contest.start.toISOString())
     title
       = title ? `${title} - ` : ''

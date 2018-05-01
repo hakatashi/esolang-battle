@@ -10,7 +10,7 @@ const {
 	Input,
 } = require('reactstrap');
 const Map = require('./map.js');
-const api = require('./api.js');
+const api = require('../../api.js');
 
 class App extends React.Component {
 	constructor(props, context) {
