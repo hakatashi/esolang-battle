@@ -10,6 +10,15 @@ const fs = Promise.promisifyAll(require('fs'));
 
 const docker = new Docker();
 
+const memoryLimit = 128 * 1024 * 1024;
+
+class MemoryLimitExceededError extends Error {
+	constructor(...args) {
+		super(...args);
+		this.name = 'MemoryLimitExceededError';
+	}
+}
+
 module.exports = async ({id, code, stdin}) => {
 	assert(typeof id === 'string');
 	assert(Buffer.isBuffer(code));
@@ -98,6 +107,7 @@ module.exports = async ({id, code, stdin}) => {
 				VolumesFrom: [],
 				HostConfig: {
 					Binds: [`${dockerVolumePath}:/volume:ro`],
+					Memory: memoryLimit,
 				},
 			});
 
@@ -115,7 +125,9 @@ module.exports = async ({id, code, stdin}) => {
 
 			await container.start();
 			await container.wait();
+			const data = await container.inspect();
 			await container.remove();
+			return data;
 		})();
 
 		const runner = Promise.all([
@@ -125,7 +137,7 @@ module.exports = async ({id, code, stdin}) => {
 		]);
 
 		const executionStart = Date.now();
-		const [stdout, stderr] = await runner.timeout(10000);
+		const [stdout, stderr, containerData] = await runner.timeout(10000);
 		const executionEnd = Date.now();
 
 		cleanup();
@@ -134,6 +146,7 @@ module.exports = async ({id, code, stdin}) => {
 			stdout: Buffer.isBuffer(stdout) ? stdout : Buffer.alloc(0),
 			stderr: Buffer.isBuffer(stderr) ? stderr : Buffer.alloc(0),
 			duration: executionEnd - executionStart,
+			...(containerData.State.OOMKilled ? {error: new MemoryLimitExceededError(`Memory limit of ${memoryLimit} bytes exceeded`)} : {}),
 		};
 	} catch (error) {
 		if (container) {

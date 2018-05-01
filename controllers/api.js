@@ -148,7 +148,11 @@ module.exports.postExecution = async (req, res) => {
 			throw new Error('info is not object');
 		}
 
-		const {stdout, stderr, duration} = info;
+		const {stdout, stderr, duration, error} = info;
+
+		if (error) {
+			throw error;
+		}
 
 		const executionRecord = new Execution({
 			language,
