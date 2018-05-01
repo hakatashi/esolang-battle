@@ -10,22 +10,42 @@ const stdinEl = checkerEl.querySelector('.checker-stdin');
 const stdoutEl = checkerEl.querySelector('.checker-stdout');
 const stderrEl = checkerEl.querySelector('.checker-stderr');
 const submitEl = checkerEl.querySelector('.checker-submit');
+const alertEl = checkerEl.querySelector('.checker-alert');
 
 const contestId = document.querySelector('meta[name=contest-id]').getAttribute('content');
 
-submitEl.addEventListener('click', () => {
+submitEl.addEventListener('click', async () => {
 	if (submitEl.disabled) {
 		return;
 	}
 
 	submitEl.disabled = true;
+	alertEl.style.display = 'none';
 
-	// api('POST', `/contests/${contestId}/execution`);
+	const result = await api('POST', `/contests/${contestId}/execution`, {
+		language: languageEl.value,
+		input: stdinEl.value,
+		...(fileEl.files.length > 0 ? {file: fileEl.files[0]} : {code: codeEl.value}),
+	});
+
+	if (result.error) {
+		alertEl.style.display = 'block';
+		alertEl.textContent = result.error;
+		stdoutEl.value = '';
+		stderrEl.value = '';
+	} else {
+		stdoutEl.value = result.stdout;
+		stderrEl.value = result.stderr;
+	}
+
+	submitEl.disabled = false;
 });
 
-codeEl.addEventListener('input', () => {
-	countEl.textContent = Buffer.from(codeEl.value).length;
-});
+for (const eventName of ['input', 'focus', 'paste']) {
+	codeEl.addEventListener(eventName, () => {
+		countEl.textContent = Buffer.from(codeEl.value).length;
+	});
+}
 
 fileEl.addEventListener('change', () => {
 	if (fileEl.files.length > 0) {

@@ -71,11 +71,15 @@ module.exports.postExecution = async (req, res) => {
 	try {
 		req.assert('language', 'Please Specify language').notEmpty();
 
+		if (!req.contest.isOpen()) {
+			throw new Error('Competition has closed');
+		}
+
 		let code = null;
 
 		if (req.files && req.files.file && req.files.file.length === 1) {
 			assert(
-				req.files.file[0].size < 10000 || (req.files.file[0].size < 100000 && ['fernando', 'unlambda', 'blc'].includes(id)),
+				req.files.file[0].size < 10000 || (req.files.file[0].size < 100000 && ['fernando', 'unlambda', 'blc'].includes(req.body.language)),
 				'Code cannot be longer than 10,000 bytes'
 			);
 			code = await new Promise((resolve) => {
@@ -89,7 +93,7 @@ module.exports.postExecution = async (req, res) => {
 		assert(code.length >= 1, 'Code cannot be empty');
 		assert(code.length <= 10000 || (code.length <= 100000 && ['fernando', 'unlambda', 'blc'].includes(req.body.language)), 'Code cannot be longer than 10,000 bytes');
 
-		const input = req.body.input || '';
+		const input = req.body.input.replace(/\r\n/g, '\n') || '';
 
 		assert(input.length <= 10000, 'Input cannot be longer than 10,000 bytes');
 
@@ -184,7 +188,7 @@ module.exports.postSubmission = async (req, res) => {
 
 		if (req.files && req.files.file && req.files.file.length === 1) {
 			assert(
-				req.files.file[0].size < 10000 || (req.files.file[0].size < 100000 && ['fernando', 'unlambda', 'blc'].includes(id)),
+				req.files.file[0].size < 10000 || (req.files.file[0].size < 100000 && ['fernando', 'unlambda', 'blc'].includes(req.body.language)),
 				'Code cannot be longer than 10,000 bytes'
 			);
 			code = await new Promise((resolve) => {
