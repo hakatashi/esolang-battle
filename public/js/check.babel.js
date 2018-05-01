@@ -1,3 +1,5 @@
+import '@babel/polyfill';
+
 require('garlicjs');
 const api = require('./api.js');
 
