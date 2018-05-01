@@ -1,8 +1,10 @@
+require('garlicjs');
 const api = require('./api.js');
 
 const checkerEl = document.getElementById('checker');
 const languageEl = checkerEl.querySelector('.checker-language');
 const codeEl = checkerEl.querySelector('.checker-code');
+const fileEl = checkerEl.querySelector('.checker-file');
 const countEl = checkerEl.querySelector('.checker-count');
 const stdinEl = checkerEl.querySelector('.checker-stdin');
 const stdoutEl = checkerEl.querySelector('.checker-stdout');
@@ -23,4 +25,12 @@ submitEl.addEventListener('click', () => {
 
 codeEl.addEventListener('input', () => {
 	countEl.textContent = Buffer.from(codeEl.value).length;
+});
+
+fileEl.addEventListener('change', () => {
+	if (fileEl.files.length > 0) {
+		codeEl.disabled = true;
+	} else {
+		codeEl.disabled = false;
+	}
 });

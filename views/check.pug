@@ -2,14 +2,14 @@ extends layout
       
 block head
   if contest.isStarted() || (user && user.admin)
-    script(src='/js/check.js', async)
+    script(src='/js/check.js', defer)
 
 include mixins
 
 block content
   .container.content
     h1 Performance Checker
-    form#checker
+    form#checker(data-persist='garlic')
       .form-group
         label Language
         select.form-control.checker-language
@@ -21,12 +21,12 @@ block content
           span.checker-count 0
           = ' '
           | bytes
-        textarea.form-control.code.checker-code
+        textarea.form-control.code.checker-code(name='code')
       .form-group
         input.form-contril-file.checker-file(type='file')
       .form-group
         label stdin
-        textarea.form-control.code.checker-stdin
+        textarea.form-control.code.checker-stdin(name='stdin')
       button.btn.btn-primary.checker-submit(type='button') Submit
       hr
       .form-group
