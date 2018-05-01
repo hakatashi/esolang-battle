@@ -18,6 +18,7 @@ const flash = require('express-flash');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const expressValidator = require('express-validator');
+const Router = require('express-promise-router');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 const webpack = require('webpack');
@@ -145,59 +146,60 @@ app.use(express.static(path.join(__dirname, 'public'), {maxAge: 31557600000}));
 /*
  * Primary app routes.
  */
-app.get('/', homeController.index);
-app.get('/login', userController.getLogin);
-app.get('/logout', userController.logout);
-app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
-app.get('/contests/:contest', contestController.base, contestController.index);
-app.get(
+const router = Router();
+router.get('/', homeController.index);
+router.get('/login', userController.getLogin);
+router.get('/logout', userController.logout);
+router.get('/account', passportConfig.isAuthenticated, userController.getAccount);
+router.get('/contests/:contest', contestController.base, contestController.index);
+router.get(
 	'/contests/:contest/rule',
 	contestController.base,
 	contestController.rule
 );
-app.get(
+router.get(
 	'/contests/:contest/submissions',
 	contestController.base,
 	submissionController.getSubmissions
 );
-app.get(
+router.get(
 	'/contests/:contest/submissions/:submission',
 	contestController.base,
 	submissionController.getSubmission
 );
-app.get(
+router.get(
 	'/contests/:contest/submissions/:submission/raw',
 	contestController.base,
 	submissionController.getRawSubmission
 );
-app.get(
+router.get(
 	'/contests/:contest/admin',
 	passportConfig.isAuthenticated,
 	contestController.base,
 	submissionController.getAdmin
 );
 
-app.get('/submissions/:submission', submissionController.getOldSubmission);
+router.get('/submissions/:submission', submissionController.getOldSubmission);
 
-app.get(
+router.get(
 	'/api/contests/:contest/submission',
 	passportConfig.isAuthenticated,
 	apiController.contest,
 	apiController.getSubmission
 );
-app.post(
+router.post(
 	'/api/contests/:contest/submission',
 	passportConfig.isAuthenticated,
 	apiController.contest,
 	apiController.postSubmission
 );
-app.post(
+router.post(
 	'/api/contests/:contest/execution',
 	passportConfig.isAuthenticated,
 	apiController.contest,
 	apiController.postExecution
 );
-app.get(
+router.get(
 	'/api/contests/:contest/languages',
 	apiController.contest,
 	apiController.getLanguages
@@ -206,14 +208,16 @@ app.get(
 /*
  * OAuth authentication routes. (Sign in)
  */
-app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get(
+router.get('/auth/twitter', passport.authenticate('twitter'));
+router.get(
 	'/auth/twitter/callback',
 	passport.authenticate('twitter', {failureRedirect: '/login'}),
 	(req, res) => {
 		res.redirect(req.session.returnTo || '/');
 	}
 );
+
+app.use(router);
 
 /*
  * Error Handler.
