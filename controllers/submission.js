@@ -1,6 +1,7 @@
 const Submission = require('../models/Submission');
 const User = require('../models/User');
 const Language = require('../models/Language');
+const {getLanguageMap} = require('../controllers/utils');
 const Hexdump = require('hexdump-stream');
 const concatStream = require('concat-stream');
 const isValidUTF8 = require('utf-8-validate');
@@ -184,5 +185,18 @@ module.exports.getAdmin = async (req, res) => {
 		teams: ['Red', 'Blue', 'Green'],
 		colors: ['#ef2011', '#0e30ec', '#167516'],
 		qs,
+	});
+};
+
+/*
+ * GET /contest/:contest/check
+ */
+module.exports.getCheck = async (req, res) => {
+	const languages = await getLanguageMap({contest: req.contest});
+	const availableLanguages = languages.filter(({type}) => type === 'language').sort(({name: nameA}, {name: nameB}) => nameA.localeCompare(nameB));
+
+	res.render('check', {
+		contest: req.contest,
+		availableLanguages,
 	});
 };

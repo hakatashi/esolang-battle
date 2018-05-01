@@ -143,3 +143,13 @@ pre.hexdump {
 .contest-title {
   font-size: 1.2em;
 }
+
+textarea.code {
+	min-height: 8em;
+	font-family: monospace;
+  font-size: 16px;
+	white-space: pre;
+	overflow-wrap: normal;
+	overflow-x: scroll;
+	line-height: 1;
+}

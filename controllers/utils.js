@@ -2,7 +2,11 @@ const Language = require('../models/Language');
 const languages = require('../data/languages');
 const snubDodecahedron = require('../data/snub-dodecahedron.js');
 
-const getPrecedingIndices = (cellIndex) => {
+const getPrecedingIndices = (contest, cellIndex) => {
+	if (contest.id !== '4') {
+		return [];
+	}
+
 	const faces = [...snubDodecahedron.triangles, ...snubDodecahedron.pentagons];
 	const face = faces[cellIndex];
 
@@ -21,9 +25,7 @@ const getPrecedingIndices = (cellIndex) => {
 		});
 };
 
-module.exports.getPrecedingIndices = getPrecedingIndices;
-
-module.exports.getLanguageMap = async ({team, contest} = {}) => {
+module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 	const languageRecords = await Language.find({contest})
 		.populate({
 			path: 'solution',
@@ -82,7 +84,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 				};
 			}
 
-			const precedingCells = getPrecedingIndices(index).map(
+			const precedingCells = getPrecedingIndices(contest, index).map(
 				(i) => languageCells[i]
 			);
 

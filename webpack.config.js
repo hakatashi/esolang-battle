@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const url = require('url');
 
 module.exports = (env, argv = {}) => {
 	const browsers = [
@@ -18,18 +19,27 @@ module.exports = (env, argv = {}) => {
 		debug: true,
 	};
 
+	const entries = [
+		'js/contests/4/index.babel.js',
+		'js/check.babel.js',
+	];
+
 	return {
-		entry: [
-			...(argv.mode === 'development'
-				? ['webpack-hot-middleware/client?reload=true']
-				: []),
-			'./public/js/contests/4/index.babel.js',
-		],
+		entry: Object.assign(...[
+			['contest-4', 'js/contests/4/index.babel.js'],
+			['check', 'js/check.babel.js'],
+		].map(([name, entry]) => ({
+			[name]: [
+				...(argv.mode === 'development'
+					? ['webpack-hot-middleware/client?reload=true']
+					: []),
+				path.join(__dirname, 'public', entry),
+			],
+		}))),
 		mode: argv.mode || 'development',
 		output: {
-			publicPath: '/js/contests/4/',
-			path: path.join(__dirname, 'public', 'js', 'contests', '4'),
-			filename: 'index.js',
+			publicPath: '/js',
+			filename: '[name].js',
 		},
 		devtool:
 			argv.mode === 'production'

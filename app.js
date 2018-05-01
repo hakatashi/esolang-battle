@@ -178,6 +178,12 @@ router.get(
 	contestController.base,
 	submissionController.getAdmin
 );
+router.get(
+	'/contests/:contest/check',
+	passportConfig.isAuthenticated,
+	contestController.base,
+	submissionController.getCheck
+);
 
 router.get('/submissions/:submission', submissionController.getOldSubmission);
 

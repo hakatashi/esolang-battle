@@ -1,0 +1,23 @@
+extends layout
+      
+block head
+  if contest.isStarted() || (user && user.admin)
+    script(src='/js/check.js', async)
+
+include mixins
+
+block content
+  .container.content
+    h1 Performance Checker
+    form
+      .form-group
+        label(for='exampleFormControlSelect1') Language
+        select#exampleFormControlSelect1.form-control
+          each language in availableLanguages
+            option= language.name
+      .form-group
+        label(for='exampleFormControlTextarea1') Code
+        textarea#exampleFormControlTextarea1.form-control.code(rows='3')
+      .form-group
+        label(for='exampleFormControlTextarea1') stdin
+        textarea#exampleFormControlTextarea1.form-control.code(rows='3')
