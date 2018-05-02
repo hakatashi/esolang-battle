@@ -147,3 +147,15 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 		};
 	});
 };
+
+module.exports.getCodeLimit = (languageId) => {
+	if (languageId === 'fernando') {
+		return 1024 * 1024;
+	}
+
+	if (languageId === 'unlambda' || languageId === 'blc') {
+		return 100 * 1024;
+	}
+
+	return 10 * 1024;
+};

@@ -6,6 +6,7 @@ const Promise = require('bluebird');
 const path = require('path');
 const tmp = require('tmp');
 const shellescape = require('shell-escape');
+const {getCodeLimit} = require('../controllers/utils.js');
 const fs = Promise.promisifyAll(require('fs'));
 
 const docker = new Docker();
@@ -23,7 +24,7 @@ module.exports = async ({id, code, stdin}) => {
 	assert(typeof id === 'string');
 	assert(Buffer.isBuffer(code));
 	assert(typeof stdin === 'string');
-	assert(code.length <= 10000 || (code.length <= 100000 && ['fernando', 'unlambda', 'blc'].includes(id)));
+	assert(code.length <= getCodeLimit(id));
 	assert(stdin.length < 10000);
 
 	const {tmpPath, cleanup} = await new Promise((resolve, reject) => {

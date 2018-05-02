@@ -4,7 +4,7 @@ const Execution = require('../models/Execution');
 const Contest = require('../models/Contest');
 const languages = require('../data/languages');
 const validation = require('../lib/validation');
-const {getLanguageMap} = require('../controllers/utils');
+const {getLanguageMap, getCodeLimit} = require('../controllers/utils');
 const docker = require('../engines/docker');
 const assert = require('assert');
 const concatStream = require('concat-stream');
@@ -79,7 +79,7 @@ module.exports.postExecution = async (req, res) => {
 
 		if (req.files && req.files.file && req.files.file.length === 1) {
 			assert(
-				req.files.file[0].size < 10000 || (req.files.file[0].size < 100000 && ['fernando', 'unlambda', 'blc'].includes(req.body.language)),
+				req.files.file[0].size < getCodeLimit(req.body.language),
 				'Code cannot be longer than 10,000 bytes'
 			);
 			code = await new Promise((resolve) => {
@@ -91,7 +91,7 @@ module.exports.postExecution = async (req, res) => {
 		}
 
 		assert(code.length >= 1, 'Code cannot be empty');
-		assert(code.length <= 10000 || (code.length <= 100000 && ['fernando', 'unlambda', 'blc'].includes(req.body.language)), 'Code cannot be longer than 10,000 bytes');
+		assert(code.length <= getCodeLimit(req.body.language), 'Code cannot be longer than 10,000 bytes');
 
 		const input = req.body.input.replace(/\r\n/g, '\n') || '';
 
@@ -192,7 +192,7 @@ module.exports.postSubmission = async (req, res) => {
 
 		if (req.files && req.files.file && req.files.file.length === 1) {
 			assert(
-				req.files.file[0].size < 10000 || (req.files.file[0].size < 100000 && ['fernando', 'unlambda', 'blc'].includes(req.body.language)),
+				req.files.file[0].size < getCodeLimit(req.body.language),
 				'Code cannot be longer than 10,000 bytes'
 			);
 			code = await new Promise((resolve) => {
@@ -204,7 +204,7 @@ module.exports.postSubmission = async (req, res) => {
 		}
 
 		assert(code.length >= 1, 'Code cannot be empty');
-		assert(code.length <= 10000 || (code.length <= 100000 && ['fernando', 'unlambda', 'blc'].includes(req.body.language)), 'Code cannot be longer than 10,000 bytes');
+		assert(code.length <= getCodeLimit(req.body.language), 'Code cannot be longer than 10,000 bytes');
 
 		const languageData = languages[req.contest.id].find(
 			(l) => l && l.slug === req.body.language
