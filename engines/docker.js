@@ -10,7 +10,7 @@ const fs = Promise.promisifyAll(require('fs'));
 
 const docker = new Docker();
 
-const memoryLimit = 128 * 1024 * 1024;
+const memoryLimit = 512 * 1024 * 1024;
 
 class MemoryLimitExceededError extends Error {
 	constructor(...args) {
