@@ -153,7 +153,7 @@ module.exports.getCodeLimit = (languageId) => {
 		return 1024 * 1024;
 	}
 
-	if (languageId === 'unlambda' || languageId === 'blc') {
+	if (languageId === 'unlambda' || languageId === 'blc' || languageId === 'function2d') {
 		return 100 * 1024;
 	}
 
