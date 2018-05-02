@@ -2,12 +2,20 @@
 	display: flex;
 	justify-content: space-between;
 
+	@media screen and (orientation: portrait) {
+		flex-direction: column;
+	}
+
 	.spacer {
 		width: 200px;
 	}
 
 	.map {
 		position: relative;
+
+		@media screen and (orientation: portrait) {
+			overflow: hidden;
+		}
 
 		.language-labels {
 			pointer-events: none;
@@ -33,7 +41,12 @@
 
 	.teams {
 		display: flex;
-		width: 200px;
+		flex-basis: 200px;
+
+		@media screen and (orientation: portrait) {
+			flex-direction: column;
+			flex-basis: auto;
+		}
 
 		.team {
 			width: 50px;
@@ -41,6 +54,13 @@
 			flex-direction: column;
 			justify-content: flex-end;
 			margin-right: 15px;
+
+			@media screen and (orientation: portrait) {
+				width: auto;
+				height: 25px;
+				flex-direction: row-reverse;
+				margin: 0 0 5px;
+			}
 
 			&.red .bar {
 				background-color: #ef2011;
@@ -68,6 +88,14 @@
 				width: 100%;
 				font-weight: bold;
 				font-size: 32px;
+
+				@media screen and (orientation: portrait) {
+					left: calc(100% + 5px);
+					width: auto;
+					top: 0;
+					bottom: 0;
+					line-height: 30px;
+				}
 			}
 
 			.team-name {
@@ -76,6 +104,14 @@
 				text-align: center;
 				width: 100%;
 				font-weight: bold;
+
+				@media screen and (orientation: portrait) {
+					left: calc(100% + 45px);
+					width: auto;
+					top: 0;
+					bottom: 0;
+					line-height: 30px;
+				}
 			}
 		}
 	}
