@@ -145,11 +145,11 @@ pre.hexdump {
 }
 
 textarea.code {
-	min-height: 8em;
-	font-family: monospace;
+  min-height: 8em;
+  font-family: monospace;
   font-size: 16px;
-	white-space: pre;
-	overflow-wrap: normal;
-	overflow-x: scroll;
-	line-height: 1;
+  white-space: normal;
+  word-break: break-all;
+  overflow-wrap: normal;
+  line-height: 1;
 }
