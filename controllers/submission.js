@@ -144,7 +144,13 @@ module.exports.getOldSubmission = async (req, res) => {
 module.exports.getRawSubmission = async (req, res) => {
 	const _id = req.params.submission;
 
-	const submission = await Submission.findOne({_id});
+	const submission = await Submission.findOne({_id}).populate('user').exec();
+	const selfTeam = req.user && req.user.getTeam(req.contest) === submission.user.getTeam(req.contest);
+
+	if (!selfTeam && !req.contest.isEnded()) {
+		res.sendStatus(403);
+		return;
+	}
 
 	if (submission === null) {
 		res.sendStatus(404);
