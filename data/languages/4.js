@@ -88,11 +88,11 @@ const languages = {
 	84: 'fernando',
 	85: 'blc',
 	86: 'piet',
-	87: 'cubically',
+	87: 'pure-folders',
 	88: 'stackcats',
 	89: 'fugue',
 	90: 'lazyk',
-	91: 'pure-folders',
+	91: 'befunge98',
 };
 
 module.exports = Array(92)
