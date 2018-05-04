@@ -92,7 +92,7 @@ const languages = {
 	88: 'stackcats',
 	89: 'fugue',
 	90: 'lazyk',
-	91: 'befunge98',
+	91: 'pure-folders',
 };
 
 module.exports = Array(92)
