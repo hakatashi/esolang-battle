@@ -77,7 +77,7 @@ const languages = {
 	73: 'malbolge',
 	74: 'suzy',
 	75: 'path',
-	76: 'seed',
+	76: 'whenever',
 	77: 'aubergine',
 	78: 'beam',
 	79: 'goruby',
