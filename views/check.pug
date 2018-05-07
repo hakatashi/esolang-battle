@@ -32,7 +32,7 @@ block content
       .alert.alert-danger.checker-alert(style={display: 'none'})
       .form-group
         label stdout
-        textarea.form-control.code.checker-stdout(readonly, name='stdout')
+        textarea.form-control.code.checker-stdout(readonly, name='stdout', data-storage='false')
       .form-group
         label stderr
-        textarea.form-control.code.checker-stderr(readonly, name='stderr')
+        textarea.form-control.code.checker-stderr(readonly, name='stderr', data-storage='false')

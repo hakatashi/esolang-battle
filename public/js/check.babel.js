@@ -16,7 +16,7 @@ const alertEl = checkerEl.querySelector('.checker-alert');
 
 const contestId = document.querySelector('meta[name=contest-id]').getAttribute('content');
 
-submitEl.addEventListener('click', async () => {
+const onSubmit = async () => {
 	if (submitEl.disabled) {
 		return;
 	}
@@ -41,7 +41,9 @@ submitEl.addEventListener('click', async () => {
 	}
 
 	submitEl.disabled = false;
-});
+};
+
+submitEl.addEventListener('click', onSubmit);
 
 for (const eventName of ['input', 'focus', 'paste']) {
 	codeEl.addEventListener(eventName, () => {
@@ -54,5 +56,11 @@ fileEl.addEventListener('change', () => {
 		codeEl.disabled = true;
 	} else {
 		codeEl.disabled = false;
+	}
+});
+
+window.addEventListener('keydown', (event) => {
+	if (event.key === 'Enter' && event.ctrlKey) {
+		onSubmit();
 	}
 });
