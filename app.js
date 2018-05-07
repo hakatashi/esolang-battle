@@ -116,9 +116,9 @@ app.use((req, res, next) => {
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
 app.use(async (req, res, next) => {
-	const hash = await util.promisify(fs.readFile)(
-		path.resolve(__dirname, '.git/refs/heads/master')
-	).catch(() => Math.floor(Math.random() * 1e10));
+	const hash = await util
+		.promisify(fs.readFile)(path.resolve(__dirname, '.git/refs/heads/master'))
+		.catch(() => Math.floor(Math.random() * 1e10));
 
 	res.locals.user = req.user;
 	res.locals.hash = hash.toString().trim();
@@ -150,8 +150,16 @@ const router = Router();
 router.get('/', homeController.index);
 router.get('/login', userController.getLogin);
 router.get('/logout', userController.logout);
-router.get('/account', passportConfig.isAuthenticated, userController.getAccount);
-router.get('/contests/:contest', contestController.base, contestController.index);
+router.get(
+	'/account',
+	passportConfig.isAuthenticated,
+	userController.getAccount
+);
+router.get(
+	'/contests/:contest',
+	contestController.base,
+	contestController.index
+);
 router.get(
 	'/contests/:contest/rule',
 	contestController.base,

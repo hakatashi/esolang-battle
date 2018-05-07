@@ -147,7 +147,13 @@ module.exports = async ({id, code, stdin}) => {
 			stdout: Buffer.isBuffer(stdout) ? stdout : Buffer.alloc(0),
 			stderr: Buffer.isBuffer(stderr) ? stderr : Buffer.alloc(0),
 			duration: executionEnd - executionStart,
-			...(containerData.State.OOMKilled ? {error: new MemoryLimitExceededError(`Memory limit of ${memoryLimit} bytes exceeded`)} : {}),
+			...(containerData.State.OOMKilled
+				? {
+					error: new MemoryLimitExceededError(
+						`Memory limit of ${memoryLimit} bytes exceeded`
+					),
+				  }
+				: {}),
 		};
 	} catch (error) {
 		if (container) {

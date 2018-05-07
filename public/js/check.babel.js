@@ -14,7 +14,9 @@ const stderrEl = checkerEl.querySelector('.checker-stderr');
 const submitEl = checkerEl.querySelector('.checker-submit');
 const alertEl = checkerEl.querySelector('.checker-alert');
 
-const contestId = document.querySelector('meta[name=contest-id]').getAttribute('content');
+const contestId = document
+	.querySelector('meta[name=contest-id]')
+	.getAttribute('content');
 
 const onSubmit = async () => {
 	if (submitEl.disabled) {
@@ -27,7 +29,9 @@ const onSubmit = async () => {
 	const result = await api('POST', `/contests/${contestId}/execution`, {
 		language: languageEl.value,
 		input: stdinEl.value,
-		...(fileEl.files.length > 0 ? {file: fileEl.files[0]} : {code: codeEl.value}),
+		...(fileEl.files.length > 0
+			? {file: fileEl.files[0]}
+			: {code: codeEl.value}),
 	});
 
 	if (result.error) {

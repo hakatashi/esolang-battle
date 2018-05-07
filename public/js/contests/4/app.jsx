@@ -185,9 +185,12 @@ class App extends React.Component {
 
 	render() {
 		const selectedLanguage = this.state.selectedLanguage || {};
-		const cellCounts = Array(3).fill().map((_, index) => (
-			this.state.languages.filter((language) => language.team === index).length
-		));
+		const cellCounts = Array(3)
+			.fill()
+			.map(
+				(_, index) => this.state.languages.filter((language) => language.team === index)
+					.length
+			);
 		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
 
 		return (
@@ -231,13 +234,12 @@ class App extends React.Component {
 				</div>
 				<div className="teams">
 					{['Red', 'Blue', 'Green'].map((color, index) => (
-						<div
-							key={color}
-							className={`team ${color.toLowerCase()}`}
-						>
+						<div key={color} className={`team ${color.toLowerCase()}`}>
 							<div
 								className="bar"
-								style={{flexBasis: `${cellCounts[index] / totalCellCounts * 100}%`}}
+								style={{
+									flexBasis: `${cellCounts[index] / totalCellCounts * 100}%`,
+								}}
 							>
 								<div className="count">{cellCounts[index]}</div>
 								<div className="team-name">{color}</div>
@@ -251,10 +253,11 @@ class App extends React.Component {
 					className="language-modal"
 				>
 					<ModalHeader>
-						{selectedLanguage.name}
-						{' '}
+						{selectedLanguage.name}{' '}
 						<small>
-							<a href={selectedLanguage.link} target="_blank">[detail]</a>
+							<a href={selectedLanguage.link} target="_blank">
+								[detail]
+							</a>
 						</small>
 					</ModalHeader>
 					<ModalBody>

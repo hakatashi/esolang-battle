@@ -91,7 +91,10 @@ module.exports.postExecution = async (req, res) => {
 		}
 
 		assert(code.length >= 1, 'Code cannot be empty');
-		assert(code.length <= getCodeLimit(req.body.language), 'Code cannot be longer than 10,000 bytes');
+		assert(
+			code.length <= getCodeLimit(req.body.language),
+			'Code cannot be longer than 10,000 bytes'
+		);
 
 		const input = req.body.input.replace(/\r\n/g, '\n') || '';
 
@@ -118,8 +121,7 @@ module.exports.postExecution = async (req, res) => {
 		const existingLanguage = await Language.findOne({
 			slug: req.body.language,
 			contest: req.contest,
-		})
-			.exec();
+		}).exec();
 
 		const language = await new Promise((resolve) => {
 			if (existingLanguage !== null) {
@@ -204,7 +206,10 @@ module.exports.postSubmission = async (req, res) => {
 		}
 
 		assert(code.length >= 1, 'Code cannot be empty');
-		assert(code.length <= getCodeLimit(req.body.language), 'Code cannot be longer than 10,000 bytes');
+		assert(
+			code.length <= getCodeLimit(req.body.language),
+			'Code cannot be longer than 10,000 bytes'
+		);
 
 		const languageData = languages[req.contest.id].find(
 			(l) => l && l.slug === req.body.language

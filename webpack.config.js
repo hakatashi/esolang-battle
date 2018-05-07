@@ -19,23 +19,22 @@ module.exports = (env, argv = {}) => {
 		debug: true,
 	};
 
-	const entries = [
-		'js/contests/4/index.babel.js',
-		'js/check.babel.js',
-	];
+	const entries = ['js/contests/4/index.babel.js', 'js/check.babel.js'];
 
 	return {
-		entry: Object.assign(...[
-			['contest-4', 'js/contests/4/index.babel.js'],
-			['check', 'js/check.babel.js'],
-		].map(([name, entry]) => ({
-			[name]: [
-				...(argv.mode === 'development'
-					? ['webpack-hot-middleware/client?reload=true']
-					: []),
-				path.join(__dirname, 'public', entry),
-			],
-		}))),
+		entry: Object.assign(
+			...[
+				['contest-4', 'js/contests/4/index.babel.js'],
+				['check', 'js/check.babel.js'],
+			].map(([name, entry]) => ({
+				[name]: [
+					...(argv.mode === 'development'
+						? ['webpack-hot-middleware/client?reload=true']
+						: []),
+					path.join(__dirname, 'public', entry),
+				],
+			}))
+		),
 		mode: argv.mode || 'development',
 		output: {
 			publicPath: '/js',
