@@ -22,7 +22,7 @@ class App extends React.Component {
 			faces: [],
 			languages: [],
 			selectedLanguage: null,
-			isPending: false,
+			isPending: true,
 			message: null,
 			messageType: 'success',
 			messageDetail: null,
@@ -86,7 +86,7 @@ class App extends React.Component {
 	handleClickFace = (faceIndex) => {
 		this.setState(({languages}) => {
 			const language = languages[faceIndex];
-			if (!language || language.available !== true) {
+			if (!language || language.solved !== true) {
 				return {};
 			}
 			return {selectedLanguage: language};
@@ -326,7 +326,7 @@ class App extends React.Component {
 						<Button
 							color="primary"
 							onClick={this.handleSend}
-							disabled={this.state.isPending}
+							disabled
 						>
 							Send
 						</Button>{' '}
