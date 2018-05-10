@@ -107,6 +107,13 @@ pre.hexdump {
 }
 
 .contest-4 {
+  background-color: $md-orange-500;
+  background-image: url('/img/contest/4-headline.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.contest-unknown {
   background-color: #050505;
   background-image: url('/img/contest/noise.png');
 }
@@ -131,4 +138,22 @@ pre.hexdump {
   &.team-2 {
     background-color: #167516;
   }
+}
+
+.contest-title {
+  font-size: 1.2em;
+}
+
+textarea.code {
+  min-height: 8em;
+  font-family: monospace;
+  font-size: 16px;
+  word-break: break-all;
+  overflow-wrap: normal;
+  line-height: 1;
+}
+
+.row {
+  margin-left: initial;
+  margin-right: initial;
 }

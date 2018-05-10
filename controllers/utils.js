@@ -1,36 +1,31 @@
 const Language = require('../models/Language');
 const languages = require('../data/languages');
+const snubDodecahedron = require('../data/snub-dodecahedron.js');
 
-const getPrecedingIndices = (index) => {
-	const x = index % 15;
-	const y = Math.floor(index / 15);
-	const margin = y < 4 ? 3 - y : y - 4;
-	const direction = (x + y) % 2 ? 'up' : 'down';
-
-	const precedingCells = [];
-
-	if (x - 1 >= margin) {
-		precedingCells.push(y * 15 + (x - 1));
+const getPrecedingIndices = (contest, cellIndex) => {
+	if (contest.id !== '4') {
+		return [];
 	}
 
-	if (x + 1 <= 14 - margin) {
-		precedingCells.push(y * 15 + (x + 1));
-	}
+	const faces = [...snubDodecahedron.triangles, ...snubDodecahedron.pentagons];
+	const face = faces[cellIndex];
 
-	if (direction === 'down' && y - 1 >= 0) {
-		precedingCells.push((y - 1) * 15 + x);
-	}
+	return Array(92)
+		.fill()
+		.map((_, index) => index)
+		.filter((index) => {
+			if (index === cellIndex) {
+				return false;
+			}
 
-	if (direction === 'up' && y + 1 <= 7) {
-		precedingCells.push((y + 1) * 15 + x);
-	}
+			const testFace = faces[index];
+			const sharedVertices = testFace.filter((vertice) => face.includes(vertice));
 
-	return precedingCells;
+			return sharedVertices.length === 2;
+		});
 };
 
-module.exports.getPrecedingIndices = getPrecedingIndices;
-
-module.exports.getLanguageMap = async ({team, contest} = {}) => {
+module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 	const languageRecords = await Language.find({contest})
 		.populate({
 			path: 'solution',
@@ -56,13 +51,12 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 
 	return languageCells.map((cell, index) => {
 		if (cell.type === 'language') {
-			const solvedTeamInfo =
+			const solvedTeam =
 				cell.record &&
 				cell.record.solution &&
-				cell.record.solution.user.team.find((t) => t.contest.equals(contest._id));
-			const solvedTeam = solvedTeamInfo && solvedTeamInfo.value;
+				cell.record.solution.user.getTeam(contest);
 
-			if (!contest.isOpen()) {
+			if (contest.isEnded()) {
 				if (cell.record && cell.record.solution) {
 					return {
 						type: 'language',
@@ -75,6 +69,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 						},
 						slug: cell.slug,
 						name: cell.name,
+						link: cell.link,
 						available: false,
 					};
 				}
@@ -84,11 +79,12 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 					solved: false,
 					slug: cell.slug,
 					name: cell.name,
+					link: cell.link,
 					available: false,
 				};
 			}
 
-			const precedingCells = getPrecedingIndices(index).map(
+			const precedingCells = getPrecedingIndices(contest, index).map(
 				(i) => languageCells[i]
 			);
 
@@ -96,7 +92,12 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 				typeof team === 'number' &&
 				(cell.team === team ||
 					solvedTeam === team ||
-					precedingCells.some((c) => c.team === team || solvedTeam === team));
+					precedingCells.some(
+						(c) => c.team === team ||
+							(c.record &&
+								c.record.solution &&
+								c.record.solution.user.getTeam(contest)) === team
+					));
 
 			if (cell.record && cell.record.solution) {
 				return {
@@ -110,6 +111,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 					},
 					slug: cell.slug,
 					name: cell.name,
+					link: cell.link,
 					available,
 				};
 			}
@@ -125,6 +127,7 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 					solved: false,
 					slug: cell.slug,
 					name: cell.name,
+					link: cell.link,
 					available,
 				};
 			}
@@ -143,4 +146,25 @@ module.exports.getLanguageMap = async ({team, contest} = {}) => {
 			type: 'unknown',
 		};
 	});
+};
+
+module.exports.getCodeLimit = (languageId) => {
+	if (languageId === 'fernando') {
+		return 1024 * 1024;
+	}
+
+	if (
+		[
+			'unlambda',
+			'blc',
+			'function2d',
+			'brainfuck-bfi',
+			'brainfuck-esotope',
+			'taxi',
+		].includes(languageId)
+	) {
+		return 100 * 1024;
+	}
+
+	return 10 * 1024;
 };

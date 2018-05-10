@@ -1,0 +1,38 @@
+extends layout
+      
+block head
+  if contest.isStarted() || (user && user.admin)
+    script(src='/js/check.js', defer)
+
+include mixins
+
+block content
+  .container.content
+    h1 Performance Checker
+    form#checker(data-persist='garlic')
+      .form-group
+        label Language
+        select.form-control.checker-language
+          each language in availableLanguages
+            option(value=language.slug)= language.name
+      .form-group
+        label Code
+        p.text-secondary
+          span.checker-count 0
+          = ' '
+          | bytes
+        textarea.form-control.code.checker-code(name='code')
+      .form-group
+        input.form-contril-file.checker-file(type='file')
+      .form-group
+        label stdin
+        textarea.form-control.code.checker-stdin(name='stdin')
+      button.btn.btn-primary.checker-submit(type='button') Submit
+      hr
+      .alert.alert-danger.checker-alert(style={display: 'none'})
+      .form-group
+        label stdout
+        textarea.form-control.code.checker-stdout(readonly, name='stdout', data-storage='false')
+      .form-group
+        label stderr
+        textarea.form-control.code.checker-stderr(readonly, name='stderr', data-storage='false')

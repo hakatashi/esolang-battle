@@ -10,9 +10,13 @@ block content
   .container
     each contest in contests
       a.jumbotron-wrap(href=`/contests/${contest.id}`)
-        .jumbotron(class=`contest-${contest.id}`)
+        .jumbotron(class=`contest-${contest.isStarted() ? contest.id : 'unknown'}`)
           h1.display-4= contest.name
           p.lead
             strong= contest.spanText()
           p.lead
-            .btn.btn-dark.btn-lg(href=`/contests/${contest.id}`, role='button') View Result
+            .btn.btn-lg(class=contest.isEnded() ? 'btn-dark' : 'btn-primary', href=`/contests/${contest.id}`, role='button')
+              if contest.isEnded()
+                | View Result
+              else
+                | Join Now!

@@ -72,6 +72,36 @@ userSchema.methods.name = function() {
 	return `@${this.email.replace(/@.+$/, '')}`;
 };
 
+userSchema.methods.getTeam = function(contest) {
+	if (!this.team) {
+		return null;
+	}
+
+	const teamInfo = this.team.find((team) => team.contest.equals(contest._id));
+	if (!teamInfo) {
+		return null;
+	}
+
+	return teamInfo.value;
+};
+
+userSchema.methods.setTeam = function(contest, newTeam) {
+	console.log(this.team);
+	this.team = this.team || [];
+
+	if (this.team.some((team) => team.contest.equals(contest._id))) {
+		this.team = this.team.map((team) => {
+			if (team.contest.equals(contest._id)) {
+				team.value = newTeam;
+			}
+			return team;
+		});
+	} else {
+		this.team.push({contest, value: newTeam});
+	}
+	console.log(this.team);
+};
+
 /*
  * Helper method for getting user's gravatar.
  */

@@ -3,11 +3,14 @@
     "parserOptions": {
         "ecmaVersion": 9
     },
+    "parser": "babel-eslint",
     "rules": {
         "camelcase": "off",
         "no-console": "off",
         "max-len": "off",
         "no-underscore-dangle": "off",
-        "private-props/no-use-outside": "off"
+        "private-props/no-use-outside": "off",
+        "react/forbid-component-props": "off",
+        "react/jsx-handler-names": "off"
     }
 }

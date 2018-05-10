@@ -1,20 +1,29 @@
 extends layout
 
 block head
-  style
-    if contest.id === '1'
-      include:scss maps/1.scss
-    else if contest.id === '2'
-      include:scss maps/2.scss
-    else if contest.id === '3'
-      include:scss maps/3.scss
+  if contest.isStarted() || (user && user.admin)
+    style
+      if contest.id === '1'
+        include:scss maps/1.scss
+      else if contest.id === '2'
+        include:scss maps/2.scss
+      else if contest.id === '3'
+        include:scss maps/3.scss
+      else if contest.id === '4'
+        include:scss maps/4.scss
+      
+    if contest.id === '4'
+      script(src='/js/contest-4.js', defer)
 
 block content
-  .container
-    if !contest.isStarted()
+  if !contest.isStarted() && (!user || !user.admin)
+    .container
       .content
         include partials/countdown.pug
-    else
+  else if contest.id === '4'
+    #app
+  else
+    .container
       .board
         if contest.id === '1'
           include maps/1.pug

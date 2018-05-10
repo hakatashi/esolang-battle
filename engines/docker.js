@@ -6,15 +6,25 @@ const Promise = require('bluebird');
 const path = require('path');
 const tmp = require('tmp');
 const shellescape = require('shell-escape');
+const {getCodeLimit} = require('../controllers/utils.js');
 const fs = Promise.promisifyAll(require('fs'));
 
 const docker = new Docker();
+
+const memoryLimit = 512 * 1024 * 1024;
+
+class MemoryLimitExceededError extends Error {
+	constructor(...args) {
+		super(...args);
+		this.name = 'MemoryLimitExceededError';
+	}
+}
 
 module.exports = async ({id, code, stdin}) => {
 	assert(typeof id === 'string');
 	assert(Buffer.isBuffer(code));
 	assert(typeof stdin === 'string');
-	assert(code.length < 10000);
+	assert(code.length <= getCodeLimit(id));
 	assert(stdin.length < 10000);
 
 	const {tmpPath, cleanup} = await new Promise((resolve, reject) => {
@@ -30,12 +40,16 @@ module.exports = async ({id, code, stdin}) => {
 	const stdinPath = path.join(tmpPath, 'INPUT');
 
 	let filename = 'CODE';
-	if (id === 'rdmd') {
+	if (id === 'd-dmd') {
 		filename = 'CODE.d';
 	} else if (id === 'c-gcc') {
 		filename = 'CODE.c';
 	} else if (id === 'concise-folders' || id === 'pure-folders') {
 		filename = 'CODE.tar';
+	} else if (id === 'cmd') {
+		filename = 'CODE.bat';
+	} else if (id === 'nadesiko') {
+		filename = 'CODE.nako3';
 	}
 
 	const codePath = path.join(tmpPath, filename);
@@ -94,6 +108,7 @@ module.exports = async ({id, code, stdin}) => {
 				VolumesFrom: [],
 				HostConfig: {
 					Binds: [`${dockerVolumePath}:/volume:ro`],
+					Memory: memoryLimit,
 				},
 			});
 
@@ -111,7 +126,9 @@ module.exports = async ({id, code, stdin}) => {
 
 			await container.start();
 			await container.wait();
+			const data = await container.inspect();
 			await container.remove();
+			return data;
 		})();
 
 		const runner = Promise.all([
@@ -121,7 +138,7 @@ module.exports = async ({id, code, stdin}) => {
 		]);
 
 		const executionStart = Date.now();
-		const [stdout, stderr] = await runner.timeout(15000);
+		const [stdout, stderr, containerData] = await runner.timeout(10000);
 		const executionEnd = Date.now();
 
 		cleanup();
@@ -130,10 +147,23 @@ module.exports = async ({id, code, stdin}) => {
 			stdout: Buffer.isBuffer(stdout) ? stdout : Buffer.alloc(0),
 			stderr: Buffer.isBuffer(stderr) ? stderr : Buffer.alloc(0),
 			duration: executionEnd - executionStart,
+			...(containerData.State.OOMKilled
+				? {
+					error: new MemoryLimitExceededError(
+						`Memory limit of ${memoryLimit} bytes exceeded`
+					),
+				  }
+				: {}),
 		};
 	} catch (error) {
-		await container.kill().catch();
-		await container.remove().catch();
+		if (container) {
+			await container.kill().catch((e) => {
+				console.error('error:', e);
+			});
+			await container.remove().catch((e) => {
+				console.error('error:', e);
+			});
+		}
 		throw error;
 	}
 };

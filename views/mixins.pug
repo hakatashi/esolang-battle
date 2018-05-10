@@ -5,5 +5,7 @@ mixin submissionBadge(submission)
   span.badge(class=badgeClass)
     if submission.error && submission.error.name === 'TimeoutError'
       | TLE
+    else if submission.error && submission.error.name === 'MemoryLimitExceededError'
+      | MLE
     else
       = badgeText
