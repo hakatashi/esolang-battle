@@ -7,10 +7,8 @@ script(async).
     
     const remaining = contestStart - now;
     
-    if (remaining < 0) {
-      setTimeout(() => {
-        location.reload();
-      }, 10000);
+    if (remaining < 0 && remaining > -10) {
+      location.reload();
       return;
     }
     
