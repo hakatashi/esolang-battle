@@ -78,44 +78,52 @@ pre.hexdump {
 
 .jumbotron-wrap {
   color: white;
+
+  .jumbotron {
+    background-color: $md-blue-grey-900;
+    background-size: cover;
+    background-position: center;
+
+    &.contest-1 {
+      background-color: $md-lime-700;
+      background-image: url('/img/contest/1-headline.svg');
+    }
+
+    &.contest-2 {
+      background-color: $md-blue-500;
+      background-image: url('/img/contest/2-headline.svg');
+    }
+
+    &.contest-3 {
+      background-color: $md-red-500;
+      background-image: url('/img/contest/3-headline.svg');
+    }
+
+    &.contest-4 {
+      background-color: $md-orange-500;
+      background-image: url('/img/contest/4-headline.png');
+    }
+
+    &.contest-mayfes2018-day1 {
+      background-color: $md-brown-400;
+      background-image: url('/img/contest/mayfes2018-day1-headline.svg');
+    }
+
+    &.contest-mayfes2018-day2 {
+      background-color: $md-pink-300;
+      background-image: url('/img/contest/mayfes2018-day2-headline.svg');
+    }
+
+    &.contest-unknown {
+      background-color: #050505;
+      background-image: url('/img/contest/noise.png');
+    }
+  }
 }
 
 .jumbotron-wrap:hover {
   text-decoration: none;
   color: white;
-}
-
-.contest-1 {
-  background-color: $md-lime-700;
-  background-image: url('/img/contest/1-headline.svg');
-  background-size: cover;
-  background-position: center;
-}
-
-.contest-2 {
-  background-color: $md-blue-500;
-  background-image: url('/img/contest/2-headline.svg');
-  background-size: cover;
-  background-position: center;
-}
-
-.contest-3 {
-  background-color: $md-red-500;
-  background-image: url('/img/contest/3-headline.svg');
-  background-size: cover;
-  background-position: center;
-}
-
-.contest-4 {
-  background-color: $md-orange-500;
-  background-image: url('/img/contest/4-headline.png');
-  background-size: cover;
-  background-position: center;
-}
-
-.contest-unknown {
-  background-color: #050505;
-  background-image: url('/img/contest/noise.png');
 }
 
 .team-badge {

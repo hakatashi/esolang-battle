@@ -11,16 +11,20 @@ block head
         include:scss maps/3.scss
       else if contest.id === '4'
         include:scss maps/4.scss
+      else if ['mayfes2018-day1', 'mayfes2018-day2'].includes(contest.id)
+        include:scss maps/mayfes2018.scss
       
     if contest.id === '4'
       script(src='/js/contest-4.js', defer)
+    else if ['mayfes2018-day1', 'mayfes2018-day2'].includes(contest.id)
+      script(src='/js/contest-mayfes2018.js', defer)
 
 block content
   if !contest.isStarted() && (!user || !user.admin)
     .container
       .content
         include partials/countdown.pug
-  else if contest.id === '4'
+  else if ['4', 'mayfes2018-day1', 'mayfes2018-day2'].includes(contest.id)
     #app
   else
     .container

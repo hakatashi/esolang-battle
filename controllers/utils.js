@@ -1,31 +1,12 @@
+const assert = require('assert');
 const Language = require('../models/Language');
 const languages = require('../data/languages');
-const snubDodecahedron = require('../data/snub-dodecahedron.js');
-
-const getPrecedingIndices = (contest, cellIndex) => {
-	if (contest.id !== '4') {
-		return [];
-	}
-
-	const faces = [...snubDodecahedron.triangles, ...snubDodecahedron.pentagons];
-	const face = faces[cellIndex];
-
-	return Array(92)
-		.fill()
-		.map((_, index) => index)
-		.filter((index) => {
-			if (index === cellIndex) {
-				return false;
-			}
-
-			const testFace = faces[index];
-			const sharedVertices = testFace.filter((vertice) => face.includes(vertice));
-
-			return sharedVertices.length === 2;
-		});
-};
+const contests = require('../contests');
 
 module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
+	assert({}.hasOwnProperty.call(contests, contest.id));
+	const {getPrecedingIndices} = contests[contest.id];
+
 	const languageRecords = await Language.find({contest})
 		.populate({
 			path: 'solution',
@@ -84,7 +65,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 				};
 			}
 
-			const precedingCells = getPrecedingIndices(contest, index).map(
+			const precedingCells = getPrecedingIndices(index).map(
 				(i) => languageCells[i]
 			);
 
