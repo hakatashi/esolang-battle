@@ -4,9 +4,6 @@ const languages = require('../data/languages');
 const contests = require('../contests');
 
 module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
-	assert({}.hasOwnProperty.call(contests, contest.id));
-	const {getPrecedingIndices} = contests[contest.id];
-
 	const languageRecords = await Language.find({contest})
 		.populate({
 			path: 'solution',
@@ -64,6 +61,9 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 					available: false,
 				};
 			}
+
+			assert({}.hasOwnProperty.call(contests, contest.id));
+			const {getPrecedingIndices} = contests[contest.id];
 
 			const precedingCells = getPrecedingIndices(index).map(
 				(i) => languageCells[i]
