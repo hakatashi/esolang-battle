@@ -8,7 +8,7 @@ const languages = [
 		'hexagony',
 	],
 	[
-		'golfscript',
+		'convex',
 		'c-gcc',
 		'jelly',
 	],
