@@ -10,7 +10,7 @@ const languages = [
 	[
 		'cjam',
 		'c-gcc',
-		'05ab1e',
+		'golfscript',
 	],
 	[
 		'piet',
