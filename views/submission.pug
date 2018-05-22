@@ -32,7 +32,7 @@ block content
     if user && user.admin && submission.error && submission.error.stack
       pre= submission.error.stack
 
-    if selfTeam || contest.isEnded()
+    if selfTeam || contest.isEnded() || (user && user.admin)
       h4
         | Code
         = ' '

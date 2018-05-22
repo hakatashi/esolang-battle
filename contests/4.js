@@ -3,6 +3,26 @@ const shuffle = require('array-shuffle');
 const math = require('mathjs');
 const chunk = require('lodash/chunk');
 const random = require('lodash/random');
+const snubDodecahedron = require('../data/snub-dodecahedron.js');
+
+module.exports.getPrecedingIndices = (cellIndex) => {
+	const faces = [...snubDodecahedron.triangles, ...snubDodecahedron.pentagons];
+	const face = faces[cellIndex];
+
+	return Array(92)
+		.fill()
+		.map((_, index) => index)
+		.filter((index) => {
+			if (index === cellIndex) {
+				return false;
+			}
+
+			const testFace = faces[index];
+			const sharedVertices = testFace.filter((vertice) => face.includes(vertice));
+
+			return sharedVertices.length === 2;
+		});
+};
 
 const generateTestInput = () => chunk(
 	shuffle([

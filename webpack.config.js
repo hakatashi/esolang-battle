@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const url = require('url');
 
 module.exports = (env, argv = {}) => {
 	const browsers = [
@@ -19,12 +18,11 @@ module.exports = (env, argv = {}) => {
 		debug: true,
 	};
 
-	const entries = ['js/contests/4/index.babel.js', 'js/check.babel.js'];
-
 	return {
 		entry: Object.assign(
 			...[
 				['contest-4', 'js/contests/4/index.babel.js'],
+				['contest-mayfes2018', 'js/contests/mayfes2018/index.babel.js'],
 				['check', 'js/check.babel.js'],
 			].map(([name, entry]) => ({
 				[name]: [
