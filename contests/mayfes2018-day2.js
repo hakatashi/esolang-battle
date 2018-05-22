@@ -37,8 +37,8 @@ module.exports.isValidAnswer = (input, output) => {
 		return true;
 	}
 
-	const inputNumbers = input.split('').map((n) => parseInt(n));
-	const correctOutput = inputNumbers.map((n, i) => sum(inputNumbers.slice(0, i)) % 2).join('');
+	const inputNumbers = input.trim().split('').map((n) => parseInt(n));
+	const correctOutput = inputNumbers.map((n, i) => sum(inputNumbers.slice(0, i + 1)) % 2).join('');
 	assert(correctOutput.length === 100);
 
 	// Trim
