@@ -19,8 +19,8 @@ module.exports = languages.map((language) => {
 	return {
 		type: 'language',
 		slug: language,
-		name: language, // langDatum ? langDatum.name : '',
-		link: language, // langDatum ? langDatum.link : '',
+		name: langDatum ? langDatum.name : '',
+		link: langDatum ? langDatum.link : '',
 	};
 }).concat([
 	{
