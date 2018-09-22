@@ -71,14 +71,21 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 
 			const available =
 				typeof team === 'number' &&
-				(cell.team === team ||
+				(
+					contest.id === 'hackathon2018' ||
+					cell.team === team ||
 					solvedTeam === team ||
 					precedingCells.some(
-						(c) => c.team === team ||
-							(c.record &&
+						(c) => (
+							c.team === team ||
+							(
+								c.record &&
 								c.record.solution &&
-								c.record.solution.user.getTeam(contest)) === team
-					));
+								c.record.solution.user.getTeam(contest)
+							) === team
+						)
+					)
+				);
 
 			if (cell.record && cell.record.solution) {
 				return {

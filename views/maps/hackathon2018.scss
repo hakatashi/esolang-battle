@@ -17,8 +17,8 @@
 		width: 80vw;
 
 		.cell {
-			flex: 0 0 100px;
-			height: 100px;
+			flex: 0 0 140px;
+			height: 140px;
 			background: gray;
 			margin: 3px;
 			border-radius: 50%;
@@ -26,32 +26,30 @@
 			justify-content: center;
 			flex-direction: column;
 			text-align: center;
-			font-size: 4vmin;
+			font-size: 3vmin;
 			font-weight: bold;
+			line-height: 1.2;
 
 			&.black { background-color: #111111; }
 			&.grey { background-color: #555555; }
 			&.white { background-color: #ffffff; }
 			&.red { background-color: #ef2011; }
 			&.blue { background-color: #0e30ec; }
+			&.green { background-color: #167516; }
+			&.orange { background-color: #F57F17; }
+			&.purple { background-color: #6A1B9A; }
+
+			&.white {
+				border: 1px solid gray;
+			}
 		}
 
 		@media screen and (orientation: portrait) {
 			overflow: hidden;
 		}
 
-		.language-label {
-			width: 200px;
-
-			line-height: 1.3em;
-			font-size: 3.8vmin;
-			font-weight: bold;
-			text-align: center;
-			color: white;
-
-			.language-size {
-				font-size: 1.3em;
-			}
+		.language-size {
+			font-size: 1.3em;
 		}
 	}
 
@@ -86,6 +84,21 @@
 			&.blue .bar {
 				background-color: #0e30ec;
 				color: #0e30ec;
+			}
+
+			&.green .bar {
+				background-color: #167516;
+				color: #167516;
+			}
+
+			&.orange .bar {
+				background-color: #F57F17;
+				color: #F57F17;
+			}
+
+			&.purple .bar {
+				background-color: #6A1B9A;
+				color: #6A1B9A;
 			}
 
 			.bar {

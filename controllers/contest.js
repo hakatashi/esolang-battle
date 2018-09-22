@@ -69,8 +69,8 @@ module.exports.getAdmin = async (req, res) => {
 	res.render('admin', {
 		contest: req.contest,
 		users,
-		teams: ['Red', 'Blue', 'Green'],
-		colors: ['#ef2011', '#0e30ec', '#167516'],
+		teams: ['Red', 'Blue', 'Green', 'Orange', 'Purple'],
+		colors: ['#ef2011', '#0e30ec', '#167516', '#f57f17', '#6a1b9a'],
 		qs,
 	});
 };

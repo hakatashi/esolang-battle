@@ -1,23 +1,47 @@
 const assert = require('assert');
-const random = require('lodash/random');
+const shuffle = require('lodash/shuffle');
+const sample = require('lodash/sample');
+const languages = require('../data/languages/hackathon2018.js');
 
-const A = 'A'.charCodeAt(0);
+const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-module.exports.getPrecedingIndices = () => {
-	return Array(10).fill().map((_, i) => i);
+module.exports.getPrecedingIndices = () => languages.map((_, i) => i);
+
+module.exports.generateInput = () => {
+	const tokens = [
+		...Array(81).fill('x'),
+		'0123456789',
+		'9876543210',
+	];
+
+	let input = shuffle(tokens).join('');
+	while (input.includes('x')) {
+		const xIndex = input.indexOf('x');
+		const prevChar = input[xIndex - 1];
+		const nextChar = input[xIndex + 1];
+		const candidates = digits.filter((digit) => digit.toString() !== prevChar && digit.toString() !== nextChar);
+		input = input.replace('x', sample(candidates).toString());
+	}
+
+	assert(input.length === 101);
+
+	return `${input}\n`;
 };
-
-module.exports.generateInput = () => `${Array(26).fill().map(() => String.fromCharCode(A + random(0, 25))).join('')}\n`;
 
 module.exports.isValidAnswer = (input, output) => {
 	if (process.env.NODE_ENV !== 'production') {
 		return true;
 	}
 
-	const correctOutput = input.trim().split('').map((char, i) => (
-		String.fromCharCode((char.charCodeAt(0) - A + i + 1) % 26 + A)
-	)).join('');
-	assert(correctOutput.length === 26);
+	const correctOutput = input.trim().split('').map((char, i, chars) => {
+		if (i + 1 >= chars.length) {
+			return '';
+		}
+
+		const nextChar = chars[i + 1];
+		return nextChar > char ? '1' : '0';
+	}).join('');
+	assert(correctOutput.length === 100);
 
 	// Trim
 	const trimmedOutput = output

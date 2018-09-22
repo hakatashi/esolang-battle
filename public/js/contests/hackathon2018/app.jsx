@@ -49,9 +49,10 @@ class App extends React.Component {
 
 	updateLanguages = async () => {
 		const languages = await api('GET', `/contests/${this.contestId}/languages`);
+		const filteredLanguages = languages.filter(({type}) => type !== 'base');
 		this.setState({
-			languages,
-			languageColors: languages.map((language) => {
+			languages: filteredLanguages,
+			languageColors: filteredLanguages.map((language) => {
 				if (language.type === 'unknown') {
 					return 'black';
 				}
@@ -63,7 +64,7 @@ class App extends React.Component {
 					return 'grey';
 				}
 
-				return ['red', 'blue'][language.team];
+				return ['red', 'blue', 'green', 'orange', 'purple'][language.team];
 			}),
 		});
 	};
@@ -171,7 +172,7 @@ class App extends React.Component {
 
 	render() {
 		const selectedLanguage = this.state.selectedLanguage || {};
-		const cellCounts = Array(3)
+		const cellCounts = Array(5)
 			.fill()
 			.map(
 				(_, index) => this.state.languages.filter((language) => language.team === index)
@@ -181,7 +182,21 @@ class App extends React.Component {
 
 		return (
 			<div className="world">
-				<div className="spacer"/>
+				<div className="teams">
+					{['Red', 'Blue'].map((color, index) => (
+						<div key={color} className={`team ${color.toLowerCase()}`}>
+							<div
+								className="bar"
+								style={{
+									flexBasis: `${cellCounts[index] / totalCellCounts * 100}%`,
+								}}
+							>
+								<div className="count">{cellCounts[index]}</div>
+								<div className="team-name">{color}</div>
+							</div>
+						</div>
+					))}
+				</div>
 				<div className="map">
 					{this.state.languages.map((language, index) => (
 						<div
@@ -213,15 +228,15 @@ class App extends React.Component {
 					))}
 				</div>
 				<div className="teams">
-					{['Red', 'Blue'].map((color, index) => (
+					{['Green', 'Orange', 'Purple'].map((color, index) => (
 						<div key={color} className={`team ${color.toLowerCase()}`}>
 							<div
 								className="bar"
 								style={{
-									flexBasis: `${cellCounts[index] / totalCellCounts * 100}%`,
+									flexBasis: `${cellCounts[index + 2] / totalCellCounts * 100}%`,
 								}}
 							>
-								<div className="count">{cellCounts[index]}</div>
+								<div className="count">{cellCounts[index + 2]}</div>
 								<div className="team-name">{color}</div>
 							</div>
 						</div>
