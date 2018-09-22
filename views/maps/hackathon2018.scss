@@ -12,21 +12,16 @@
 
 	.map {
 		display: flex;
-		flex-direction: column;
-		width: 80vmin;
-		height: 80vmin;
-
-		.row {
-			display: flex;
-			flex-direction: row;
-			flex: 1 1 0;
-		}
+		flex-wrap: wrap;
+		justify-content: center;
+		width: 80vw;
 
 		.cell {
-			flex: 1 1 0;
+			flex: 0 0 100px;
+			height: 100px;
 			background: gray;
 			margin: 3px;
-			border-radius: 5px;
+			border-radius: 50%;
 			display: flex;
 			justify-content: center;
 			flex-direction: column;
