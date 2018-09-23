@@ -10,7 +10,7 @@ mongoose.Promise = global.Promise;
 
 	contest.name = 'DIY Language Contest 2018';
 	contest.start = new Date('2018-09-23T13:00:00+0900');
-	contest.end = new Date('2018-09-23T19:00:00+0900');
+	contest.end = new Date('2018-09-23T21:00:00+0900');
 
 	await contest.save();
 
