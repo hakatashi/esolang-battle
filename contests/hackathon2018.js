@@ -7,7 +7,7 @@ const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 module.exports.getPrecedingIndices = () => languages.map((_, i) => i);
 
-module.exports.generateInput = () => {
+const generateInputCase = () => {
 	const tokens = [
 		...Array(81).fill('x'),
 		'0123456789',
@@ -15,6 +15,7 @@ module.exports.generateInput = () => {
 	];
 
 	let input = shuffle(tokens).join('');
+
 	while (input.includes('x')) {
 		const xIndex = input.indexOf('x');
 		const prevChar = input[xIndex - 1];
@@ -26,6 +27,16 @@ module.exports.generateInput = () => {
 	assert(input.length === 101);
 
 	return `${input}\n`;
+};
+
+module.exports.generateInput = () => {
+	let input = null;
+
+	while (!input || input.match(/(00|11|22|33|44|55|66|77|88|99)/)) {
+		input = generateInputCase();
+	}
+
+	return input;
 };
 
 module.exports.isValidAnswer = (input, output) => {
