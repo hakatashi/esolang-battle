@@ -14,6 +14,7 @@ const languages = [
 	'picfunge',
 	'hanoi_stack',
 	'exchangeif',
+	'unicue',
 ];
 
 module.exports = languages.map((language) => {

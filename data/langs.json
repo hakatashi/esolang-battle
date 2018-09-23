@@ -505,6 +505,11 @@
     "link": "https://nodejs.org/"
   },
   {
+    "slug": "unicue",
+    "name": "Unicue",
+    "link": "https://github.com/hakatashi/tweet-lang"
+  },
+  {
     "slug": "beam",
     "name": "Beam",
     "link": "http://esolangs.org/wiki/Beam"
