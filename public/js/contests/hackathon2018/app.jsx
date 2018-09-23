@@ -73,7 +73,7 @@ class App extends React.Component {
 		const cellIndex = parseInt(event.target.closest('.cell').getAttribute('data-index'));
 		this.setState(({languages}) => {
 			const language = languages[cellIndex];
-			if (!language || language.available !== true) {
+			if (!language) {
 				return {};
 			}
 			return {selectedLanguage: language};
@@ -204,7 +204,7 @@ class App extends React.Component {
 							className={`cell ${this.state.languageColors[index]}`}
 							onClick={this.handleClickCell}
 							style={{
-								cursor: language && language.available ? 'pointer' : '',
+								cursor: language ? 'pointer' : '',
 								color:
 									language &&
 									language.team === undefined
