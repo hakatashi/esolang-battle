@@ -1,6 +1,17 @@
+html, body {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+#app {
+	flex: 1 1 0;
+}
+
 .world {
 	display: flex;
 	justify-content: space-between;
+	height: 100%;
 
 	@media screen and (orientation: portrait) {
 		flex-direction: column;
@@ -14,13 +25,14 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
+		align-content: center;
 		width: 80vw;
 
 		.cell {
 			flex: 0 0 140px;
 			height: 140px;
 			background: gray;
-			margin: 3px;
+			margin: 5px;
 			border-radius: 50%;
 			display: flex;
 			justify-content: center;

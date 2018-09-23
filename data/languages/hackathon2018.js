@@ -1,16 +1,19 @@
 const langsData = require('../langs.json');
 
 const languages = [
-	'node',
-	'Hoge Fuga Fugo Piyopiyo',
-	'piyo',
-	'foo',
-	'bar',
-	'poo',
-	'piyo',
-	'foo',
-	'bar',
-	'poo',
+	'reversed-c',
+	'iwashi',
+	'standback',
+	'multi-reader',
+	'copos-rb',
+	'golfish',
+	'moo',
+	'codemania',
+	'bots',
+	'floating',
+	'picfunge',
+	'hanoi_stack',
+	'exchangeif',
 ];
 
 module.exports = languages.map((language) => {

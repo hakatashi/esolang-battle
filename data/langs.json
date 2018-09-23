@@ -10,6 +10,16 @@
     "link": null
   },
   {
+    "slug": "multi-reader",
+    "name": "multi-reader",
+    "link": "https://github.com/kuromunori/kusogengo"
+  },
+  {
+    "slug": "codemania",
+    "name": "CodeMania",
+    "link": "https://github.com/Tiramister/codemania"
+  },
+  {
     "slug": "3var",
     "name": "3var",
     "link": "https://esolangs.org/wiki/3var"
@@ -75,6 +85,11 @@
     "link": "https://github.com/m-ender/stackcats"
   },
   {
+    "slug": "standback",
+    "name": "(?i:standback)",
+    "link": "https://github.com/akouryy/standback"
+  },
+  {
     "slug": "ppap",
     "name": "PPAP",
     "link": "https://github.com/yhara/ppap-lang"
@@ -103,6 +118,26 @@
     "slug": "alice",
     "name": "Alice",
     "link": "https://github.com/m-ender/alice"
+  },
+  {
+    "slug": "wake",
+    "name": "wake",
+    "link": "http://shinh.skr.jp/wake/"
+  },
+  {
+    "slug": "reversed-c",
+    "name": "reversed-c",
+    "link": "https://github.com/cookie-s/reversed-c"
+  },
+  {
+    "slug": "copos-rb",
+    "name": "copos (Ruby)",
+    "link": "https://github.com/n4o847/tsg-2018-summer"
+  },
+  {
+    "slug": "golfish",
+    "name": "golfish",
+    "link": "https://github.com/n4o847/tsg-2018-summer"
   },
   {
     "slug": "goruby",
@@ -250,11 +285,6 @@
     "link": "https://esolangs.org/wiki/ADJUST"
   },
   {
-    "slug": "wake",
-    "name": "wake",
-    "link": "http://shinh.skr.jp/wake/"
-  },
-  {
     "slug": "braille",
     "name": "Braille",
     "link": "https://esolangs.org/wiki/Braille"
@@ -303,6 +333,11 @@
     "slug": "cmm",
     "name": "C--",
     "link": "https://www.cs.tufts.edu/~nr/c--/index.html"
+  },
+  {
+    "slug": "hanoi_stack",
+    "name": "Hanoi_Stacck",
+    "link": "https://github.com/JP3BGY/Hanoi_Stack/"
   },
   {
     "slug": "java",
@@ -505,6 +540,11 @@
     "link": "https://nadesi.com/doc3/"
   },
   {
+    "slug": "floating",
+    "name": "Floating",
+    "link": "https://github.com/KPCCoiL/floating-lang"
+  },
+  {
     "slug": "octave",
     "name": "Octave",
     "link": "https://www.gnu.org/software/octave/"
@@ -545,6 +585,11 @@
     "link": "https://www.python.org/"
   },
   {
+    "slug": "exchangeif",
+    "name": "ExchangeIF",
+    "link": "https://github.com/HyogaGlacier/ExchangeIF"
+  },
+  {
     "slug": "trumpscript",
     "name": "TrumpScript",
     "link": "http://samshadwell.me/TrumpScript/"
@@ -568,6 +613,11 @@
     "slug": "arcyou",
     "name": "Arcyóu",
     "link": "https://github.com/Nazek42/arcyou"
+  },
+  {
+    "slug": "bots",
+    "name": "Bots",
+    "link": "https://github.com/satos---jp/bots"
   },
   {
     "slug": "emoji",
@@ -608,6 +658,16 @@
     "slug": "asciidots",
     "name": "AsciiDots",
     "link": "http://ajanse.me/asciidots/"
+  },
+  {
+    "slug": "picfunge",
+    "name": "PicFunge",
+    "link": "https://github.com/Liesegang/picfunge"
+  },
+  {
+    "slug": "iwashi",
+    "name": "Iwashi",
+    "link": "https://github.com/Yosshi999/iwashi-lang"
   },
   {
     "slug": "vim",
@@ -683,6 +743,21 @@
     "slug": "hack",
     "name": "Hack",
     "link": "http://hacklang.org/"
+  },
+  {
+    "slug": "cpp-clang",
+    "name": "C++ (Clang)",
+    "link": "https://clang.llvm.org/"
+  },
+  {
+    "slug": "perl1",
+    "name": "Perl 1.0",
+    "link": "https://www.perl.org/"
+  },
+  {
+    "slug": "moo",
+    "name": "moo",
+    "link": "https://github.com/moratorium08/moo"
   },
   {
     "slug": "brainfuck-bfi",
