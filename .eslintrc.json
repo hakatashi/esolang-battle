@@ -1,9 +1,9 @@
 {
     "extends": "@hakatashi",
     "parserOptions": {
+        "parser": "babel-eslint",
         "ecmaVersion": 9
     },
-    "parser": "babel-eslint",
     "rules": {
         "camelcase": "off",
         "no-console": "off",
