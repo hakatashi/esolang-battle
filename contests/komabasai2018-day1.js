@@ -34,7 +34,7 @@ module.exports.generateInput = () => `${[random(10, 99), random(10, 99)].join('\
 
 module.exports.isValidAnswer = (input, output) => {
 	if (process.env.NODE_ENV !== 'production') {
-		// return true;
+		return true;
 	}
 
 	const [height, width] = input
@@ -54,8 +54,6 @@ module.exports.isValidAnswer = (input, output) => {
 
 	// Trim
 	const trimmedOutput = output.toString().trim();
-	console.log(correctOutput);
-	console.log(trimmedOutput);
 
 	console.log('info:', {input, correctOutput, output, trimmedOutput});
 
