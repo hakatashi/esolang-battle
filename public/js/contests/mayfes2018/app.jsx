@@ -15,11 +15,19 @@ class App extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 
+		this.contestId = document
+			.querySelector('meta[name=contest-id]')
+			.getAttribute('content');
+
+		this.size = ['mayfes2018-day1', 'mayfes2018-day2'].includes(this.contestId)
+			? 3
+			: 4;
+
 		this.state = {
 			code: '',
 			files: [],
 			languages: [],
-			languageColors: Array(9).fill('white'),
+			languageColors: Array(this.size ** 2).fill('white'),
 			selectedLanguage: null,
 			isPending: false,
 			message: null,
@@ -28,9 +36,6 @@ class App extends React.Component {
 		};
 
 		this.pendingSubmission = null;
-		this.contestId = document
-			.querySelector('meta[name=contest-id]')
-			.getAttribute('content');
 
 		this.updateLanguages();
 		this.initSocket();
@@ -68,8 +73,17 @@ class App extends React.Component {
 		});
 	};
 
+	isEmpty = (cell) => {
+		if (this.contestId === 'komabasai2018-day1') {
+			return [0, 3, 12, 15].includes(cell);
+		}
+		return false;
+	};
+
 	handleClickCell = (event) => {
-		const cellIndex = parseInt(event.target.closest('.cell').getAttribute('data-index'));
+		const cellIndex = parseInt(
+			event.target.closest('.cell').getAttribute('data-index')
+		);
 		this.setState(({languages}) => {
 			const language = languages[cellIndex];
 			if (!language || language.available !== true) {
@@ -137,9 +151,13 @@ class App extends React.Component {
 		}
 
 		this.pendingSubmission = null;
-		const submission = await api('GET', `/contests/${this.contestId}/submission`, {
-			_id: data._id,
-		});
+		const submission = await api(
+			'GET',
+			`/contests/${this.contestId}/submission`,
+			{
+				_id: data._id,
+			}
+		);
 
 		if (submission.status === 'failed') {
 			this.setState({
@@ -169,68 +187,86 @@ class App extends React.Component {
 		this.updateLanguages();
 	};
 
-	render() {
-		const selectedLanguage = this.state.selectedLanguage || {};
-		const cellCounts = Array(3)
+	renderTeam = (color, index) => {
+		const cellCounts = Array(this.size)
 			.fill()
 			.map(
 				(_, index) => this.state.languages.filter((language) => language.team === index)
 					.length
 			);
 		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
+		return (
+			<div key={color} className={`team ${color.toLowerCase()}`}>
+				<div
+					className="bar"
+					style={{
+						flexBasis: `${(cellCounts[index] / totalCellCounts) * 100}%`,
+					}}
+				>
+					<div className="count">{cellCounts[index]}</div>
+					<div className="team-name">{color}</div>
+				</div>
+			</div>
+		);
+	};
+
+	render() {
+		const selectedLanguage = this.state.selectedLanguage || {};
 
 		return (
 			<div className="world">
-				<div className="spacer"/>
+				<div className="teams left">{this.renderTeam('Red', 0)}</div>
 				<div className="map">
-					{Array(3).fill().map((_, y) => (
-						<div key={y} className="row">
-							{Array(3).fill().map((_, x) => (
-								<div
-									key={x}
-									className={`cell ${this.state.languageColors[y * 3 + x]}`}
-									onClick={this.handleClickCell}
-									style={{
-										cursor: this.state.languages[y * 3 + x] && this.state.languages[y * 3 + x].available ? 'pointer' : '',
-										color:
-											this.state.languages[y * 3 + x] &&
-											this.state.languages[y * 3 + x].team === undefined
-												? '#222'
-												: 'white',
-									}}
-									data-index={y * 3 + x}
-								>
-									<div className="language-name">
-										{this.state.languages[y * 3 + x]
-											? this.state.languages[y * 3 + x].name
-											: ''}
-									</div>
-									<div className="language-size">
-										{this.state.languages[y * 3 + x] &&
-										this.state.languages[y * 3 + x].solution
-											? this.state.languages[y * 3 + x].solution.size
-											: ''}
-									</div>
-								</div>
-							))}
-						</div>
-					))}
-				</div>
-				<div className="teams">
-					{['Red', 'Blue'].map((color, index) => (
-						<div key={color} className={`team ${color.toLowerCase()}`}>
-							<div
-								className="bar"
-								style={{
-									flexBasis: `${cellCounts[index] / totalCellCounts * 100}%`,
-								}}
-							>
-								<div className="count">{cellCounts[index]}</div>
-								<div className="team-name">{color}</div>
+					{Array(this.size)
+						.fill()
+						.map((_, y) => (
+							<div key={y} className="row">
+								{Array(this.size)
+									.fill()
+									.map((_, x) => this.isEmpty(y * this.size + x) ? (
+										<div key={x} className="cell white empty"/>
+									) : (
+										<div
+											key={x}
+											className={`cell ${
+												this.state.languageColors[y * this.size + x]
+											}`}
+											onClick={this.handleClickCell}
+											style={{
+												cursor:
+														this.state.languages[y * this.size + x] &&
+														this.state.languages[y * this.size + x].available
+															? 'pointer'
+															: '',
+												color:
+														this.state.languages[y * this.size + x] &&
+														this.state.languages[y * this.size + x].team ===
+															undefined
+															? '#222'
+															: 'white',
+											}}
+											data-index={y * this.size + x}
+										>
+											<div className="language-label">
+												<div className="language-name">
+													{this.state.languages[y * this.size + x]
+														? this.state.languages[y * this.size + x].name
+														: ''}
+												</div>
+												<div className="language-size">
+													{this.state.languages[y * this.size + x] &&
+														this.state.languages[y * this.size + x].solution
+														? this.state.languages[y * this.size + x].solution
+															.size
+														: ''}
+												</div>
+											</div>
+										</div>
+									))}
 							</div>
-						</div>
-					))}
+						))}
 				</div>
+				<div className="teams right">{this.renderTeam('Blue', 1)}</div>
 				<Modal
 					isOpen={this.state.selectedLanguage !== null}
 					toggle={this.handleCloseModal}
@@ -248,9 +284,8 @@ class App extends React.Component {
 						{selectedLanguage.solution ? (
 							<React.Fragment>
 								<p>
-									Owner: {selectedLanguage.solution.user} ({
-										selectedLanguage.team
-									})
+									Owner: {selectedLanguage.solution.user} (
+									{selectedLanguage.team})
 								</p>
 								<p>
 									{'Solution: '}
@@ -300,7 +335,8 @@ class App extends React.Component {
 											target="_blank"
 										>
 											here
-										</a>.
+										</a>
+										.
 									</React.Fragment>
 								)}
 							</p>
