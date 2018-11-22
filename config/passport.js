@@ -33,7 +33,7 @@ passport.use(
 		{
 			consumerKey: process.env.TWITTER_KEY,
 			consumerSecret: process.env.TWITTER_SECRET,
-			callbackURL: '/auth/twitter/callback',
+			callbackURL: `${process.env.SERVER_ORIGIN}/auth/twitter/callback`,
 			passReqToCallback: true,
 		},
 		// eslint-disable-next-line max-params
