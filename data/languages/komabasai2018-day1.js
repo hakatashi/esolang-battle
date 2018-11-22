@@ -1,5 +1,6 @@
 const langsData = require('../langs.json');
 const flatten = require('lodash/flatten');
+const assert = require('assert');
 
 const languages = [
 	['', 'whitespace', 'bash-busybox', ''],
@@ -24,6 +25,7 @@ module.exports = flatten(languages).map((language, index) => {
 	}
 
 	const langDatum = langsData.find((lang) => lang.slug === language);
+	assert(language === '' || langDatum !== undefined, language);
 
 	return {
 		type: 'language',

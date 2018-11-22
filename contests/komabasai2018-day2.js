@@ -3,8 +3,6 @@ const random = require('lodash/random');
 const countBy = require('lodash/countBy');
 const sample = require('lodash/sample');
 
-const A = 'A'.charCodeAt(0);
-
 module.exports.getPrecedingIndices = (cellIndex) => {
 	assert(cellIndex >= 0);
 	assert(cellIndex < 16);

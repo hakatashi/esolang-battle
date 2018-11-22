@@ -77,6 +77,9 @@ class App extends React.Component {
 		if (this.contestId === 'komabasai2018-day1') {
 			return [0, 3, 12, 15].includes(cell);
 		}
+		if (this.contestId === 'komabasai2018-day2') {
+			return [3, 12].includes(cell);
+		}
 		return false;
 	};
 
