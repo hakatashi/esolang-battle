@@ -12,8 +12,8 @@ mongoose.Promise = global.Promise;
 		{
 			name: '駒場祭2018 Live Codegolf Contest day1',
 			id: 'komabasai2018-day1',
-			start: new Date('2018-11-24T14:03:00+0900'),
-			end: new Date('2018-11-24T15:18:00+0900'),
+			start: new Date('2018-11-23T14:03:00+0900'),
+			end: new Date('2018-11-23T15:18:00+0900'),
 			description: {
 				ja: stripIndent`
 				\`\`\`
@@ -78,8 +78,8 @@ mongoose.Promise = global.Promise;
 		{
 			name: '駒場祭2018 Live Codegolf Contest day2',
 			id: 'komabasai2018-day2',
-			start: new Date('2018-11-25T14:03:00+0900'),
-			end: new Date('2018-11-25T15:18:00+0900'),
+			start: new Date('2018-11-24T14:03:00+0900'),
+			end: new Date('2018-11-24T15:18:00+0900'),
 			description: {
 				ja: stripIndent`
 				\`\`\`
