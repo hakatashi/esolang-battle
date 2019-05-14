@@ -15,7 +15,7 @@
     "lint": "prettier-eslint **/*.js **/*.jsx --ignore public/js/lib/** --write && eslint **/*.js --ignore-pattern public/js/lib/**"
   },
   "engines": {
-    "node": "^8.0.0"
+    "node": "^11.0.0"
   },
   "dependencies": {
     "@babel/core": "^7.4.4",

@@ -15,6 +15,8 @@ block head
         include:scss maps/mayfes2018.scss
       else if ['komabasai2018-day1', 'komabasai2018-day2'].includes(contest.id)
         include:scss maps/mayfes2018.scss
+      else if ['mayfes2019-day1', 'mayfes2019-day2'].includes(contest.id)
+        include:scss maps/mayfes2018.scss
       
     if contest.id === '4'
       script(src='/js/contest-4.js', defer)
@@ -22,13 +24,15 @@ block head
       script(src='/js/contest-mayfes2018.js', defer)
     else if ['komabasai2018-day1', 'komabasai2018-day2'].includes(contest.id)
       script(src='/js/contest-mayfes2018.js', defer)
+    else if ['mayfes2019-day1', 'mayfes2019-day2'].includes(contest.id)
+      script(src='/js/contest-mayfes2018.js', defer)
 
 block content
   if !contest.isStarted() && (!user || !user.admin)
     .container
       .content
         include partials/countdown.pug
-  else if ['4', 'mayfes2018-day1', 'mayfes2018-day2', 'komabasai2018-day1', 'komabasai2018-day2'].includes(contest.id)
+  else if ['4', 'mayfes2018-day1', 'mayfes2018-day2', 'komabasai2018-day1', 'komabasai2018-day2', 'mayfes2019-day1', 'mayfes2019-day2'].includes(contest.id)
     #app
   else
     .container
