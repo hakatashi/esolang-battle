@@ -45,14 +45,14 @@ module.exports = flatten(languages)
 		if (index === 8 || index === 16) {
 			return {
 				type: 'base',
-				team: 0,
+				team: 1,
 			};
 		}
 
 		if (index === 12) {
 			return {
 				type: 'base',
-				team: 1,
+				team: 0,
 			};
 		}
 
