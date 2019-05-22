@@ -1,0 +1,154 @@
+html, body {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+#app {
+	flex: 1 1 0;
+}
+
+.world {
+	display: flex;
+	justify-content: space-between;
+	height: 100%;
+
+	@media screen and (orientation: portrait) {
+		flex-direction: column;
+	}
+
+	.spacer {
+		width: 200px;
+	}
+
+	.map {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-content: center;
+		width: 80vw;
+
+		.cell {
+			flex: 0 0 140px;
+			height: 140px;
+			background: gray;
+			margin: 5px;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			text-align: center;
+			font-size: 3vmin;
+			font-weight: bold;
+			line-height: 1.2;
+
+			&.black { background-color: #111111; }
+			&.grey { background-color: #555555; }
+			&.white { background-color: #ffffff; }
+			&.red { background-color: #ef2011; }
+			&.blue { background-color: #0e30ec; }
+			&.green { background-color: #167516; }
+			&.orange { background-color: #F57F17; }
+			&.purple { background-color: #6A1B9A; }
+
+			&.white {
+				border: 1px solid gray;
+			}
+		}
+
+		@media screen and (orientation: portrait) {
+			overflow: hidden;
+		}
+
+		.language-size {
+			font-size: 1.3em;
+		}
+	}
+
+	.teams {
+		display: flex;
+		flex-basis: 130px;
+
+		@media screen and (orientation: portrait) {
+			flex-direction: column;
+			flex-basis: auto;
+		}
+
+		.team {
+			width: 50px;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			margin-right: 15px;
+
+			@media screen and (orientation: portrait) {
+				width: auto;
+				height: 25px;
+				flex-direction: row-reverse;
+				margin: 0 0 5px;
+			}
+
+			&.red .bar {
+				background-color: #ef2011;
+				color: #ef2011;
+			}
+
+			&.blue .bar {
+				background-color: #0e30ec;
+				color: #0e30ec;
+			}
+
+			&.green .bar {
+				background-color: #167516;
+				color: #167516;
+			}
+
+			&.orange .bar {
+				background-color: #F57F17;
+				color: #F57F17;
+			}
+
+			&.purple .bar {
+				background-color: #6A1B9A;
+				color: #6A1B9A;
+			}
+
+			.bar {
+				position: relative;
+			}
+
+			.count {
+				position: absolute;
+				bottom: 100%;
+				text-align: center;
+				width: 100%;
+				font-weight: bold;
+				font-size: 32px;
+
+				@media screen and (orientation: portrait) {
+					left: calc(100% + 5px);
+					width: auto;
+					top: 0;
+					bottom: 0;
+					line-height: 30px;
+				}
+			}
+
+			.team-name {
+				position: absolute;
+				bottom: calc(100% + 35px);
+				text-align: center;
+				width: 100%;
+				font-weight: bold;
+
+				@media screen and (orientation: portrait) {
+					left: calc(100% + 45px);
+					width: auto;
+					top: 0;
+					bottom: 0;
+					line-height: 30px;
+				}
+			}
+		}
+	}
+}

@@ -151,7 +151,7 @@ module.exports.getRawSubmission = async (req, res) => {
 		req.user &&
 		req.user.getTeam(req.contest) === submission.user.getTeam(req.contest);
 
-	if (!selfTeam && !req.contest.isEnded()) {
+	if (!selfTeam && !req.contest.isEnded() && !(req.user && req.user.admin)) {
 		res.sendStatus(403);
 		return;
 	}
