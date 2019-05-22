@@ -29,8 +29,8 @@ html, body {
 		width: 80vw;
 
 		.cell {
-			flex: 0 0 140px;
-			height: 140px;
+			flex: 0 0 20vmin;
+			height: 20vmin;
 			background: gray;
 			margin: 5px;
 			border-radius: 50%;
@@ -58,6 +58,11 @@ html, body {
 
 		@media screen and (orientation: portrait) {
 			overflow: hidden;
+			width: 100%;
+		}
+
+		.language-name {
+			word-break: break-all;
 		}
 
 		.language-size {

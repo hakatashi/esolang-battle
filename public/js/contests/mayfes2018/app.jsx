@@ -94,13 +94,26 @@ class App extends React.Component {
 		return false;
 	};
 
+	isEnded = () => (
+		[
+			'4',
+			'mayfes2018-day1',
+			'mayfes2018-day2',
+			'hackathon2018',
+			'komabasai2018-day1',
+			'komabasai2018-day2',
+			'mayfes2019-day1',
+			'mayfes2019-day2',
+		].includes(this.contestId)
+	);
+
 	handleClickCell = (event) => {
 		const cellIndex = parseInt(
 			event.target.closest('.cell').getAttribute('data-index')
 		);
 		this.setState(({languages}) => {
 			const language = languages[cellIndex];
-			if (!language || language.available !== true) {
+			if (!language || (!this.isEnded() && language.available !== true)) {
 				return {};
 			}
 			return {selectedLanguage: language};
@@ -248,8 +261,7 @@ class App extends React.Component {
 											onClick={this.handleClickCell}
 											style={{
 												cursor:
-														this.state.languages[y * this.size + x] &&
-														this.state.languages[y * this.size + x].available
+														this.state.languages[y * this.size + x]
 															? 'pointer'
 															: '',
 												color:
