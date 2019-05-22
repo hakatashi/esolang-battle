@@ -700,6 +700,11 @@
     "link": "http://ocaml.org/"
   },
   {
+    "slug": "haskell",
+    "name": "Haskell",
+    "link": "https://www.haskell.org/"
+  },
+  {
     "slug": "ubuntu-base",
     "name": null,
     "link": null

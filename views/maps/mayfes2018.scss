@@ -24,21 +24,34 @@
 
 		.cell {
 			flex: 1 1 0;
+			position: relative;
 			background: gray;
 			margin: 3px;
 			border-radius: 5px;
+
 			display: flex;
 			justify-content: center;
 			flex-direction: column;
+
 			text-align: center;
 			font-size: 4vmin;
 			font-weight: bold;
 
-			&.black { background-color: #111111; }
-			&.grey { background-color: #555555; }
-			&.white { background-color: #ffffff; }
-			&.red { background-color: #ef2011; }
-			&.blue { background-color: #0e30ec; }
+			&.black {
+				background-color: #111111;
+			}
+			&.grey {
+				background-color: #555555;
+			}
+			&.white {
+				background-color: #ffffff;
+			}
+			&.red {
+				background-color: #ef2011;
+			}
+			&.blue {
+				background-color: #0e30ec;
+			}
 		}
 
 		@media screen and (orientation: portrait) {
@@ -49,10 +62,20 @@
 			width: 200px;
 
 			line-height: 1.3em;
-			font-size: 3.8vmin;
+			font-size: 3.2vmin;
 			font-weight: bold;
 			text-align: center;
-			color: white;
+
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%; // ???
+			bottom: 0;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
 
 			.language-size {
 				font-size: 1.3em;
@@ -62,7 +85,15 @@
 
 	.teams {
 		display: flex;
-		flex-basis: 130px;
+		flex: 1 0 0;
+
+		&.left {
+			justify-content: flex-end;
+		}
+
+		&.right {
+			justify-content: flex-start;
+		}
 
 		@media screen and (orientation: portrait) {
 			flex-direction: column;
@@ -74,7 +105,7 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: flex-end;
-			margin-right: 15px;
+			margin: 0 10px;
 
 			@media screen and (orientation: portrait) {
 				width: auto;

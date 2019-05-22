@@ -28,6 +28,7 @@ module.exports.contest = async (req, res, next) => {
  * GET /api/contests/:contest/languages
  */
 module.exports.getLanguages = async (req, res, next) => {
+	// FIXME: visibility test
 	try {
 		const languageMap = await getLanguageMap({
 			team: req.user && req.user.getTeam(req.contest),
