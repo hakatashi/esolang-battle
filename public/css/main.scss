@@ -114,6 +114,31 @@ pre.hexdump {
       background-image: url('/img/contest/mayfes2018-day2-headline.svg');
     }
 
+    &.contest-hackathon2018 {
+      background-color: $md-teal-500;
+      background-image: url('/img/contest/hackathon2018-headline.svg');
+    }
+
+    &.contest-komabasai2018-day1 {
+      background-color: $md-amber-600;
+      background-image: url('/img/contest/komabasai2018-day1-headline.svg');
+    }
+
+    &.contest-komabasai2018-day2 {
+      background-color: $md-purple-400;
+      background-image: url('/img/contest/komabasai2018-day2-headline.svg');
+    }
+
+    &.contest-mayfes2019-day1 {
+      background-color: $md-deep-orange-800;
+      background-image: url('/img/contest/mayfes2019-day1-headline.svg');
+    }
+
+    &.contest-mayfes2019-day2 {
+      background-color: $md-light-blue-900;
+      background-image: url('/img/contest/mayfes2019-day2-headline.svg');
+    }
+
     &.contest-unknown {
       background-color: #050505;
       background-image: url('/img/contest/noise.png');
