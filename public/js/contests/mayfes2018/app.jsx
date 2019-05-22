@@ -19,9 +19,17 @@ class App extends React.Component {
 			.querySelector('meta[name=contest-id]')
 			.getAttribute('content');
 
-		this.size = ['mayfes2018-day1', 'mayfes2018-day2'].includes(this.contestId)
-			? 3
-			: 4;
+		this.size = (() => {
+			if (['mayfes2018-day1', 'mayfes2018-day2'].includes(this.contestId)) {
+				return 3;
+			}
+
+			if (['komabasai2018-day1', 'komabasai2018-day2'].includes(this.contestId)) {
+				return 4;
+			}
+
+			return 5;
+		})();
 
 		this.state = {
 			code: '',
@@ -79,6 +87,9 @@ class App extends React.Component {
 		}
 		if (this.contestId === 'komabasai2018-day2') {
 			return [3, 12].includes(cell);
+		}
+		if (['mayfes2019-day1', 'mayfes2019-day2'].includes(this.contestId)) {
+			return [0, 3, 4, 5, 19, 20, 21, 24].includes(cell);
 		}
 		return false;
 	};
