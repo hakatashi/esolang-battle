@@ -20,7 +20,7 @@ class MemoryLimitExceededError extends Error {
 	}
 }
 
-module.exports = async ({id, code, stdin}) => {
+module.exports = async ({id, code, stdin, trace}) => {
 	assert(typeof id === 'string');
 	assert(Buffer.isBuffer(code));
 	assert(typeof stdin === 'string');
@@ -95,7 +95,7 @@ module.exports = async ({id, code, stdin}) => {
 				Tty: false,
 				OpenStdin: false,
 				StdinOnce: false,
-				Env: null,
+				Env: trace === true ? ['STRACE_OUTPUT_PATH=/volume/strace.log'] : null,
 				Cmd: [
 					'sh',
 					'-c',
@@ -107,8 +107,9 @@ module.exports = async ({id, code, stdin}) => {
 				},
 				VolumesFrom: [],
 				HostConfig: {
-					Binds: [`${dockerVolumePath}:/volume:ro`],
+					Binds: [`${dockerVolumePath}:/volume:${trace === true ? 'rw' : 'ro'}`],
 					Memory: memoryLimit,
+					...(trace === true ? {CapAdd: ['SYS_PTRACE']} : {}),
 				},
 			});
 
@@ -141,6 +142,9 @@ module.exports = async ({id, code, stdin}) => {
 		const [stdout, stderr, containerData] = await runner.timeout(10000);
 		const executionEnd = Date.now();
 
+		const tracePath = path.join(tmpPath, 'strace.log');
+		const traceLog = trace && (await fs.readFileAsync(tracePath));
+
 		cleanup();
 
 		return {
@@ -154,6 +158,7 @@ module.exports = async ({id, code, stdin}) => {
 					),
 				  }
 				: {}),
+			trace: trace ? traceLog : null,
 		};
 	} catch (error) {
 		if (container) {

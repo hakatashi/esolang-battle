@@ -145,6 +145,7 @@ module.exports.postExecution = async (req, res) => {
 			id: language.slug,
 			code,
 			stdin: input,
+			trace: false,
 		});
 
 		if (typeof info !== 'object') {
