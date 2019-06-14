@@ -66,7 +66,7 @@
   },
   {
     "slug": "ruby",
-    "name": "Ruby 2.5.0",
+    "name": "Ruby 2.6.3",
     "link": "https://www.ruby-lang.org/"
   },
   {
@@ -138,6 +138,16 @@
     "slug": "golfish",
     "name": "golfish",
     "link": "https://github.com/n4o847/tsg-2018-summer"
+  },
+  {
+    "slug": "pxem",
+    "name": "Pxem",
+    "link": "https://ja.wikipedia.org/wiki/Pxem"
+  },
+  {
+    "slug": "arithmetic",
+    "name": "Arithmetic",
+    "link": "https://github.com/toyukan6/Arithmetic"
   },
   {
     "slug": "goruby",
@@ -340,6 +350,46 @@
     "link": "https://github.com/JP3BGY/Hanoi_Stack/"
   },
   {
+    "slug": "brainfuck-moratorium",
+    "name": "Brainfuck (moratorium)",
+    "link": "https://gist.github.com/moratorium08/2fa8dbd4150c8db547a1f3a31d5499ac"
+  },
+  {
+    "slug": "dotnet",
+    "name": null,
+    "link": null
+  },
+  {
+    "slug": "csharp-dotnet",
+    "name": "C# (.NET Core)",
+    "link": "https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/"
+  },
+  {
+    "slug": "fsharp-dotnet",
+    "name": "F# (.NET Core)",
+    "link": "https://fsharp.org/"
+  },
+  {
+    "slug": "fortran",
+    "name": "Fortran 2018",
+    "link": "https://gcc.gnu.org/fortran/"
+  },
+  {
+    "slug": "ring",
+    "name": "Ring",
+    "link": "http://ring-lang.sourceforge.net/"
+  },
+  {
+    "slug": "snobol",
+    "name": "SNOBOL4",
+    "link": "http://www.snobol4.org/"
+  },
+  {
+    "slug": "cobol",
+    "name": "COBOL",
+    "link": "https://open-cobol.sourceforge.io/"
+  },
+  {
     "slug": "java",
     "name": "Java",
     "link": "https://java.com/"
@@ -385,6 +435,11 @@
     "link": "http://www.dangermouse.net/esoteric/whenever.html"
   },
   {
+    "slug": "xslt",
+    "name": "XSLT",
+    "link": "http://saxon.sourceforge.net/"
+  },
+  {
     "slug": "python2",
     "name": "Python 2",
     "link": "https://www.python.org/"
@@ -413,6 +468,11 @@
     "slug": "function2d",
     "name": "Function",
     "link": "https://esolangs.org/wiki/Funciton"
+  },
+  {
+    "slug": "produire",
+    "name": "プロデル",
+    "link": "https://rdr.utopiat.net/"
   },
   {
     "slug": "haystack",
@@ -495,6 +555,31 @@
     "link": "http://esolangs.org/wiki/Suzy"
   },
   {
+    "slug": "bash-pure",
+    "name": "Bash (pure)",
+    "link": "https://tiswww.case.edu/php/chet/bash/bashtop.html"
+  },
+  {
+    "slug": "bash-busybox",
+    "name": "Bash (busybox)",
+    "link": "https://busybox.net/"
+  },
+  {
+    "slug": "fish-shell-pure",
+    "name": "Fish (pure)",
+    "link": "https://fishshell.com/"
+  },
+  {
+    "slug": "ezhil",
+    "name": "எழில்",
+    "link": "http://ezhillang.org/"
+  },
+  {
+    "slug": "snusp",
+    "name": "SNUSP",
+    "link": "https://esolangs.org/wiki/SNUSP"
+  },
+  {
     "slug": "jq",
     "name": "jq",
     "link": "https://stedolan.github.io/jq/"
@@ -550,6 +635,36 @@
     "link": "https://github.com/KPCCoiL/floating-lang"
   },
   {
+    "slug": "qlb",
+    "name": "‫قلب‬",
+    "link": "https://github.com/nasser/---"
+  },
+  {
+    "slug": "calc",
+    "name": "LibreOffice Calc",
+    "link": "https://www.libreoffice.org/discover/calc/"
+  },
+  {
+    "slug": "nuts",
+    "name": "Nuts",
+    "link": "https://github.com/hoge-fuga-0000/Nuts"
+  },
+  {
+    "slug": "canvas",
+    "name": "Canvas",
+    "link": "https://github.com/dzaima/Canvas"
+  },
+  {
+    "slug": "wysiscript",
+    "name": "WysiScript",
+    "link": "http://www.zifyoip.com/wysiscript/"
+  },
+  {
+    "slug": "tetris",
+    "name": "Tetris",
+    "link": "https://sagisawa.0am.jp/tetris/"
+  },
+  {
     "slug": "octave",
     "name": "Octave",
     "link": "https://www.gnu.org/software/octave/"
@@ -598,11 +713,6 @@
     "slug": "trumpscript",
     "name": "TrumpScript",
     "link": "http://samshadwell.me/TrumpScript/"
-  },
-  {
-    "slug": "05ab1e",
-    "name": "05AB1E",
-    "link": "https://github.com/Adriandmen/05AB1E"
   },
   {
     "slug": "2sable",
@@ -675,8 +785,23 @@
     "link": "https://github.com/Yosshi999/iwashi-lang"
   },
   {
+    "slug": "hypertorus",
+    "name": "HyperTorus",
+    "link": "https://github.com/satos---jp/HyperTorus"
+  },
+  {
+    "slug": "gaia",
+    "name": "Gaia",
+    "link": "https://github.com/satos---jp/HyperTorus"
+  },
+  {
     "slug": "vim",
     "name": "Vim",
+    "link": "http://www.vim.org/"
+  },
+  {
+    "slug": "autovim",
+    "name": "Autovim",
     "link": "http://www.vim.org/"
   },
   {
@@ -700,9 +825,64 @@
     "link": "http://ocaml.org/"
   },
   {
+    "slug": "coq",
+    "name": "Coq",
+    "link": "https://coq.inria.fr/"
+  },
+  {
     "slug": "haskell",
     "name": "Haskell",
     "link": "https://www.haskell.org/"
+  },
+  {
+    "slug": "squared-cool",
+    "name": "🆒",
+    "link": "https://esolangs.org/wiki/%F0%9F%86%92"
+  },
+  {
+    "slug": "erlang",
+    "name": "Erlang",
+    "link": "http://erlang.org/"
+  },
+  {
+    "slug": "elixir",
+    "name": "Elixir",
+    "link": "https://elixir-lang.org/"
+  },
+  {
+    "slug": "05ab1e",
+    "name": "05AB1E",
+    "link": "https://github.com/Adriandmen/05AB1E"
+  },
+  {
+    "slug": "awk",
+    "name": "awk (GNU awk)",
+    "link": "http://www.gnu.org/software/gawk/"
+  },
+  {
+    "slug": "perl6",
+    "name": "Perl 6",
+    "link": "http://perl6.org/"
+  },
+  {
+    "slug": "ballerina",
+    "name": "Ballerina",
+    "link": "https://ballerina.io/"
+  },
+  {
+    "slug": "sed",
+    "name": "sed",
+    "link": "https://www.gnu.org/software/sed/"
+  },
+  {
+    "slug": "riscv",
+    "name": "RISC-V (32bit, ELF)",
+    "link": "https://riscv.org/"
+  },
+  {
+    "slug": "m4",
+    "name": "m4",
+    "link": "https://www.gnu.org/software/m4/m4.html"
   },
   {
     "slug": "ubuntu-base",
@@ -760,6 +940,11 @@
     "link": "https://clang.llvm.org/"
   },
   {
+    "slug": "cpp-compile-time-clang",
+    "name": "Compile-time C++ (Clang, C++11)",
+    "link": "https://clang.llvm.org/"
+  },
+  {
     "slug": "perl1",
     "name": "Perl 1.0",
     "link": "https://www.perl.org/"
@@ -770,18 +955,18 @@
     "link": "https://github.com/moratorium08/moo"
   },
   {
+    "slug": "clisp-sbcl",
+    "name": "Common LISP (SBCL)",
+    "link": "http://www.sbcl.org/"
+  },
+  {
+    "slug": "abc",
+    "name": "ABC",
+    "link": "https://en.wikipedia.org/wiki/ABC_(programming_language)"
+  },
+  {
     "slug": "brainfuck-bfi",
     "name": "Brainfuck (BFI)",
     "link": "http://esoteric.sange.fi/brainfuck/impl/interp/BFI.c"
-  },
-  {
-    "slug": "bash-pure",
-    "name": "Bash (pure)",
-    "link": "https://tiswww.case.edu/php/chet/bash/bashtop.html"
-  },
-  {
-    "slug": "bash-busybox",
-    "name": "Bash (busybox)",
-    "link": "https://busybox.net/"
   }
 ]
