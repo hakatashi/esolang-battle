@@ -12,6 +12,7 @@ const submissionSchema = new mongoose.Schema(
 		input: String,
 		stdout: String,
 		stderr: String,
+		trace: String,
 		duration: Number,
 		url: String,
 		error: {

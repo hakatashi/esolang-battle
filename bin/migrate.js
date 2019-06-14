@@ -1,11 +1,17 @@
 const mongoose = require('mongoose');
 const Contest = require('../models/Contest');
+const Submission = require('../models/Submission');
 const {stripIndent} = require('common-tags');
 
 mongoose.Promise = global.Promise;
 
 (async () => {
 	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
+
+	await Submission.updateMany(
+		{trace: {$exists: false}},
+		{$set: {trace: null}},
+	);
 
 	await Contest.updateOne(
 		{id: '5'},
