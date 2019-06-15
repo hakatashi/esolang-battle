@@ -5,7 +5,66 @@ const chunk = require('lodash/chunk');
 const random = require('lodash/random');
 
 module.exports.getPrecedingIndices = (cellIndex) => {
-	return [Math.max(cellIndex - 1, 0), Math.min(cellIndex + 1, 24 * 14 - 1)];
+	const x = cellIndex % 24;
+	const y = Math.floor(cellIndex / 24);
+	const isOdd = Math.floor(y / 2) % 2 === 0;
+	const dx = x % 4;
+	const dy = y % 2;
+	const type = dy * 4 + dx;
+
+	let cells = null;
+
+	if (type === 0) {
+		cells = [
+			{x: x - 1, y},
+			{x: x + 1, y},
+			{x, y: y + 1},
+		];
+	} else if (type === 1) {
+		cells = [
+			{x: x - 1, y},
+			{x: x + 1, y},
+			{x: isOdd ? x : x - 4, y: y - 1},
+			{x, y: y + 1},
+		];
+	} else if (type === 2) {
+		cells = [
+			{x: x - 1, y},
+			{x: x + 1, y},
+			{x: isOdd ? x + 2 : x - 2, y: y - 1},
+		];
+	} else if (type === 3) {
+		cells = [
+			{x: x - 1, y},
+			{x: x + 1, y},
+			{x: isOdd ? x + 2 : x - 2, y: y - 1},
+			{x: x - 2, y: y + 1},
+		];
+	} else if (type === 4) {
+		cells = [
+			{x: x - 3, y},
+			{x: x + 1, y},
+			{x, y: y - 1},
+			{x: isOdd ? x + 2 : x - 2, y: y + 1},
+		];
+	} else if (type === 5) {
+		cells = [
+			{x: x - 1, y},
+			{x: x + 3, y},
+			{x, y: y - 1},
+			{x: x + 2, y: y - 1},
+			{x: isOdd ? x + 2 : x - 2, y: y + 1},
+			{x: isOdd ? x + 4 : x, y: y + 1},
+		];
+	} else {
+		return [];
+	}
+
+	return cells.filter((c) => (
+		0 <= c.x && c.x < 24 && 0 <= c.y && c.y < 14
+	)).map((c) => (
+		c.y * 24 + c.x
+	));
 };
 
 const generateTestInput = () => chunk(

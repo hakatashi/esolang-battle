@@ -29,6 +29,34 @@ const boardShape = [
 	'                        ',
 ];
 
+const getColor = (language) => {
+	if (!language) {
+		return 'black';
+	}
+
+	if (language.team === 0) {
+		return 'red';
+	}
+
+	if (language.team === 1) {
+		return 'blue';
+	}
+
+	if (language.team === 2) {
+		return 'green';
+	}
+
+	if (language.type === 'unknown') {
+		return 'black';
+	}
+
+	if (language.available === true) {
+		return 'white';
+	}
+
+	return 'gray';
+};
+
 class App extends React.Component {
 	constructor(props, context) {
 		super(props, context);
@@ -201,11 +229,21 @@ class App extends React.Component {
 											const dy = y * 2 + Math.floor(i / 4);
 											const index = dy * 24 + dx;
 											const language = this.state.languages[index];
-											const team = (language && typeof language.team === 'number') ? ['red', 'blue', 'green'][language.team] : '';
+											const color = getColor(language);
 
 											if (boardShape[dy][dx] === '*') {
 												return (
-													<polygon key={i} className={`cell ${team}`} points={points} fill="black" stroke="white" strokeWidth="0.05"/>
+													<polygon
+														key={i}
+														className={`cell ${color}`}
+														points={points}
+														fill="black"
+														stroke="white"
+														strokeWidth="0.05"
+														style={{
+															...(language && language.available ? {cursor: 'pointer'} : {}),
+														}}
+													/>
 												);
 											}
 											return null;
@@ -232,6 +270,7 @@ class App extends React.Component {
 											const dy = y * 2 + Math.floor(i / 4);
 											const index = dy * 24 + dx;
 											const language = this.state.languages[index];
+											const color = getColor(language);
 
 											if (boardShape[dy][dx] === '*') {
 												const cx = x * 2.732 + y % 2 * -1.366 + left;
@@ -239,7 +278,7 @@ class App extends React.Component {
 
 												return (
 													<div
-														className={`language-label`}
+														className={`language-label ${color}`}
 														key={i}
 														style={{
 															position: 'absolute',

@@ -34,8 +34,6 @@ html, body {
 			height: 100%;
 
 			.cell {
-				cursor: pointer;
-
 				&.red {
 					fill: #ef2011;
 				}
@@ -46,6 +44,14 @@ html, body {
 
 				&.green {
 					fill: #167516;
+				}
+
+				&.white {
+					fill: white;
+				}
+
+				&.gray {
+					fill: #737373;
 				}
 			}
 
@@ -81,6 +87,10 @@ html, body {
 
 			.language-size {
 				font-size: 1.3em;
+			}
+
+			&.gray, &.white {
+				color: #111;
 			}
 		}
 	}
