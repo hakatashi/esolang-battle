@@ -67,7 +67,7 @@ class App extends React.Component {
 			mapWidth: 0,
 			languages: [],
 			selectedLanguage: null,
-			isPending: true,
+			isPending: false,
 			message: null,
 			messageType: 'success',
 			messageDetail: null,
@@ -198,6 +198,17 @@ class App extends React.Component {
 		}
 	};
 
+	handleClickCell = (event) => {
+		const cellIndex = parseInt(event.target.getAttribute('data-index'));
+		this.setState(({languages}) => {
+			const language = languages[cellIndex];
+			if (!language || !language.available) {
+				return {};
+			}
+			return {selectedLanguage: language};
+		});
+	};
+
 	render() {
 		const selectedLanguage = this.state.selectedLanguage || {};
 		const cellCounts = Array(3)
@@ -243,6 +254,8 @@ class App extends React.Component {
 														style={{
 															...(language && language.available ? {cursor: 'pointer'} : {}),
 														}}
+														onClick={this.handleClickCell}
+														data-index={index}
 													/>
 												);
 											}
@@ -288,7 +301,7 @@ class App extends React.Component {
 															bottom: `${100 - (cy + height / 2) / 15.6 * 100}%`,
 														}}
 													>
-														{index}
+														{language ? language.name : index}
 													</div>
 												);
 											}
@@ -394,7 +407,7 @@ class App extends React.Component {
 						<Button
 							color="primary"
 							onClick={this.handleSend}
-							disabled
+							disabled={this.state.isPending}
 						>
 							Send
 						</Button>{' '}
