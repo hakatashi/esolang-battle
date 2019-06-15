@@ -4,6 +4,8 @@ const math = require('mathjs');
 const chunk = require('lodash/chunk');
 const random = require('lodash/random');
 
+const printableRegex = /[a-z0-9!"#$%&'()*+,./:;<=>?@[\]^_`{|}~-]/ig;
+
 module.exports.getPrecedingIndices = (cellIndex) => {
 	const x = cellIndex % 24;
 	const y = Math.floor(cellIndex / 24);
@@ -87,47 +89,96 @@ const getDeterminant = (vectors) => {
 };
 
 module.exports.generateInput = () => {
-	let vectors = null;
-	let determinant = null;
-	while (true) {
-		vectors = generateTestInput();
-		determinant = getDeterminant(vectors);
-		if (determinant % 6 === 0 && Math.abs(determinant) >= 30000) {
-			break;
-		}
-	}
+	const tokyoX = random(10, 49);
+	const kyotoX = random(0, tokyoX - 3);
+	const height = random(3, 50);
 
-	const validVectors =
-		determinant > 0
-			? vectors
-			: [vectors[0], vectors[1], vectors[3], vectors[2]];
+	const lines = Array(height).fill(' '.repeat(50));
 
-	return validVectors
-		.map(
-			(vector) => `${vector
-				.map((value) => value.toString(10).padStart(2, '0'))
-				.join(' ')}\n`
-		)
-		.join('');
+	lines[0] = Array(50).fill().map((_, i) => i === tokyoX ? 'T' : ' ').join('');
+	lines[height - 1] = Array(50).fill().map((_, i) => i === kyotoX ? 'K' : ' ').join('');
+
+	return lines.join('\n') + '\n';
 };
 
 module.exports.isValidAnswer = (input, output) => {
 	if (process.env.NODE_ENV !== 'production') {
-		return true;
+		// return true;
 	}
 
-	const answer = getDeterminant(chunk(input.split(/\s/), 3)) / 6;
-	assert(Number.isInteger(answer));
-	assert(answer >= 5000);
+	const inputLines = input.split('\n').filter((line) => line);
+	const tokyoX = inputLines[0].indexOf('T');
+	const kyotoX = inputLines[inputLines.length - 1].indexOf('K');
 
-	const correctOutput = answer.toString();
+	const outputLines = output.toString().split('\n');
+	for (const [index, line] of outputLines.entries()) {
+		if (line.slice(50).match(/\S/)) {
+			console.log(`info: line ${index} exceeds permit output range`);
+			return false;
+		}
+		if (index >= inputLines.length && line.match(/\S/)) {
+			console.log(`info: line ${index} exceeds permit output range`);
+			return false;
+		}
+	}
 
-	// Trim
-	const trimmedOutput = output
-		.toString()
-		.trim()
-		.replace(/^0+/, '');
-	console.log('info:', {input, correctOutput, output, trimmedOutput});
+	const normalizedOutputLines = Array(inputLines.length).fill().map((_, i) => (
+		((outputLines[i] || '') + ' '.repeat(50)).slice(0, 50)
+	));
 
-	return trimmedOutput === correctOutput;
+	const printableCounts = normalizedOutputLines.join('').match(printableRegex).length;
+	if (printableCounts > Math.abs(tokyoX - kyotoX) + inputLines.length) {
+		console.log(`info: printable character counts ${printableCounts} exceeds limit`);
+		return false;
+	}
+
+	if (!normalizedOutputLines[0][tokyoX].match(printableRegex)) {
+		console.log('info: start point is not reachable');
+		return false;
+	}
+
+	const visited = new Set();
+	const queue = [];
+	let isReachable = false;
+
+	visited.add(tokyoX);
+	queue.push({x: tokyoX, y: 0});
+
+	const isPrintable = (x, y) => (
+		normalizedOutputLines[y][x].match(printableRegex)
+	);
+
+	while (queue.length > 0) {
+		const {x, y} = queue.pop();
+		console.log({x, y});
+		if (x === kyotoX && y === inputLines.length - 1) {
+			isReachable = true;
+			break;
+		}
+		if (x - 1 >= 0 && !visited.has(y * 50 + x - 1) && isPrintable(x - 1, y)) {
+			visited.add(y * 50 + x - 1);
+			queue.push({x: x - 1, y});
+		}
+		if (x + 1 <= 49 && !visited.has(y * 50 + x + 1) && isPrintable(x + 1, y)) {
+			visited.add(y * 50 + x + 1);
+			queue.push({x: x + 1, y});
+		}
+		if (y - 1 >= 0 && !visited.has((y - 1) * 50 + x) && isPrintable(x, y - 1)) {
+			visited.add((y - 1) * 50 + x);
+			queue.push({x, y: y - 1});
+		}
+		if (y + 1 < inputLines.length && !visited.has((y + 1) * 50 + x) && isPrintable(x, y + 1)) {
+			visited.add((y + 1) * 50 + x);
+			queue.push({x, y: y + 1});
+		}
+	}
+
+	if (!isReachable) {
+		console.log('info: kyoto is unreachable');
+		return false;
+	}
+
+	console.log('info:', {input, output});
+
+	return true;
 };

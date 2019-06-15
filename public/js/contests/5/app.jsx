@@ -301,7 +301,17 @@ class App extends React.Component {
 															bottom: `${100 - (cy + height / 2) / 15.6 * 100}%`,
 														}}
 													>
-														{language ? language.name : index}
+														<div className="language-name">
+															{language
+																? language.name
+																: ''}
+														</div>
+														<div className="language-size">
+															{language &&
+															language.solution
+																? language.solution.size
+																: ''}
+														</div>
 													</div>
 												);
 											}

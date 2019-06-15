@@ -108,7 +108,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 				precedingCells.some(
 					(c) => c.type === 'base' ||
 						(c.type === 'language' && c.record && c.record.solution)
-				) || true
+				)
 			) {
 				return {
 					type: 'language',
