@@ -37,6 +37,7 @@ class App extends React.Component {
 			code: '',
 			files: [],
 			faces: [],
+			mapWidth: 0,
 			languages: [],
 			selectedLanguage: null,
 			isPending: true,
@@ -49,6 +50,8 @@ class App extends React.Component {
 
 		this.updateLanguages();
 		this.initSocket();
+
+		window.addEventListener('resize', this.handleUpdateWindowSize);
 	}
 
 	initSocket = () => {
@@ -174,6 +177,17 @@ class App extends React.Component {
 		this.updateLanguages();
 	};
 
+	handleRefSvg = (node) => {
+		this.svg = node;
+		this.handleUpdateWindowSize();
+	};
+
+	handleUpdateWindowSize = () => {
+		if (this.svg) {
+			this.setState({mapWidth: this.svg.clientWidth});
+		}
+	};
+
 	render() {
 		const selectedLanguage = this.state.selectedLanguage || {};
 		const cellCounts = Array(3)
@@ -187,8 +201,8 @@ class App extends React.Component {
 		return (
 			<div className="world">
 				<div className="spacer"/>
-				<div className="map">
-					<svg viewBox="0 0 14.7 15.6" className="paint">
+				<div className="map" style={{flexBasis: `${this.state.mapWidth}px`, width: `${this.state.mapWidth}px`}}>
+					<svg ref={this.handleRefSvg} viewBox="0 0 14.7 15.6" className="paint">
 						{range(7).map((y) => (
 							<g key={y} style={{transform: `translate(${y % 2 * -1.366}px, ${y * 2.366}px)`}}>
 								{range(6).map((x) => (
@@ -202,7 +216,7 @@ class App extends React.Component {
 											].map((points, i) => {
 												if (boardShape[y * 2][x * 4 + i] === '*') {
 													return (
-														<polygon key={i} points={points} fill="black" stroke="white" strokeWidth="0.05"/>
+														<polygon key={i} className="cell" points={points} fill="black" stroke="white" strokeWidth="0.05"/>
 													);
 												}
 												return null;
@@ -215,7 +229,7 @@ class App extends React.Component {
 											].map((points, i) => {
 												if (boardShape[y * 2 + 1][x * 4 + i] === '*') {
 													return (
-														<polygon key={i} points={points} fill="black" stroke="white" strokeWidth="0.05"/>
+														<polygon key={i} className="cell" points={points} fill="black" stroke="white" strokeWidth="0.05"/>
 													);
 												}
 												return null;
@@ -227,37 +241,44 @@ class App extends React.Component {
 						))}
 					</svg>
 					<div className="language-labels">
-						{[...this.state.faces.entries()]
-							.filter(([, face]) => face.z < 0.99915)
-							.map(([index, face]) => (
-								<div
-									key={index}
-									className="language-label"
-									style={{
-										color:
-											this.state.languages[index] &&
-											this.state.languages[index].team === undefined
-												? '#222'
-												: 'white',
-										transform: `translate(${face.x}px, ${
-											face.y
-										}px) translate(-50%, -50%) scale(${(0.99915 - face.z) *
-											3000})`,
-									}}
-								>
-									<div className="language-name">
-										{this.state.languages[index]
-											? this.state.languages[index].name
-											: ''}
+						{range(7).map((y) => (
+							<div key={y}>
+								{range(6).map((x) => (
+									<div key={x}>
+										{[
+											{left: 0.5, top: 1.077, width: 0.6, height: 0.6},
+											{left: 1.183, top: 0.683, width: 0.8, height: 0.8},
+											{left: 1.866, top: 0.288, width: 0.6, height: 0.6},
+											{left: 2.549, top: 0.683, width: 0.8, height: 0.8},
+											{left: 0.5, top: 1.866, width: 1, height: 1},
+											{left: 1.866, top: 1.866, width: 1.6, height: 1.5},
+										].map(({left, top, width, height}, i) => {
+											if (boardShape[y * 2 + Math.floor(i / 4)][x * 4 + i % 4] === '*') {
+												const cx = x * 2.732 + y % 2 * -1.366 + left;
+												const cy = y * 2.366 + top;
+
+												return (
+													<div
+														className="language-label"
+														key={i}
+														style={{
+															position: 'absolute',
+															left: `${(cx - width / 2) / 14.7 * 100}%`,
+															top: `${(cy - height / 2) / 15.6 * 100}%`,
+															right: `${100 - (cx + width / 2) / 14.7 * 100}%`,
+															bottom: `${100 - (cy + height / 2) / 15.6 * 100}%`,
+														}}
+													>
+														hoge
+													</div>
+												);
+											}
+											return null;
+										})}
 									</div>
-									<div className="language-size">
-										{this.state.languages[index] &&
-										this.state.languages[index].solution
-											? this.state.languages[index].solution.size
-											: ''}
-									</div>
-								</div>
-							))}
+								))}
+							</div>
+						))}
 					</div>
 				</div>
 				<div className="teams">
