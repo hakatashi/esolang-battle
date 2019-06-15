@@ -65,7 +65,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 			assert({}.hasOwnProperty.call(contests, contest.id));
 			const {getPrecedingIndices} = contests[contest.id];
 
-			const precedingCells = getPrecedingIndices(index).map(
+			const precedingCells = getPrecedingIndices(index).filter((i) => languageCells[i].type !== undefined).map(
 				(i) => languageCells[i]
 			);
 

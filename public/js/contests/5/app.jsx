@@ -36,7 +36,6 @@ class App extends React.Component {
 		this.state = {
 			code: '',
 			files: [],
-			faces: [],
 			mapWidth: 0,
 			languages: [],
 			selectedLanguage: null,
@@ -68,23 +67,6 @@ class App extends React.Component {
 	updateLanguages = async () => {
 		const languages = await api('GET', '/contests/5/languages');
 		this.setState({languages});
-		this.map &&
-			this.map.setFaceColors(
-				languages.map((language) => {
-					if (language.type === 'unknown') {
-						return 'black';
-					}
-
-					if (language.team === undefined) {
-						if (language.available === true) {
-							return 'white';
-						}
-						return 'grey';
-					}
-
-					return ['red', 'blue', 'green'][language.team];
-				})
-			);
 	};
 
 	handleChangeCode = (event) => {
@@ -206,35 +188,28 @@ class App extends React.Component {
 						{range(7).map((y) => (
 							<g key={y} style={{transform: `translate(${y % 2 * -1.366}px, ${y * 2.366}px)`}}>
 								{range(6).map((x) => (
-									<g key={x}>
-										<g style={{transform: `translate(${x * 2.732}px, 0px)`}}>
-											{[
-												'0.5,0.5 1,1.366 0,1.366',
-												'0.5,0.5 1.366,0 1.866,0.866 1,1.366',
-												'1.366,0 2.366,0 1.866,0.866',
-												'2.366,0 3.232,0.5 2.732,1.366 1.866,0.866',
-											].map((points, i) => {
-												if (boardShape[y * 2][x * 4 + i] === '*') {
-													return (
-														<polygon key={i} className="cell" points={points} fill="black" stroke="white" strokeWidth="0.05"/>
-													);
-												}
-												return null;
-											})}
-										</g>
-										<g style={{transform: `translate(${x * 2.732}px, 0px)`}}>
-											{[
-												'0,1.366 1,1.366 1,2.366 0,2.366',
-												'1,1.366 1.866,0.866 2.732,1.366 2.732,2.366 1.866,2.866 1,2.366',
-											].map((points, i) => {
-												if (boardShape[y * 2 + 1][x * 4 + i] === '*') {
-													return (
-														<polygon key={i} className="cell" points={points} fill="black" stroke="white" strokeWidth="0.05"/>
-													);
-												}
-												return null;
-											})}
-										</g>
+									<g key={x} style={{transform: `translate(${x * 2.732}px, 0px)`}}>
+										{[
+											'0.5,0.5 1,1.366 0,1.366',
+											'0.5,0.5 1.366,0 1.866,0.866 1,1.366',
+											'1.366,0 2.366,0 1.866,0.866',
+											'2.366,0 3.232,0.5 2.732,1.366 1.866,0.866',
+											'0,1.366 1,1.366 1,2.366 0,2.366',
+											'1,1.366 1.866,0.866 2.732,1.366 2.732,2.366 1.866,2.866 1,2.366',
+										].map((points, i) => {
+											const dx = x * 4 + i % 4;
+											const dy = y * 2 + Math.floor(i / 4);
+											const index = dy * 24 + dx;
+											const language = this.state.languages[index];
+											const team = (language && typeof language.team === 'number') ? ['red', 'blue', 'green'][language.team] : '';
+
+											if (boardShape[dy][dx] === '*') {
+												return (
+													<polygon key={i} className={`cell ${team}`} points={points} fill="black" stroke="white" strokeWidth="0.05"/>
+												);
+											}
+											return null;
+										})}
 									</g>
 								))}
 							</g>
@@ -253,13 +228,18 @@ class App extends React.Component {
 											{left: 0.5, top: 1.866, width: 1, height: 1},
 											{left: 1.866, top: 1.866, width: 1.6, height: 1.5},
 										].map(({left, top, width, height}, i) => {
-											if (boardShape[y * 2 + Math.floor(i / 4)][x * 4 + i % 4] === '*') {
+											const dx = x * 4 + i % 4;
+											const dy = y * 2 + Math.floor(i / 4);
+											const index = dy * 24 + dx;
+											const language = this.state.languages[index];
+
+											if (boardShape[dy][dx] === '*') {
 												const cx = x * 2.732 + y % 2 * -1.366 + left;
 												const cy = y * 2.366 + top;
 
 												return (
 													<div
-														className="language-label"
+														className={`language-label`}
 														key={i}
 														style={{
 															position: 'absolute',
@@ -269,7 +249,7 @@ class App extends React.Component {
 															bottom: `${100 - (cy + height / 2) / 15.6 * 100}%`,
 														}}
 													>
-														hoge
+														{index}
 													</div>
 												);
 											}

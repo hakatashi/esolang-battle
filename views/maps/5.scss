@@ -35,10 +35,22 @@ html, body {
 
 			.cell {
 				cursor: pointer;
+
+				&.red {
+					fill: #ef2011;
+				}
+
+				&.blue {
+					fill: #0e30ec;
+				}
+
+				&.green {
+					fill: #167516;
+				}
 			}
 
 			.cell:hover {
-				opacity: 0.8;
+				opacity: 0.9;
 			}
 		}
 
