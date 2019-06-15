@@ -23,9 +23,13 @@ html, body {
 		position: relative;
 		flex: 1 1 0;
 
-		.paint {
+		svg.paint {
 			width: 100%;
 			height: 100%;
+
+			.rect:hover {
+				fill: red;
+			}
 		}
 
 		@media screen and (orientation: portrait) {

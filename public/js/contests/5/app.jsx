@@ -9,7 +9,25 @@ const {
 	FormGroup,
 	Input,
 } = require('reactstrap');
+const range = require('lodash/range');
 const api = require('../../api.js');
+
+const boardShape = [
+	'        *****           ',
+	'        *****           ',
+	'    *****************   ',
+	'    *****************   ',
+	'*********************   ',
+	'*********************   ',
+	'  ********************* ',
+	'    *****************   ',
+	'*********************   ',
+	'*********************   ',
+	'  ********************* ',
+	'        *********       ',
+	'      *********         ',
+	'                        ',
+];
 
 class App extends React.Component {
 	constructor(props, context) {
@@ -170,8 +188,43 @@ class App extends React.Component {
 			<div className="world">
 				<div className="spacer"/>
 				<div className="map">
-					<svg viewBox="0 0 1024 1024" className="paint">
-						<rect x="100" y="100" width="100" height="100"/>
+					<svg viewBox="0 0 14.7 15.6" className="paint">
+						{range(7).map((y) => (
+							<g key={y} style={{transform: `translate(${y % 2 * -1.366}px, ${y * 2.366}px)`}}>
+								{range(6).map((x) => (
+									<g key={x}>
+										<g style={{transform: `translate(${x * 2.732}px, 0px)`}}>
+											{[
+												'0.5,0.5 1,1.366 0,1.366',
+												'0.5,0.5 1.366,0 1.866,0.866 1,1.366',
+												'1.366,0 2.366,0 1.866,0.866',
+												'2.366,0 3.232,0.5 2.732,1.366 1.866,0.866',
+											].map((points, i) => {
+												if (boardShape[y * 2][x * 4 + i] === '*') {
+													return (
+														<polygon key={i} points={points} fill="black" stroke="white" strokeWidth="0.05"/>
+													);
+												}
+												return null;
+											})}
+										</g>
+										<g style={{transform: `translate(${x * 2.732}px, 0px)`}}>
+											{[
+												'0,1.366 1,1.366 1,2.366 0,2.366',
+												'1,1.366 1.866,0.866 2.732,1.366 2.732,2.366 1.866,2.866 1,2.366',
+											].map((points, i) => {
+												if (boardShape[y * 2 + 1][x * 4 + i] === '*') {
+													return (
+														<polygon key={i} points={points} fill="black" stroke="white" strokeWidth="0.05"/>
+													);
+												}
+												return null;
+											})}
+										</g>
+									</g>
+								))}
+							</g>
+						))}
 					</svg>
 					<div className="language-labels">
 						{[...this.state.faces.entries()]
