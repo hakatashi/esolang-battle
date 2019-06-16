@@ -103,7 +103,7 @@ module.exports.isValidAnswer = (input, output) => {
 		((outputLines[i] || '') + ' '.repeat(50)).slice(0, 50)
 	));
 
-	const printableCounts = normalizedOutputLines.join('').match(printableRegex).length;
+	const printableCounts = (normalizedOutputLines.join('').match(printableRegex) || []).length;
 	if (printableCounts > Math.abs(tokyoX - kyotoX) + inputLines.length) {
 		console.log(`info: printable character counts ${printableCounts} exceeds limit`);
 		return false;
