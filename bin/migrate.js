@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Contest = require('../models/Contest');
 const Submission = require('../models/Submission');
+const User = require('../models/User');
 const {stripIndent} = require('common-tags');
 
 mongoose.Promise = global.Promise;
@@ -12,6 +13,15 @@ mongoose.Promise = global.Promise;
 		{trace: {$exists: false}},
 		{$set: {trace: null}},
 	);
+
+	await User.updateMany(
+		{admin: true},
+		{$set: {admin: false}},
+	);
+
+	const hakatashi = await User.findOne({email: 'hakatashi@twitter.com'});
+	hakatashi.admin = true;
+	await hakatashi.save();
 
 	await Contest.updateOne(
 		{id: '5'},
