@@ -18,7 +18,7 @@ mongoose.Promise = global.Promise;
 		{
 			name: 'Esolang Codegolf Contest #5',
 			id: '5',
-			start: new Date('2019-06-16T12:30:00+0900'),
+			start: new Date('2019-06-16T13:30:00+0900'),
 			end: new Date('2019-06-21T16:00:00+0900'),
 			description: {
 				ja: stripIndent`
@@ -59,37 +59,37 @@ mongoose.Promise = global.Promise;
 				### 入力
 
 				\`\`\`
-				                      T                           
-				                                                  
-				                                                  
-				                                                  
-				                                                  
-				                                                  
-				         K                                        
+				                      T
+
+
+
+
+
+				         K
 				\`\`\`
 
 				### 出力例1
 
 				\`\`\`
-				         *************T                           
-				         *                                        
-				         *                                        
-				         *                                        
-				         *                                        
-				         *                                        
-				         K                                        
+				         *************T
+				         *
+				         *
+				         *
+				         *
+				         *
+				         K
 				\`\`\`
 
 				### 出力例2
 
 				\`\`\`
-				                      #                           
-				                      #                           
-				                      #                           
-				         $tsgkmctsgkmc#                           
-				         $                                        
-				         $                                        
-				         $                                        
+				                      #
+				                      #
+				                      #
+				         $tsgkmctsgkmc#
+				         $
+				         $
+				         $
 				\`\`\`
 
 				### 出力例3
@@ -104,7 +104,7 @@ mongoose.Promise = global.Promise;
 				         ##
 
 
-				
+
 				\`\`\`
 			`,
 				en: '',
