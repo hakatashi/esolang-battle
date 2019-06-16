@@ -1,7 +1,3 @@
-const assert = require('assert');
-const shuffle = require('array-shuffle');
-const math = require('mathjs');
-const chunk = require('lodash/chunk');
 const random = require('lodash/random');
 
 const printableRegex = /[a-z0-9!"#$%&'()*+,./:;<=>?@[\]^_`{|}~-]/ig;
@@ -69,25 +65,6 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 	));
 };
 
-const generateTestInput = () => chunk(
-	shuffle([
-		random(1, 9),
-		...Array(11)
-			.fill()
-			.map(() => random(1, 99)),
-	]),
-	3
-);
-
-const getDeterminant = (vectors) => {
-	const [A, B, C, D] = vectors;
-	return math.det([
-		math.subtract(B, A),
-		math.subtract(C, A),
-		math.subtract(D, A),
-	]);
-};
-
 module.exports.generateInput = () => {
 	const tokyoX = random(10, 49);
 	const kyotoX = random(0, tokyoX - 3);
@@ -150,7 +127,6 @@ module.exports.isValidAnswer = (input, output) => {
 
 	while (queue.length > 0) {
 		const {x, y} = queue.pop();
-		console.log({x, y});
 		if (x === kyotoX && y === inputLines.length - 1) {
 			isReachable = true;
 			break;
