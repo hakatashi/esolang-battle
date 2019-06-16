@@ -32,6 +32,7 @@ html, body {
 
 		svg.paint {
 			height: 100%;
+			overflow: visible;
 
 			.cell {
 				&.red {
