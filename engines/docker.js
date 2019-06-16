@@ -95,7 +95,6 @@ module.exports = async ({id, code, stdin, trace}) => {
 				Tty: false,
 				OpenStdin: false,
 				StdinOnce: false,
-				Env: trace === true ? ['STRACE_OUTPUT_PATH=/volume/strace.log'] : null,
 				Cmd: [
 					'sh',
 					'-c',
