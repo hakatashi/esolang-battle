@@ -20,7 +20,9 @@ class MemoryLimitExceededError extends Error {
 	}
 }
 
-module.exports = async ({id, code, stdin, trace}) => {
+module.exports = async ({id, code, stdin}) => {
+	const trace = false;
+
 	assert(typeof id === 'string');
 	assert(Buffer.isBuffer(code));
 	assert(typeof stdin === 'string');
@@ -95,6 +97,7 @@ module.exports = async ({id, code, stdin, trace}) => {
 				Tty: false,
 				OpenStdin: false,
 				StdinOnce: false,
+				Env: trace === true ? ['STRACE_OUTPUT_PATH=/volume/strace.log'] : null,
 				Cmd: [
 					'sh',
 					'-c',
