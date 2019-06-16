@@ -6,7 +6,7 @@ const Promise = require('bluebird');
 const path = require('path');
 const tmp = require('tmp');
 const shellescape = require('shell-escape');
-const {getCodeLimit} = require('../controllers/utils.js');
+const {getCodeLimit, getTimeLimit} = require('../controllers/utils.js');
 const fs = Promise.promisifyAll(require('fs'));
 
 const docker = new Docker();
@@ -141,7 +141,7 @@ module.exports = async ({id, code, stdin}) => {
 		]);
 
 		const executionStart = Date.now();
-		const [stdout, stderr, containerData] = await runner.timeout(10000);
+		const [stdout, stderr, containerData] = await runner.timeout(getTimeLimit(id));
 		const executionEnd = Date.now();
 
 		const tracePath = path.join(tmpPath, 'strace.log');

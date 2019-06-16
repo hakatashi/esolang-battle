@@ -156,3 +156,15 @@ module.exports.getCodeLimit = (languageId) => {
 
 	return 10 * 1024;
 };
+
+module.exports.getTimeLimit = (languageId) => {
+	if (
+		[
+			'kotlin',
+		].includes(languageId)
+	) {
+		return 20 * 1000;
+	}
+
+	return 10 * 1000;
+};
