@@ -14,17 +14,17 @@ const api = require('../../api.js');
 
 const boardShape = [
 	'        *****           ',
-	'        *****           ',
+	'     AAA*****BBB        ',
 	'    *****************   ',
 	'    *****************   ',
 	'*********************   ',
 	'*********************   ',
 	'  ********************* ',
-	'    *****************   ',
+	' CCC*****************CCC',
 	'*********************   ',
 	'*********************   ',
 	'  ********************* ',
-	'        *********       ',
+	'     BBB*********AAA    ',
 	'      *********         ',
 	'                        ',
 ];
@@ -256,6 +256,21 @@ class App extends React.Component {
 														}}
 														onClick={this.handleClickCell}
 														data-index={index}
+													/>
+												);
+											}
+
+											if (boardShape[dy][dx].match(/[ABC]/)) {
+												const portalNumber = boardShape[dy][dx].codePointAt(0) - 'A'.codePointAt(0);
+												return (
+													<circle
+														key={i}
+														cx="1.866"
+														cy="1.866"
+														r="0.6"
+														fill="transparent"
+														stroke={['#6A1B9A', '#00838F', '#E65100'][portalNumber]}
+														strokeWidth="0.2"
 													/>
 												);
 											}

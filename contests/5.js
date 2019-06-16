@@ -58,11 +58,24 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 		return [];
 	}
 
-	return cells.filter((c) => (
-		0 <= c.x && c.x < 24 && 0 <= c.y && c.y < 14
+	const portals = [
+		[32, 55, 57, 257, 259, 280],
+		[165, 188, 211, 147, 172, 193],
+		[245, 247, 272, 36, 63, 65],
+	];
+
+	const precedings = cells.filter((c) => (
+		c.x >= 0 && c.x < 24 && c.y >= 0 && c.y < 14
 	)).map((c) => (
 		c.y * 24 + c.x
 	));
+
+	const portal = portals.find((p) => p.includes(cellIndex));
+	if (portal) {
+		return Array.from(new Set([...precedings, ...portal.filter((c) => c !== cellIndex)]));
+	}
+
+	return precedings;
 };
 
 module.exports.generateInput = () => {
@@ -75,7 +88,7 @@ module.exports.generateInput = () => {
 	lines[0] = Array(50).fill().map((_, i) => i === tokyoX ? 'T' : ' ').join('');
 	lines[height - 1] = Array(50).fill().map((_, i) => i === kyotoX ? 'K' : ' ').join('');
 
-	return lines.join('\n') + '\n';
+	return `${lines.join('\n')}\n`;
 };
 
 module.exports.isValidAnswer = (input, output) => {
