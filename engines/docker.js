@@ -30,7 +30,7 @@ module.exports = async ({id, code, stdin, trace: traceOption}) => {
 	assert(stdin.length < 10000);
 
 	const langInfo = langInfos.find(({slug}) => slug === id);
-	const trace = traceOption && langInfo && langInfo.time && langInfo.time <= 5;
+	const trace = traceOption && langInfo && langInfo.time && langInfo.time <= 10;
 
 	const {tmpPath, cleanup} = await new Promise((resolve, reject) => {
 		tmp.dir({unsafeCleanup: true}, (error, dTmpPath, dCleanup) => {
