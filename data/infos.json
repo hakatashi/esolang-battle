@@ -807,6 +807,39 @@
     "time": 1.8902082999993581
   },
   {
+    "slug": "fetlang",
+    "execs": [
+      "/bin/sh",
+      "/usr/bin/realpath",
+      "/bin/ln",
+      "/usr/local/bin/fetlang",
+      "/bin/sh",
+      "/usr/bin/cc",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/8.3.0/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/8.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/bin/sh",
+      "/usr/bin/cc",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/8.3.0/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/8.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/bin/sh",
+      "/usr/bin/cc",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/8.3.0/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/8.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/bin/sh",
+      "/usr/bin/cc",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/8.3.0/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/8.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/bin/sh",
+      "/usr/bin/c++",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/8.3.0/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/8.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/bin/cat",
+      "/tmp/code",
+      "/bin/rm"
+    ],
+    "time": 2.9754491000203416
+  },
+  {
     "slug": "java",
     "execs": [
       "/bin/sh",
@@ -1837,6 +1870,30 @@
     "slug": "squared-cool"
   },
   {
+    "slug": "husk",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/usr/bin/realpath",
+      "/bin/ln",
+      "/root/Husk",
+      "/bin/runhaskell",
+      "/usr/local/sbin/runhaskell",
+      "/usr/local/bin/runhaskell",
+      "/usr/sbin/runhaskell",
+      "/usr/bin/runhaskell",
+      "/usr/lib/ghc-8.4.3/bin/runghc",
+      "/usr/bin/ghc-8.4.3",
+      "/usr/lib/ghc-8.4.3/bin/ghc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc"
+    ],
+    "time": 19.791657099995064
+  },
+  {
     "slug": "erlang",
     "execs": [
       "/bin/sh",
@@ -1932,10 +1989,13 @@
     "slug": "riscv",
     "execs": [
       "/bin/sh",
+      "/bin/cp",
+      "/bin/chmod",
       "/bin/cat",
-      "/usr/bin/qemu-riscv32"
+      "/usr/bin/qemu-riscv32",
+      "/bin/rm"
     ],
-    "time": 0.5694660000008298
+    "time": 0.5099105999979656
   },
   {
     "slug": "m4",
@@ -1945,6 +2005,15 @@
       "/usr/bin/m4"
     ],
     "time": 0.423876000000746
+  },
+  {
+    "slug": "racket",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/usr/bin/racket"
+    ],
+    "time": 1.6567896000051405
   },
   {
     "slug": "crystal",
@@ -2168,7 +2237,7 @@
       "/usr/bin/fold",
       "/usr/bin/head",
       "/bin/cat",
-      "/usr/bin/hexdump",
+      "/bin/hex",
       "/bin/cat",
       "/usr/bin/realpath",
       "/bin/ln",
@@ -2179,7 +2248,7 @@
       "/bin/cat",
       "/bin/rm"
     ],
-    "time": 5.15794299999834
+    "time": 3.7636607000022195
   },
   {
     "slug": "perl1",
