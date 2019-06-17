@@ -163,8 +163,8 @@ module.exports.getTimeLimit = (languageId) => {
 			'kotlin',
 		].includes(languageId)
 	) {
-		return 100 * 1000;
+		return 20 * 1000;
 	}
 
-	return 60 * 1000;
+	return 10 * 1000;
 };
