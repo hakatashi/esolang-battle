@@ -65,6 +65,7 @@ class App extends React.Component {
 			code: '',
 			files: [],
 			mapWidth: 0,
+			labelsWidth: 0,
 			languages: [],
 			selectedLanguage: null,
 			isPending: false,
@@ -192,13 +193,25 @@ class App extends React.Component {
 		this.handleUpdateWindowSize();
 	};
 
-	handleUpdateWindowSize = () => {
+	handleUpdateWindowSize = async () => {
 		if (this.svg) {
 			if (window.innerWidth > window.innerHeight) {
-				this.setState({mapWidth: `${this.svg.clientWidth}px`});
+				await new Promise((resolve) => {
+					this.setState({
+						mapWidth: `${this.svg.clientWidth}px`,
+					}, resolve);
+				});
 			} else {
-				this.setState({mapWidth: '100%'});
+				await new Promise((resolve) => {
+					this.setState({
+						mapWidth: '100%',
+					}, resolve);
+				});
 			}
+
+			this.setState({
+				labelsWidth: `${this.svg.clientWidth}px`,
+			});
 		}
 	};
 
@@ -285,7 +298,7 @@ class App extends React.Component {
 							</g>
 						))}
 					</svg>
-					<div className="language-labels">
+					<div className="language-labels" style={{width: this.state.labelsWidth}}>
 						{range(7).map((y) => (
 							<div key={y}>
 								{range(6).map((x) => (
