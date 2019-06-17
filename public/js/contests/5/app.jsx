@@ -194,7 +194,11 @@ class App extends React.Component {
 
 	handleUpdateWindowSize = () => {
 		if (this.svg) {
-			this.setState({mapWidth: this.svg.clientWidth});
+			if (window.innerWidth > window.innerHeight) {
+				this.setState({mapWidth: `${this.svg.clientWidth}px`});
+			} else {
+				this.setState({mapWidth: '100%'});
+			}
 		}
 	};
 
@@ -222,7 +226,7 @@ class App extends React.Component {
 		return (
 			<div className="world">
 				<div className="spacer"/>
-				<div className="map" style={{flexBasis: `${this.state.mapWidth}px`, width: `${this.state.mapWidth}px`}}>
+				<div className="map" style={{flexBasis: this.state.mapWidth, width: this.state.mapWidth}}>
 					<svg ref={this.handleRefSvg} viewBox="0 0 14.7 15.6" className="paint">
 						{range(7).map((y) => (
 							<g key={y} style={{transform: `translate(${y % 2 * -1.366}px, ${y * 2.366}px)`}}>
