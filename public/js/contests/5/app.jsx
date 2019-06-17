@@ -160,7 +160,7 @@ class App extends React.Component {
 			_id: data._id,
 		});
 
-		if (submission.status === 'failed') {
+		if (submission.status === 'failed' || submission.status === 'invalid') {
 			this.setState({
 				message: 'Submission failed.',
 				messageType: 'danger',
