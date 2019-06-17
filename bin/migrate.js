@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Contest = require('../models/Contest');
 const Submission = require('../models/Submission');
+const Language = require('../models/Language');
 const User = require('../models/User');
 const {stripIndent} = require('common-tags');
 
@@ -69,37 +70,37 @@ mongoose.Promise = global.Promise;
 				### 入力
 
 				\`\`\`
-				                      T                           
-				                                                  
-				                                                  
-				                                                  
-				                                                  
-				                                                  
-				         K                                        
+				                      T
+
+
+
+
+
+				         K
 				\`\`\`
 
 				### 出力例1
 
 				\`\`\`
-				         *************T                           
-				         *                                        
-				         *                                        
-				         *                                        
-				         *                                        
-				         *                                        
-				         K                                        
+				         *************T
+				         *
+				         *
+				         *
+				         *
+				         *
+				         K
 				\`\`\`
 
 				### 出力例2
 
 				\`\`\`
-				                      #                           
-				                      #                           
-				                      #                           
-				         $tsgkmctsgkmc#                           
-				         $                                        
-				         $                                        
-				         $                                        
+				                      #
+				                      #
+				                      #
+				         $tsgkmctsgkmc#
+				         $
+				         $
+				         $
 				\`\`\`
 
 				### 出力例3
@@ -114,7 +115,7 @@ mongoose.Promise = global.Promise;
 				         ##
 
 
-				
+
 				\`\`\`
 			`,
 				en: '',
@@ -122,6 +123,27 @@ mongoose.Promise = global.Promise;
 		},
 		{upsert: true}
 	);
+
+	// rollback
+	for (const [languageId, purge] of [
+		['lua', '5d07c7faba04b070cdc93f23'],
+		['php', '5d07bfb9ba04b070cdc93ea1'],
+		['ruby0.49', '5d07b7a0ba04b070cdc93e32'],
+	]) {
+		const contest = await Contest.findOne({id: '5'});
+		const language = await Language.findOne({contest, slug: languageId});
+		const submission = await Submission.findOne({_id: purge});
+
+		if (submission) {
+			await Submission.deleteOne({_id: purge});
+			language.solution = await Submission.findOne({
+				contest,
+				language,
+				status: 'success',
+			}).sort({createdAt: -1}).exec();
+			await language.save();
+		}
+	}
 
 	mongoose.connection.close();
 })();
