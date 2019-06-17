@@ -390,6 +390,11 @@
     "link": "https://open-cobol.sourceforge.io/"
   },
   {
+    "slug": "fetlang",
+    "name": "Fetlang",
+    "link": "https://github.com/fetlang/fetlang"
+  },
+  {
     "slug": "java",
     "name": "Java",
     "link": "https://java.com/"
@@ -840,6 +845,11 @@
     "link": "https://esolangs.org/wiki/%F0%9F%86%92"
   },
   {
+    "slug": "husk",
+    "name": "Husk",
+    "link": "https://github.com/barbuz/Husk"
+  },
+  {
     "slug": "erlang",
     "name": "Erlang",
     "link": "http://erlang.org/"
@@ -883,6 +893,11 @@
     "slug": "m4",
     "name": "m4",
     "link": "https://www.gnu.org/software/m4/m4.html"
+  },
+  {
+    "slug": "racket",
+    "name": "Racket",
+    "link": "https://racket-lang.org/"
   },
   {
     "slug": "ubuntu-base",
