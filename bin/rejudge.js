@@ -13,7 +13,7 @@ mongoose.Promise = global.Promise;
 (async () => {
 	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
 	const contest = await Contest.findOne({id: '5'});
-	const languages = await Language.find({contest, solution: {$ne: null}});
+	const languages = await Language.find({contest, solution: {$ne: null}, slug: 'c-gcc'});
 
 	// rollback
 	for (const language of languages) {
@@ -49,6 +49,7 @@ mongoose.Promise = global.Promise;
 
 			const newSubmission = await Submission.findOne({_id: submission._id});
 			assert(newSubmission);
+			console.log(newSubmission);
 
 			if (newSubmission.status === 'success') {
 				console.log(`Solution found as ${newSubmission._id}`);
