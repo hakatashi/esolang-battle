@@ -1,6 +1,6 @@
 const random = require('lodash/random');
 
-const printableRegex = /[a-z0-9!"#$%&'()*+,./:;<=>?@[\]^_`{|}~-]/ig;
+const printableRegex = /[a-z0-9!"#$%&'()*+,./:;<=>?@[\\\]^_`{|}~-]/ig;
 
 module.exports.getPrecedingIndices = (cellIndex) => {
 	const x = cellIndex % 24;
