@@ -1709,6 +1709,15 @@
     "time": 1.570356800002628
   },
   {
+    "slug": "triangularity",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/usr/bin/python3"
+    ],
+    "time": 0.5864980999904219
+  },
+  {
     "slug": "vim",
     "execs": [
       "/bin/sh",

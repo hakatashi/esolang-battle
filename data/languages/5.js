@@ -190,7 +190,7 @@ const languages = {
 	185: 'minimal2d',
 	186: null,
 	187: null,
-	188: 'stop',
+	188: 'triangularity',
 	189: null,
 	190: null,
 	191: null,

@@ -800,6 +800,11 @@
     "link": "https://github.com/splcurran/Gaia"
   },
   {
+    "slug": "triangularity",
+    "name": "Triangularity",
+    "link": "https://esolangs.org/wiki/Triangularity"
+  },
+  {
     "slug": "vim",
     "name": "Vim",
     "link": "http://www.vim.org/"
