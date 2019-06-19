@@ -235,11 +235,6 @@
     "link": "http://aheui.github.io/specification.en"
   },
   {
-    "slug": "whitespace",
-    "name": "Whitespace",
-    "link": "https://esolangs.org/wiki/Whitespace"
-  },
-  {
     "slug": "beatnik",
     "name": "Beatnik",
     "link": "https://esolangs.org/wiki/Beatnik"
@@ -393,6 +388,11 @@
     "slug": "fetlang",
     "name": "Fetlang",
     "link": "https://github.com/fetlang/fetlang"
+  },
+  {
+    "slug": "alphabeta",
+    "name": "AlphaBeta",
+    "link": "https://esolangs.org/wiki/AlphaBeta"
   },
   {
     "slug": "java",
@@ -597,7 +597,7 @@
   {
     "slug": "unicue",
     "name": "Unicue",
-    "link": "https://github.com/hakatashi/tweet-lang"
+    "link": "https://github.com/hakatashi/unicue-lang"
   },
   {
     "slug": "beam",
@@ -805,6 +805,11 @@
     "link": "https://esolangs.org/wiki/Triangularity"
   },
   {
+    "slug": "backhand",
+    "name": "Backhand",
+    "link": "https://github.com/GuyJoKing/Backhand"
+  },
+  {
     "slug": "vim",
     "name": "Vim",
     "link": "http://www.vim.org/"
@@ -812,7 +817,7 @@
   {
     "slug": "autovim",
     "name": "Autovim",
-    "link": "http://www.vim.org/"
+    "link": "https://github.com/christianrondeau/autovim"
   },
   {
     "slug": "cmd",
@@ -853,6 +858,11 @@
     "slug": "husk",
     "name": "Husk",
     "link": "https://github.com/barbuz/Husk"
+  },
+  {
+    "slug": "whitespace",
+    "name": "Whitespace",
+    "link": "https://esolangs.org/wiki/Whitespace"
   },
   {
     "slug": "erlang",

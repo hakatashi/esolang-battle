@@ -312,7 +312,7 @@
       "/usr/bin/ag_launcher",
       "/usr/bin/make"
     ],
-    "time": 0.7660782000020845
+    "time": 0.43640920001780614
   },
   {
     "slug": "malbolge",
@@ -441,15 +441,6 @@
       "/usr/bin/aheui"
     ],
     "time": 0.46029339999950025
-  },
-  {
-    "slug": "whitespace",
-    "execs": [
-      "/bin/sh",
-      "/bin/cat",
-      "/usr/bin/whitespace"
-    ],
-    "time": 0.5248117000010097
   },
   {
     "slug": "beatnik",
@@ -838,6 +829,15 @@
       "/bin/rm"
     ],
     "time": 2.9754491000203416
+  },
+  {
+    "slug": "alphabeta",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/root/ab"
+    ],
+    "time": 0.5076364999986254
   },
   {
     "slug": "java",
@@ -1454,7 +1454,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 11.957432400005928
+    "time": 8.75673039999674
   },
   {
     "slug": "octave",
@@ -1718,6 +1718,15 @@
     "time": 0.5864980999904219
   },
   {
+    "slug": "backhand",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/usr/bin/python3"
+    ],
+    "time": 0.8808776999940164
+  },
+  {
     "slug": "vim",
     "execs": [
       "/bin/sh",
@@ -1901,6 +1910,15 @@
       "/usr/bin/gcc"
     ],
     "time": 19.791657099995064
+  },
+  {
+    "slug": "whitespace",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/usr/bin/whitespace"
+    ],
+    "time": 0.5248117000010097
   },
   {
     "slug": "erlang",
