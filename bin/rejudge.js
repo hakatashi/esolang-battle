@@ -13,10 +13,10 @@ mongoose.Promise = global.Promise;
 (async () => {
 	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
 	const contest = await Contest.findOne({id: '5'});
-	const languages = await Language.find({contest, solution: {$ne: null}, slug: 'c-gcc'});
+	// const languages = await Language.find({contest, solution: {$ne: null}, slug: 'c-gcc'});
 
 	// rollback
-	for (const language of languages) {
+	for (const language of ['canvas']) {
 		console.log(`Rejudging language ${language.slug}...`);
 		const languageData = languagesData[contest.id].find(
 			(l) => l && l.slug === language.slug
@@ -27,7 +27,6 @@ mongoose.Promise = global.Promise;
 			const submission = await Submission.findOne({
 				contest,
 				language,
-				status: 'success',
 			}).sort({createdAt: -1}).exec();
 
 			if (!submission) {
