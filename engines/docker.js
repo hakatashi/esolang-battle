@@ -22,7 +22,7 @@ class MemoryLimitExceededError extends Error {
 	}
 }
 
-module.exports = async ({id, code, stdin, trace: traceOption}) => {
+module.exports = async ({id, code, stdin, trace: traceOption, disasm = false}) => {
 	assert(typeof id === 'string');
 	assert(Buffer.isBuffer(code));
 	assert(typeof stdin === 'string');
@@ -104,7 +104,11 @@ module.exports = async ({id, code, stdin, trace: traceOption}) => {
 				Cmd: [
 					'sh',
 					'-c',
-					`${shellescape(['script', `/volume/${filename}`])} < /volume/INPUT`,
+					`${shellescape([
+						'script',
+						...(disasm ? ['-d'] : []),
+						`/volume/${filename}`,
+					])} < /volume/INPUT`,
 				],
 				Image: `esolang/${id}`,
 				Volumes: {

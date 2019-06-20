@@ -10,7 +10,7 @@ $langs = []
 def iterate(lang, parent = nil, depth = 0)
   lang.each do |key, value|
     unless key.start_with? '_'
-      $langs << {slug: key, name: value['_name'], link: value['_link']}
+      $langs << {slug: key, name: value['_name'], link: value['_link'], disasm: !value['_disasm'].nil?}
       iterate value, key, depth + 1
     end
   end

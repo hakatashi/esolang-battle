@@ -2,1001 +2,1201 @@
   {
     "slug": "base",
     "name": null,
-    "link": null
+    "link": null,
+    "disasm": false
   },
   {
     "slug": "build-base",
     "name": null,
-    "link": null
+    "link": null,
+    "disasm": false
   },
   {
     "slug": "multi-reader",
     "name": "multi-reader",
-    "link": "https://github.com/kuromunori/kusogengo"
+    "link": "https://github.com/kuromunori/kusogengo",
+    "disasm": false
   },
   {
     "slug": "codemania",
     "name": "CodeMania",
-    "link": "https://github.com/Tiramister/codemania"
+    "link": "https://github.com/Tiramister/codemania",
+    "disasm": false
   },
   {
     "slug": "3var",
     "name": "3var",
-    "link": "https://esolangs.org/wiki/3var"
+    "link": "https://esolangs.org/wiki/3var",
+    "disasm": false
   },
   {
     "slug": "axo",
     "name": "Axo",
-    "link": "https://esolangs.org/wiki/Axo"
+    "link": "https://esolangs.org/wiki/Axo",
+    "disasm": false
   },
   {
     "slug": "befunge93",
     "name": "Befunge-93",
-    "link": "https://esolangs.org/wiki/Befunge"
+    "link": "https://esolangs.org/wiki/Befunge",
+    "disasm": false
   },
   {
     "slug": "befunge98",
     "name": "Befunge-98",
-    "link": "https://esolangs.org/wiki/Befunge"
+    "link": "https://esolangs.org/wiki/Befunge",
+    "disasm": false
   },
   {
     "slug": "seed",
     "name": "Seed",
-    "link": "https://esolangs.org/wiki/Seed"
+    "link": "https://esolangs.org/wiki/Seed",
+    "disasm": false
   },
   {
     "slug": "brainfuck-esotope",
     "name": "Brainfuck (esotope)",
-    "link": "https://github.com/lifthrasiir/esotope-bfc"
+    "link": "https://github.com/lifthrasiir/esotope-bfc",
+    "disasm": true
   },
   {
     "slug": "c-gcc",
     "name": "C (GCC)",
-    "link": "https://gcc.gnu.org/"
+    "link": "https://gcc.gnu.org/",
+    "disasm": false
   },
   {
     "slug": "dis",
     "name": "Dis",
-    "link": "https://esolangs.org/wiki/Dis"
+    "link": "https://esolangs.org/wiki/Dis",
+    "disasm": false
   },
   {
     "slug": "glass",
     "name": "Glass",
-    "link": "https://esolangs.org/wiki/Glass"
+    "link": "https://esolangs.org/wiki/Glass",
+    "disasm": false
   },
   {
     "slug": "ruby",
     "name": "Ruby 2.6.3",
-    "link": "https://www.ruby-lang.org/"
+    "link": "https://www.ruby-lang.org/",
+    "disasm": false
   },
   {
     "slug": "golfscript",
     "name": "GolfScript",
-    "link": "http://www.golfscript.com/golfscript/tutorial.html"
+    "link": "http://www.golfscript.com/golfscript/tutorial.html",
+    "disasm": false
   },
   {
     "slug": "hexagony",
     "name": "Hexagony",
-    "link": "https://github.com/m-ender/hexagony"
+    "link": "https://github.com/m-ender/hexagony",
+    "disasm": true
   },
   {
     "slug": "stackcats",
     "name": "Stack Cats",
-    "link": "https://github.com/m-ender/stackcats"
+    "link": "https://github.com/m-ender/stackcats",
+    "disasm": false
   },
   {
     "slug": "standback",
     "name": "(?i:standback)",
-    "link": "https://github.com/akouryy/standback"
+    "link": "https://github.com/akouryy/standback",
+    "disasm": false
   },
   {
     "slug": "ppap",
     "name": "PPAP",
-    "link": "https://github.com/yhara/ppap-lang"
+    "link": "https://github.com/yhara/ppap-lang",
+    "disasm": false
   },
   {
     "slug": "starry",
     "name": "Starry",
-    "link": "https://esolangs.org/wiki/Starry"
+    "link": "https://esolangs.org/wiki/Starry",
+    "disasm": true
   },
   {
     "slug": "cy",
     "name": "Cy",
-    "link": "https://github.com/cyoce/Cy"
+    "link": "https://github.com/cyoce/Cy",
+    "disasm": false
   },
   {
     "slug": "labyrinth",
     "name": "Labyrinth",
-    "link": "https://github.com/m-ender/labyrinth"
+    "link": "https://github.com/m-ender/labyrinth",
+    "disasm": false
   },
   {
     "slug": "typhon",
     "name": "Typhon",
-    "link": "https://github.com/nefo-mi/Typhon"
+    "link": "https://github.com/nefo-mi/Typhon",
+    "disasm": false
   },
   {
     "slug": "alice",
     "name": "Alice",
-    "link": "https://github.com/m-ender/alice"
+    "link": "https://github.com/m-ender/alice",
+    "disasm": false
   },
   {
     "slug": "wake",
     "name": "wake",
-    "link": "http://shinh.skr.jp/wake/"
+    "link": "http://shinh.skr.jp/wake/",
+    "disasm": false
   },
   {
     "slug": "reversed-c",
     "name": "reversed-c",
-    "link": "https://github.com/cookie-s/reversed-c"
+    "link": "https://github.com/cookie-s/reversed-c",
+    "disasm": true
   },
   {
     "slug": "copos-rb",
     "name": "copos (Ruby)",
-    "link": "https://github.com/n4o847/tsg-2018-summer"
+    "link": "https://github.com/n4o847/tsg-2018-summer",
+    "disasm": true
   },
   {
     "slug": "golfish",
     "name": "golfish",
-    "link": "https://github.com/n4o847/tsg-2018-summer"
+    "link": "https://github.com/n4o847/tsg-2018-summer",
+    "disasm": false
   },
   {
     "slug": "pxem",
     "name": "Pxem",
-    "link": "https://ja.wikipedia.org/wiki/Pxem"
+    "link": "https://ja.wikipedia.org/wiki/Pxem",
+    "disasm": false
   },
   {
     "slug": "arithmetic",
     "name": "Arithmetic",
-    "link": "https://github.com/toyukan6/Arithmetic"
-  },
-  {
-    "slug": "goruby",
-    "name": "goruby",
-    "link": "https://github.com/ruby/ruby/blob/trunk/man/goruby.1"
-  },
-  {
-    "slug": "ruby1",
-    "name": "Ruby 1.8",
-    "link": "https://www.ruby-lang.org/"
-  },
-  {
-    "slug": "grass",
-    "name": "Grass",
-    "link": "http://www.blue.sky.or.jp/grass/"
-  },
-  {
-    "slug": "modanshogi",
-    "name": "ModanShogi",
-    "link": "https://github.com/yhara/ShogiModan"
-  },
-  {
-    "slug": "make",
-    "name": "Make",
-    "link": "https://www.gnu.org/software/make/"
-  },
-  {
-    "slug": "malbolge",
-    "name": "Malbolge",
-    "link": "https://esolangs.org/wiki/Malbolge"
-  },
-  {
-    "slug": "piet",
-    "name": "Piet",
-    "link": "http://www.dangermouse.net/esoteric/piet.html"
-  },
-  {
-    "slug": "python1",
-    "name": "Python 1",
-    "link": "https://www.python.org/"
-  },
-  {
-    "slug": "rail",
-    "name": "Rail",
-    "link": "https://esolangs.org/wiki/Rail"
-  },
-  {
-    "slug": "simula",
-    "name": "Simula",
-    "link": "https://en.wikipedia.org/wiki/Simula"
-  },
-  {
-    "slug": "snowman",
-    "name": "Snowman",
-    "link": "https://github.com/KeyboardFire/snowman-lang"
-  },
-  {
-    "slug": "streem",
-    "name": "Streem",
-    "link": "https://github.com/matz/streem"
-  },
-  {
-    "slug": "unlambda",
-    "name": "Unlambda",
-    "link": "http://www.madore.org/~david/programs/unlambda/"
-  },
-  {
-    "slug": "verilog",
-    "name": "Verilog (Icarus Verilog)",
-    "link": "http://iverilog.icarus.com/"
-  },
-  {
-    "slug": "wierd",
-    "name": "Wierd",
-    "link": "http://catseye.tc/node/Wierd.html"
-  },
-  {
-    "slug": "wordcpu",
-    "name": "Word!CPU",
-    "link": "https://esolangs.org/wiki/Word!CPU"
-  },
-  {
-    "slug": "aheui",
-    "name": "Aheui",
-    "link": "http://aheui.github.io/specification.en"
-  },
-  {
-    "slug": "beatnik",
-    "name": "Beatnik",
-    "link": "https://esolangs.org/wiki/Beatnik"
-  },
-  {
-    "slug": "blc",
-    "name": "Binary lambda calculus",
-    "link": "https://tromp.github.io/cl/cl.html"
-  },
-  {
-    "slug": "z80",
-    "name": "Z80",
-    "link": "https://sites.google.com/site/codegolfingtips/Home/z80"
-  },
-  {
-    "slug": "spl",
-    "name": "Shakespeare",
-    "link": "http://shakespearelang.sourceforge.net/"
-  },
-  {
-    "slug": "emojicode",
-    "name": "Emojicode",
-    "link": "http://www.emojicode.org/"
-  },
-  {
-    "slug": "intercal",
-    "name": "INTERCAL",
-    "link": "https://en.wikipedia.org/wiki/INTERCAL"
-  },
-  {
-    "slug": "lolcode",
-    "name": "LOLCODE",
-    "link": "http://lolcode.org/"
-  },
-  {
-    "slug": "minus",
-    "name": "Minus",
-    "link": "http://www.golfscript.com/minus/"
-  },
-  {
-    "slug": "sqlite3",
-    "name": "SQLite3",
-    "link": "https://sqlite.org/"
-  },
-  {
-    "slug": "taxi",
-    "name": "Taxi",
-    "link": "https://bigzaphod.github.io/Taxi/"
-  },
-  {
-    "slug": "adjust",
-    "name": "ADJUST",
-    "link": "https://esolangs.org/wiki/ADJUST"
-  },
-  {
-    "slug": "braille",
-    "name": "Braille",
-    "link": "https://esolangs.org/wiki/Braille"
-  },
-  {
-    "slug": "rust",
-    "name": "Rust",
-    "link": "https://www.rust-lang.org/"
-  },
-  {
-    "slug": "cubically",
-    "name": "Cubically",
-    "link": "https://github.com/aaronryank/Cubically"
-  },
-  {
-    "slug": "sceql",
-    "name": "Sceql",
-    "link": "http://esolangs.org/wiki/Sceql"
-  },
-  {
-    "slug": "apl",
-    "name": "APL",
-    "link": "https://www.gnu.org/software/apl/"
-  },
-  {
-    "slug": "wat",
-    "name": "WebAssembly Text Format",
-    "link": "https://webassembly.github.io/spec/core/text/index.html"
-  },
-  {
-    "slug": "lazyk",
-    "name": "Lazy-K",
-    "link": "http://homepages.cwi.nl/~tromp/cl/lazy-k.html"
-  },
-  {
-    "slug": "doubleplusungood",
-    "name": "Doubleplusungood",
-    "link": "http://argxento.hatenadiary.jp/entry/esolang-advcal12-doubleplusungood"
-  },
-  {
-    "slug": "llvm-ir",
-    "name": "LLVM IR",
-    "link": "https://releases.llvm.org/5.0.0/docs/LangRef.html"
-  },
-  {
-    "slug": "cmm",
-    "name": "C--",
-    "link": "https://www.cs.tufts.edu/~nr/c--/index.html"
-  },
-  {
-    "slug": "hanoi_stack",
-    "name": "Hanoi_Stacck",
-    "link": "https://github.com/JP3BGY/Hanoi_Stack/"
-  },
-  {
-    "slug": "brainfuck-moratorium",
-    "name": "Brainfuck (moratorium)",
-    "link": "https://gist.github.com/moratorium08/2fa8dbd4150c8db547a1f3a31d5499ac"
-  },
-  {
-    "slug": "dotnet",
-    "name": null,
-    "link": null
-  },
-  {
-    "slug": "csharp-dotnet",
-    "name": "C# (.NET Core)",
-    "link": "https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/"
-  },
-  {
-    "slug": "fsharp-dotnet",
-    "name": "F# (.NET Core)",
-    "link": "https://fsharp.org/"
-  },
-  {
-    "slug": "fortran",
-    "name": "Fortran 2018",
-    "link": "https://gcc.gnu.org/fortran/"
-  },
-  {
-    "slug": "ring",
-    "name": "Ring",
-    "link": "http://ring-lang.sourceforge.net/"
-  },
-  {
-    "slug": "snobol",
-    "name": "SNOBOL4",
-    "link": "http://www.snobol4.org/"
-  },
-  {
-    "slug": "cobol",
-    "name": "COBOL",
-    "link": "https://open-cobol.sourceforge.io/"
-  },
-  {
-    "slug": "fetlang",
-    "name": "Fetlang",
-    "link": "https://github.com/fetlang/fetlang"
-  },
-  {
-    "slug": "alphabeta",
-    "name": "AlphaBeta",
-    "link": "https://esolangs.org/wiki/AlphaBeta"
-  },
-  {
-    "slug": "java",
-    "name": "Java",
-    "link": "https://java.com/"
-  },
-  {
-    "slug": "arnoidc",
-    "name": "ArnoidC",
-    "link": "http://lhartikk.github.io/ArnoldC/"
-  },
-  {
-    "slug": "evil",
-    "name": "Evil",
-    "link": "https://esolangs.org/wiki/Evil"
-  },
-  {
-    "slug": "js-rhino",
-    "name": "JavaScript (Rhino)",
-    "link": "https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino"
-  },
-  {
-    "slug": "floater",
-    "name": "Floater",
-    "link": "https://esolangs.org/wiki/Floater"
-  },
-  {
-    "slug": "cjam",
-    "name": "CJam",
-    "link": "https://sourceforge.net/p/cjam/wiki/Home/"
-  },
-  {
-    "slug": "convex",
-    "name": "Convex",
-    "link": "https://github.com/GamrCorps/Convex"
-  },
-  {
-    "slug": "kotlin",
-    "name": "Kotlin",
-    "link": "https://kotlinlang.org/"
-  },
-  {
-    "slug": "whenever",
-    "name": "Whenever",
-    "link": "http://www.dangermouse.net/esoteric/whenever.html"
-  },
-  {
-    "slug": "xslt",
-    "name": "XSLT",
-    "link": "http://saxon.sourceforge.net/"
-  },
-  {
-    "slug": "python2",
-    "name": "Python 2",
-    "link": "https://www.python.org/"
-  },
-  {
-    "slug": "csharp",
-    "name": "C# (Mono)",
-    "link": "http://www.mono-project.com/"
-  },
-  {
-    "slug": "velato",
-    "name": "Velato",
-    "link": "https://github.com/rottytooth/Velato"
-  },
-  {
-    "slug": "pure-folders",
-    "name": "Pure Folders",
-    "link": "https://esolangs.org/wiki/Folders#Pure_Folders"
-  },
-  {
-    "slug": "concise-folders",
-    "name": "Concise Folders",
-    "link": "https://esolangs.org/wiki/Folders#Concise_Folders"
-  },
-  {
-    "slug": "function2d",
-    "name": "Function",
-    "link": "https://esolangs.org/wiki/Funciton"
-  },
-  {
-    "slug": "produire",
-    "name": "プロデル",
-    "link": "https://rdr.utopiat.net/"
-  },
-  {
-    "slug": "haystack",
-    "name": "Haystack",
-    "link": "https://github.com/kade-robertson/haystack"
-  },
-  {
-    "slug": "stuck",
-    "name": "Stuck",
-    "link": "https://esolangs.org/wiki/Stuck"
-  },
-  {
-    "slug": "unicat",
-    "name": "Unicat",
-    "link": "https://github.com/gemdude46/unicat"
-  },
-  {
-    "slug": "unreadable",
-    "name": "Unreadable",
-    "link": "https://esolangs.org/wiki/Unreadable"
-  },
-  {
-    "slug": "zombie",
-    "name": "ZOMBIE",
-    "link": "http://www.dangermouse.net/esoteric/zombie.html"
-  },
-  {
-    "slug": "ffb",
-    "name": "Foobar and Foobaz and Barbaz, oh my!",
-    "link": "https://esolangs.org/wiki/Foobar_and_Foobaz_and_Barbaz,_oh_my!"
-  },
-  {
-    "slug": "aubergine",
-    "name": "Aubergine",
-    "link": "https://esolangs.org/wiki/Aubergine"
-  },
-  {
-    "slug": "ubergenes",
-    "name": "UberGenes",
-    "link": "https://esolangs.org/wiki/UberGenes"
-  },
-  {
-    "slug": "path",
-    "name": "PATH",
-    "link": "http://pathlang.sourceforge.net/"
-  },
-  {
-    "slug": "recurse",
-    "name": "Recurse",
-    "link": "https://esolangs.org/wiki/Recurse"
-  },
-  {
-    "slug": "fernando",
-    "name": "FerNANDo",
-    "link": "https://esolangs.org/wiki/FerNANDo"
-  },
-  {
-    "slug": "gs2",
-    "name": "gs2",
-    "link": "https://github.com/nooodl/gs2"
-  },
-  {
-    "slug": "logicode",
-    "name": "Logicode",
-    "link": "https://github.com/LogicodeLang/Logicode"
-  },
-  {
-    "slug": "minimal2d",
-    "name": "Minimal-2D",
-    "link": "https://esolangs.org/wiki/Minimal-2D"
-  },
-  {
-    "slug": "i4004asm",
-    "name": "Intel 4004 Assembly",
-    "link": "https://github.com/CodeAbbey/intel4004-emu"
-  },
-  {
-    "slug": "suzy",
-    "name": "Suzy",
-    "link": "http://esolangs.org/wiki/Suzy"
-  },
-  {
-    "slug": "bash-pure",
-    "name": "Bash (pure)",
-    "link": "https://tiswww.case.edu/php/chet/bash/bashtop.html"
-  },
-  {
-    "slug": "bash-busybox",
-    "name": "Bash (busybox)",
-    "link": "https://busybox.net/"
-  },
-  {
-    "slug": "fish-shell-pure",
-    "name": "Fish (pure)",
-    "link": "https://fishshell.com/"
-  },
-  {
-    "slug": "ezhil",
-    "name": "எழில்",
-    "link": "http://ezhillang.org/"
-  },
-  {
-    "slug": "snusp",
-    "name": "SNUSP",
-    "link": "https://esolangs.org/wiki/SNUSP"
-  },
-  {
-    "slug": "jq",
-    "name": "jq",
-    "link": "https://stedolan.github.io/jq/"
-  },
-  {
-    "slug": "node",
-    "name": "Node.js",
-    "link": "https://nodejs.org/"
-  },
-  {
-    "slug": "unicue",
-    "name": "Unicue",
-    "link": "https://github.com/hakatashi/unicue-lang"
-  },
-  {
-    "slug": "beam",
-    "name": "Beam",
-    "link": "http://esolangs.org/wiki/Beam"
-  },
-  {
-    "slug": "cubix",
-    "name": "Cubix",
-    "link": "https://github.com/ETHproductions/cubix"
-  },
-  {
-    "slug": "japt",
-    "name": "Japt",
-    "link": "https://github.com/ETHproductions/japt"
-  },
-  {
-    "slug": "stop",
-    "name": "STOP",
-    "link": "https://github.com/colinjeanne/stop-lang"
-  },
-  {
-    "slug": "htms",
-    "name": "htms",
-    "link": "https://github.com/OinkIguana/htms"
-  },
-  {
-    "slug": "maybelater",
-    "name": "Maybe Later",
-    "link": "http://esolangs.org/wiki/Maybe_Later"
-  },
-  {
-    "slug": "nadesiko",
-    "name": "なでしこ3",
-    "link": "https://nadesi.com/doc3/"
-  },
-  {
-    "slug": "floating",
-    "name": "Floating",
-    "link": "https://github.com/KPCCoiL/floating-lang"
-  },
-  {
-    "slug": "qlb",
-    "name": "‫قلب‬",
-    "link": "https://github.com/nasser/---"
-  },
-  {
-    "slug": "calc",
-    "name": "LibreOffice Calc",
-    "link": "https://www.libreoffice.org/discover/calc/"
-  },
-  {
-    "slug": "nuts",
-    "name": "Nuts",
-    "link": "https://github.com/hoge-fuga-0000/Nuts"
-  },
-  {
-    "slug": "canvas",
-    "name": "Canvas",
-    "link": "https://github.com/dzaima/Canvas"
-  },
-  {
-    "slug": "wysiscript",
-    "name": "WysiScript",
-    "link": "http://www.zifyoip.com/wysiscript/"
-  },
-  {
-    "slug": "tetris",
-    "name": "Tetris",
-    "link": "https://sagisawa.0am.jp/tetris/"
-  },
-  {
-    "slug": "octave",
-    "name": "Octave",
-    "link": "https://www.gnu.org/software/octave/"
-  },
-  {
-    "slug": "matl",
-    "name": "MATL",
-    "link": "https://github.com/lmendo/MATL"
-  },
-  {
-    "slug": "perl",
-    "name": "Perl",
-    "link": "https://www.perl.org/"
-  },
-  {
-    "slug": "slashes",
-    "name": "///",
-    "link": "https://esolangs.org/wiki////"
-  },
-  {
-    "slug": "element",
-    "name": "Element",
-    "link": "https://esolangs.org/wiki/Element"
-  },
-  {
-    "slug": "php",
-    "name": "PHP 7.0",
-    "link": "https://secure.php.net/"
-  },
-  {
-    "slug": "irc",
-    "name": "IRC",
-    "link": "https://esolangs.org/wiki/IRC"
-  },
-  {
-    "slug": "python3",
-    "name": "Python 3",
-    "link": "https://www.python.org/"
-  },
-  {
-    "slug": "exchangeif",
-    "name": "ExchangeIF",
-    "link": "https://github.com/HyogaGlacier/ExchangeIF"
-  },
-  {
-    "slug": "trumpscript",
-    "name": "TrumpScript",
-    "link": "http://samshadwell.me/TrumpScript/"
-  },
-  {
-    "slug": "2sable",
-    "name": "2sable",
-    "link": "https://github.com/Adriandmen/2sable"
-  },
-  {
-    "slug": "fish",
-    "name": "><>",
-    "link": "https://esolangs.org/wiki/Fish"
-  },
-  {
-    "slug": "arcyou",
-    "name": "Arcyóu",
-    "link": "https://github.com/Nazek42/arcyou"
-  },
-  {
-    "slug": "bots",
-    "name": "Bots",
-    "link": "https://github.com/satos---jp/bots"
-  },
-  {
-    "slug": "emoji",
-    "name": "Emoji",
-    "link": "https://esolangs.org/wiki/Emoji"
-  },
-  {
-    "slug": "zucchini",
-    "name": "Zucchini",
-    "link": "https://esolangs.org/wiki/Zucchini"
-  },
-  {
-    "slug": "cardinal",
-    "name": "Cardinal",
-    "link": "https://www.esolangs.org/wiki/Cardinal"
-  },
-  {
-    "slug": "hbcht",
-    "name": "Half-Broken Car in Heavy Traffic",
-    "link": "https://esolangs.org/wiki/Half-Broken_Car_in_Heavy_Traffic"
-  },
-  {
-    "slug": "jelly",
-    "name": "Jelly",
-    "link": "https://github.com/DennisMitchell/jelly"
-  },
-  {
-    "slug": "jellyfish",
-    "name": "Jellyfish",
-    "link": "https://github.com/iatorm/jellyfish"
-  },
-  {
-    "slug": "width",
-    "name": "Width",
-    "link": "https://github.com/stestoltz/Width"
-  },
-  {
-    "slug": "asciidots",
-    "name": "AsciiDots",
-    "link": "http://ajanse.me/asciidots/"
-  },
-  {
-    "slug": "picfunge",
-    "name": "PicFunge",
-    "link": "https://github.com/Liesegang/picfunge"
-  },
-  {
-    "slug": "iwashi",
-    "name": "Iwashi",
-    "link": "https://github.com/Yosshi999/iwashi-lang"
-  },
-  {
-    "slug": "hypertorus",
-    "name": "HyperTorus",
-    "link": "https://github.com/satos---jp/HyperTorus"
-  },
-  {
-    "slug": "gaia",
-    "name": "Gaia",
-    "link": "https://github.com/splcurran/Gaia"
-  },
-  {
-    "slug": "triangularity",
-    "name": "Triangularity",
-    "link": "https://esolangs.org/wiki/Triangularity"
-  },
-  {
-    "slug": "backhand",
-    "name": "Backhand",
-    "link": "https://github.com/GuyJoKing/Backhand"
+    "link": "https://github.com/toyukan6/Arithmetic",
+    "disasm": false
   },
   {
     "slug": "vim",
     "name": "Vim",
-    "link": "http://www.vim.org/"
+    "link": "http://www.vim.org/",
+    "disasm": true
   },
   {
     "slug": "autovim",
     "name": "Autovim",
-    "link": "https://github.com/christianrondeau/autovim"
+    "link": "https://github.com/christianrondeau/autovim",
+    "disasm": false
+  },
+  {
+    "slug": "goruby",
+    "name": "goruby",
+    "link": "https://github.com/ruby/ruby/blob/trunk/man/goruby.1",
+    "disasm": false
+  },
+  {
+    "slug": "ruby1",
+    "name": "Ruby 1.8",
+    "link": "https://www.ruby-lang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "grass",
+    "name": "Grass",
+    "link": "http://www.blue.sky.or.jp/grass/",
+    "disasm": false
+  },
+  {
+    "slug": "modanshogi",
+    "name": "ModanShogi",
+    "link": "https://github.com/yhara/ShogiModan",
+    "disasm": false
+  },
+  {
+    "slug": "make",
+    "name": "Make",
+    "link": "https://www.gnu.org/software/make/",
+    "disasm": false
+  },
+  {
+    "slug": "malbolge",
+    "name": "Malbolge",
+    "link": "https://esolangs.org/wiki/Malbolge",
+    "disasm": false
+  },
+  {
+    "slug": "piet",
+    "name": "Piet",
+    "link": "http://www.dangermouse.net/esoteric/piet.html",
+    "disasm": false
+  },
+  {
+    "slug": "python1",
+    "name": "Python 1",
+    "link": "https://www.python.org/",
+    "disasm": false
+  },
+  {
+    "slug": "rail",
+    "name": "Rail",
+    "link": "https://esolangs.org/wiki/Rail",
+    "disasm": false
+  },
+  {
+    "slug": "simula",
+    "name": "Simula",
+    "link": "https://en.wikipedia.org/wiki/Simula",
+    "disasm": false
+  },
+  {
+    "slug": "snowman",
+    "name": "Snowman",
+    "link": "https://github.com/KeyboardFire/snowman-lang",
+    "disasm": false
+  },
+  {
+    "slug": "streem",
+    "name": "Streem",
+    "link": "https://github.com/matz/streem",
+    "disasm": false
+  },
+  {
+    "slug": "unlambda",
+    "name": "Unlambda",
+    "link": "http://www.madore.org/~david/programs/unlambda/",
+    "disasm": false
+  },
+  {
+    "slug": "verilog",
+    "name": "Verilog (Icarus Verilog)",
+    "link": "http://iverilog.icarus.com/",
+    "disasm": false
+  },
+  {
+    "slug": "wierd",
+    "name": "Wierd",
+    "link": "http://catseye.tc/node/Wierd.html",
+    "disasm": false
+  },
+  {
+    "slug": "wordcpu",
+    "name": "Word!CPU",
+    "link": "https://esolangs.org/wiki/Word!CPU",
+    "disasm": false
+  },
+  {
+    "slug": "aheui",
+    "name": "Aheui",
+    "link": "http://aheui.github.io/specification.en",
+    "disasm": false
+  },
+  {
+    "slug": "beatnik",
+    "name": "Beatnik",
+    "link": "https://esolangs.org/wiki/Beatnik",
+    "disasm": false
+  },
+  {
+    "slug": "blc",
+    "name": "Binary lambda calculus",
+    "link": "https://tromp.github.io/cl/cl.html",
+    "disasm": false
+  },
+  {
+    "slug": "spl",
+    "name": "Shakespeare",
+    "link": "http://shakespearelang.sourceforge.net/",
+    "disasm": false
+  },
+  {
+    "slug": "emojicode",
+    "name": "Emojicode",
+    "link": "http://www.emojicode.org/",
+    "disasm": false
+  },
+  {
+    "slug": "intercal",
+    "name": "INTERCAL",
+    "link": "https://en.wikipedia.org/wiki/INTERCAL",
+    "disasm": false
+  },
+  {
+    "slug": "lolcode",
+    "name": "LOLCODE",
+    "link": "http://lolcode.org/",
+    "disasm": false
+  },
+  {
+    "slug": "minus",
+    "name": "Minus",
+    "link": "http://www.golfscript.com/minus/",
+    "disasm": false
+  },
+  {
+    "slug": "sqlite3",
+    "name": "SQLite3",
+    "link": "https://sqlite.org/",
+    "disasm": false
+  },
+  {
+    "slug": "taxi",
+    "name": "Taxi",
+    "link": "https://bigzaphod.github.io/Taxi/",
+    "disasm": false
+  },
+  {
+    "slug": "adjust",
+    "name": "ADJUST",
+    "link": "https://esolangs.org/wiki/ADJUST",
+    "disasm": false
+  },
+  {
+    "slug": "braille",
+    "name": "Braille",
+    "link": "https://esolangs.org/wiki/Braille",
+    "disasm": false
+  },
+  {
+    "slug": "rust",
+    "name": "Rust",
+    "link": "https://www.rust-lang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "cubically",
+    "name": "Cubically",
+    "link": "https://github.com/aaronryank/Cubically",
+    "disasm": false
+  },
+  {
+    "slug": "sceql",
+    "name": "Sceql",
+    "link": "http://esolangs.org/wiki/Sceql",
+    "disasm": false
+  },
+  {
+    "slug": "apl",
+    "name": "APL",
+    "link": "https://www.gnu.org/software/apl/",
+    "disasm": false
+  },
+  {
+    "slug": "wat",
+    "name": "WebAssembly Text Format",
+    "link": "https://webassembly.github.io/spec/core/text/index.html",
+    "disasm": false
+  },
+  {
+    "slug": "lazyk",
+    "name": "Lazy-K",
+    "link": "http://homepages.cwi.nl/~tromp/cl/lazy-k.html",
+    "disasm": false
+  },
+  {
+    "slug": "doubleplusungood",
+    "name": "Doubleplusungood",
+    "link": "http://argxento.hatenadiary.jp/entry/esolang-advcal12-doubleplusungood",
+    "disasm": false
+  },
+  {
+    "slug": "llvm-ir",
+    "name": "LLVM IR",
+    "link": "https://releases.llvm.org/5.0.0/docs/LangRef.html",
+    "disasm": false
+  },
+  {
+    "slug": "cmm",
+    "name": "C--",
+    "link": "https://www.cs.tufts.edu/~nr/c--/index.html",
+    "disasm": false
+  },
+  {
+    "slug": "hanoi_stack",
+    "name": "Hanoi_Stacck",
+    "link": "https://github.com/JP3BGY/Hanoi_Stack/",
+    "disasm": false
+  },
+  {
+    "slug": "brainfuck-moratorium",
+    "name": "Brainfuck (moratorium)",
+    "link": "https://gist.github.com/moratorium08/2fa8dbd4150c8db547a1f3a31d5499ac",
+    "disasm": false
+  },
+  {
+    "slug": "dotnet",
+    "name": null,
+    "link": null,
+    "disasm": false
+  },
+  {
+    "slug": "csharp-dotnet",
+    "name": "C# (.NET Core)",
+    "link": "https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/",
+    "disasm": false
+  },
+  {
+    "slug": "fsharp-dotnet",
+    "name": "F# (.NET Core)",
+    "link": "https://fsharp.org/",
+    "disasm": false
+  },
+  {
+    "slug": "fortran",
+    "name": "Fortran 2018",
+    "link": "https://gcc.gnu.org/fortran/",
+    "disasm": false
+  },
+  {
+    "slug": "ring",
+    "name": "Ring",
+    "link": "http://ring-lang.sourceforge.net/",
+    "disasm": false
+  },
+  {
+    "slug": "snobol",
+    "name": "SNOBOL4",
+    "link": "http://www.snobol4.org/",
+    "disasm": false
+  },
+  {
+    "slug": "cobol",
+    "name": "COBOL",
+    "link": "https://open-cobol.sourceforge.io/",
+    "disasm": false
+  },
+  {
+    "slug": "fetlang",
+    "name": "Fetlang",
+    "link": "https://github.com/fetlang/fetlang",
+    "disasm": false
+  },
+  {
+    "slug": "alphabeta",
+    "name": "AlphaBeta",
+    "link": "https://esolangs.org/wiki/AlphaBeta",
+    "disasm": false
+  },
+  {
+    "slug": "java",
+    "name": "Java",
+    "link": "https://java.com/",
+    "disasm": false
+  },
+  {
+    "slug": "arnoidc",
+    "name": "ArnoidC",
+    "link": "http://lhartikk.github.io/ArnoldC/",
+    "disasm": false
+  },
+  {
+    "slug": "evil",
+    "name": "Evil",
+    "link": "https://esolangs.org/wiki/Evil",
+    "disasm": false
+  },
+  {
+    "slug": "js-rhino",
+    "name": "JavaScript (Rhino)",
+    "link": "https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino",
+    "disasm": false
+  },
+  {
+    "slug": "floater",
+    "name": "Floater",
+    "link": "https://esolangs.org/wiki/Floater",
+    "disasm": false
+  },
+  {
+    "slug": "cjam",
+    "name": "CJam",
+    "link": "https://sourceforge.net/p/cjam/wiki/Home/",
+    "disasm": false
+  },
+  {
+    "slug": "convex",
+    "name": "Convex",
+    "link": "https://github.com/GamrCorps/Convex",
+    "disasm": false
+  },
+  {
+    "slug": "kotlin",
+    "name": "Kotlin",
+    "link": "https://kotlinlang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "whenever",
+    "name": "Whenever",
+    "link": "http://www.dangermouse.net/esoteric/whenever.html",
+    "disasm": false
+  },
+  {
+    "slug": "xslt",
+    "name": "XSLT",
+    "link": "http://saxon.sourceforge.net/",
+    "disasm": false
+  },
+  {
+    "slug": "python2",
+    "name": "Python 2",
+    "link": "https://www.python.org/",
+    "disasm": false
+  },
+  {
+    "slug": "csharp",
+    "name": "C# (Mono)",
+    "link": "http://www.mono-project.com/",
+    "disasm": false
+  },
+  {
+    "slug": "velato",
+    "name": "Velato",
+    "link": "https://github.com/rottytooth/Velato",
+    "disasm": false
+  },
+  {
+    "slug": "pure-folders",
+    "name": "Pure Folders",
+    "link": "https://esolangs.org/wiki/Folders#Pure_Folders",
+    "disasm": false
+  },
+  {
+    "slug": "concise-folders",
+    "name": "Concise Folders",
+    "link": "https://esolangs.org/wiki/Folders#Concise_Folders",
+    "disasm": false
+  },
+  {
+    "slug": "function2d",
+    "name": "Function",
+    "link": "https://esolangs.org/wiki/Funciton",
+    "disasm": false
+  },
+  {
+    "slug": "produire",
+    "name": "プロデル",
+    "link": "https://rdr.utopiat.net/",
+    "disasm": false
+  },
+  {
+    "slug": "z80",
+    "name": "Z80",
+    "link": "https://sites.google.com/site/codegolfingtips/Home/z80",
+    "disasm": true
+  },
+  {
+    "slug": "haystack",
+    "name": "Haystack",
+    "link": "https://github.com/kade-robertson/haystack",
+    "disasm": false
+  },
+  {
+    "slug": "stuck",
+    "name": "Stuck",
+    "link": "https://esolangs.org/wiki/Stuck",
+    "disasm": false
+  },
+  {
+    "slug": "unicat",
+    "name": "Unicat",
+    "link": "https://github.com/gemdude46/unicat",
+    "disasm": false
+  },
+  {
+    "slug": "unreadable",
+    "name": "Unreadable",
+    "link": "https://esolangs.org/wiki/Unreadable",
+    "disasm": true
+  },
+  {
+    "slug": "zombie",
+    "name": "ZOMBIE",
+    "link": "http://www.dangermouse.net/esoteric/zombie.html",
+    "disasm": false
+  },
+  {
+    "slug": "ffb",
+    "name": "Foobar and Foobaz and Barbaz, oh my!",
+    "link": "https://esolangs.org/wiki/Foobar_and_Foobaz_and_Barbaz,_oh_my!",
+    "disasm": false
+  },
+  {
+    "slug": "aubergine",
+    "name": "Aubergine",
+    "link": "https://esolangs.org/wiki/Aubergine",
+    "disasm": false
+  },
+  {
+    "slug": "ubergenes",
+    "name": "UberGenes",
+    "link": "https://esolangs.org/wiki/UberGenes",
+    "disasm": false
+  },
+  {
+    "slug": "path",
+    "name": "PATH",
+    "link": "http://pathlang.sourceforge.net/",
+    "disasm": false
+  },
+  {
+    "slug": "recurse",
+    "name": "Recurse",
+    "link": "https://esolangs.org/wiki/Recurse",
+    "disasm": false
+  },
+  {
+    "slug": "fernando",
+    "name": "FerNANDo",
+    "link": "https://esolangs.org/wiki/FerNANDo",
+    "disasm": false
+  },
+  {
+    "slug": "gs2",
+    "name": "gs2",
+    "link": "https://github.com/nooodl/gs2",
+    "disasm": false
+  },
+  {
+    "slug": "logicode",
+    "name": "Logicode",
+    "link": "https://github.com/LogicodeLang/Logicode",
+    "disasm": false
+  },
+  {
+    "slug": "minimal2d",
+    "name": "Minimal-2D",
+    "link": "https://esolangs.org/wiki/Minimal-2D",
+    "disasm": false
+  },
+  {
+    "slug": "i4004asm",
+    "name": "Intel 4004 Assembly",
+    "link": "https://github.com/CodeAbbey/intel4004-emu",
+    "disasm": false
+  },
+  {
+    "slug": "suzy",
+    "name": "Suzy",
+    "link": "http://esolangs.org/wiki/Suzy",
+    "disasm": false
+  },
+  {
+    "slug": "bash-pure",
+    "name": "Bash (pure)",
+    "link": "https://tiswww.case.edu/php/chet/bash/bashtop.html",
+    "disasm": false
+  },
+  {
+    "slug": "bash-busybox",
+    "name": "Bash (busybox)",
+    "link": "https://busybox.net/",
+    "disasm": false
+  },
+  {
+    "slug": "fish-shell-pure",
+    "name": "Fish (pure)",
+    "link": "https://fishshell.com/",
+    "disasm": false
+  },
+  {
+    "slug": "ezhil",
+    "name": "எழில்",
+    "link": "http://ezhillang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "snusp",
+    "name": "SNUSP",
+    "link": "https://esolangs.org/wiki/SNUSP",
+    "disasm": false
+  },
+  {
+    "slug": "jq",
+    "name": "jq",
+    "link": "https://stedolan.github.io/jq/",
+    "disasm": false
+  },
+  {
+    "slug": "node",
+    "name": "Node.js",
+    "link": "https://nodejs.org/",
+    "disasm": false
+  },
+  {
+    "slug": "unicue",
+    "name": "Unicue",
+    "link": "https://github.com/hakatashi/unicue-lang",
+    "disasm": false
+  },
+  {
+    "slug": "beam",
+    "name": "Beam",
+    "link": "http://esolangs.org/wiki/Beam",
+    "disasm": false
+  },
+  {
+    "slug": "cubix",
+    "name": "Cubix",
+    "link": "https://github.com/ETHproductions/cubix",
+    "disasm": false
+  },
+  {
+    "slug": "japt",
+    "name": "Japt",
+    "link": "https://github.com/ETHproductions/japt",
+    "disasm": false
+  },
+  {
+    "slug": "stop",
+    "name": "STOP",
+    "link": "https://github.com/colinjeanne/stop-lang",
+    "disasm": false
+  },
+  {
+    "slug": "htms",
+    "name": "htms",
+    "link": "https://github.com/OinkIguana/htms",
+    "disasm": false
+  },
+  {
+    "slug": "maybelater",
+    "name": "Maybe Later",
+    "link": "http://esolangs.org/wiki/Maybe_Later",
+    "disasm": false
+  },
+  {
+    "slug": "nadesiko",
+    "name": "なでしこ3",
+    "link": "https://nadesi.com/doc3/",
+    "disasm": false
+  },
+  {
+    "slug": "floating",
+    "name": "Floating",
+    "link": "https://github.com/KPCCoiL/floating-lang",
+    "disasm": false
+  },
+  {
+    "slug": "qlb",
+    "name": "‫قلب‬",
+    "link": "https://github.com/nasser/---",
+    "disasm": false
+  },
+  {
+    "slug": "calc",
+    "name": "LibreOffice Calc",
+    "link": "https://www.libreoffice.org/discover/calc/",
+    "disasm": false
+  },
+  {
+    "slug": "nuts",
+    "name": "Nuts",
+    "link": "https://github.com/hoge-fuga-0000/Nuts",
+    "disasm": false
+  },
+  {
+    "slug": "canvas",
+    "name": "Canvas",
+    "link": "https://github.com/dzaima/Canvas",
+    "disasm": false
+  },
+  {
+    "slug": "wysiscript",
+    "name": "WysiScript",
+    "link": "http://www.zifyoip.com/wysiscript/",
+    "disasm": false
+  },
+  {
+    "slug": "tetris",
+    "name": "Tetris",
+    "link": "https://sagisawa.0am.jp/tetris/",
+    "disasm": false
+  },
+  {
+    "slug": "octave",
+    "name": "Octave",
+    "link": "https://www.gnu.org/software/octave/",
+    "disasm": false
+  },
+  {
+    "slug": "matl",
+    "name": "MATL",
+    "link": "https://github.com/lmendo/MATL",
+    "disasm": false
+  },
+  {
+    "slug": "perl",
+    "name": "Perl",
+    "link": "https://www.perl.org/",
+    "disasm": false
+  },
+  {
+    "slug": "slashes",
+    "name": "///",
+    "link": "https://esolangs.org/wiki////",
+    "disasm": false
+  },
+  {
+    "slug": "element",
+    "name": "Element",
+    "link": "https://esolangs.org/wiki/Element",
+    "disasm": false
+  },
+  {
+    "slug": "php",
+    "name": "PHP 7.0",
+    "link": "https://secure.php.net/",
+    "disasm": false
+  },
+  {
+    "slug": "irc",
+    "name": "IRC",
+    "link": "https://esolangs.org/wiki/IRC",
+    "disasm": false
+  },
+  {
+    "slug": "python3",
+    "name": "Python 3",
+    "link": "https://www.python.org/",
+    "disasm": false
+  },
+  {
+    "slug": "exchangeif",
+    "name": "ExchangeIF",
+    "link": "https://github.com/HyogaGlacier/ExchangeIF",
+    "disasm": false
+  },
+  {
+    "slug": "trumpscript",
+    "name": "TrumpScript",
+    "link": "http://samshadwell.me/TrumpScript/",
+    "disasm": false
+  },
+  {
+    "slug": "2sable",
+    "name": "2sable",
+    "link": "https://github.com/Adriandmen/2sable",
+    "disasm": false
+  },
+  {
+    "slug": "fish",
+    "name": "><>",
+    "link": "https://esolangs.org/wiki/Fish",
+    "disasm": false
+  },
+  {
+    "slug": "arcyou",
+    "name": "Arcyóu",
+    "link": "https://github.com/Nazek42/arcyou",
+    "disasm": false
+  },
+  {
+    "slug": "bots",
+    "name": "Bots",
+    "link": "https://github.com/satos---jp/bots",
+    "disasm": false
+  },
+  {
+    "slug": "emoji",
+    "name": "Emoji",
+    "link": "https://esolangs.org/wiki/Emoji",
+    "disasm": false
+  },
+  {
+    "slug": "zucchini",
+    "name": "Zucchini",
+    "link": "https://esolangs.org/wiki/Zucchini",
+    "disasm": false
+  },
+  {
+    "slug": "cardinal",
+    "name": "Cardinal",
+    "link": "https://www.esolangs.org/wiki/Cardinal",
+    "disasm": false
+  },
+  {
+    "slug": "hbcht",
+    "name": "Half-Broken Car in Heavy Traffic",
+    "link": "https://esolangs.org/wiki/Half-Broken_Car_in_Heavy_Traffic",
+    "disasm": false
+  },
+  {
+    "slug": "jelly",
+    "name": "Jelly",
+    "link": "https://github.com/DennisMitchell/jelly",
+    "disasm": false
+  },
+  {
+    "slug": "jellyfish",
+    "name": "Jellyfish",
+    "link": "https://github.com/iatorm/jellyfish",
+    "disasm": false
+  },
+  {
+    "slug": "width",
+    "name": "Width",
+    "link": "https://github.com/stestoltz/Width",
+    "disasm": false
+  },
+  {
+    "slug": "asciidots",
+    "name": "AsciiDots",
+    "link": "http://ajanse.me/asciidots/",
+    "disasm": false
+  },
+  {
+    "slug": "picfunge",
+    "name": "PicFunge",
+    "link": "https://github.com/Liesegang/picfunge",
+    "disasm": false
+  },
+  {
+    "slug": "iwashi",
+    "name": "Iwashi",
+    "link": "https://github.com/Yosshi999/iwashi-lang",
+    "disasm": false
+  },
+  {
+    "slug": "hypertorus",
+    "name": "HyperTorus",
+    "link": "https://github.com/satos---jp/HyperTorus",
+    "disasm": false
+  },
+  {
+    "slug": "gaia",
+    "name": "Gaia",
+    "link": "https://github.com/splcurran/Gaia",
+    "disasm": false
+  },
+  {
+    "slug": "triangularity",
+    "name": "Triangularity",
+    "link": "https://esolangs.org/wiki/Triangularity",
+    "disasm": false
+  },
+  {
+    "slug": "backhand",
+    "name": "Backhand",
+    "link": "https://github.com/GuyJoKing/Backhand",
+    "disasm": false
   },
   {
     "slug": "cmd",
     "name": "cmd.exe",
-    "link": "https://en.wikipedia.org/wiki/Cmd.exe"
+    "link": "https://en.wikipedia.org/wiki/Cmd.exe",
+    "disasm": false
   },
   {
     "slug": "lua",
     "name": "Lua",
-    "link": "https://www.lua.org/"
+    "link": "https://www.lua.org/",
+    "disasm": false
   },
   {
     "slug": "rprogn",
     "name": "Reverse Programmer Notation",
-    "link": "https://tehflamintaco.github.io/Reverse-Programmer-Notation/"
+    "link": "https://tehflamintaco.github.io/Reverse-Programmer-Notation/",
+    "disasm": false
   },
   {
     "slug": "ocaml",
     "name": "OCaml",
-    "link": "http://ocaml.org/"
+    "link": "http://ocaml.org/",
+    "disasm": false
   },
   {
     "slug": "coq",
     "name": "Coq",
-    "link": "https://coq.inria.fr/"
+    "link": "https://coq.inria.fr/",
+    "disasm": false
   },
   {
     "slug": "haskell",
     "name": "Haskell",
-    "link": "https://www.haskell.org/"
+    "link": "https://www.haskell.org/",
+    "disasm": false
   },
   {
     "slug": "squared-cool",
     "name": "🆒",
-    "link": "https://esolangs.org/wiki/%F0%9F%86%92"
+    "link": "https://esolangs.org/wiki/%F0%9F%86%92",
+    "disasm": false
   },
   {
     "slug": "husk",
     "name": "Husk",
-    "link": "https://github.com/barbuz/Husk"
+    "link": "https://github.com/barbuz/Husk",
+    "disasm": false
   },
   {
     "slug": "whitespace",
     "name": "Whitespace",
-    "link": "https://esolangs.org/wiki/Whitespace"
+    "link": "https://esolangs.org/wiki/Whitespace",
+    "disasm": true
   },
   {
     "slug": "erlang",
     "name": "Erlang",
-    "link": "http://erlang.org/"
+    "link": "http://erlang.org/",
+    "disasm": false
   },
   {
     "slug": "elixir",
     "name": "Elixir",
-    "link": "https://elixir-lang.org/"
+    "link": "https://elixir-lang.org/",
+    "disasm": false
   },
   {
     "slug": "05ab1e",
     "name": "05AB1E",
-    "link": "https://github.com/Adriandmen/05AB1E"
+    "link": "https://github.com/Adriandmen/05AB1E",
+    "disasm": false
   },
   {
     "slug": "awk",
     "name": "awk (GNU awk)",
-    "link": "http://www.gnu.org/software/gawk/"
+    "link": "http://www.gnu.org/software/gawk/",
+    "disasm": false
   },
   {
     "slug": "perl6",
     "name": "Perl 6",
-    "link": "http://perl6.org/"
+    "link": "http://perl6.org/",
+    "disasm": false
   },
   {
     "slug": "ballerina",
     "name": "Ballerina",
-    "link": "https://ballerina.io/"
+    "link": "https://ballerina.io/",
+    "disasm": false
   },
   {
     "slug": "sed",
     "name": "sed",
-    "link": "https://www.gnu.org/software/sed/"
+    "link": "https://www.gnu.org/software/sed/",
+    "disasm": false
   },
   {
     "slug": "riscv",
     "name": "RISC-V (32bit, ELF)",
-    "link": "https://riscv.org/"
+    "link": "https://riscv.org/",
+    "disasm": false
   },
   {
     "slug": "m4",
     "name": "m4",
-    "link": "https://www.gnu.org/software/m4/m4.html"
+    "link": "https://www.gnu.org/software/m4/m4.html",
+    "disasm": false
   },
   {
     "slug": "racket",
     "name": "Racket",
-    "link": "https://racket-lang.org/"
+    "link": "https://racket-lang.org/",
+    "disasm": false
   },
   {
     "slug": "ubuntu-base",
     "name": null,
-    "link": null
+    "link": null,
+    "disasm": false
   },
   {
     "slug": "crystal",
     "name": "Crystal",
-    "link": "https://crystal-lang.org/"
+    "link": "https://crystal-lang.org/",
+    "disasm": false
   },
   {
     "slug": "d-dmd",
     "name": "D (DMD)",
-    "link": "https://dlang.org/"
+    "link": "https://dlang.org/",
+    "disasm": false
   },
   {
     "slug": "d-gdc",
     "name": "D (GDC)",
-    "link": "https://dlang.org/"
+    "link": "https://dlang.org/",
+    "disasm": false
   },
   {
     "slug": "powershell",
     "name": "PowerShell",
-    "link": "https://github.com/PowerShell/PowerShell"
+    "link": "https://github.com/PowerShell/PowerShell",
+    "disasm": false
   },
   {
     "slug": "ruby0.49",
     "name": "Ruby 0.49",
-    "link": "https://www.ruby-lang.org/"
+    "link": "https://www.ruby-lang.org/",
+    "disasm": false
   },
   {
     "slug": "fugue",
     "name": "Fugue",
-    "link": "https://esolangs.org/wiki/Fugue"
+    "link": "https://esolangs.org/wiki/Fugue",
+    "disasm": true
   },
   {
     "slug": "x86asm-nasm",
     "name": "x86 Assembly (nasm)",
-    "link": "https://www.nasm.us/"
+    "link": "https://www.nasm.us/",
+    "disasm": false
   },
   {
     "slug": "swift",
     "name": "Swift",
-    "link": "https://swift.org/"
+    "link": "https://swift.org/",
+    "disasm": false
   },
   {
     "slug": "hack",
     "name": "Hack",
-    "link": "http://hacklang.org/"
+    "link": "http://hacklang.org/",
+    "disasm": false
   },
   {
     "slug": "cpp-clang",
     "name": "C++ (Clang)",
-    "link": "https://clang.llvm.org/"
+    "link": "https://clang.llvm.org/",
+    "disasm": false
   },
   {
     "slug": "cpp-compile-time-clang",
     "name": "Compile-time C++ (Clang, C++11)",
-    "link": "https://clang.llvm.org/"
+    "link": "https://clang.llvm.org/",
+    "disasm": false
   },
   {
     "slug": "perl1",
     "name": "Perl 1.0",
-    "link": "https://www.perl.org/"
+    "link": "https://www.perl.org/",
+    "disasm": false
   },
   {
     "slug": "moo",
     "name": "moo",
-    "link": "https://github.com/moratorium08/moo"
+    "link": "https://github.com/moratorium08/moo",
+    "disasm": false
   },
   {
     "slug": "clisp-sbcl",
     "name": "Common LISP (SBCL)",
-    "link": "http://www.sbcl.org/"
+    "link": "http://www.sbcl.org/",
+    "disasm": false
   },
   {
     "slug": "abc",
     "name": "ABC",
-    "link": "https://en.wikipedia.org/wiki/ABC_(programming_language)"
+    "link": "https://en.wikipedia.org/wiki/ABC_(programming_language)",
+    "disasm": false
   },
   {
     "slug": "brainfuck-bfi",
     "name": "Brainfuck (BFI)",
-    "link": "http://esoteric.sange.fi/brainfuck/impl/interp/BFI.c"
+    "link": "http://esoteric.sange.fi/brainfuck/impl/interp/BFI.c",
+    "disasm": false
   }
 ]

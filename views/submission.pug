@@ -41,6 +41,11 @@ block content
       p
         pre(class = isHexdump ? 'hexdump' : '')= code
 
+      if typeof submission.disasm === 'string'
+        h4 Disassembly
+        p
+          pre= submission.disasm
+
       h4 stdin
       p
         pre= submission.input
