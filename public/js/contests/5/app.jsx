@@ -449,7 +449,7 @@ class App extends React.Component {
 						<Button
 							color="primary"
 							onClick={this.handleSend}
-							disabled={this.state.isPending}
+							disabled
 						>
 							Send
 						</Button>{' '}
