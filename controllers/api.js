@@ -72,7 +72,7 @@ module.exports.postExecution = async (req, res) => {
 	try {
 		req.assert('language', 'Please Specify language').notEmpty();
 
-		if (!req.contest.isOpen()) {
+		if (!req.contest.isOpen() && req.contest.id !== '5') {
 			throw new Error('Competition has closed');
 		}
 
