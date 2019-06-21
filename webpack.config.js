@@ -25,6 +25,7 @@ module.exports = (env, argv = {}) => {
 				['contest-mayfes2018', 'js/contests/mayfes2018/index.babel.js'],
 				['contest-hackathon2018', 'js/contests/hackathon2018/index.babel.js'],
 				['check', 'js/check.babel.js'],
+				['contest-5', 'js/contests/5/index.babel.js'],
 			].map(([name, entry]) => ({
 				[name]: [
 					...(argv.mode === 'development'

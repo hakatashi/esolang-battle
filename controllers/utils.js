@@ -65,7 +65,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 			assert({}.hasOwnProperty.call(contests, contest.id));
 			const {getPrecedingIndices} = contests[contest.id];
 
-			const precedingCells = getPrecedingIndices(index).map(
+			const precedingCells = getPrecedingIndices(index).filter((i) => languageCells[i].type !== undefined).map(
 				(i) => languageCells[i]
 			);
 
@@ -155,4 +155,17 @@ module.exports.getCodeLimit = (languageId) => {
 	}
 
 	return 10 * 1024;
+};
+
+module.exports.getTimeLimit = (languageId) => {
+	if (
+		[
+			'kotlin',
+			'husk',
+		].includes(languageId)
+	) {
+		return 30 * 1000;
+	}
+
+	return 10 * 1000;
 };

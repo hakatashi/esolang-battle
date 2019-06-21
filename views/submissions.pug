@@ -22,7 +22,7 @@ block content
           tbody
             each submission in submissions
               -
-                const tableClass = {pending: 'table-active', success: 'table-success', failed: 'table-warning', error: 'table-danger'}[submission.status]
+                const tableClass = {pending: 'table-active', success: 'table-success', failed: 'table-warning', error: 'table-danger', invalid: 'table-danger'}[submission.status]
               tr(class=tableClass)
                 td
                   a(href=`?${encode({author: submission.user.email.replace(/@.+$/, '')})}`)

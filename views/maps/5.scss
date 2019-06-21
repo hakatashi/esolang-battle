@@ -1,0 +1,176 @@
+html, body {
+	height: 100vh;
+}
+
+#app {
+	height: 100%;
+}
+
+.world {
+	display: flex;
+	height: 100%;
+	justify-content: space-between;
+
+	@media screen and (orientation: portrait) {
+		flex-direction: column;
+	}
+
+	.spacer {
+		width: 200px;
+	}
+
+	.map {
+		position: relative;
+		flex: 0 1 0;
+		text-align: center;
+
+		.paint-wrap {
+			height: 100%;
+			display: inline-block;
+			position: relative;
+		}
+
+		svg.paint {
+			height: 100%;
+			overflow: visible;
+
+			.cell {
+				&.red {
+					fill: #ef2011;
+				}
+
+				&.blue {
+					fill: #0e30ec;
+				}
+
+				&.green {
+					fill: #167516;
+				}
+
+				&.white {
+					fill: white;
+				}
+
+				&.gray {
+					fill: #737373;
+				}
+			}
+
+			.cell:hover {
+				opacity: 0.9;
+			}
+		}
+
+		@media screen and (orientation: portrait) {
+			overflow-x: auto;
+		}
+
+		.language-labels {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+		}
+
+		.language-label {
+			position: absolute;
+
+			line-height: 1.3em;
+			font-size: 1.0vmin;
+			font-weight: bold;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			word-wrap: break-word;
+			color: white;
+			flex-direction: column;
+
+			.language-size {
+				font-size: 1.3em;
+			}
+
+			&.gray, &.white {
+				color: #111;
+			}
+		}
+	}
+
+	.teams {
+		display: flex;
+		flex-basis: 200px;
+
+		@media screen and (orientation: portrait) {
+			flex-direction: column;
+			flex-basis: auto;
+		}
+
+		.team {
+			width: 50px;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			margin-right: 15px;
+
+			@media screen and (orientation: portrait) {
+				width: auto;
+				height: 25px;
+				flex-direction: row-reverse;
+				margin: 0 0 5px;
+			}
+
+			&.red .bar {
+				background-color: #ef2011;
+				color: #ef2011;
+			}
+
+			&.blue .bar {
+				background-color: #0e30ec;
+				color: #0e30ec;
+			}
+
+			&.green .bar {
+				background-color: #167516;
+				color: #167516;
+			}
+
+			.bar {
+				position: relative;
+			}
+
+			.count {
+				position: absolute;
+				bottom: 100%;
+				text-align: center;
+				width: 100%;
+				font-weight: bold;
+				font-size: 32px;
+
+				@media screen and (orientation: portrait) {
+					left: calc(100% + 5px);
+					width: auto;
+					top: 0;
+					bottom: 0;
+					line-height: 30px;
+				}
+			}
+
+			.team-name {
+				position: absolute;
+				bottom: calc(100% + 35px);
+				text-align: center;
+				width: 100%;
+				font-weight: bold;
+
+				@media screen and (orientation: portrait) {
+					left: calc(100% + 45px);
+					width: auto;
+					top: 0;
+					bottom: 0;
+					line-height: 30px;
+				}
+			}
+		}
+	}
+}

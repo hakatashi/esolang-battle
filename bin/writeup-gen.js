@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Language = require('../models/Language');
 const Contest = require('../models/Contest');
+const isValidUTF8 = require('utf-8-validate');
 require('../models/Submission');
 require('../models/User');
 const langs = require('../data/langs.json');
@@ -11,7 +12,7 @@ mongoose.Promise = global.Promise;
 (async () => {
 	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
 
-	const contest = await Contest.find({id: '4'});
+	const contest = await Contest.find({id: '5'});
 	const languages = await Language.find({contest})
 		.populate({
 			path: 'solution',
@@ -27,15 +28,27 @@ mongoose.Promise = global.Promise;
 
 		const lang = langs.find(({slug}) => slug === language.slug);
 		console.log(stripIndent`
-			# [${lang.name}](https://esolang.hakatashi.com/contests/4/submissions/${language.solution._id}) (@${language.solution.user.email.replace(/@.+$/, '')})
-			**${language.solution.size}** bytes
+			# [${lang.name}](https://esolang.hakatashi.com/contests/5/submissions/${language.solution._id}) (@${language.solution.user.email.replace(/@.+$/, '')}, ${language.solution.size} bytes)
 		`);
 		console.log('');
-		if (language.solution.size < 1000 && !language.solution.code.toString().match(/[\x00-\x08\x0b\x0c\x0e-\x1F\x7F\x80-\x9F]/)) {
+		const isVisible = isValidUTF8(language.solution.code);
+		if (isVisible) {
+			if (language.solution.size >= 500) {
+				console.log([
+					'<details>',
+					'',
+					'<summary>コードを見る</summary>',
+					'',
+				].join('\n'));
+			}
 			console.log('```');
 			console.log(language.solution.code.toString());
 			console.log('```');
 			console.log('');
+			if (language.solution.size >= 500) {
+				console.log('</details>');
+				console.log('');
+			}
 		}
 	}
 

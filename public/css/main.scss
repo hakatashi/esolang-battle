@@ -139,6 +139,11 @@ pre.hexdump {
       background-image: url('/img/contest/mayfes2019-day2-headline.svg');
     }
 
+    &.contest-5 {
+      background-color: $md-lime-700;
+      background-image: url('/img/contest/5-headline.svg');
+    }
+
     &.contest-unknown {
       background-color: #050505;
       background-image: url('/img/contest/noise.png');

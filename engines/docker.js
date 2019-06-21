@@ -1,4 +1,5 @@
 /* eslint-env browser */
+
 const Docker = require('dockerode');
 const assert = require('assert');
 const concatStream = require('concat-stream');
@@ -6,8 +7,9 @@ const Promise = require('bluebird');
 const path = require('path');
 const tmp = require('tmp');
 const shellescape = require('shell-escape');
-const {getCodeLimit} = require('../controllers/utils.js');
 const fs = Promise.promisifyAll(require('fs'));
+const {getCodeLimit, getTimeLimit} = require('../controllers/utils.js');
+const langInfos = require('../data/infos.json');
 
 const docker = new Docker();
 
@@ -20,12 +22,15 @@ class MemoryLimitExceededError extends Error {
 	}
 }
 
-module.exports = async ({id, code, stdin}) => {
+module.exports = async ({id, code, stdin, trace: traceOption, disasm = false}) => {
 	assert(typeof id === 'string');
 	assert(Buffer.isBuffer(code));
 	assert(typeof stdin === 'string');
 	assert(code.length <= getCodeLimit(id));
 	assert(stdin.length < 10000);
+
+	const langInfo = langInfos.find(({slug}) => slug === id);
+	const trace = traceOption && langInfo && langInfo.time && langInfo.time <= 10;
 
 	const {tmpPath, cleanup} = await new Promise((resolve, reject) => {
 		tmp.dir({unsafeCleanup: true}, (error, dTmpPath, dCleanup) => {
@@ -95,11 +100,15 @@ module.exports = async ({id, code, stdin}) => {
 				Tty: false,
 				OpenStdin: false,
 				StdinOnce: false,
-				Env: null,
+				Env: trace === true ? ['STRACE_OUTPUT_PATH=/volume/strace.log'] : null,
 				Cmd: [
 					'sh',
 					'-c',
-					`${shellescape(['script', `/volume/${filename}`])} < /volume/INPUT`,
+					`${shellescape([
+						'script',
+						...(disasm ? ['-d'] : []),
+						`/volume/${filename}`,
+					])} < /volume/INPUT`,
 				],
 				Image: `esolang/${id}`,
 				Volumes: {
@@ -107,8 +116,9 @@ module.exports = async ({id, code, stdin}) => {
 				},
 				VolumesFrom: [],
 				HostConfig: {
-					Binds: [`${dockerVolumePath}:/volume:ro`],
+					Binds: [`${dockerVolumePath}:/volume:${trace === true ? 'rw' : 'ro'}`],
 					Memory: memoryLimit,
+					...(trace === true ? {CapAdd: ['SYS_PTRACE']} : {}),
 				},
 			});
 
@@ -138,8 +148,11 @@ module.exports = async ({id, code, stdin}) => {
 		]);
 
 		const executionStart = Date.now();
-		const [stdout, stderr, containerData] = await runner.timeout(10000);
+		const [stdout, stderr, containerData] = await runner.timeout(getTimeLimit(id));
 		const executionEnd = Date.now();
+
+		const tracePath = path.join(tmpPath, 'strace.log');
+		const traceLog = trace && (await fs.readFileAsync(tracePath));
 
 		cleanup();
 
@@ -154,6 +167,7 @@ module.exports = async ({id, code, stdin}) => {
 					),
 				  }
 				: {}),
+			trace: trace ? traceLog : null,
 		};
 	} catch (error) {
 		if (container) {
