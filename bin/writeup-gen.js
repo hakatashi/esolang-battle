@@ -36,7 +36,9 @@ mongoose.Promise = global.Promise;
 			if (language.solution.size >= 500) {
 				console.log([
 					'<details>',
+					'',
 					'<summary>コードを見る</summary>',
+					'',
 				].join('\n'));
 			}
 			console.log('```');
@@ -45,6 +47,7 @@ mongoose.Promise = global.Promise;
 			console.log('');
 			if (language.solution.size >= 500) {
 				console.log('</details>');
+				console.log('');
 			}
 		}
 	}
