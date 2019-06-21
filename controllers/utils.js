@@ -161,9 +161,10 @@ module.exports.getTimeLimit = (languageId) => {
 	if (
 		[
 			'kotlin',
+			'husk',
 		].includes(languageId)
 	) {
-		return 20 * 1000;
+		return 30 * 1000;
 	}
 
 	return 10 * 1000;
