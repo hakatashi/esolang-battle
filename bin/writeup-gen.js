@@ -33,7 +33,7 @@ mongoose.Promise = global.Promise;
 		console.log('');
 		const isVisible = isValidUTF8(language.solution.code);
 		if (isVisible) {
-			if (language.solution.size >= 1000) {
+			if (language.solution.size >= 300) {
 				console.log([
 					'<details>',
 					'<summary>コードを見る</summary>',
@@ -43,7 +43,7 @@ mongoose.Promise = global.Promise;
 			console.log(language.solution.code.toString());
 			console.log('```');
 			console.log('');
-			if (language.solution.size >= 1000) {
+			if (language.solution.size >= 300) {
 				console.log('</details>');
 			}
 		}
