@@ -13,7 +13,7 @@
           a.nav-link(href=`/contests/${contest.id}/rule`) Rule
         li.nav-item(class=(title == 'Submissions') ? 'active' : undefined)
           a.nav-link(href=`/contests/${contest.id}/submissions`) Submissions
-        if contest.isOpen() || contest.id === '5'
+        if contest.isOpen()
           li.nav-item(class=(title == 'Check') ? 'active' : undefined)
             a.nav-link(href=`/contests/${contest.id}/check`) Check
     ul.navbar-nav

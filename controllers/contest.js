@@ -79,7 +79,7 @@ module.exports.getAdmin = async (req, res) => {
  * GET /contest/:contest/check
  */
 module.exports.getCheck = async (req, res) => {
-	if (!req.contest.isOpen() && req.contest.id !== '5') {
+	if (!req.contest.isOpen()) {
 		res.redirect(`/contests/${req.contest.id}`);
 		return;
 	}
