@@ -17,7 +17,7 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('express-flash');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const expressValidator = require('express-validator');
+const {check} = require('express-validator');
 const Router = require('express-promise-router');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
@@ -95,7 +95,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(upload.fields([{name: 'file', maxCount: 1}]));
-app.use(expressValidator());
 app.use(
 	session({
 		resave: true,
@@ -203,12 +202,14 @@ router.get(
 );
 router.post(
 	'/api/contests/:contest/submission',
+	check('language', 'Please Specify language').exists(),
 	passportConfig.isAuthenticated,
 	apiController.contest,
 	apiController.postSubmission
 );
 router.post(
 	'/api/contests/:contest/execution',
+	check('language', 'Please Specify language').exists(),
 	passportConfig.isAuthenticated,
 	apiController.contest,
 	apiController.postExecution
