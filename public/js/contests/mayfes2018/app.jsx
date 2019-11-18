@@ -91,6 +91,9 @@ class App extends React.Component {
 		if (['mayfes2019-day1', 'mayfes2019-day2'].includes(this.contestId)) {
 			return [0, 3, 4, 5, 19, 20, 21, 24].includes(cell);
 		}
+		if (this.contestId === 'komabasai2019') {
+			return [0, 4, 20, 24].includes(cell);
+		}
 		return false;
 	};
 
