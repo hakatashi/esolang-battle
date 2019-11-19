@@ -1,8 +1,7 @@
 const assert = require('assert');
 const range = require('lodash/range');
 const shuffle = require('lodash/shuffle');
-const sample = require('lodash/sample');
-const flatten = require('lodash/flatten');
+const random = require('lodash/random');
 
 module.exports.getPrecedingIndices = (cellIndex) => {
 	assert(cellIndex >= 0);
@@ -36,9 +35,9 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 module.exports.generateInput = () => {
 	const count = 100;
 
-	const lines = flatten([
-		...shuffle(range(10, 100)),
-		...range(count - 90).map(() => sample(range(10, 100))),
+	const lines = shuffle([
+		...range(10, 100),
+		...range(count - 90).map(() => random(10, 99)),
 	]);
 
 	assert(lines.length === 100);
@@ -55,10 +54,10 @@ module.exports.isValidAnswer = (input, output) => {
 
 	assert(lines.length === 100);
 
-	const correctOutput = '';
+	let correctOutput = '';
 
 	for (const line of lines) {
-		const n = parseInt(lines);
+		const n = parseInt(line);
 		if (range(1, 10).some((i) => n % i === 0 && n / i <= 9)) {
 			correctOutput += '1';
 		} else {
