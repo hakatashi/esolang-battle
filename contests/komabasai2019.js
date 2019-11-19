@@ -38,7 +38,7 @@ module.exports.generateInput = () => {
 
 	const lines = flatten([
 		...shuffle(range(10, 100)),
-        ...range(count - 90).map(() => sample(range(10, 100))),
+		...range(count - 90).map(() => sample(range(10, 100))),
 	]);
 
 	assert(lines.length === 100);
@@ -55,15 +55,15 @@ module.exports.isValidAnswer = (input, output) => {
 
 	assert(lines.length === 100);
 
-    const correctOutput = '';
+	const correctOutput = '';
 
 	for (const line of lines) {
 		const n = parseInt(lines);
-        if (range(1, 10).some(i => n % i === 0 && n / i <= 9)){
-            correctOutput += '1';
-        } else {
-            correctOutput += '0';
-        }
+		if (range(1, 10).some((i) => n % i === 0 && n / i <= 9)) {
+			correctOutput += '1';
+		} else {
+			correctOutput += '0';
+		}
 	}
 
 	const trimmedOutput = output
