@@ -112,7 +112,7 @@ class App extends React.Component {
 
 	handleClickCell = (event) => {
 		const cellIndex = parseInt(
-			event.target.closest('.cell').getAttribute('data-index')
+			event.target.closest('.cell').getAttribute('data-index'),
 		);
 		this.setState(({languages}) => {
 			const language = languages[cellIndex];
@@ -186,7 +186,7 @@ class App extends React.Component {
 			`/contests/${this.contestId}/submission`,
 			{
 				_id: data._id,
-			}
+			},
 		);
 
 		if (submission.status === 'failed') {
@@ -221,8 +221,7 @@ class App extends React.Component {
 		const cellCounts = Array(this.size)
 			.fill()
 			.map(
-				(_, index) => this.state.languages.filter((language) => language.team === index)
-					.length
+				(_, index) => this.state.languages.filter((language) => language.team === index).length,
 			);
 		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
 		return (
@@ -311,13 +310,13 @@ class App extends React.Component {
 					</ModalHeader>
 					<ModalBody>
 						{selectedLanguage.solution ? (
-							<React.Fragment>
+							<>
 								<p>
 									Owner: {selectedLanguage.solution.user} (
 									{selectedLanguage.team})
 								</p>
 								<p>
-									{'Solution: '}
+									Solution:
 									<a
 										href={`/contests/${this.contestId}/submissions/${
 											selectedLanguage.solution._id
@@ -328,12 +327,12 @@ class App extends React.Component {
 									</a>
 									{` (${selectedLanguage.solution.size} bytes)`}
 								</p>
-							</React.Fragment>
+							</>
 						) : (
-							<React.Fragment>
+							<>
 								<p>Owner: N/A</p>
 								<p>Solution: N/A</p>
-							</React.Fragment>
+							</>
 						)}
 						<Form>
 							<FormGroup
@@ -355,8 +354,8 @@ class App extends React.Component {
 							<p className={`p-3 mb-2 bg-${this.state.messageType} text-white`}>
 								{this.state.message}
 								{this.state.messageDetail && (
-									<React.Fragment>
-										{' Check out the detail '}
+									<>
+										Check out the detail
 										<a
 											href={`/contests/${this.contestId}/submissions/${
 												this.state.messageDetail
@@ -366,7 +365,7 @@ class App extends React.Component {
 											here
 										</a>
 										.
-									</React.Fragment>
+									</>
 								)}
 							</p>
 						)}
