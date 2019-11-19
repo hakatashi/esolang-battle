@@ -244,7 +244,7 @@ class App extends React.Component {
 
 		return (
 			<div className="world">
-				<div className="teams left">{this.renderTeam('Red', 0)}</div>
+				<div className="teams left">{this.renderTeam('Blue', 1)}</div>
 				<div className="map">
 					{Array(this.size)
 						.fill()
@@ -294,7 +294,7 @@ class App extends React.Component {
 							</div>
 						))}
 				</div>
-				<div className="teams right">{this.renderTeam('Blue', 1)}</div>
+				<div className="teams right">{this.renderTeam('Red', 0)}</div>
 				<Modal
 					isOpen={this.state.selectedLanguage !== null}
 					toggle={this.handleCloseModal}
