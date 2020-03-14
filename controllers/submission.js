@@ -51,10 +51,21 @@ module.exports.getSubmissions = async (req, res) => {
 		.count()
 		.exec();
 
+	const users_id = await Submission.find({contest: req.contest})
+		.distinct('user')
+		.exec();
+	const langs_id = await Submission.find({contest: req.contest})
+		.distinct('language')
+		.exec();
+	const users = await User.find({ _id: { $in: users_id } }).exec();
+	const langs = await Language.find({ _id: { $in: langs_id } }).exec();
+
 	res.render('submissions', {
 		contest: req.contest,
 		title: 'Submissions',
 		submissions,
+		users,
+		langs,
 		page,
 		query: req.query || {},
 		totalPages: Math.ceil(totalSubmissions / 500),
