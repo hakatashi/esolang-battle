@@ -10,6 +10,32 @@ block content
       .page-header
         h3 Submissions
 
+      .search
+        form(method='GET' action='#')
+          .form-group
+            label(for='search-author') Author:
+            select#search-author.form-control(name='author')
+              option(value='') (ALL)
+              each user in users
+                -
+                  const email = `${user.email.replace(/@.+$/, '')}`
+                  const team = user.team.find((t) => t.contest.equals(contest._id))
+                option(value=email selected=(query.author === email))
+                  = (team ? `team-${team.value}` : '') + user.name()
+          .form-group
+            label(for='search-language') Language:
+            select#search-language.form-control(name='language')
+              option(value='') (ALL)
+              each lang in langs
+                - const slug = `${lang.slug}`
+                option(value=slug selected=(query.language === slug))
+                  | #{slug}
+          .form-group
+            label(for='search-status') Status:
+            select#search-status.form-control(name='status')
+              option(value='') (ALL)
+              option(value='success' selected=(query.status === 'success')) AC
+          button.btn.btn-primary(type='submit') Search
       .table-responsive
         table.table
           thead
