@@ -1,8 +1,8 @@
-const ptrace = require('../lib/ptrace.js');
-const langs = require('./langs.json');
-const {promisify} = require('util');
 const fs = require('fs');
 const path = require('path');
+const {promisify} = require('util');
+const ptrace = require('../lib/ptrace.js');
+const langs = require('./langs.json');
 
 const traces = new Map();
 const times = new Map();
