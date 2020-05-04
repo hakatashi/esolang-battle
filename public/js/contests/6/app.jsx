@@ -316,7 +316,7 @@ class App extends React.Component {
 							</>
 						)}
 						<p>Exec: {
-							selectedLanguage.info && selectedLanguage.info.time > 10 ? 'Allowed' : (
+							(selectedLanguage.info && selectedLanguage.info.time > 10) || ['bash-busybox', 'm4', 'cmd'].includes(selectedLanguage.slug) ? 'Allowed' : (
 								<strong style={{color: 'red'}}>Denied</strong>
 							)
 						}
