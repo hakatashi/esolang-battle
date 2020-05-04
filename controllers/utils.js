@@ -155,6 +155,7 @@ module.exports.getCodeLimit = (languageId) => {
 			'brainfuck-bfi',
 			'brainfuck-esotope',
 			'taxi',
+			'function2d',
 		].includes(languageId)
 	) {
 		return 100 * 1024;
