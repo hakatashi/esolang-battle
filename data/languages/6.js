@@ -26,7 +26,7 @@ const languages = {
 	21: null,
 	22: null,
 	23: null,
-	24: 'make',
+	24: 'alphabeta',
 	25: 'braintwist',
 	26: 'v-vim',
 	27: 'transceternal',
