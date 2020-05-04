@@ -2533,7 +2533,10 @@
       "/bin/hex",
       "/bin/cat",
       "/usr/bin/realpath",
-      "/bin/ln",
+      "/bin/cat",
+      "/usr/bin/tr",
+      "/bin/sed",
+      "/bin/sed",
       "/usr/bin/clang-9",
       "/usr/lib/llvm-9/bin/clang",
       "/usr/bin/ld",
@@ -2541,7 +2544,7 @@
       "/bin/cat",
       "/bin/rm"
     ],
-    "time": 1.0530981380143203
+    "time": 0.9496373879956082
   },
   {
     "slug": "perl1",
