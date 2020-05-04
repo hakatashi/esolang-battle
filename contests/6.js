@@ -135,11 +135,13 @@ module.exports.isValidAnswer = (input, output) => {
 
 	for (const [char, line] of zip(trimmedOutput, inputLines)) {
 		if (!digits.includes(char)) {
+			console.log('1');
 			return false;
 		}
 		const digit = parseInt(char);
 		const maximumScore = max(digits.map((d) => countScore(line, d)));
 		if (countScore(line, digit) !== maximumScore) {
+			console.log('2');
 			return false;
 		}
 	}
