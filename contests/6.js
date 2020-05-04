@@ -134,7 +134,7 @@ module.exports.isValidAnswer = (input, output) => {
 	assert(inputLines.length === 32);
 
 	for (const [char, line] of zip(trimmedOutput, inputLines)) {
-		if (!digits.includes(char)) {
+		if (!digits.map((d) => d.toString()).includes(char)) {
 			console.log('1');
 			return false;
 		}
