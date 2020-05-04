@@ -148,7 +148,12 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 };
 
 const getCodeLimit = (languageId) => {
-	if (languageId === 'fernando') {
+	if (
+		[
+			'fernando',
+			'pure-folders',
+		].includes(languageId)
+	) {
 		return 1024 * 1024;
 	}
 
