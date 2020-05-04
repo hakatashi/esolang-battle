@@ -71,18 +71,20 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 	return precedings;
 };
 
+const ngRegex = /(\d)\1\1/;
+
 module.exports.generateInput = () => {
 	const lines = [];
 	for (const pattern of patterns) {
 		const generated = [];
 		while (generated.length < 2) {
 			const selectedDigits = shuffle(sampleSize(digits, 4));
-			const line = pattern
+			const line = sample(digits).toString() + pattern
 				.replace(/A/g, selectedDigits[0])
 				.replace(/B/g, selectedDigits[1])
 				.replace(/C/g, selectedDigits[2])
-				.replace(/D/g, selectedDigits[3]);
-			if (!generated.includes(line)) {
+				.replace(/D/g, selectedDigits[3]) + sample(digits).toString();
+			if (!line.match(ngRegex) && !generated.includes(line)) {
 				generated.push(line);
 			}
 		}
@@ -90,9 +92,9 @@ module.exports.generateInput = () => {
 	}
 
 	while (lines.length < 32) {
-		const selectedDigits = times(4, () => sample(digits));
-		const line = `${selectedDigits[0]}${selectedDigits[1]} ${selectedDigits[2]}${selectedDigits[3]}`;
-		if (!lines.includes(line)) {
+		const selectedDigits = times(6, () => sample(digits));
+		const line = `${selectedDigits.slice(0, 3).join('')} ${selectedDigits.slice(3, 6).join('')}`;
+		if (!line.match(ngRegex) && !lines.includes(line)) {
 			lines.push(line);
 		}
 	}
@@ -101,7 +103,7 @@ module.exports.generateInput = () => {
 };
 
 const countScore = (line, digit) => {
-	const cells = [line[0], line[1], digit.toString(), line[3], line[4]];
+	const cells = [line[0], line[1], line[2], digit.toString(), line[4], line[5], line[6]];
 	const continuousLength = [1];
 	for (const [i, cell] of cells.entries()) {
 		if (i === 0) {
@@ -119,13 +121,13 @@ const countScore = (line, digit) => {
 
 module.exports.isValidAnswer = (input, output) => {
 	if (process.env.NODE_ENV !== 'production') {
-		return true;
+		// return true;
 	}
 
 	const trimmedOutput = output.toString().replace(/\s/g, '').split('');
 	if (trimmedOutput.length !== 32) {
 		console.log('info: length not valid');
-		return false;
+		// return false;
 	}
 
 	const inputLines = input.split('\n').filter((line) => line.length > 0);
@@ -133,12 +135,13 @@ module.exports.isValidAnswer = (input, output) => {
 
 	for (const [char, line] of zip(trimmedOutput, inputLines)) {
 		if (!digits.includes(char)) {
-			return false;
+			// return false;
 		}
 		const digit = parseInt(char);
 		const maximumScore = max(digits.map((d) => countScore(line, d)));
+		console.log(sample(digits.filter((d) => countScore(line, d) === maximumScore)));
 		if (countScore(line, digit) !== maximumScore) {
-			return false;
+			// return false;
 		}
 	}
 
@@ -146,3 +149,8 @@ module.exports.isValidAnswer = (input, output) => {
 
 	return true;
 };
+
+const input = module.exports.generateInput();
+console.log(input);
+console.log(module.exports.isValidAnswer(input, ''));
+
