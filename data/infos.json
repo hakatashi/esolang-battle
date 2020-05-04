@@ -1145,13 +1145,16 @@
       "/bin/mkdir",
       "/bin/tar",
       "/usr/bin/mono",
-      "/usr/bin/mcs",
-      "/usr/bin/mono",
+      "/usr/bin/g++",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1plus",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
-      "/usr/bin/mono",
+      "/tmp/code.out",
       "/bin/rm"
     ],
-    "time": 5.5568959020019975
+    "time": 1.8438971879950259
   },
   {
     "slug": "concise-folders",
