@@ -121,13 +121,13 @@ const countScore = (line, digit) => {
 
 module.exports.isValidAnswer = (input, output) => {
 	if (process.env.NODE_ENV !== 'production') {
-		// return true;
+		return true;
 	}
 
 	const trimmedOutput = output.toString().replace(/\s/g, '').split('');
 	if (trimmedOutput.length !== 32) {
 		console.log('info: length not valid');
-		// return false;
+		return false;
 	}
 
 	const inputLines = input.split('\n').filter((line) => line.length > 0);
@@ -135,13 +135,12 @@ module.exports.isValidAnswer = (input, output) => {
 
 	for (const [char, line] of zip(trimmedOutput, inputLines)) {
 		if (!digits.includes(char)) {
-			// return false;
+			return false;
 		}
 		const digit = parseInt(char);
 		const maximumScore = max(digits.map((d) => countScore(line, d)));
-		console.log(sample(digits.filter((d) => countScore(line, d) === maximumScore)));
 		if (countScore(line, digit) !== maximumScore) {
-			// return false;
+			return false;
 		}
 	}
 
@@ -149,8 +148,3 @@ module.exports.isValidAnswer = (input, output) => {
 
 	return true;
 };
-
-const input = module.exports.generateInput();
-console.log(input);
-console.log(module.exports.isValidAnswer(input, ''));
-
