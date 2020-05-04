@@ -27,7 +27,49 @@ const patterns = [
 	'AB CD',
 ];
 
-module.exports.getPrecedingIndices = () => {};
+const WIDTH = 11;
+const HEIGHT = 13;
+const xy = (x, y) => y * WIDTH + x;
+
+module.exports.getPrecedingIndices = (cellIndex) => {
+	const x = cellIndex % WIDTH;
+	const y = Math.floor(cellIndex / WIDTH);
+	const precedings = [];
+	if (x - 1 >= 0) {
+		precedings.push(xy(x - 1, y));
+	}
+	if (x + 1 < WIDTH) {
+		precedings.push(xy(x + 1, y));
+	}
+	if (y % 2 === 0) {
+		if (x - 1 >= 0 && y - 1 >= 0) {
+			precedings.push(xy(x - 1, y - 1));
+		}
+		if (y - 1 >= 0) {
+			precedings.push(xy(x, y - 1));
+		}
+		if (x - 1 >= 0 && y + 1 < HEIGHT) {
+			precedings.push(xy(x - 1, y + 1));
+		}
+		if (y + 1 < HEIGHT) {
+			precedings.push(xy(x, y + 1));
+		}
+	} else {
+		if (x + 1 < WIDTH && y - 1 >= 0) {
+			precedings.push(xy(x + 1, y - 1));
+		}
+		if (y - 1 >= 0) {
+			precedings.push(xy(x, y - 1));
+		}
+		if (x + 1 < WIDTH && y + 1 < HEIGHT) {
+			precedings.push(xy(x + 1, y + 1));
+		}
+		if (y + 1 < HEIGHT) {
+			precedings.push(xy(x, y + 1));
+		}
+	}
+	return precedings;
+};
 
 module.exports.generateInput = () => {
 	const lines = [];

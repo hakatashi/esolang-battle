@@ -1207,7 +1207,7 @@
   },
   {
     "slug": "golang",
-    "name": "golang",
+    "name": "Go",
     "link": "https://golang.org/",
     "disasm": false
   },

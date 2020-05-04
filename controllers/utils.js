@@ -1,7 +1,7 @@
 const assert = require('assert');
-const Language = require('../models/Language');
-const languages = require('../data/languages');
 const contests = require('../contests');
+const languages = require('../data/languages');
+const Language = require('../models/Language');
 
 module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 	const languageRecords = await Language.find({contest})
@@ -19,7 +19,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 		if (language && language.type === 'language') {
 			return Object.assign({}, language, {
 				record: languageRecords.find(
-					(languageRecord) => languageRecord.slug === language.slug
+					(languageRecord) => languageRecord.slug === language.slug,
 				),
 			});
 		}
@@ -66,7 +66,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 			const {getPrecedingIndices} = contests[contest.id];
 
 			const precedingCells = getPrecedingIndices(index).filter((i) => languageCells[i].type !== undefined).map(
-				(i) => languageCells[i]
+				(i) => languageCells[i],
 			);
 
 			const available =
@@ -83,7 +83,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 								c.record.solution &&
 								c.record.solution.user.getTeam(contest)
 							) === team
-						)
+						),
 					)
 				);
 
@@ -107,8 +107,8 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 			if (
 				precedingCells.some(
 					(c) => c.type === 'base' ||
-						(c.type === 'language' && c.record && c.record.solution)
-				)
+						(c.type === 'language' && c.record && c.record.solution),
+				) || true
 			) {
 				return {
 					type: 'language',

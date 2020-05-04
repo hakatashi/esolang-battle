@@ -1,5 +1,5 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = (env, argv = {}) => {
 	const browsers = [
@@ -26,6 +26,7 @@ module.exports = (env, argv = {}) => {
 				['contest-hackathon2018', 'js/contests/hackathon2018/index.babel.js'],
 				['check', 'js/check.babel.js'],
 				['contest-5', 'js/contests/5/index.babel.js'],
+				['contest-6', 'js/contests/6/index.babel.js'],
 			].map(([name, entry]) => ({
 				[name]: [
 					...(argv.mode === 'development'
@@ -33,7 +34,7 @@ module.exports = (env, argv = {}) => {
 						: []),
 					path.join(__dirname, 'public', entry),
 				],
-			}))
+			})),
 		),
 		mode: argv.mode || 'development',
 		output: {
