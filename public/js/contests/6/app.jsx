@@ -275,7 +275,7 @@ class App extends React.Component {
 						))}
 				</div>
 				<div className="teams right">{this.renderTeam('Red', 0)}</div>
-				<div className="teams right">{this.renderTeam('Green', 0)}</div>
+				<div className="teams right">{this.renderTeam('Green', 2)}</div>
 				<Modal
 					isOpen={this.state.selectedLanguage !== null}
 					toggle={this.handleCloseModal}
@@ -315,6 +315,12 @@ class App extends React.Component {
 								<p>Solution: N/A</p>
 							</>
 						)}
+						<p>Exec: {
+							selectedLanguage.info && selectedLanguage.info.time > 10 ? 'Allowed' : (
+								<strong style={{color: 'red'}}>Denied</strong>
+							)
+						}
+						</p>
 						<Form>
 							<FormGroup
 								disabled={!this.state.files || this.state.files.length === 0}

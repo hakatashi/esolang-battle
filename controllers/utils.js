@@ -1,5 +1,6 @@
 const assert = require('assert');
 const contests = require('../contests');
+const langInfos = require('../data/infos.json');
 const languages = require('../data/languages');
 const Language = require('../models/Language');
 
@@ -33,6 +34,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 				cell.record &&
 				cell.record.solution &&
 				cell.record.solution.user.getTeam(contest);
+			const langInfo = langInfos.find(({slug}) => slug === cell.slug);
 
 			if (contest.isEnded()) {
 				if (cell.record && cell.record.solution) {
@@ -48,6 +50,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 						slug: cell.slug,
 						name: cell.name,
 						link: cell.link,
+						info: langInfo,
 						available: false,
 					};
 				}
@@ -58,6 +61,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 					slug: cell.slug,
 					name: cell.name,
 					link: cell.link,
+					info: langInfo,
 					available: false,
 				};
 			}
@@ -100,6 +104,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 					slug: cell.slug,
 					name: cell.name,
 					link: cell.link,
+					info: langInfo,
 					available,
 				};
 			}
@@ -108,7 +113,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 				precedingCells.some(
 					(c) => c.type === 'base' ||
 						(c.type === 'language' && c.record && c.record.solution),
-				) || true
+				)
 			) {
 				return {
 					type: 'language',
@@ -116,6 +121,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 					slug: cell.slug,
 					name: cell.name,
 					link: cell.link,
+					info: langInfo,
 					available,
 				};
 			}
