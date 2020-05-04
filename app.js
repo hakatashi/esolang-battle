@@ -54,7 +54,11 @@ const compiler = webpack(webpackConfig);
  */
 const passportConfig = require('./config/passport');
 
-const upload = multer();
+const upload = multer({
+	limits: {
+		fieldSize: 100 * 1024 * 1024,
+	},
+});
 
 /*
  * Create Express server.
