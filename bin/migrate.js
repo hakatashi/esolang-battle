@@ -24,7 +24,7 @@ mongoose.Promise = global.Promise;
 		{
 			name: 'Esolang Codegolf Contest #6',
 			id: '6',
-			start: new Date('2020-05-04T12:30:00+0900'),
+			start: new Date('2020-05-04T13:00:00+0900'),
 			end: new Date('2020-05-06T21:00:00+0900'),
 			description: {
 				ja: stripIndent`
