@@ -1144,6 +1144,8 @@
       "/bin/ln",
       "/bin/mkdir",
       "/bin/tar",
+      "/root/cat.sh",
+      "/bin/cat",
       "/usr/bin/mono",
       "/usr/bin/g++",
       "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1plus",
@@ -1154,7 +1156,7 @@
       "/tmp/code.out",
       "/bin/rm"
     ],
-    "time": 1.8438971879950259
+    "time": 2.0004092140006833
   },
   {
     "slug": "concise-folders",
