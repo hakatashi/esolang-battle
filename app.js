@@ -4,26 +4,28 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
-const express = require('express');
-const compression = require('compression');
-const session = require('express-session');
 const bodyParser = require('body-parser');
-const logger = require('morgan');
 const chalk = require('chalk');
-const errorHandler = require('errorhandler');
-const lusca = require('lusca');
+const compression = require('compression');
+const connectMongo = require('connect-mongo');
 const dotenv = require('dotenv');
-const MongoStore = require('connect-mongo')(session);
+const errorHandler = require('errorhandler');
+const express = require('express');
 const flash = require('express-flash');
-const mongoose = require('mongoose');
-const passport = require('passport');
-const {check} = require('express-validator');
 const Router = require('express-promise-router');
-const sass = require('node-sass-middleware');
+const session = require('express-session');
+const {check} = require('express-validator');
+const lusca = require('lusca');
+const mongoose = require('mongoose');
+const logger = require('morgan');
 const multer = require('multer');
+const sass = require('node-sass-middleware');
+const passport = require('passport');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+
+const MongoStore = connectMongo(session);
 
 /*
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -33,16 +35,17 @@ dotenv.config({path: '.env'});
 /*
  * Controllers (route handlers).
  */
-const homeController = require('./controllers/home');
-const userController = require('./controllers/user');
-const submissionController = require('./controllers/submission');
 const apiController = require('./controllers/api');
 const contestController = require('./controllers/contest');
+const homeController = require('./controllers/home');
+const submissionController = require('./controllers/submission');
+const userController = require('./controllers/user');
 
 /*
  * Build-up Webpack compiler
  */
 const webpackConfigGenerator = require('./webpack.config.js');
+
 const webpackConfig = webpackConfigGenerator({}, {mode: process.env.NODE_ENV});
 const compiler = webpack(webpackConfig);
 
@@ -67,8 +70,8 @@ mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
 mongoose.connection.on('error', () => {
 	throw new Error(
 		`${chalk.red(
-			'✗'
-		)} MongoDB connection error. Please make sure MongoDB is running.`
+			'✗',
+		)} MongoDB connection error. Please make sure MongoDB is running.`,
 	);
 });
 
@@ -83,10 +86,10 @@ app.use(
 	sass({
 		src: path.join(__dirname, 'public'),
 		dest: path.join(__dirname, 'public'),
-	})
+	}),
 );
 app.use(
-	webpackDevMiddleware(compiler, {publicPath: webpackConfig.output.publicPath})
+	webpackDevMiddleware(compiler, {publicPath: webpackConfig.output.publicPath}),
 );
 if (process.env.NODE_ENV === 'development') {
 	app.use(webpackHotMiddleware(compiler));
@@ -104,7 +107,7 @@ app.use(
 			url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
 			autoReconnect: true,
 		}),
-	})
+	}),
 );
 app.use(passport.initialize());
 app.use(passport.session());
@@ -152,44 +155,44 @@ router.get('/logout', userController.logout);
 router.get(
 	'/account',
 	passportConfig.isAuthenticated,
-	userController.getAccount
+	userController.getAccount,
 );
 router.get(
 	'/contests/:contest',
 	contestController.base,
-	contestController.index
+	contestController.index,
 );
 router.get(
 	'/contests/:contest/rule',
 	contestController.base,
-	contestController.rule
+	contestController.rule,
 );
 router.get(
 	'/contests/:contest/submissions',
 	contestController.base,
-	submissionController.getSubmissions
+	submissionController.getSubmissions,
 );
 router.get(
 	'/contests/:contest/submissions/:submission',
 	contestController.base,
-	submissionController.getSubmission
+	submissionController.getSubmission,
 );
 router.get(
 	'/contests/:contest/submissions/:submission/raw',
 	contestController.base,
-	submissionController.getRawSubmission
+	submissionController.getRawSubmission,
 );
 router.get(
 	'/contests/:contest/admin',
 	passportConfig.isAuthenticated,
 	contestController.base,
-	contestController.getAdmin
+	contestController.getAdmin,
 );
 router.get(
 	'/contests/:contest/check',
 	passportConfig.isAuthenticated,
 	contestController.base,
-	contestController.getCheck
+	contestController.getCheck,
 );
 
 router.get('/submissions/:submission', submissionController.getOldSubmission);
@@ -198,26 +201,26 @@ router.get(
 	'/api/contests/:contest/submission',
 	passportConfig.isAuthenticated,
 	apiController.contest,
-	apiController.getSubmission
+	apiController.getSubmission,
 );
 router.post(
 	'/api/contests/:contest/submission',
 	check('language', 'Please Specify language').exists(),
 	passportConfig.isAuthenticated,
 	apiController.contest,
-	apiController.postSubmission
+	apiController.postSubmission,
 );
 router.post(
 	'/api/contests/:contest/execution',
 	check('language', 'Please Specify language').exists(),
 	passportConfig.isAuthenticated,
 	apiController.contest,
-	apiController.postExecution
+	apiController.postExecution,
 );
 router.get(
 	'/api/contests/:contest/languages',
 	apiController.contest,
-	apiController.getLanguages
+	apiController.getLanguages,
 );
 
 /*
@@ -229,7 +232,7 @@ router.get(
 	passport.authenticate('twitter', {failureRedirect: '/login'}),
 	(req, res) => {
 		res.redirect(req.session.returnTo || '/');
-	}
+	},
 );
 
 app.use(router);
@@ -249,7 +252,7 @@ const server = app.listen(app.get('port'), () => {
 		'%s App is running at http://localhost:%d in %s mode',
 		chalk.green('✓'),
 		app.get('port'),
-		app.get('env')
+		app.get('env'),
 	);
 	console.log('  Press CTRL-C to stop\n');
 });
