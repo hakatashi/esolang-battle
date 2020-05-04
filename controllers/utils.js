@@ -35,6 +35,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 				cell.record.solution &&
 				cell.record.solution.user.getTeam(contest);
 			const langInfo = langInfos.find(({slug}) => slug === cell.slug);
+			const codeLimit = getCodeLimit(cell.slug);
 
 			if (contest.isEnded()) {
 				if (cell.record && cell.record.solution) {
@@ -51,6 +52,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 						name: cell.name,
 						link: cell.link,
 						info: langInfo,
+						limit: codeLimit,
 						available: false,
 					};
 				}
@@ -62,6 +64,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 					name: cell.name,
 					link: cell.link,
 					info: langInfo,
+					limit: codeLimit,
 					available: false,
 				};
 			}
@@ -105,6 +108,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 					name: cell.name,
 					link: cell.link,
 					info: langInfo,
+					limit: codeLimit,
 					available,
 				};
 			}
@@ -122,6 +126,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 					name: cell.name,
 					link: cell.link,
 					info: langInfo,
+					limit: codeLimit,
 					available,
 				};
 			}
@@ -142,7 +147,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 	});
 };
 
-module.exports.getCodeLimit = (languageId) => {
+const getCodeLimit = (languageId) => {
 	if (languageId === 'fernando') {
 		return 1024 * 1024;
 	}
@@ -163,6 +168,8 @@ module.exports.getCodeLimit = (languageId) => {
 
 	return 10 * 1024;
 };
+
+module.exports.getCodeLimit = getCodeLimit;
 
 module.exports.getTimeLimit = (languageId) => {
 	if (
