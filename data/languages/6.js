@@ -43,7 +43,7 @@ const languages = {
 	38: 'golfscript',
 	39: 'make',
 	40: 'reasonml',
-	41: 'nuts',
+	41: 'unlambda',
 	42: null,
 	43: null,
 	44: null,
