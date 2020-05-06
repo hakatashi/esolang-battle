@@ -216,28 +216,30 @@ mongoose.Promise = global.Promise;
 	);
 
 	for (const slug of ['whitespace', 'pure-folders', 'concise-folders', 'produire']) {
-		const language = await Language.findOne({slug});
-		const submissions = await Submission.find({language});
-		for (const submission of submissions) {
-			console.log('procceing:', submission);
+		const languages = await Language.find({slug});
+		for (const language of languages) {
+			const submissions = await Submission.find({language});
+			for (const submission of submissions) {
+				console.log('procceing:', submission);
 
-			const disasmInfo = await docker({
-				id: slug,
-				code: submission.code,
-				stdin: '',
-				trace: false,
-				disasm: true,
-			});
-			console.log({
-				stdout: disasmInfo.stdout.toString(),
-				stderr: disasmInfo.stderr.toString(),
-			});
+				const disasmInfo = await docker({
+					id: slug,
+					code: submission.code,
+					stdin: '',
+					trace: false,
+					disasm: true,
+				});
+				console.log({
+					stdout: disasmInfo.stdout.toString(),
+					stderr: disasmInfo.stderr.toString(),
+				});
 
-			const result = await Submission.update(
-				{_id: submission._id},
-				{$set: {disasm: disasmInfo.stdout}},
-			);
-			console.log({result});
+				const result = await Submission.update(
+					{_id: submission._id},
+					{$set: {disasm: disasmInfo.stdout}},
+				);
+				console.log({result});
+			}
 		}
 	}
 
