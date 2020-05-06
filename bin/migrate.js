@@ -228,16 +228,16 @@ mongoose.Promise = global.Promise;
 				trace: false,
 				disasm: true,
 			});
-			console.log('disasm info:', disasmInfo);
+			console.log({
+				stdout: disasmInfo.stdout.toString(),
+				stderr: disasmInfo.stderr.toString(),
+			});
 
 			const result = await Submission.update(
 				{_id: submission._id},
 				{$set: {disasm: disasmInfo.stdout}},
 			);
-			console.log({
-				stdout: result.stdout.toString(),
-				stderr: result.stderr.toString(),
-			});
+			console.log({result});
 		}
 	}
 
