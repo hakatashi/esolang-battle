@@ -219,6 +219,8 @@ mongoose.Promise = global.Promise;
 		const language = await Language.findOne({slug});
 		const submissions = await Submission.find({language});
 		for (const submission of submissions) {
+			console.log('procceing:', submission);
+
 			const disasmInfo = await docker({
 				id: slug,
 				code: submission.code,
@@ -232,7 +234,10 @@ mongoose.Promise = global.Promise;
 				{_id: submission._id},
 				{$set: {disasm: disasmInfo.stdout}},
 			);
-			console.log({result});
+			console.log({
+				stdout: result.stdout.toString(),
+				stderr: result.stderr.toString(),
+			});
 		}
 	}
 
