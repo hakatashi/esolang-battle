@@ -1,6 +1,9 @@
 const {stripIndent} = require('common-tags');
 const mongoose = require('mongoose');
+const docker = require('../engines/docker');
 const Contest = require('../models/Contest');
+const Language = require('../models/Language');
+const Submission = require('../models/Submission');
 const User = require('../models/User');
 
 mongoose.Promise = global.Promise;
@@ -211,6 +214,27 @@ mongoose.Promise = global.Promise;
 		},
 		{upsert: true},
 	);
+
+	for (const slug of ['whitespace', 'pure-folders', 'concise-folders', 'produire']) {
+		const language = await Language.findOne({slug});
+		const submissions = await Submission.find({language});
+		for (const submission of submissions) {
+			const disasmInfo = await docker({
+				id: slug,
+				code: submission.code,
+				stdin: '',
+				trace: false,
+				disasm: true,
+			});
+			console.log('disasm info:', disasmInfo);
+
+			const result = await Submission.update(
+				{_id: submission._id},
+				{$set: {disasm: disasmInfo.stdout}},
+			);
+			console.log({result});
+		}
+	}
 
 	mongoose.connection.close();
 })();
