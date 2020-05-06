@@ -615,13 +615,13 @@
     "slug": "pure-folders",
     "name": "Pure Folders",
     "link": "https://esolangs.org/wiki/Folders#Pure_Folders",
-    "disasm": false
+    "disasm": true
   },
   {
     "slug": "concise-folders",
     "name": "Concise Folders",
     "link": "https://esolangs.org/wiki/Folders#Concise_Folders",
-    "disasm": false
+    "disasm": true
   },
   {
     "slug": "function2d",
@@ -633,7 +633,7 @@
     "slug": "produire",
     "name": "プロデル",
     "link": "https://rdr.utopiat.net/",
-    "disasm": false
+    "disasm": true
   },
   {
     "slug": "z80",
