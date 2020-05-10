@@ -57,8 +57,14 @@ module.exports.getSubmissions = async (req, res) => {
 	const langs_id = await Submission.find({contest: req.contest})
 		.distinct('language')
 		.exec();
-	const users = await User.find({ _id: { $in: users_id } }).exec();
-	const langs = await Language.find({ _id: { $in: langs_id } }).exec();
+	const usersRecord = await User.find({_id: {$in: users_id}}).exec();
+	const langsRecord = await Language.find({_id: {$in: langs_id}}).exec();
+	const users = usersRecord.map((user) => {
+		const team = user.team.find((t) => t.contest.equals(req.contest._id));
+		const displayName = (team ? `team-${team.value}` : '') + user.name();
+		return {email: user.email, displayName};
+	}).sort(({displayName: dispA}, {displayName: dispB}) => dispA.localeCompare(dispB));
+	const langs = langsRecord.sort(({slug: slugA}, {slug: slugB}) => slugA.localeCompare(slugB));
 
 	res.render('submissions', {
 		contest: req.contest,

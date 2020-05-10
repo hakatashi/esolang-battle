@@ -17,11 +17,9 @@ block content
             select#search-author.form-control(name='author')
               option(value='') (ALL)
               each user in users
-                -
-                  const email = `${user.email.replace(/@.+$/, '')}`
-                  const team = user.team.find((t) => t.contest.equals(contest._id))
+                - const email = `${user.email.replace(/@.+$/, '')}`
                 option(value=email selected=(query.author === email))
-                  = (team ? `team-${team.value}` : '') + user.name()
+                  = user.displayName
           .form-group
             label(for='search-language') Language:
             select#search-language.form-control(name='language')
@@ -29,7 +27,7 @@ block content
               each lang in langs
                 - const slug = `${lang.slug}`
                 option(value=slug selected=(query.language === slug))
-                  | #{slug}
+                  = slug
           .form-group
             label(for='search-status') Status:
             select#search-status.form-control(name='status')
