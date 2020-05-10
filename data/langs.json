@@ -79,7 +79,13 @@
   },
   {
     "slug": "ruby",
-    "name": "Ruby 2.6.3",
+    "name": "Ruby 2.7.1",
+    "link": "https://www.ruby-lang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "ruby-trunk",
+    "name": "Ruby trunk",
     "link": "https://www.ruby-lang.org/",
     "disasm": false
   },
@@ -105,12 +111,6 @@
     "slug": "standback",
     "name": "(?i:standback)",
     "link": "https://github.com/akouryy/standback",
-    "disasm": false
-  },
-  {
-    "slug": "ppap",
-    "name": "PPAP",
-    "link": "https://github.com/yhara/ppap-lang",
     "disasm": false
   },
   {
@@ -170,7 +170,7 @@
   {
     "slug": "pxem",
     "name": "Pxem",
-    "link": "https://ja.wikipedia.org/wiki/Pxem",
+    "link": "https://esolangs.org/wiki/Pxem",
     "disasm": false
   },
   {
@@ -189,6 +189,18 @@
     "slug": "autovim",
     "name": "Autovim",
     "link": "https://github.com/christianrondeau/autovim",
+    "disasm": false
+  },
+  {
+    "slug": "v-vim",
+    "name": "V (Vim)",
+    "link": "https://github.com/DJMcMayhem/V",
+    "disasm": false
+  },
+  {
+    "slug": "pyramid-scheme",
+    "name": "Pyramid Scheme",
+    "link": "https://github.com/ConorOBrien-Foxx/Pyramid-Scheme",
     "disasm": false
   },
   {
@@ -213,6 +225,12 @@
     "slug": "modanshogi",
     "name": "ModanShogi",
     "link": "https://github.com/yhara/ShogiModan",
+    "disasm": false
+  },
+  {
+    "slug": "ppap",
+    "name": "PPAP",
+    "link": "https://github.com/yhara/ppap-lang",
     "disasm": false
   },
   {
@@ -403,8 +421,8 @@
   },
   {
     "slug": "llvm-ir",
-    "name": "LLVM IR",
-    "link": "https://releases.llvm.org/5.0.0/docs/LangRef.html",
+    "name": "LLVM 10 IR",
+    "link": "https://releases.llvm.org/10.0.0/docs/LangRef.html",
     "disasm": false
   },
   {
@@ -415,7 +433,7 @@
   },
   {
     "slug": "hanoi_stack",
-    "name": "Hanoi_Stacck",
+    "name": "Hanoi_Stack",
     "link": "https://github.com/JP3BGY/Hanoi_Stack/",
     "disasm": false
   },
@@ -426,7 +444,7 @@
     "disasm": false
   },
   {
-    "slug": "dotnet",
+    "slug": "dotnet-base",
     "name": null,
     "link": null,
     "disasm": false
@@ -477,6 +495,42 @@
     "slug": "alphabeta",
     "name": "AlphaBeta",
     "link": "https://esolangs.org/wiki/AlphaBeta",
+    "disasm": false
+  },
+  {
+    "slug": "tcl",
+    "name": "Tcl",
+    "link": "https://www.tcl.tk",
+    "disasm": false
+  },
+  {
+    "slug": "rapira",
+    "name": "РАПИРА",
+    "link": "https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D0%BF%D0%B8%D1%80%D0%B0_(%D1%8F%D0%B7%D1%8B%D0%BA_%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F)",
+    "disasm": false
+  },
+  {
+    "slug": "vlang",
+    "name": "V",
+    "link": "https://vlang.io/",
+    "disasm": false
+  },
+  {
+    "slug": "cyclicbrainfuck",
+    "name": "Cyclic Brainfuck",
+    "link": "https://github.com/hiromi-mi/cyclicbrainfuck",
+    "disasm": false
+  },
+  {
+    "slug": "olang",
+    "name": "O",
+    "link": "https://jadon.io/o/",
+    "disasm": false
+  },
+  {
+    "slug": "wren",
+    "name": "Wren",
+    "link": "http://wren.io/",
     "disasm": false
   },
   {
@@ -561,13 +615,13 @@
     "slug": "pure-folders",
     "name": "Pure Folders",
     "link": "https://esolangs.org/wiki/Folders#Pure_Folders",
-    "disasm": false
+    "disasm": true
   },
   {
     "slug": "concise-folders",
     "name": "Concise Folders",
     "link": "https://esolangs.org/wiki/Folders#Concise_Folders",
-    "disasm": false
+    "disasm": true
   },
   {
     "slug": "function2d",
@@ -579,13 +633,25 @@
     "slug": "produire",
     "name": "プロデル",
     "link": "https://rdr.utopiat.net/",
-    "disasm": false
+    "disasm": true
   },
   {
     "slug": "z80",
     "name": "Z80",
     "link": "https://sites.google.com/site/codegolfingtips/Home/z80",
     "disasm": true
+  },
+  {
+    "slug": "bubble-sort",
+    "name": "BubbleSortLanguage",
+    "link": "https://github.com/lv100tomato/BubbleSortLanguage",
+    "disasm": false
+  },
+  {
+    "slug": "classic-music-theory",
+    "name": "ClassicMusicTheoryForProgrammer",
+    "link": "https://github.com/lv100tomato/ClassicMusicTheoryForProgrammer",
+    "disasm": false
   },
   {
     "slug": "haystack",
@@ -714,6 +780,12 @@
     "disasm": false
   },
   {
+    "slug": "zsh-pure",
+    "name": "Zsh (pure)",
+    "link": "http://www.zsh.org/",
+    "disasm": false
+  },
+  {
     "slug": "jq",
     "name": "jq",
     "link": "https://stedolan.github.io/jq/",
@@ -813,6 +885,30 @@
     "slug": "tetris",
     "name": "Tetris",
     "link": "https://sagisawa.0am.jp/tetris/",
+    "disasm": false
+  },
+  {
+    "slug": "wenyan",
+    "name": "文言",
+    "link": "https://wy-lang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "reasonml",
+    "name": "ReasonML",
+    "link": "https://reasonml.github.io/",
+    "disasm": false
+  },
+  {
+    "slug": "hakerh-base",
+    "name": null,
+    "link": null,
+    "disasm": false
+  },
+  {
+    "slug": "transceternal",
+    "name": "Transceternal",
+    "link": "https://esolangs.org/wiki/Transceternal",
     "disasm": false
   },
   {
@@ -984,6 +1080,12 @@
     "disasm": false
   },
   {
+    "slug": "mines",
+    "name": "Mines",
+    "link": "https://github.com/dnek/mines-esolang",
+    "disasm": false
+  },
+  {
     "slug": "cmd",
     "name": "cmd.exe",
     "link": "https://en.wikipedia.org/wiki/Cmd.exe",
@@ -1098,6 +1200,36 @@
     "disasm": false
   },
   {
+    "slug": "gnuplot",
+    "name": "gnuplot",
+    "link": "http://www.gnuplot.info/",
+    "disasm": false
+  },
+  {
+    "slug": "golang",
+    "name": "Go",
+    "link": "https://golang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "braintwist",
+    "name": "braintwist",
+    "link": "https://github.com/nakario/braintwist",
+    "disasm": false
+  },
+  {
+    "slug": "oh",
+    "name": "oh",
+    "link": "https://github.com/michaelmacinnis/oh",
+    "disasm": false
+  },
+  {
+    "slug": "zen",
+    "name": "Zen",
+    "link": "https://zen-lang.org/",
+    "disasm": false
+  },
+  {
     "slug": "ubuntu-base",
     "name": null,
     "link": null,
@@ -1191,6 +1323,30 @@
     "slug": "abc",
     "name": "ABC",
     "link": "https://en.wikipedia.org/wiki/ABC_(programming_language)",
+    "disasm": false
+  },
+  {
+    "slug": "emacs",
+    "name": "Emacs",
+    "link": "https://www.gnu.org/software/emacs/",
+    "disasm": false
+  },
+  {
+    "slug": "tex",
+    "name": "TeX (plain)",
+    "link": "http://texdoc.net/texmf-dist/doc/plain/texbytopic/TeXbyTopic.pdf",
+    "disasm": false
+  },
+  {
+    "slug": "egison",
+    "name": "Egison",
+    "link": "https://www.egison.org/",
+    "disasm": false
+  },
+  {
+    "slug": "alif",
+    "name": "ألف",
+    "link": "https://www.aliflang.org/",
     "disasm": false
   },
   {

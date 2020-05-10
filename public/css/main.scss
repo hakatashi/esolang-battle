@@ -156,6 +156,16 @@ pre.hexdump {
       background-image: url('/img/contest/5-headline.svg');
     }
 
+    &.contest-komabasai2019 {
+      background-color: $md-brown-600;
+      background-image: url('/img/contest/komabasai2019-headline.svg');
+    }
+
+    &.contest-6 {
+      background-color: $md-yellow-600;
+      background-image: url('/img/contest/6-headline.svg');
+    }
+
     &.contest-unknown {
       background-color: #050505;
       background-image: url('/img/contest/noise.png');

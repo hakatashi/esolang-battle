@@ -1,5 +1,5 @@
-const bcrypt = require('bcrypt-nodejs');
 const crypto = require('crypto');
+const bcrypt = require('bcrypt-nodejs');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema(
@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
 		team: [
 			{
 				contest: {type: mongoose.Schema.Types.ObjectId, ref: 'Contest'},
-				value: {type: Number, enum: [0, 1, 2]},
+				value: {type: Number, enum: [0, 1, 2, 3, 4]},
 			},
 		],
 		admin: {type: Boolean, default: false},
@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
 			picture: String,
 		},
 	},
-	{timestamps: true}
+	{timestamps: true},
 );
 
 /*

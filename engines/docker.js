@@ -1,12 +1,12 @@
 /* eslint-env browser */
 
-const Docker = require('dockerode');
 const assert = require('assert');
-const concatStream = require('concat-stream');
-const Promise = require('bluebird');
 const path = require('path');
-const tmp = require('tmp');
+const Promise = require('bluebird');
+const concatStream = require('concat-stream');
+const Docker = require('dockerode');
 const shellescape = require('shell-escape');
+const tmp = require('tmp');
 const fs = Promise.promisifyAll(require('fs'));
 const {getCodeLimit, getTimeLimit} = require('../controllers/utils.js');
 const langInfos = require('../data/infos.json');
@@ -163,7 +163,7 @@ module.exports = async ({id, code, stdin, trace: traceOption, disasm = false}) =
 			...(containerData.State.OOMKilled
 				? {
 					error: new MemoryLimitExceededError(
-						`Memory limit of ${memoryLimit} bytes exceeded`
+						`Memory limit of ${memoryLimit} bytes exceeded`,
 					),
 				  }
 				: {}),
