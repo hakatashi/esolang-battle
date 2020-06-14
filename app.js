@@ -9,6 +9,7 @@ const chalk = require('chalk');
 const compression = require('compression');
 const connectMongo = require('connect-mongo');
 const dotenv = require('dotenv');
+const dotenvExpand = require('dotenv-expand');
 const errorHandler = require('errorhandler');
 const express = require('express');
 const flash = require('express-flash');
@@ -30,7 +31,7 @@ const MongoStore = connectMongo(session);
 /*
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
-dotenv.config({path: '.env'});
+dotenvExpand(dotenv.config({path: '.env'}));
 
 /*
  * Controllers (route handlers).
