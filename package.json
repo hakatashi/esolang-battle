@@ -53,7 +53,7 @@
     "garlicjs": "^1.4.2",
     "hexdump-stream": "pose/hexdump-stream",
     "jstransformer-scss": "^1.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "lusca": "^1.6.1",
     "markdown-it": "^10.0.0",
     "material-colors": "^1.2.6",
