@@ -16,19 +16,20 @@ mongoose.Promise = global.Promise;
 		{$set: {admin: false}},
 	);
 
-	for (const id of ['hakatashi']) {
+	for (const id of ['__fiord']) {
 		const user = await User.findOne({email: `${id}@twitter.com`});
+    console.log(user);
 		user.admin = true;
 		await user.save();
 	}
 
 	await Contest.updateOne(
-		{id: '6'},
+		{id: 'mayfes2020-day1'},
 		{
-			name: 'Esolang Codegolf Contest #6',
-			id: '6',
-			start: new Date('2020-05-04T13:00:00+0900'),
-			end: new Date('2020-05-06T21:00:00+0900'),
+			name: '五月祭2020 Live CodeGolf Contest',
+			id: 'mayfes2020-day1',
+			start: new Date('2020-09-01T13:00:00+0900'),
+			end: new Date('2020-09-20T21:00:00+0900'),
 			description: {
 				ja: stripIndent`
 				\`\`\`
