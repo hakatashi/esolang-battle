@@ -34,7 +34,8 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 const alphabets = range(26).map((i) => String.fromCharCode('a'.charCodeAt() + i) + String.fromCharCode('A'.charCodeAt() + i));
 
 module.exports.generateInput = () => {
-  const numbers = range(26).map(() => sample([0, 1]));
+  const n = sample(range(1, 26));
+  const numbers = shuffle(('1'.repeat(n) + '0'.repeat(26 - n)).split(''));
   const letters = numbers.map((n, i) => 
     String.fromCharCode(i + (n ? 'A' : 'a').charCodeAt()));
 
