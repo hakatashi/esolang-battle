@@ -62,7 +62,6 @@ class App extends React.Component {
 
 	updateLanguages = async () => {
 		const languages = await api('GET', `/contests/${this.contestId}/languages`);
-    console.log(languages);
 		this.setState({
 			languages,
 			languageColors: languages.map((language) => {
