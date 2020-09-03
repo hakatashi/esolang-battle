@@ -37,7 +37,7 @@ module.exports.generateInput = () => {
   const n = sample(range(1, 26));
   const numbers = shuffle(('1'.repeat(n) + '0'.repeat(26 - n)).split(''));
   const letters = numbers.map((n, i) => 
-    String.fromCharCode(i + (n ? 'A' : 'a').charCodeAt()));
+    String.fromCharCode(i + (n === '1' ? 'A' : 'a').charCodeAt()));
 
   assert(letters.length === 26);
 
@@ -45,10 +45,6 @@ module.exports.generateInput = () => {
 };
 
 module.exports.isValidAnswer = (input, output) => {
-  if (process.env.NODE_ENV !== 'production') {
-    return true;
-  }
-
   const chunks = input
     .split(/(?=[a-zA-Z])/);
 
