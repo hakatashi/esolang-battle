@@ -15,7 +15,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 	if (!languages[contest.id]) {
 		return [];
 	}
-
+  
 	const languageCells = languages[contest.id].map((language) => {
 		if (language && language.type === 'language') {
 			return Object.assign({}, language, {
