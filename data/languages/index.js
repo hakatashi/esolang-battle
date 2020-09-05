@@ -29,5 +29,5 @@ module.exports = {
 	'mayfes2019-day1': mayfes2019Day1,
 	'mayfes2019-day2': mayfes2019Day2,
 	komabasai2019,
-  'mayfes2020-day1': mayfes2020Day1,
+	'mayfes2020-day1': mayfes2020Day1,
 };
