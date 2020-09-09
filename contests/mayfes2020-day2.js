@@ -71,11 +71,9 @@ module.exports.generateInput = () => {
 };
 
 module.exports.isValidAnswer = (input, output) => {
-	/*
 	if (process.env.NODE_ENV !== 'production') {
 		return true;
 	}
-	*/
 
 	const lines = input.split('\n').filter((line) => line.length > 0);
 
