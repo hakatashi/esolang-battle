@@ -60,11 +60,11 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 	return edges[cellIndex];
 };
 
-const numbers = Array(100).fill().map((_, x) => ('00' + x.toString()).slice(-2));
+const numbers = Array(90).fill().map((_, x) => (x+10).toString());
 
 module.exports.generateInput = () => {
 	// input generator
-	const nums = Array(50).fill().map((_, x) => sample(numbers));
+	const nums = shuffle(numbers).filter((_, x) => x < 50);
 	const input = nums.join('\n') + '\n';
 	console.log(input);
 	return input;
