@@ -16,7 +16,6 @@ mongoose.Promise = global.Promise;
 		{$set: {admin: false}},
 	);
 
-	/*
 	for (const id of ['__fiord', 'gh_end_', 'hideo54', 'naan112358', 'n4o847']) {
 		const user = await User.findOne({email: `${id}@twitter.com`});
 		if (user) {
@@ -24,14 +23,13 @@ mongoose.Promise = global.Promise;
 		await user.save();
 		}
 	}
-	*/
 
 	await Contest.updateOne(
 		{id: 'mayfes2020-day1'},
 		{
 			name: '五月祭2020 Live CodeGolf Contest Day1',
 			id: 'mayfes2020-day1',
-			start: new Date('2020-09-01T14:03:00+0900'),
+			start: new Date('2020-09-20T14:03:00+0900'),
 			end: new Date('2020-09-20T15:18:00+0900'),
 			description: {
 				ja: stripIndent`
@@ -68,8 +66,8 @@ mongoose.Promise = global.Promise;
 		{
 			name: '五月祭2020 Live CodeGolf Contest Day2',
 			id: 'mayfes2020-day2',
-			start: new Date('2020-09-01T14:03:00+0900'),
-			end: new Date('2020-09-21T15:18:00+0900'),
+			start: new Date('2020-09-21T12:03:00+0900'),
+			end: new Date('2020-09-21T13:18:00+0900'),
 			description: {
 				ja: stripIndent`
 				\`\`\`

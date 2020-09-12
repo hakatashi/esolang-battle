@@ -25,7 +25,6 @@ class MemoryLimitExceededError extends Error {
 module.exports = async ({id, code, stdin, trace: traceOption, disasm = false}) => {
 	assert(typeof id === 'string');
 	assert(Buffer.isBuffer(code));
-	console.log(stdin);
 	assert(typeof stdin === 'string');
 	assert(code.length <= getCodeLimit(id));
 	assert(stdin.length < 10000);
