@@ -249,7 +249,7 @@ class App extends React.Component {
 											this.state.languages[x].team ===
 												undefined
 											? '#222'
-											: 'none'}
+											: '#222'}
 										strokeWidth="0.01"
 										style={{
 											cursor:

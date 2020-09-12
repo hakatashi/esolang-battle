@@ -7,10 +7,10 @@ const languages = [
 	'perl', // 栃木県
 	'python3', // 山梨県
 	'golfscript', // 滋賀県
-	'standback', // 群馬県
+	'wake', // 群馬県
 	'rail', // 静岡県
 	'', // 茨城県(0-base)
-	'cardinal', // 和歌山県
+	'aheui', // 和歌山県
 	'golang', // 岐阜県
 	'node', // 大阪府
 	'c-gcc', // 長野県
@@ -23,7 +23,7 @@ const languages = [
 	'piet', // 石川県
 	'unlambda', // 福井県
 	'starry', // 奈良県
-	'qlb', // 新潟県
+	'fish', // 新潟県
 	'emojicode', // 神奈川県
 ];
 
