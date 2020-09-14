@@ -25,6 +25,23 @@ mongoose.Promise = global.Promise;
 	}
 
 	await Contest.updateOne(
+		{id: 'hello'},
+		{
+			name: 'Hello Contest',
+			id: 'hello',
+			start: new Date('2020-09-15T0:00:00+0900'),
+			end: new Date('2020-09-17T12:00:00+0900'),
+			description: {
+				ja: stripIndent`
+				"hello" と出力せよ。
+				`,
+				en: '',
+			},
+		},
+		{upsert: true},
+	);
+
+	await Contest.updateOne(
 		{id: 'mayfes2020-day1'},
 		{
 			name: '五月祭2020 Live CodeGolf Contest Day1',
