@@ -54,8 +54,6 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 	return edges[cellIndex];
 };
 
-const numbers = Array(90).fill().map((_, x) => (x+10).toString());
-
 module.exports.generateInput = () => '';
 
 module.exports.isValidAnswer = (input, output) => {
