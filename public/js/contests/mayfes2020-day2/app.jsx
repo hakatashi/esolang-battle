@@ -274,8 +274,8 @@ class App extends React.Component {
 						{Array(23)
 							.fill()
 							.map((_, x) => {
-								const bbox = this.geoJSONBbox(jp[x].geometry);
-								const centerPos = [(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2];
+								const centerPos = jp[x].center;
+								const langName = this.state.languages[x] ? this.state.languages[x].name : '';
 								return (
 									<g
 										key={x}
@@ -289,9 +289,7 @@ class App extends React.Component {
 											y={centerPos[1]}
 											fontSize="0.02vmin"
 										>
-											{this.state.languages[x]
-												? this.state.languages[x].name
-												: ''}
+											{langName === 'Brainfuck (esotope)' ? 'Brainfuck' : langName}
 										</text>
 										<text
 											className="language-size"
