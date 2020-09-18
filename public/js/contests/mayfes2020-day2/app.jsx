@@ -287,7 +287,7 @@ class App extends React.Component {
 											className="language-name"
 											x={centerPos[0]}
 											y={centerPos[1]}
-											fontSize="0.02vmin"
+											fontSize="0.014vmin"
 										>
 											{langName === 'Brainfuck (esotope)' ? 'Brainfuck' : langName}
 										</text>
@@ -296,7 +296,7 @@ class App extends React.Component {
 											dominantBaseline="hanging"
 											x={centerPos[0]}
 											y={centerPos[1]}
-											fontSize="0.02vmin"
+											fontSize="0.014vmin"
 										>
 											{this.state.languages[x] &&
 													this.state.languages[x].solution
