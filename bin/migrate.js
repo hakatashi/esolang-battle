@@ -30,7 +30,7 @@ mongoose.Promise = global.Promise;
 			name: 'Hello Contest',
 			id: 'hello',
 			start: new Date('2020-09-15T00:00:00+0900'),
-			end: new Date('2020-09-17T12:00:00+0900'),
+			end: new Date('2020-09-21T11:00:00+0900'),
 			description: {
 				ja: stripIndent`
 				"hello" と出力せよ。
