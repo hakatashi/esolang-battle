@@ -36,7 +36,7 @@ const alphabets = range(26).map((i) => String.fromCharCode('a'.charCodeAt() + i)
 module.exports.generateInput = () => {
   const n = sample(range(1, 26));
   const numbers = shuffle(('1'.repeat(n) + '0'.repeat(26 - n)).split(''));
-  const letters = numbers.map((n, i) => 
+  const letters = numbers.map((n, i) =>
     String.fromCharCode(i + (n === '1' ? 'A' : 'a').charCodeAt()));
 
   assert(letters.length === 26);
