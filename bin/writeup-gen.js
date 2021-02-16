@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const Language = require('../models/Language');
-const Contest = require('../models/Contest');
 const isValidUTF8 = require('utf-8-validate');
+const Contest = require('../models/Contest');
+const Language = require('../models/Language');
 require('../models/Submission');
 require('../models/User');
 const langs = require('../data/langs.json');
@@ -28,18 +28,19 @@ mongoose.Promise = global.Promise;
 
 		const lang = langs.find(({slug}) => slug === language.slug);
 		console.log(stripIndent`
-			# [${lang.name}](https://esolang.hakatashi.com/contests/5/submissions/${language.solution._id}) (@${language.solution.user.email.replace(/@.+$/, '')}, ${language.solution.size} bytes)
+			# [${lang.name}](https://esolang.hakatashi.com/contests/5/submissions/${
+		language.solution._id
+	}) (@${language.solution.user.email.replace(/@.+$/, '')}, ${
+		language.solution.size
+	} bytes)
 		`);
 		console.log('');
 		const isVisible = isValidUTF8(language.solution.code);
 		if (isVisible) {
 			if (language.solution.size >= 500) {
-				console.log([
-					'<details>',
-					'',
-					'<summary>コードを見る</summary>',
-					'',
-				].join('\n'));
+				console.log(
+					['<details>', '', '<summary>コードを見る</summary>', ''].join('\n'),
+				);
 			}
 			console.log('```');
 			console.log(language.solution.code.toString());

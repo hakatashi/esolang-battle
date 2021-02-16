@@ -1,12 +1,15 @@
-const mongoose = require('mongoose');
 const moment = require('moment');
+const mongoose = require('mongoose');
 
 const submissionSchema = new mongoose.Schema(
 	{
 		user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 		language: {type: mongoose.Schema.Types.ObjectId, ref: 'Language'},
 		contest: {type: mongoose.Schema.Types.ObjectId, ref: 'Contest'},
-		status: {type: String, enum: ['pending', 'failed', 'success', 'error', 'invalid']},
+		status: {
+			type: String,
+			enum: ['pending', 'failed', 'success', 'error', 'invalid'],
+		},
 		code: Buffer,
 		size: {type: Number, min: 0},
 		input: String,
@@ -21,7 +24,7 @@ const submissionSchema = new mongoose.Schema(
 			stack: String,
 		},
 	},
-	{timestamps: true}
+	{timestamps: true},
 );
 
 submissionSchema.methods.timeText = function() {

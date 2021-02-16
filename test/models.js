@@ -9,7 +9,7 @@ const User = require('../models/User');
 describe('User Model', () => {
 	it('should create a new user', (done) => {
 		const UserMock = sinon.mock(
-			new User({email: 'test@gmail.com', password: 'root'})
+			new User({email: 'test@gmail.com', password: 'root'}),
 		);
 		const user = UserMock.object;
 
@@ -25,7 +25,7 @@ describe('User Model', () => {
 
 	it('should return error if user is not created', (done) => {
 		const UserMock = sinon.mock(
-			new User({email: 'test@gmail.com', password: 'root'})
+			new User({email: 'test@gmail.com', password: 'root'}),
 		);
 		const user = UserMock.object;
 		const expectedError = {
@@ -45,7 +45,7 @@ describe('User Model', () => {
 
 	it('should not create a user with the unique email', (done) => {
 		const UserMock = sinon.mock(
-			User({email: 'test@gmail.com', password: 'root'})
+			User({email: 'test@gmail.com', password: 'root'}),
 		);
 		const user = UserMock.object;
 		const expectedError = {

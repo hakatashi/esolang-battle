@@ -22,7 +22,13 @@ class MemoryLimitExceededError extends Error {
 	}
 }
 
-module.exports = async ({id, code, stdin, trace: traceOption, disasm = false}) => {
+module.exports = async ({
+	id,
+	code,
+	stdin,
+	trace: traceOption,
+	disasm = false,
+}) => {
 	assert(typeof id === 'string');
 	assert(Buffer.isBuffer(code));
 	assert(typeof stdin === 'string');
@@ -116,7 +122,9 @@ module.exports = async ({id, code, stdin, trace: traceOption, disasm = false}) =
 				},
 				VolumesFrom: [],
 				HostConfig: {
-					Binds: [`${dockerVolumePath}:/volume:${trace === true ? 'rw' : 'ro'}`],
+					Binds: [
+						`${dockerVolumePath}:/volume:${trace === true ? 'rw' : 'ro'}`,
+					],
 					Memory: memoryLimit,
 					...(trace === true ? {CapAdd: ['SYS_PTRACE']} : {}),
 				},
@@ -148,7 +156,9 @@ module.exports = async ({id, code, stdin, trace: traceOption, disasm = false}) =
 		]);
 
 		const executionStart = Date.now();
-		const [stdout, stderr, containerData] = await runner.timeout(getTimeLimit(id));
+		const [stdout, stderr, containerData] = await runner.timeout(
+			getTimeLimit(id),
+		);
 		const executionEnd = Date.now();
 
 		const tracePath = path.join(tmpPath, 'strace.log');

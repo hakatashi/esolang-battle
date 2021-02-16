@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
 const moment = require('moment');
+const mongoose = require('mongoose');
 
 const contestSchema = new mongoose.Schema({
 	name: {type: String},

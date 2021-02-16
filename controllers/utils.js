@@ -72,27 +72,21 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 			assert({}.hasOwnProperty.call(contests, contest.id));
 			const {getPrecedingIndices} = contests[contest.id];
 
-			const precedingCells = getPrecedingIndices(index).filter((i) => languageCells[i].type !== undefined).map(
-				(i) => languageCells[i],
-			);
+			const precedingCells = getPrecedingIndices(index)
+				.filter((i) => languageCells[i].type !== undefined)
+				.map((i) => languageCells[i]);
 
 			const available =
 				typeof team === 'number' &&
-				(
-					contest.id === 'hackathon2018' ||
+				(contest.id === 'hackathon2018' ||
 					cell.team === team ||
 					solvedTeam === team ||
 					precedingCells.some(
-						(c) => (
-							c.team === team ||
-							(
-								c.record &&
+						(c) => c.team === team ||
+							(c.record &&
 								c.record.solution &&
-								c.record.solution.user.getTeam(contest)
-							) === team
-						),
-					)
-				);
+								c.record.solution.user.getTeam(contest)) === team,
+					));
 
 			if (cell.record && cell.record.solution) {
 				return {
@@ -148,12 +142,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 };
 
 const getCodeLimit = (languageId) => {
-	if (
-		[
-			'fernando',
-			'pure-folders',
-		].includes(languageId)
-	) {
+	if (['fernando', 'pure-folders'].includes(languageId)) {
 		return 1024 * 1024;
 	}
 
@@ -177,12 +166,7 @@ const getCodeLimit = (languageId) => {
 module.exports.getCodeLimit = getCodeLimit;
 
 module.exports.getTimeLimit = (languageId) => {
-	if (
-		[
-			'kotlin',
-			'husk',
-		].includes(languageId)
-	) {
+	if (['kotlin', 'husk'].includes(languageId)) {
 		return 30 * 1000;
 	}
 

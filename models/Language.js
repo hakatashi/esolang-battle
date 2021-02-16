@@ -7,7 +7,7 @@ const languageSchema = new mongoose.Schema(
 		oldId: {type: String},
 		slug: {type: String},
 	},
-	{timestamps: true}
+	{timestamps: true},
 );
 
 const Language = mongoose.model('Language', languageSchema);

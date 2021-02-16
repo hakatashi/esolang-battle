@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const Submission = require('../models/Submission');
-const Language = require('../models/Language');
-const docker = require('../engines/docker');
 const langs = require('../data/langs.json');
+const docker = require('../engines/docker');
+const Language = require('../models/Language');
+const Submission = require('../models/Submission');
 
 require('../models/User');
 

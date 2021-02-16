@@ -1,8 +1,8 @@
 const assert = require('assert');
-const range = require('lodash/range');
-const shuffle = require('lodash/shuffle');
-const sample = require('lodash/sample');
 const flatten = require('lodash/flatten');
+const range = require('lodash/range');
+const sample = require('lodash/sample');
+const shuffle = require('lodash/shuffle');
 const zip = require('lodash/zip');
 
 module.exports.getPrecedingIndices = (cellIndex) => {
@@ -30,7 +30,9 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 		precedingCells.push((y + 1) * 5 + x);
 	}
 
-	return precedingCells.filter((cell) => ![0, 3, 4, 5, 19, 20, 21, 24].includes(cell));
+	return precedingCells.filter(
+		(cell) => ![0, 3, 4, 5, 19, 20, 21, 24].includes(cell),
+	);
 };
 
 const alphabets = range(26).map((i) => String.fromCharCode('a'.charCodeAt() + i));
@@ -41,18 +43,20 @@ module.exports.generateInput = () => {
 		...range(50 - alphabets.length).map(() => sample(alphabets)),
 	]);
 
-	const numbers = flatten(shuffle([
-		...range(2, 10),
-		...range(50 - 8 - 3 - 1).map(() => sample(range(1, 10))),
-		[1, 1, 1],
-	])).concat([sample(range(2, 10))]);
+	const numbers = flatten(
+		shuffle([
+			...range(2, 10),
+			...range(50 - 8 - 3 - 1).map(() => sample(range(1, 10))),
+			[1, 1, 1],
+		]),
+	).concat([sample(range(2, 10))]);
 
 	assert(letters.length === 50);
 	assert(numbers.length === 50);
 
-	return `${zip(letters, numbers).map(([letter, number]) => (
-		number === 1 ? letter : `${letter}${number}`
-	)).join('')}\n`;
+	return `${zip(letters, numbers)
+		.map(([letter, number]) => (number === 1 ? letter : `${letter}${number}`))
+		.join('')}\n`;
 };
 
 module.exports.isValidAnswer = (input, output) => {
@@ -60,8 +64,7 @@ module.exports.isValidAnswer = (input, output) => {
 		return true;
 	}
 
-	const chunks = input
-		.split(/(?=[a-z])/);
+	const chunks = input.split(/(?=[a-z])/);
 
 	assert(chunks.length === 50);
 
@@ -72,9 +75,7 @@ module.exports.isValidAnswer = (input, output) => {
 		})
 		.join('');
 
-	const trimmedOutput = output
-		.toString()
-		.replace(/\s/g, '');
+	const trimmedOutput = output.toString().replace(/\s/g, '');
 
 	console.log('info:', {input, correctOutput, output, trimmedOutput});
 
