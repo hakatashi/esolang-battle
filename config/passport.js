@@ -93,8 +93,8 @@ passport.use(
 					done(error);
 				}
 			}
-		}
-	)
+		},
+	),
 );
 
 /*

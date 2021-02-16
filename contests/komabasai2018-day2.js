@@ -1,6 +1,6 @@
 const assert = require('assert');
-const random = require('lodash/random');
 const countBy = require('lodash/countBy');
+const random = require('lodash/random');
 const sample = require('lodash/sample');
 
 module.exports.getPrecedingIndices = (cellIndex) => {
@@ -59,7 +59,7 @@ module.exports.generateInput = () => {
 		const dopingIndex = sample(
 			seed
 				.map((char, index) => ({char, index}))
-				.filter(({char}) => char === '0')
+				.filter(({char}) => char === '0'),
 		).index;
 		assert(seed[dopingIndex] === '0');
 

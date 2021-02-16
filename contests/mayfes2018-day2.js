@@ -30,21 +30,27 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 	return precedingCells;
 };
 
-module.exports.generateInput = () => `${Array(100).fill().map(() => random()).join('')}\n`;
+module.exports.generateInput = () => `${Array(100)
+	.fill()
+	.map(() => random())
+	.join('')}\n`;
 
 module.exports.isValidAnswer = (input, output) => {
 	if (process.env.NODE_ENV !== 'production') {
 		return true;
 	}
 
-	const inputNumbers = input.trim().split('').map((n) => parseInt(n));
-	const correctOutput = inputNumbers.map((n, i) => sum(inputNumbers.slice(0, i + 1)) % 2).join('');
+	const inputNumbers = input
+		.trim()
+		.split('')
+		.map((n) => parseInt(n));
+	const correctOutput = inputNumbers
+		.map((n, i) => sum(inputNumbers.slice(0, i + 1)) % 2)
+		.join('');
 	assert(correctOutput.length === 100);
 
 	// Trim
-	const trimmedOutput = output
-		.toString()
-		.replace(/\s/g, '');
+	const trimmedOutput = output.toString().replace(/\s/g, '');
 
 	console.log('info:', {input, correctOutput, output, trimmedOutput});
 

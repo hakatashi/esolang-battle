@@ -1,5 +1,5 @@
-const langsData = require('../langs.json');
 const assert = require('assert');
+const langsData = require('../langs.json');
 
 const languages = [
 	'crystal', // 京都府
@@ -27,28 +27,27 @@ const languages = [
 	'emojicode', // 神奈川県
 ];
 
-module.exports = languages
-	.map((language, index) => {
-		if (index === 7 || index === 15) {
-			return {
-				type: 'base',
-				team: 0,
-			};
-		}
-		if (index === 13 || index === 16) {
-			return {
-				type: 'base',
-				team: 1,
-			};
-		}
-
-		const langDatum = langsData.find((lang) => lang.slug === language);
-		assert(language === '' || langDatum !== undefined, language);
-
+module.exports = languages.map((language, index) => {
+	if (index === 7 || index === 15) {
 		return {
-			type: 'language',
-			slug: language,
-			name: langDatum ? langDatum.name : '',
-			link: langDatum ? langDatum.link : '',
+			type: 'base',
+			team: 0,
 		};
-	});
+	}
+	if (index === 13 || index === 16) {
+		return {
+			type: 'base',
+			team: 1,
+		};
+	}
+
+	const langDatum = langsData.find((lang) => lang.slug === language);
+	assert(language === '' || langDatum !== undefined, language);
+
+	return {
+		type: 'language',
+		slug: language,
+		name: langDatum ? langDatum.name : '',
+		link: langDatum ? langDatum.link : '',
+	};
+});

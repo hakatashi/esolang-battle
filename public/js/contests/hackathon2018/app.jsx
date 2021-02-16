@@ -70,7 +70,9 @@ class App extends React.Component {
 	};
 
 	handleClickCell = (event) => {
-		const cellIndex = parseInt(event.target.closest('.cell').getAttribute('data-index'));
+		const cellIndex = parseInt(
+			event.target.closest('.cell').getAttribute('data-index'),
+		);
 		this.setState(({languages}) => {
 			const language = languages[cellIndex];
 			if (!language) {
@@ -138,9 +140,13 @@ class App extends React.Component {
 		}
 
 		this.pendingSubmission = null;
-		const submission = await api('GET', `/contests/${this.contestId}/submission`, {
-			_id: data._id,
-		});
+		const submission = await api(
+			'GET',
+			`/contests/${this.contestId}/submission`,
+			{
+				_id: data._id,
+			},
+		);
 
 		if (submission.status === 'failed') {
 			this.setState({
@@ -176,7 +182,7 @@ class App extends React.Component {
 			.fill()
 			.map(
 				(_, index) => this.state.languages.filter((language) => language.team === index)
-					.length
+					.length,
 			);
 		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
 
@@ -188,7 +194,7 @@ class App extends React.Component {
 							<div
 								className="bar"
 								style={{
-									flexBasis: `${cellCounts[index] / totalCellCounts * 100}%`,
+									flexBasis: `${(cellCounts[index] / totalCellCounts) * 100}%`,
 								}}
 							>
 								<div className="count">{cellCounts[index]}</div>
@@ -206,23 +212,15 @@ class App extends React.Component {
 							style={{
 								cursor: language ? 'pointer' : '',
 								color:
-									language &&
-									language.team === undefined
-										? '#222'
-										: 'white',
+									language && language.team === undefined ? '#222' : 'white',
 							}}
 							data-index={index}
 						>
 							<div className="language-name">
-								{language
-									? language.name
-									: ''}
+								{language ? language.name : ''}
 							</div>
 							<div className="language-size">
-								{language &&
-								language.solution
-									? language.solution.size
-									: ''}
+								{language && language.solution ? language.solution.size : ''}
 							</div>
 						</div>
 					))}
@@ -233,7 +231,8 @@ class App extends React.Component {
 							<div
 								className="bar"
 								style={{
-									flexBasis: `${cellCounts[index + 2] / totalCellCounts * 100}%`,
+									flexBasis: `${(cellCounts[index + 2] / totalCellCounts) *
+										100}%`,
 								}}
 							>
 								<div className="count">{cellCounts[index + 2]}</div>
@@ -250,25 +249,26 @@ class App extends React.Component {
 					<ModalHeader>
 						{selectedLanguage.name}{' '}
 						<small>
-							<a href={selectedLanguage.link} target="_blank" rel="noopener noreferrer">
+							<a
+								href={selectedLanguage.link}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								[detail]
 							</a>
 						</small>
 					</ModalHeader>
 					<ModalBody>
 						{selectedLanguage.solution ? (
-							<React.Fragment>
+							<>
 								<p>
-									Owner: {selectedLanguage.solution.user} ({
-										selectedLanguage.team
-									})
+									Owner: {selectedLanguage.solution.user} (
+									{selectedLanguage.team})
 								</p>
 								<p>
 									{'Solution: '}
 									<a
-										href={`/contests/${this.contestId}/submissions/${
-											selectedLanguage.solution._id
-										}`}
+										href={`/contests/${this.contestId}/submissions/${selectedLanguage.solution._id}`}
 										target="_blank"
 										rel="noopener noreferrer"
 									>
@@ -276,12 +276,12 @@ class App extends React.Component {
 									</a>
 									{` (${selectedLanguage.solution.size} bytes)`}
 								</p>
-							</React.Fragment>
+							</>
 						) : (
-							<React.Fragment>
+							<>
 								<p>Owner: N/A</p>
 								<p>Solution: N/A</p>
-							</React.Fragment>
+							</>
 						)}
 						<Form>
 							<FormGroup
@@ -303,18 +303,17 @@ class App extends React.Component {
 							<p className={`p-3 mb-2 bg-${this.state.messageType} text-white`}>
 								{this.state.message}
 								{this.state.messageDetail && (
-									<React.Fragment>
+									<>
 										{' Check out the detail '}
 										<a
-											href={`/contests/${this.contestId}/submissions/${
-												this.state.messageDetail
-											}`}
+											href={`/contests/${this.contestId}/submissions/${this.state.messageDetail}`}
 											target="_blank"
 											rel="noopener noreferrer"
 										>
 											here
-										</a>.
-									</React.Fragment>
+										</a>
+										.
+									</>
 								)}
 							</p>
 						)}

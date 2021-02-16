@@ -50,9 +50,7 @@ const edges = [
 	[3, 6, 16],
 ];
 
-module.exports.getPrecedingIndices = (cellIndex) => {
-	return edges[cellIndex];
-};
+module.exports.getPrecedingIndices = (cellIndex) => edges[cellIndex];
 
 module.exports.generateInput = () => '';
 
@@ -63,9 +61,7 @@ module.exports.isValidAnswer = (input, output) => {
 
 	const correctOutput = 'hello';
 
-	const trimmedOutput = output
-		.toString()
-		.replace(/\s/g, '');
+	const trimmedOutput = output.toString().replace(/\s/g, '');
 
 	console.log('info:', {input, correctOutput, output, trimmedOutput});
 

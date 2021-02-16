@@ -85,7 +85,7 @@ class App extends React.Component {
 		return false;
 	};
 
-	isEnded = () => (false);
+	isEnded = () => false;
 
 	handleClickCell = (event) => {
 		const cellIndex = parseInt(
@@ -198,7 +198,8 @@ class App extends React.Component {
 		const cellCounts = Array(this.size)
 			.fill()
 			.map(
-				(_, index) => this.state.languages.filter((language) => language.team === index).length,
+				(_, index) => this.state.languages.filter((language) => language.team === index)
+					.length,
 			);
 		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
 		return (
@@ -239,10 +240,9 @@ class App extends React.Component {
 											}`}
 											onClick={this.handleClickCell}
 											style={{
-												cursor:
-														this.state.languages[y * this.size + x]
-															? 'pointer'
-															: '',
+												cursor: this.state.languages[y * this.size + x]
+													? 'pointer'
+													: '',
 												color:
 														this.state.languages[y * this.size + x] &&
 														this.state.languages[y * this.size + x].team ===
@@ -252,7 +252,10 @@ class App extends React.Component {
 											}}
 											data-index={y * this.size + x}
 										>
-											<svg className="hexagon" viewBox="-0.866 -0.866 1.732 1.732">
+											<svg
+												className="hexagon"
+												viewBox="-0.866 -0.866 1.732 1.732"
+											>
 												<polygon points="-0.866,-0.5 0,-1 0.866,-0.5 0.866,0.5 0,1 -0.866,0.5"/>
 											</svg>
 											<div className="language-label">
@@ -299,9 +302,7 @@ class App extends React.Component {
 								<p>
 									Solution:
 									<a
-										href={`/contests/${this.contestId}/submissions/${
-											selectedLanguage.solution._id
-										}`}
+										href={`/contests/${this.contestId}/submissions/${selectedLanguage.solution._id}`}
 										target="_blank"
 									>
 										{selectedLanguage.solution._id}
@@ -316,14 +317,19 @@ class App extends React.Component {
 							</>
 						)}
 						<p>
-							Exec: {
-								(selectedLanguage.info && selectedLanguage.info.time > 10) || ['bash-busybox', 'm4', 'cmd'].includes(selectedLanguage.slug) ? 'Allowed' : (
+							Exec:{' '}
+							{(selectedLanguage.info && selectedLanguage.info.time > 10) ||
+							['bash-busybox', 'm4', 'cmd'].includes(selectedLanguage.slug) ? (
+									'Allowed'
+								) : (
 									<strong style={{color: 'red'}}>Denied</strong>
-								)
-							}
+								)}
 						</p>
 						{typeof selectedLanguage.limit === 'number' && (
-							<p>Length Limit: {selectedLanguage.limit.toLocaleString('en-US')} bytes</p>
+							<p>
+								Length Limit: {selectedLanguage.limit.toLocaleString('en-US')}{' '}
+								bytes
+							</p>
 						)}
 						<Form>
 							<FormGroup
@@ -347,12 +353,9 @@ class App extends React.Component {
 								{this.state.messageDetail && (
 									<>
 										{' '}
-										Check out the detail
-										{' '}
+										Check out the detail{' '}
 										<a
-											href={`/contests/${this.contestId}/submissions/${
-												this.state.messageDetail
-											}`}
+											href={`/contests/${this.contestId}/submissions/${this.state.messageDetail}`}
 											target="_blank"
 										>
 											here

@@ -1,6 +1,6 @@
 const assert = require('assert');
-const random = require('lodash/random');
 const inRange = require('lodash/inRange');
+const random = require('lodash/random');
 
 module.exports.getPrecedingIndices = (cellIndex) => {
 	assert(cellIndex >= 0);

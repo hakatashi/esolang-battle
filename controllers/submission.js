@@ -1,10 +1,10 @@
+const qs = require('querystring');
+const concatStream = require('concat-stream');
+const Hexdump = require('hexdump-stream');
+const isValidUTF8 = require('utf-8-validate');
+const Language = require('../models/Language');
 const Submission = require('../models/Submission');
 const User = require('../models/User');
-const Language = require('../models/Language');
-const Hexdump = require('hexdump-stream');
-const concatStream = require('concat-stream');
-const isValidUTF8 = require('utf-8-validate');
-const qs = require('querystring');
 
 /*
  * GET /submissions
@@ -59,11 +59,13 @@ module.exports.getSubmissions = async (req, res) => {
 		.exec();
 	const usersRecord = await User.find({_id: {$in: users_id}}).exec();
 	const langsRecord = await Language.find({_id: {$in: langs_id}}).exec();
-	const users = usersRecord.map((user) => {
-		const team = user.team.find((t) => t.contest.equals(req.contest._id));
-		const displayName = (team ? `team-${team.value}` : '') + user.name();
-		return {email: user.email, displayName};
-	}).sort(({displayName: dispA}, {displayName: dispB}) => dispA.localeCompare(dispB));
+	const users = usersRecord
+		.map((user) => {
+			const team = user.team.find((t) => t.contest.equals(req.contest._id));
+			const displayName = (team ? `team-${team.value}` : '') + user.name();
+			return {email: user.email, displayName};
+		})
+		.sort(({displayName: dispA}, {displayName: dispB}) => dispA.localeCompare(dispB));
 	const langs = langsRecord.sort(({slug: slugA}, {slug: slugB}) => slugA.localeCompare(slugB));
 
 	res.render('submissions', {
@@ -98,7 +100,7 @@ module.exports.getSubmission = async (req, res) => {
 
 	if (submission.contest.id !== req.params.contest) {
 		res.redirect(
-			`/contests/${submission.contest.id}/submissions/${submission._id}`
+			`/contests/${submission.contest.id}/submissions/${submission._id}`,
 		);
 		return;
 	}
@@ -151,7 +153,7 @@ module.exports.getOldSubmission = async (req, res) => {
 	}
 
 	res.redirect(
-		`/contests/${submission.contest.id}/submissions/${submission._id}`
+		`/contests/${submission.contest.id}/submissions/${submission._id}`,
 	);
 };
 

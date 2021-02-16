@@ -1,3 +1,4 @@
+const {flatten} = require('lodash');
 const React = require('react');
 const {
 	Button,
@@ -11,7 +12,6 @@ const {
 } = require('reactstrap');
 const api = require('../../api.js');
 const japanJSON = require('./japan.json');
-const { flatten } = require('lodash');
 
 const jp = japanJSON.features;
 
@@ -75,7 +75,7 @@ class App extends React.Component {
 		});
 	};
 
-	isEnded = () => (false);
+	isEnded = () => false;
 
 	handleClickCell = (event) => {
 		const cellIndex = parseInt(
@@ -209,16 +209,34 @@ class App extends React.Component {
 
 	geoJSONBbox = (geo) => {
 		if (geo.type === 'Polygon') {
-			return geo.coordinates[0].reduce((acc, cur) =>
-				[Math.min(acc[0], cur[0]), Math.min(acc[1], cur[1]), Math.max(acc[2], cur[0]), Math.max(acc[3], cur[1])],
-			flatten([geo.coordinates[0][0], geo.coordinates[0][0]]));
+			return geo.coordinates[0].reduce(
+				(acc, cur) => [
+					Math.min(acc[0], cur[0]),
+					Math.min(acc[1], cur[1]),
+					Math.max(acc[2], cur[0]),
+					Math.max(acc[3], cur[1]),
+				],
+				flatten([geo.coordinates[0][0], geo.coordinates[0][0]]),
+			);
 		} else if (geo.type === 'MultiPolygon') {
-			const mapped = geo.coordinates.map((polygon) => polygon[0].reduce((acc, cur) =>
-				[Math.min(acc[0], cur[0]), Math.min(acc[1], cur[1]), Math.max(acc[2], cur[0]), Math.max(acc[3], cur[1])],
-			flatten([polygon[0][0], polygon[0][0]])));
-			return mapped.reduce((acc, cur) =>
-				[Math.min(acc[0], cur[0]), Math.min(acc[1], cur[1]), Math.max(acc[2], cur[2]), Math.max(acc[3], cur[3])],
-			mapped[0]);
+			const mapped = geo.coordinates.map((polygon) => polygon[0].reduce(
+				(acc, cur) => [
+					Math.min(acc[0], cur[0]),
+					Math.min(acc[1], cur[1]),
+					Math.max(acc[2], cur[0]),
+					Math.max(acc[3], cur[1]),
+				],
+				flatten([polygon[0][0], polygon[0][0]]),
+			));
+			return mapped.reduce(
+				(acc, cur) => [
+					Math.min(acc[0], cur[0]),
+					Math.min(acc[1], cur[1]),
+					Math.max(acc[2], cur[2]),
+					Math.max(acc[3], cur[3]),
+				],
+				mapped[0],
+			);
 		}
 		return null;
 	};
@@ -233,53 +251,57 @@ class App extends React.Component {
 					<svg viewBox={japanJSON.bbox.join(' ')}>
 						{Array(23)
 							.fill()
-							.map((_, x) => {
-								return (
-									<g
-										key={x}
-										data-index={x}
-										className={`cell ${this.state.languageColors[x]}`}
-										onClick={this.handleClickCell}
-										fill={this.state.languages[x] &&
-											this.state.languages[x].team ===
-												undefined
+							.map((_, x) => (
+								<g
+									key={x}
+									data-index={x}
+									className={`cell ${this.state.languageColors[x]}`}
+									onClick={this.handleClickCell}
+									fill={
+										this.state.languages[x] &&
+											this.state.languages[x].team === undefined
 											? '#222'
-											: 'white'}
-										stroke={this.state.languages[x] &&
-											this.state.languages[x].team ===
-												undefined
+											: 'white'
+									}
+									stroke={
+										this.state.languages[x] &&
+											this.state.languages[x].team === undefined
 											? '#222'
-											: '#222'}
-										strokeWidth="0.01"
-										style={{
-											cursor:
-												this.state.languages[x]
-													? 'pointer'
-													: '',
-										}}
-									>
-										{jp[x].geometry.type === 'Polygon' ? (
-											<polygon
-												points={jp[x].geometry.coordinates[0].map((v) => v.join(',')).join(' ')}
-											/>
-										) : jp[x].geometry.type === 'MultiPolygon' && jp[x].geometry.coordinates.map((polygon, i) => (
-											<polygon
-												key={i}
-												points={polygon[0].map((v) => v.join(',')).join(' ')}
-											/>
-										))}
-									</g>
-								);
-							})}
+											: '#222'
+									}
+									strokeWidth="0.01"
+									style={{
+										cursor: this.state.languages[x] ? 'pointer' : '',
+									}}
+								>
+									{jp[x].geometry.type === 'Polygon' ? (
+										<polygon
+											points={jp[x].geometry.coordinates[0]
+												.map((v) => v.join(','))
+												.join(' ')}
+										/>
+									) : (
+										jp[x].geometry.type === 'MultiPolygon' &&
+											jp[x].geometry.coordinates.map((polygon, i) => (
+												<polygon
+													key={i}
+													points={polygon[0].map((v) => v.join(',')).join(' ')}
+												/>
+											))
+									)}
+								</g>
+							))}
 						{Array(23)
 							.fill()
 							.map((_, x) => {
 								const centerPos = jp[x].center;
-								const langName = this.state.languages[x] ? this.state.languages[x].name : '';
+								const langName = this.state.languages[x]
+									? this.state.languages[x].name
+									: '';
 								return (
 									<g
 										key={x}
-										id={'language-label-' + x.toString()}
+										id={`language-label-${x.toString()}`}
 										className="language-label"
 										textAnchor="middle"
 									>
@@ -289,7 +311,9 @@ class App extends React.Component {
 											y={centerPos[1]}
 											fontSize="0.014vmin"
 										>
-											{langName === 'Brainfuck (esotope)' ? 'Brainfuck' : langName}
+											{langName === 'Brainfuck (esotope)'
+												? 'Brainfuck'
+												: langName}
 										</text>
 										<text
 											className="language-size"
@@ -299,9 +323,8 @@ class App extends React.Component {
 											fontSize="0.014vmin"
 										>
 											{this.state.languages[x] &&
-													this.state.languages[x].solution
-												? this.state.languages[x].solution
-													.size
+											this.state.languages[x].solution
+												? this.state.languages[x].solution.size
 												: ''}
 										</text>
 									</g>
@@ -333,9 +356,7 @@ class App extends React.Component {
 								<p>
 									Solution:
 									<a
-										href={`/contests/${this.contestId}/submissions/${
-											selectedLanguage.solution._id
-										}`}
+										href={`/contests/${this.contestId}/submissions/${selectedLanguage.solution._id}`}
 										target="_blank"
 									>
 										{selectedLanguage.solution._id}
@@ -350,14 +371,19 @@ class App extends React.Component {
 							</>
 						)}
 						<p>
-							Exec: {
-								(selectedLanguage.info && selectedLanguage.info.time > 10) || ['bash-busybox', 'm4', 'cmd'].includes(selectedLanguage.slug) ? 'Allowed' : (
+							Exec:{' '}
+							{(selectedLanguage.info && selectedLanguage.info.time > 10) ||
+							['bash-busybox', 'm4', 'cmd'].includes(selectedLanguage.slug) ? (
+									'Allowed'
+								) : (
 									<strong style={{color: 'red'}}>Denied</strong>
-								)
-							}
+								)}
 						</p>
 						{typeof selectedLanguage.limit === 'number' && (
-							<p>Length Limit: {selectedLanguage.limit.toLocaleString('en-US')} bytes</p>
+							<p>
+								Length Limit: {selectedLanguage.limit.toLocaleString('en-US')}{' '}
+								bytes
+							</p>
 						)}
 						<Form>
 							<FormGroup
@@ -381,12 +407,9 @@ class App extends React.Component {
 								{this.state.messageDetail && (
 									<>
 										{' '}
-										Check out the detail
-										{' '}
+										Check out the detail{' '}
 										<a
-											href={`/contests/${this.contestId}/submissions/${
-												this.state.messageDetail
-											}`}
+											href={`/contests/${this.contestId}/submissions/${this.state.messageDetail}`}
 											target="_blank"
 										>
 											here

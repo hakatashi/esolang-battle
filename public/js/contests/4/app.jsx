@@ -9,8 +9,8 @@ const {
 	FormGroup,
 	Input,
 } = require('reactstrap');
-const Map = require('./map.js');
 const api = require('../../api.js');
+const Map = require('./map.js');
 
 class App extends React.Component {
 	constructor(props, context) {
@@ -63,7 +63,7 @@ class App extends React.Component {
 					}
 
 					return ['red', 'blue', 'green'][language.team];
-				})
+				}),
 			);
 	};
 
@@ -74,7 +74,7 @@ class App extends React.Component {
 			this.map = new Map(
 				this.canvas,
 				this.handleFacesUpdate,
-				this.handleClickFace
+				this.handleClickFace,
 			);
 		}
 	};
@@ -189,7 +189,7 @@ class App extends React.Component {
 			.fill()
 			.map(
 				(_, index) => this.state.languages.filter((language) => language.team === index)
-					.length
+					.length,
 			);
 		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
 
@@ -238,7 +238,7 @@ class App extends React.Component {
 							<div
 								className="bar"
 								style={{
-									flexBasis: `${cellCounts[index] / totalCellCounts * 100}%`,
+									flexBasis: `${(cellCounts[index] / totalCellCounts) * 100}%`,
 								}}
 							>
 								<div className="count">{cellCounts[index]}</div>
@@ -262,30 +262,27 @@ class App extends React.Component {
 					</ModalHeader>
 					<ModalBody>
 						{selectedLanguage.solution ? (
-							<React.Fragment>
+							<>
 								<p>
-									Owner: {selectedLanguage.solution.user} ({
-										selectedLanguage.team
-									})
+									Owner: {selectedLanguage.solution.user} (
+									{selectedLanguage.team})
 								</p>
 								<p>
 									{'Solution: '}
 									<a
-										href={`/contests/4/submissions/${
-											selectedLanguage.solution._id
-										}`}
+										href={`/contests/4/submissions/${selectedLanguage.solution._id}`}
 										target="_blank"
 									>
 										{selectedLanguage.solution._id}
 									</a>
 									{` (${selectedLanguage.solution.size} bytes)`}
 								</p>
-							</React.Fragment>
+							</>
 						) : (
-							<React.Fragment>
+							<>
 								<p>Owner: N/A</p>
 								<p>Solution: N/A</p>
-							</React.Fragment>
+							</>
 						)}
 						<Form>
 							<FormGroup
@@ -307,27 +304,22 @@ class App extends React.Component {
 							<p className={`p-3 mb-2 bg-${this.state.messageType} text-white`}>
 								{this.state.message}
 								{this.state.messageDetail && (
-									<React.Fragment>
+									<>
 										{' Check out the detail '}
 										<a
-											href={`/contests/4/submissions/${
-												this.state.messageDetail
-											}`}
+											href={`/contests/4/submissions/${this.state.messageDetail}`}
 											target="_blank"
 										>
 											here
-										</a>.
-									</React.Fragment>
+										</a>
+										.
+									</>
 								)}
 							</p>
 						)}
 					</ModalBody>
 					<ModalFooter>
-						<Button
-							color="primary"
-							onClick={this.handleSend}
-							disabled
-						>
+						<Button color="primary" onClick={this.handleSend} disabled>
 							Send
 						</Button>{' '}
 						<Button color="secondary" onClick={this.handleCloseModal}>

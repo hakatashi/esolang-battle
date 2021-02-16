@@ -1,8 +1,8 @@
 const assert = require('assert');
-const range = require('lodash/range');
-const shuffle = require('lodash/shuffle');
-const sample = require('lodash/sample');
 const flatten = require('lodash/flatten');
+const range = require('lodash/range');
+const sample = require('lodash/sample');
+const shuffle = require('lodash/shuffle');
 
 /*
 0: 京都府-兵庫13/大阪10/奈良20/三重12/滋賀4/福井19
@@ -56,16 +56,16 @@ const edges = [
 	[3, 6, 16],
 ];
 
-module.exports.getPrecedingIndices = (cellIndex) => {
-	return edges[cellIndex];
-};
+module.exports.getPrecedingIndices = (cellIndex) => edges[cellIndex];
 
-const numbers = Array(90).fill().map((_, x) => (x+10).toString());
+const numbers = Array(90)
+	.fill()
+	.map((_, x) => (x + 10).toString());
 
 module.exports.generateInput = () => {
 	// input generator
 	const nums = shuffle(numbers).filter((_, x) => x < 50);
-	const input = nums.join('\n') + '\n';
+	const input = `${nums.join('\n')}\n`;
 	console.log(input);
 	return input;
 };
@@ -80,7 +80,7 @@ module.exports.isValidAnswer = (input, output) => {
 	assert(lines.length === 50);
 
 	let minValue = parseInt(lines[0]) + 1;
-	let cnt = "";
+	let cnt = '';
 
 	for (const line of lines) {
 		const val = parseInt(line);
@@ -94,9 +94,7 @@ module.exports.isValidAnswer = (input, output) => {
 
 	const correctOutput = cnt;
 
-	const trimmedOutput = output
-		.toString()
-		.replace(/\s/g, '');
+	const trimmedOutput = output.toString().replace(/\s/g, '');
 
 	console.log('info:', {input, correctOutput, output, trimmedOutput});
 

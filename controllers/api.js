@@ -1,13 +1,13 @@
-const Language = require('../models/Language');
-const Submission = require('../models/Submission');
-const Execution = require('../models/Execution');
-const Contest = require('../models/Contest');
-const languages = require('../data/languages');
-const validation = require('../lib/validation');
-const {getLanguageMap, getCodeLimit} = require('../controllers/utils');
-const docker = require('../engines/docker');
 const assert = require('assert');
 const concatStream = require('concat-stream');
+const {getLanguageMap, getCodeLimit} = require('../controllers/utils');
+const languages = require('../data/languages');
+const docker = require('../engines/docker');
+const validation = require('../lib/validation');
+const Contest = require('../models/Contest');
+const Execution = require('../models/Execution');
+const Language = require('../models/Language');
+const Submission = require('../models/Submission');
 
 /*
  * Middleware for all /api/contest/:contest routes
@@ -79,7 +79,7 @@ module.exports.postExecution = async (req, res) => {
 		if (req.files && req.files.file && req.files.file.length === 1) {
 			assert(
 				req.files.file[0].size < getCodeLimit(req.body.language),
-				'Code cannot be longer than 10,000 bytes'
+				'Code cannot be longer than 10,000 bytes',
 			);
 			code = await new Promise((resolve) => {
 				const stream = concatStream(resolve);
@@ -92,7 +92,7 @@ module.exports.postExecution = async (req, res) => {
 		assert(code.length >= 1, 'Code cannot be empty');
 		assert(
 			code.length <= getCodeLimit(req.body.language),
-			'Code cannot be longer than 10,000 bytes'
+			'Code cannot be longer than 10,000 bytes',
 		);
 
 		const input = req.body.input.replace(/\r\n/g, '\n') || '';
@@ -100,7 +100,7 @@ module.exports.postExecution = async (req, res) => {
 		assert(input.length <= 10000, 'Input cannot be longer than 10,000 bytes');
 
 		const languageData = languages[req.contest.id].find(
-			(l) => l && l.slug === req.body.language
+			(l) => l && l.slug === req.body.language,
 		);
 
 		if (languageData === undefined) {
@@ -193,7 +193,7 @@ module.exports.postSubmission = async (req, res) => {
 		if (req.files && req.files.file && req.files.file.length === 1) {
 			assert(
 				req.files.file[0].size < getCodeLimit(req.body.language),
-				'Code cannot be longer than 10,000 bytes'
+				'Code cannot be longer than 10,000 bytes',
 			);
 			code = await new Promise((resolve) => {
 				const stream = concatStream(resolve);
@@ -206,11 +206,11 @@ module.exports.postSubmission = async (req, res) => {
 		assert(code.length >= 1, 'Code cannot be empty');
 		assert(
 			code.length <= getCodeLimit(req.body.language),
-			'Code cannot be longer than 10,000 bytes'
+			'Code cannot be longer than 10,000 bytes',
 		);
 
 		const languageData = languages[req.contest.id].find(
-			(l) => l && l.slug === req.body.language
+			(l) => l && l.slug === req.body.language,
 		);
 
 		if (languageData === undefined) {

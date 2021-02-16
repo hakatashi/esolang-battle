@@ -24,7 +24,9 @@ class App extends React.Component {
 				return 3;
 			}
 
-			if (['komabasai2018-day1', 'komabasai2018-day2'].includes(this.contestId)) {
+			if (
+				['komabasai2018-day1', 'komabasai2018-day2'].includes(this.contestId)
+			) {
 				return 4;
 			}
 
@@ -100,18 +102,16 @@ class App extends React.Component {
 		return false;
 	};
 
-	isEnded = () => (
-		[
-			'4',
-			'mayfes2018-day1',
-			'mayfes2018-day2',
-			'hackathon2018',
-			'komabasai2018-day1',
-			'komabasai2018-day2',
-			'mayfes2019-day1',
-			'mayfes2019-day2',
-		].includes(this.contestId)
-	);
+	isEnded = () => [
+		'4',
+		'mayfes2018-day1',
+		'mayfes2018-day2',
+		'hackathon2018',
+		'komabasai2018-day1',
+		'komabasai2018-day2',
+		'mayfes2019-day1',
+		'mayfes2019-day2',
+	].includes(this.contestId);
 
 	handleClickCell = (event) => {
 		const cellIndex = parseInt(
@@ -224,7 +224,8 @@ class App extends React.Component {
 		const cellCounts = Array(this.size)
 			.fill()
 			.map(
-				(_, index) => this.state.languages.filter((language) => language.team === index).length,
+				(_, index) => this.state.languages.filter((language) => language.team === index)
+					.length,
 			);
 		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
 		return (
@@ -265,10 +266,9 @@ class App extends React.Component {
 											}`}
 											onClick={this.handleClickCell}
 											style={{
-												cursor:
-														this.state.languages[y * this.size + x]
-															? 'pointer'
-															: '',
+												cursor: this.state.languages[y * this.size + x]
+													? 'pointer'
+													: '',
 												color:
 														this.state.languages[y * this.size + x] &&
 														this.state.languages[y * this.size + x].team ===
@@ -321,9 +321,7 @@ class App extends React.Component {
 								<p>
 									Solution:
 									<a
-										href={`/contests/${this.contestId}/submissions/${
-											selectedLanguage.solution._id
-										}`}
+										href={`/contests/${this.contestId}/submissions/${selectedLanguage.solution._id}`}
 										target="_blank"
 									>
 										{selectedLanguage.solution._id}
@@ -360,9 +358,7 @@ class App extends React.Component {
 									<>
 										Check out the detail
 										<a
-											href={`/contests/${this.contestId}/submissions/${
-												this.state.messageDetail
-											}`}
+											href={`/contests/${this.contestId}/submissions/${this.state.messageDetail}`}
 											target="_blank"
 										>
 											here

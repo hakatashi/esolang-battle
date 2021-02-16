@@ -1,6 +1,6 @@
-const langsData = require('../langs.json');
-const flatten = require('lodash/flatten');
 const assert = require('assert');
+const flatten = require('lodash/flatten');
+const langsData = require('../langs.json');
 
 const languages = [
 	['', 'whitespace', 'bash-busybox', ''],
