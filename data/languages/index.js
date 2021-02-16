@@ -5,8 +5,6 @@ const languages4 = require('./4.js');
 const languages5 = require('./5.js');
 const languages6 = require('./6.js');
 const hackathon2018 = require('./hackathon2018');
-const hello = require('./hello.js');
-const hello2 = require('./hello2.js');
 const komabasai2018Day1 = require('./komabasai2018-day1');
 const komabasai2018Day2 = require('./komabasai2018-day2');
 const komabasai2019 = require('./komabasai2019');
@@ -32,8 +30,6 @@ module.exports = {
 	'mayfes2019-day1': mayfes2019Day1,
 	'mayfes2019-day2': mayfes2019Day2,
 	komabasai2019,
-	hello,
-	hello2,
 	'mayfes2020-day1': mayfes2020Day1,
 	'mayfes2020-day2': mayfes2020Day2,
 };
