@@ -107,17 +107,26 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(upload.fields([{name: 'file', maxCount: 1}]));
-app.use(
-	session({
-		resave: true,
-		saveUninitialized: true,
-		secret: process.env.SESSION_SECRET,
-		store: new MongoStore({
-			url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
-			autoReconnect: true,
-		}),
-	}),
-);
+sess = {
+   cookie: {
+      samesite: 'strict'
+   },
+   resave: true,
+   saveUninitialized: true,
+   secret: process.env.SESSION_SECRET,
+   store: new MongoStore({
+      url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+      autoReconnect: true,
+   }),
+}
+if (process.env.NODE_ENV !== 'development') {
+   // to proxy, "trust proxy" must be enabled
+   // send cookie on HTTPS only
+   app.use('trust proxy', 1); 
+   sess.cookie.secure =  true;
+}
+// https://
+app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -125,7 +134,19 @@ app.use((req, res, next) => {
 	lusca.csrf()(req, res, next);
 });
 app.use(lusca.xframe('SAMEORIGIN'));
+app.use(lusca.csp({
+   policy: {
+      'default-src': '\'self\'',
+      'script-src': ["'self'", "'https://www.googletagmanager.com'", "'https://maxcdn.bootstrapcdn.com'", "'https://cdnjs.cloudflare.com'", "'https://code.jquery.com'"],
+      'style-src': ["'self'", "'http://fonts.googleapis.com'"]
+   }
+}));
+// TODO
+// app.use(lusca.p3p("Privacy Policy"));
+app.use(lusca.hsts({ maxAge: 31536000 }));
 app.use(lusca.xssProtection(true));
+app.use(lusca.nosniff());
+app.use(lusca.referrerPolicy('same-origin'));
 app.use(async (req, res, next) => {
 	const hash = await util
 		.promisify(fs.readFile)(path.resolve(__dirname, '.git/refs/heads/master'))
