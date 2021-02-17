@@ -21,18 +21,21 @@ mongoose.Promise = global.Promise;
 		user.admin = true;
 		await user.save();
 	}
+		const user = await User.findOne({email: `hiromi-mi@github.com`});
+		user.admin = true;
+		await user.save();
 
 	await Contest.updateOne(
-		{id: '6'},
+		{id: '7'},
 		{
-			name: 'Esolang Codegolf Contest #6',
-			id: '6',
-			start: new Date('2020-05-04T13:00:00+0900'),
-			end: new Date('2020-05-06T21:00:00+0900'),
+			name: 'Esolang Codegolf Contest #7',
+			id: '7',
+			start: new Date('2021-02-09T13:00:00+0900'),
+			end: new Date('2021-02-20T21:00:00+0900'),
 			description: {
 				ja: stripIndent`
 				\`\`\`
-				ワクチンを用いてウイルスを撲滅せよ
+                                文字列を反転せよ
 				\`\`\`
 
 				TSG国では、これまで確認されていなかった新型のウイルスが9種類も同時に発見され、未曾有の災禍をもたらしていました。

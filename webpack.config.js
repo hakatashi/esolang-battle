@@ -14,6 +14,7 @@ module.exports = (env, argv = {}) => {
 			browsers,
 		},
 		useBuiltIns: 'entry',
+                corejs : 3,
 		shippedProposals: true,
 		debug: true,
 	};
@@ -27,6 +28,7 @@ module.exports = (env, argv = {}) => {
 				['check', 'js/check.babel.js'],
 				['contest-5', 'js/contests/5/index.babel.js'],
 				['contest-6', 'js/contests/6/index.babel.js'],
+				['contest-7', 'js/contests/7/index.babel.js'],
 			].map(([name, entry]) => ({
 				[name]: [
 					...(argv.mode === 'development'

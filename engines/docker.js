@@ -33,6 +33,7 @@ module.exports = async ({id, code, stdin, trace: traceOption, disasm = false}) =
 	const trace = traceOption && langInfo && langInfo.time && langInfo.time <= 10;
 
 	const {tmpPath, cleanup} = await new Promise((resolve, reject) => {
+		//tmp.dir({tmpdir: "/home/mizunomidori/", unsafeCleanup: true}, (error, dTmpPath, dCleanup) => {
 		tmp.dir({unsafeCleanup: true}, (error, dTmpPath, dCleanup) => {
 			if (error) {
 				reject(error);
@@ -116,7 +117,8 @@ module.exports = async ({id, code, stdin, trace: traceOption, disasm = false}) =
 				},
 				VolumesFrom: [],
 				HostConfig: {
-					Binds: [`${dockerVolumePath}:/volume:${trace === true ? 'rw' : 'ro'}`],
+					//Binds: [`${dockerVolumePath}:/volume:${trace === true ? 'rw' : 'ro'}`],
+					Binds: [`${dockerVolumePath}:/volume:rw`],
 					Memory: memoryLimit,
 					...(trace === true ? {CapAdd: ['SYS_PTRACE']} : {}),
 				},

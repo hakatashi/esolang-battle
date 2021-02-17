@@ -78,6 +78,12 @@
     "disasm": false
   },
   {
+    "slug": "r",
+    "name": "R",
+    "link": "https://cran.r-project.org",
+    "disasm": false
+  },
+  {
     "slug": "ruby",
     "name": "Ruby 2.7.1",
     "link": "https://www.ruby-lang.org/",
@@ -906,9 +912,39 @@
     "disasm": false
   },
   {
+    "slug": "encapsulation",
+    "name": "Encapsulation",
+    "link": "https://esolangs.org/wiki/Encapsulation",
+    "disasm": false
+  },
+  {
+    "slug": "functional",
+    "name": "Functional()",
+    "link": "https://esolangs.org/wiki/Functional()",
+    "disasm": false
+  },
+  {
+    "slug": "seclusion",
+    "name": "Seclusion",
+    "link": "https://esolangs.org/wiki/Seclusion",
+    "disasm": false
+  },
+  {
+    "slug": "serenity",
+    "name": "Serenity",
+    "link": "https://esolangs.org/wiki/Serenity",
+    "disasm": false
+  },
+  {
     "slug": "transceternal",
     "name": "Transceternal",
     "link": "https://esolangs.org/wiki/Transceternal",
+    "disasm": false
+  },
+  {
+    "slug": "compile-time-typescript",
+    "name": "Compile-time TypeScript",
+    "link": "https://github.com/n4o847/compile-time-typescript",
     "disasm": false
   },
   {

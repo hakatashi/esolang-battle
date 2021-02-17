@@ -10,6 +10,8 @@ const mayfes2018Day2 = require('./mayfes2018-day2');
 const mayfes2019Day1 = require('./mayfes2019-day1');
 const mayfes2019Day2 = require('./mayfes2019-day2');
 
+const contest7 = require('./7');
+
 module.exports = {
 	4: contest4,
 	'mayfes2018-day1': mayfes2018Day1,
@@ -22,4 +24,5 @@ module.exports = {
 	5: contest5,
 	komabasai2019,
 	6: contest6,
+        7: contest7,
 };

@@ -147,6 +147,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 	});
 };
 
+// コード長の制限; 言語ごとに指定
 const getCodeLimit = (languageId) => {
 	if (
 		[
@@ -176,6 +177,7 @@ const getCodeLimit = (languageId) => {
 
 module.exports.getCodeLimit = getCodeLimit;
 
+// タイムアウト; 言語ごとに指定
 module.exports.getTimeLimit = (languageId) => {
 	if (
 		[

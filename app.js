@@ -71,6 +71,10 @@ const io = require('./lib/socket-io');
  * Connect to MongoDB.
  */
 mongoose.Promise = global.Promise;
+// Use new parser, because of https://mongoosejs.com/docs/deprecations.html
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
+
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
 mongoose.connection.on('error', () => {
 	throw new Error(
@@ -239,6 +243,14 @@ router.get(
 		res.redirect(req.session.returnTo || '/');
 	},
 );
+
+// GitHub authentication routes.
+app.get('/auth/github', passport.authenticate('github', { scope: [''] }));
+app.get('/auth/github/callback',
+  passport.authenticate('github', { successRedirect: '/', failureRedirect: '/login' }),
+  (req, res) => {
+		res.redirect(req.session.returnTo || '/');
+  });
 
 app.use(router);
 
