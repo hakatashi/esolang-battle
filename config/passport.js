@@ -51,7 +51,6 @@ passport.use(new GitHubStrategy({
       user.tokens.push({kind: 'github', accessToken, refreshToken});
       user.profile.name = profile.displayName;
       user.name = profile.username;
-      console.log(profile);
       //user.profile.location = profile._json.location;
       user.profile.picture = profile.avatar_url;
       await user.save();
