@@ -122,6 +122,7 @@ module.exports = async ({id, code, stdin, trace: traceOption, disasm = false}) =
 					Memory: memoryLimit,
 					...(trace === true ? {CapAdd: ['SYS_PTRACE']} : {}),
 				},
+                                NetworkDisabled: true,
 			});
 
 			const stream = await container.attach({
