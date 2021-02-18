@@ -70,36 +70,18 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 	return precedings;
 };
 
-const ngRegex = /(\d)\1\1/;
-
 const doubleShuffle = (pattern) => {
    const rowids = shuffle(Array.from({length: pattern.length}, (_,i) => i));
    return shuffle(pattern.map(col => rowids.map(d => col[d]).join('')));
 };
 
 module.exports.generateInput = () => {
-	let lines = [];
+	let generatedPatterns = [];
 	for (const pattern of patterns) {
-           lines = lines.concat(doubleShuffle(pattern));
+           generatedPatterns.push(doubleShuffle(pattern));
 	}
-        return lines.join('\n');
-};
-
-const countScore = (line, digit) => {
-	const cells = [line[0], line[1], line[2], digit.toString(), line[4], line[5], line[6]];
-	const continuousLength = [1];
-	for (const [i, cell] of cells.entries()) {
-		if (i === 0) {
-			continue;
-		}
-		if (cells[i - 1] === cell) {
-			continuousLength.push(last(continuousLength) + 1);
-		} else {
-			continuousLength.push(1);
-		}
-	}
-	const maximumContinuation = max(continuousLength);
-	return maximumContinuation >= 3 ? maximumContinuation : 0;
+        const shuffledGeneratedPatterns = shuffle(generatedPatterns);
+        return shuffledGeneratedPatterns.flat().join('\n');
 };
 
 module.exports.isValidAnswer = (input, output) => {
