@@ -75,6 +75,7 @@ mongoose.Promise = global.Promise;
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 
+console.log(process.env.MONGODB_URI)
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
 mongoose.connection.on('error', () => {
 	throw new Error(
@@ -122,7 +123,7 @@ sess = {
 if (process.env.NODE_ENV !== 'development') {
    // to proxy, "trust proxy" must be enabled
    // send cookie on HTTPS only
-   app.use('trust proxy', 1); 
+   app.set('trust proxy', true); 
    sess.cookie.secure =  true;
 }
 // https://

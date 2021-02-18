@@ -11,6 +11,7 @@ mongoose.Promise = global.Promise;
 (async () => {
 	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
 
+	/*
 	await User.updateMany(
 		{admin: true},
 		{$set: {admin: false}},
@@ -21,6 +22,7 @@ mongoose.Promise = global.Promise;
 		user.admin = true;
 		await user.save();
 	}
+	*/
 		const user = await User.findOne({email: `hiromi-mi@github.com`});
 		user.admin = true;
 		await user.save();
@@ -218,6 +220,7 @@ mongoose.Promise = global.Promise;
 		{upsert: true},
 	);
 
+	/*
 	for (const slug of ['whitespace', 'pure-folders', 'concise-folders', 'produire']) {
 		const languages = await Language.find({slug});
 		for (const language of languages) {
@@ -245,6 +248,7 @@ mongoose.Promise = global.Promise;
 			}
 		}
 	}
+	*/
 
 	mongoose.connection.close();
 })();
