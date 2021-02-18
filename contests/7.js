@@ -78,10 +78,11 @@ const doubleShuffle = (pattern) => {
 };
 
 module.exports.generateInput = () => {
-	const lines = [];
+	let lines = [];
 	for (const pattern of patterns) {
            lines = lines.concat(doubleShuffle(pattern));
 	}
+        return lines.join('\n');
 };
 
 const countScore = (line, digit) => {
@@ -117,10 +118,10 @@ module.exports.isValidAnswer = (input, output) => {
 	assert(inputLines.length === patterns.length * onePatternLength);
 
         for (let i = 0; i < patterns.length; i++) {
-           const patternAsInt = inputLines.slice(3*i, 3*i+3).parseInt(patterns[i][k], 2);
+           const patternAsInt = inputLines.slice(3*i, 3*i+3).map(l => parseInt(l, 2));
            const isNifu = patternAsInt.reduce((acc, item) => acc + item) > patternAsInt.reduce((acc, item) => acc | item);
            if (isNifu !== Boolean(Number(trimmedOutput[i]))) {
-              console.log(patternAsInt.toString());
+            console.log('failedinfo:', {input, output, trimmedOutput});
               return false;
            }
         }
