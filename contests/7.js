@@ -72,7 +72,7 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 
 const ngRegex = /(\d)\1\1/;
 
-count doubleShuffle = (pattern) => {
+const doubleShuffle = (pattern) => {
    const rowids = shuffle(Array.from({length: pattern.length}, (_,i) => i));
    return shuffle(pattern.map(col => rowids.map(d => col[d]).join('')));
 };
