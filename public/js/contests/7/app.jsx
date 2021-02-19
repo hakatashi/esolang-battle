@@ -340,6 +340,13 @@ class App extends React.Component {
 							<FormGroup>
 								<Input type="file" onChange={this.handleChangeFile}/>
 							</FormGroup>
+							<FormGroup>
+								<select label="License: " >
+										<option value="CC0-1.0">
+											CC0-1.0: Creative Commons Zero 1.0
+										</option>
+								</select>
+							</FormGroup>
 						</Form>
 						{this.state.message && (
 							<p className={`p-3 mb-2 bg-${this.state.messageType} text-white`}>
