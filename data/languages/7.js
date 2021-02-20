@@ -172,19 +172,19 @@ module.exports = Array(WIDTH * HEIGHT)
 				team: 2,
 			};
 		}
-                if (index >= 123 && index <= 128) {
+                if (index == 123 || index == 128) {
 			return {
 				type: 'base',
 				team: 0,
 			};
                 }
-		if (index === 18 || index === 30 || index == 41 || index === 53 || index === 64 || index == 76 ) {
+		if (index === 18 || index == 76 ) {
 			return {
 				type: 'base',
 				team: 1,
 			};
 		}
-		if (index  === 45 || index === 13 || index === 24 || index === 34 || index === 55 || index == 66) {
+		if (index  === 13 || index == 66) {
 			return {
 				type: 'base',
 				team: 2,
