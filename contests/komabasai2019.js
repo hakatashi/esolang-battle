@@ -1,7 +1,7 @@
 const assert = require('assert');
+const random = require('lodash/random');
 const range = require('lodash/range');
 const shuffle = require('lodash/shuffle');
-const random = require('lodash/random');
 
 module.exports.getPrecedingIndices = (cellIndex) => {
 	assert(cellIndex >= 0);
@@ -30,7 +30,6 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 
 	return precedingCells.filter((cell) => ![0, 4, 20, 24].includes(cell));
 };
-
 
 module.exports.generateInput = () => {
 	const count = 100;
@@ -65,9 +64,7 @@ module.exports.isValidAnswer = (input, output) => {
 		}
 	}
 
-	const trimmedOutput = output
-		.toString()
-		.replace(/\s/g, '');
+	const trimmedOutput = output.toString().replace(/\s/g, '');
 
 	console.log('info:', {input, correctOutput, output, trimmedOutput});
 

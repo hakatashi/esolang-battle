@@ -1,6 +1,6 @@
 const THREE = require('three');
-const TrackballControls = require('three-trackballcontrols');
 const OrbitControls = require('three-orbitcontrols');
+const TrackballControls = require('three-trackballcontrols');
 
 const snubDodecahedron = require('../../../../data/snub-dodecahedron.js');
 
@@ -26,7 +26,7 @@ module.exports = class {
 		if (login) {
 			this.controls = new TrackballControls(
 				this.camera,
-				this.renderer.domElement
+				this.renderer.domElement,
 			);
 			this.controls.noPan = true;
 			this.controls.noZoom = true;
@@ -51,7 +51,7 @@ module.exports = class {
 				for (const pointIndex of polygon) {
 					const vertex = snubDodecahedron.points[pointIndex];
 					const vector = new THREE.Vector3(
-						...vertex.map((value) => value * 100)
+						...vertex.map((value) => value * 100),
 					);
 					vertices.push(vector);
 				}
@@ -90,11 +90,11 @@ module.exports = class {
 
 		this.renderer.domElement.addEventListener(
 			'mousedown',
-			this.handleMouseDown
+			this.handleMouseDown,
 		);
 		this.renderer.domElement.addEventListener(
 			'mousemove',
-			this.handleMouseMove
+			this.handleMouseMove,
 		);
 		this.renderer.domElement.addEventListener('mouseup', this.handleMouseUp);
 	}
@@ -128,7 +128,7 @@ module.exports = class {
 					intersects.includes(mesh.index)
 				) {
 					const lerpTarget = new THREE.Color(
-						this.faceColors[mesh.index] === 'white' ? 'black' : 'white'
+						this.faceColors[mesh.index] === 'white' ? 'black' : 'white',
 					);
 					mesh.material.color
 						.setRGB(...color.map((v) => v / 0xff))
@@ -142,9 +142,11 @@ module.exports = class {
 		const faces = this.faceMedians.map((median) => {
 			const vector = median.clone();
 			vector.project(this.camera);
-			const x = Math.round((vector.x + 1) * this.renderer.domElement.width / 2);
+			const x = Math.round(
+				((vector.x + 1) * this.renderer.domElement.width) / 2,
+			);
 			const y = Math.round(
-				(-vector.y + 1) * this.renderer.domElement.height / 2
+				((-vector.y + 1) * this.renderer.domElement.height) / 2,
 			);
 			return {x, y, z: vector.z};
 		});

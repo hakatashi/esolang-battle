@@ -79,11 +79,14 @@ module.exports.generateInput = () => {
 		const generated = [];
 		while (generated.length < 2) {
 			const selectedDigits = shuffle(sampleSize(digits, 4));
-			const line = sample(digits).toString() + pattern
-				.replace(/A/g, selectedDigits[0])
-				.replace(/B/g, selectedDigits[1])
-				.replace(/C/g, selectedDigits[2])
-				.replace(/D/g, selectedDigits[3]) + sample(digits).toString();
+			const line =
+				sample(digits).toString() +
+				pattern
+					.replace(/A/g, selectedDigits[0])
+					.replace(/B/g, selectedDigits[1])
+					.replace(/C/g, selectedDigits[2])
+					.replace(/D/g, selectedDigits[3]) +
+				sample(digits).toString();
 			if (!line.match(ngRegex) && !generated.includes(line)) {
 				generated.push(line);
 			}
@@ -93,17 +96,29 @@ module.exports.generateInput = () => {
 
 	while (lines.length < 32) {
 		const selectedDigits = times(6, () => sample(digits));
-		const line = `${selectedDigits.slice(0, 3).join('')} ${selectedDigits.slice(3, 6).join('')}`;
+		const line = `${selectedDigits.slice(0, 3).join('')} ${selectedDigits
+			.slice(3, 6)
+			.join('')}`;
 		if (!line.match(ngRegex) && !lines.includes(line)) {
 			lines.push(line);
 		}
 	}
 
-	return shuffle(lines).map((line) => `${line}\n`).join('');
+	return shuffle(lines)
+		.map((line) => `${line}\n`)
+		.join('');
 };
 
 const countScore = (line, digit) => {
-	const cells = [line[0], line[1], line[2], digit.toString(), line[4], line[5], line[6]];
+	const cells = [
+		line[0],
+		line[1],
+		line[2],
+		digit.toString(),
+		line[4],
+		line[5],
+		line[6],
+	];
 	const continuousLength = [1];
 	for (const [i, cell] of cells.entries()) {
 		if (i === 0) {
@@ -124,7 +139,10 @@ module.exports.isValidAnswer = (input, output) => {
 		return true;
 	}
 
-	const trimmedOutput = output.toString().replace(/\s/g, '').split('');
+	const trimmedOutput = output
+		.toString()
+		.replace(/\s/g, '')
+		.split('');
 	if (trimmedOutput.length !== 32) {
 		console.log('info: length not valid');
 		return false;

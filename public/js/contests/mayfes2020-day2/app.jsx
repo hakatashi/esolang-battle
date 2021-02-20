@@ -1,4 +1,4 @@
-const range = require('lodash/range');
+const {flatten} = require('lodash');
 const React = require('react');
 const {
 	Button,
@@ -11,6 +11,9 @@ const {
 	Input,
 } = require('reactstrap');
 const api = require('../../api.js');
+const japanJSON = require('./japan.json');
+
+const jp = japanJSON.features;
 
 class App extends React.Component {
 	constructor(props, context) {
@@ -20,7 +23,7 @@ class App extends React.Component {
 			.querySelector('meta[name=contest-id]')
 			.getAttribute('content');
 
-		this.size = 11;
+		this.size = 23;
 
 		this.state = {
 			code: '',
@@ -57,7 +60,7 @@ class App extends React.Component {
 			languages,
 			languageColors: languages.map((language) => {
 				if (language.type === 'unknown') {
-					return 'black';
+					return 'grey';
 				}
 
 				if (language.team === undefined) {
@@ -67,22 +70,9 @@ class App extends React.Component {
 					return 'grey';
 				}
 
-				return ['red', 'blue', 'green'][language.team];
+				return ['red', 'blue'][language.team];
 			}),
 		});
-	};
-
-	isEmpty = (cell) => {
-		const x = cell % 11;
-		const y = Math.floor(cell / 11);
-		const u = x + Math.floor((y + 1) / 2);
-		const v = x - Math.floor(y / 2);
-
-		if (y <= 0 || y >= 12 || u <= 2 || u >= 14 || v <= -4 || v >= 8) {
-			return true;
-		}
-
-		return false;
 	};
 
 	isEnded = () => false;
@@ -91,6 +81,7 @@ class App extends React.Component {
 		const cellIndex = parseInt(
 			event.target.closest('.cell').getAttribute('data-index'),
 		);
+		console.log(cellIndex);
 		this.setState(({languages}) => {
 			const language = languages[cellIndex];
 			if (!language || (!this.isEnded() && language.available !== true)) {
@@ -198,8 +189,7 @@ class App extends React.Component {
 		const cellCounts = Array(this.size)
 			.fill()
 			.map(
-				(_, index) => this.state.languages.filter((language) => language.team === index)
-					.length,
+				(_, i) => this.state.languages.filter((language) => language.team === i).length,
 			);
 		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
 		return (
@@ -217,68 +207,132 @@ class App extends React.Component {
 		);
 	};
 
+	geoJSONBbox = (geo) => {
+		if (geo.type === 'Polygon') {
+			return geo.coordinates[0].reduce(
+				(acc, cur) => [
+					Math.min(acc[0], cur[0]),
+					Math.min(acc[1], cur[1]),
+					Math.max(acc[2], cur[0]),
+					Math.max(acc[3], cur[1]),
+				],
+				flatten([geo.coordinates[0][0], geo.coordinates[0][0]]),
+			);
+		} else if (geo.type === 'MultiPolygon') {
+			const mapped = geo.coordinates.map((polygon) => polygon[0].reduce(
+				(acc, cur) => [
+					Math.min(acc[0], cur[0]),
+					Math.min(acc[1], cur[1]),
+					Math.max(acc[2], cur[0]),
+					Math.max(acc[3], cur[1]),
+				],
+				flatten([polygon[0][0], polygon[0][0]]),
+			));
+			return mapped.reduce(
+				(acc, cur) => [
+					Math.min(acc[0], cur[0]),
+					Math.min(acc[1], cur[1]),
+					Math.max(acc[2], cur[2]),
+					Math.max(acc[3], cur[3]),
+				],
+				mapped[0],
+			);
+		}
+		return null;
+	};
+
 	render() {
 		const selectedLanguage = this.state.selectedLanguage || {};
 
 		return (
 			<div className="world">
 				<div className="teams left">{this.renderTeam('Blue', 1)}</div>
-				<div className="map">
-					{Array(13)
-						.fill()
-						.map((_, y) => (
-							<div key={y} className="row">
-								{Array(11)
-									.fill()
-									.map((_, x) => this.isEmpty(y * this.size + x) ? (
-										<div key={x} className="cell white empty"/>
+				<div className="map" color="black">
+					<svg viewBox={japanJSON.bbox.join(' ')}>
+						{Array(23)
+							.fill()
+							.map((_, x) => (
+								<g
+									key={x}
+									data-index={x}
+									className={`cell ${this.state.languageColors[x]}`}
+									onClick={this.handleClickCell}
+									fill={
+										this.state.languages[x] &&
+											this.state.languages[x].team === undefined
+											? '#222'
+											: 'white'
+									}
+									stroke={
+										this.state.languages[x] &&
+											this.state.languages[x].team === undefined
+											? '#222'
+											: '#222'
+									}
+									strokeWidth="0.01"
+									style={{
+										cursor: this.state.languages[x] ? 'pointer' : '',
+									}}
+								>
+									{jp[x].geometry.type === 'Polygon' ? (
+										<polygon
+											points={jp[x].geometry.coordinates[0]
+												.map((v) => v.join(','))
+												.join(' ')}
+										/>
 									) : (
-										<div
-											key={x}
-											className={`cell ${
-												this.state.languageColors[y * this.size + x]
-											}`}
-											onClick={this.handleClickCell}
-											style={{
-												cursor: this.state.languages[y * this.size + x]
-													? 'pointer'
-													: '',
-												color:
-														this.state.languages[y * this.size + x] &&
-														this.state.languages[y * this.size + x].team ===
-															undefined
-															? '#222'
-															: 'white',
-											}}
-											data-index={y * this.size + x}
+										jp[x].geometry.type === 'MultiPolygon' &&
+											jp[x].geometry.coordinates.map((polygon, i) => (
+												<polygon
+													key={i}
+													points={polygon[0].map((v) => v.join(',')).join(' ')}
+												/>
+											))
+									)}
+								</g>
+							))}
+						{Array(23)
+							.fill()
+							.map((_, x) => {
+								const centerPos = jp[x].center;
+								const langName = this.state.languages[x]
+									? this.state.languages[x].name
+									: '';
+								return (
+									<g
+										key={x}
+										id={`language-label-${x.toString()}`}
+										className="language-label"
+										textAnchor="middle"
+									>
+										<text
+											className="language-name"
+											x={centerPos[0]}
+											y={centerPos[1]}
+											fontSize="0.014vmin"
 										>
-											<svg
-												className="hexagon"
-												viewBox="-0.866 -0.866 1.732 1.732"
-											>
-												<polygon points="-0.866,-0.5 0,-1 0.866,-0.5 0.866,0.5 0,1 -0.866,0.5"/>
-											</svg>
-											<div className="language-label">
-												<div className="language-name">
-													{this.state.languages[y * this.size + x]
-														? this.state.languages[y * this.size + x].name
-														: ''}
-												</div>
-												<div className="language-size">
-													{this.state.languages[y * this.size + x] &&
-														this.state.languages[y * this.size + x].solution
-														? this.state.languages[y * this.size + x].solution
-															.size
-														: ''}
-												</div>
-											</div>
-										</div>
-									))}
-							</div>
-						))}
+											{langName === 'Brainfuck (esotope)'
+												? 'Brainfuck'
+												: langName}
+										</text>
+										<text
+											className="language-size"
+											dominantBaseline="hanging"
+											x={centerPos[0]}
+											y={centerPos[1]}
+											fontSize="0.014vmin"
+										>
+											{this.state.languages[x] &&
+											this.state.languages[x].solution
+												? this.state.languages[x].solution.size
+												: ''}
+										</text>
+									</g>
+								);
+							})}
+					</svg>
 				</div>
 				<div className="teams right">{this.renderTeam('Red', 0)}</div>
-				<div className="teams right">{this.renderTeam('Green', 2)}</div>
 				<Modal
 					isOpen={this.state.selectedLanguage !== null}
 					toggle={this.handleCloseModal}

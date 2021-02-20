@@ -1,6 +1,6 @@
 const random = require('lodash/random');
 
-const printableRegex = /[a-z0-9!"#$%&'()*+,./:;<=>?@[\\\]^_`{|}~-]/ig;
+const printableRegex = /[a-z0-9!"#$%&'()*+,./:;<=>?@[\\\]^_`{|}~-]/gi;
 
 module.exports.getPrecedingIndices = (cellIndex) => {
 	const x = cellIndex % 24;
@@ -64,15 +64,15 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 		[245, 247, 272, 36, 63, 65],
 	];
 
-	const precedings = cells.filter((c) => (
-		c.x >= 0 && c.x < 24 && c.y >= 0 && c.y < 14
-	)).map((c) => (
-		c.y * 24 + c.x
-	));
+	const precedings = cells
+		.filter((c) => c.x >= 0 && c.x < 24 && c.y >= 0 && c.y < 14)
+		.map((c) => c.y * 24 + c.x);
 
 	const portal = portals.find((p) => p.includes(cellIndex));
 	if (portal) {
-		return Array.from(new Set([...precedings, ...portal.filter((c) => c !== cellIndex)]));
+		return Array.from(
+			new Set([...precedings, ...portal.filter((c) => c !== cellIndex)]),
+		);
 	}
 
 	return precedings;
@@ -85,8 +85,14 @@ module.exports.generateInput = () => {
 
 	const lines = Array(height).fill(' '.repeat(50));
 
-	lines[0] = Array(50).fill().map((_, i) => i === tokyoX ? 'T' : ' ').join('');
-	lines[height - 1] = Array(50).fill().map((_, i) => i === kyotoX ? 'K' : ' ').join('');
+	lines[0] = Array(50)
+		.fill()
+		.map((_, i) => (i === tokyoX ? 'T' : ' '))
+		.join('');
+	lines[height - 1] = Array(50)
+		.fill()
+		.map((_, i) => (i === kyotoX ? 'K' : ' '))
+		.join('');
 
 	return `${lines.join('\n')}\n`;
 };
@@ -112,13 +118,17 @@ module.exports.isValidAnswer = (input, output) => {
 		}
 	}
 
-	const normalizedOutputLines = Array(inputLines.length).fill().map((_, i) => (
-		((outputLines[i] || '') + ' '.repeat(50)).slice(0, 50)
-	));
+	const normalizedOutputLines = Array(inputLines.length)
+		.fill()
+		.map((_, i) => ((outputLines[i] || '') + ' '.repeat(50)).slice(0, 50));
 
-	const printableCounts = (normalizedOutputLines.join('').match(printableRegex) || []).length;
+	const printableCounts = (
+		normalizedOutputLines.join('').match(printableRegex) || []
+	).length;
 	if (printableCounts > Math.abs(tokyoX - kyotoX) + inputLines.length) {
-		console.log(`info: printable character counts ${printableCounts} exceeds limit`);
+		console.log(
+			`info: printable character counts ${printableCounts} exceeds limit`,
+		);
 		return false;
 	}
 
@@ -134,9 +144,7 @@ module.exports.isValidAnswer = (input, output) => {
 	visited.add(tokyoX);
 	queue.push({x: tokyoX, y: 0});
 
-	const isPrintable = (x, y) => (
-		normalizedOutputLines[y][x].match(printableRegex)
-	);
+	const isPrintable = (x, y) => normalizedOutputLines[y][x].match(printableRegex);
 
 	while (queue.length > 0) {
 		const {x, y} = queue.pop();
@@ -156,7 +164,11 @@ module.exports.isValidAnswer = (input, output) => {
 			visited.add((y - 1) * 50 + x);
 			queue.push({x, y: y - 1});
 		}
-		if (y + 1 < inputLines.length && !visited.has((y + 1) * 50 + x) && isPrintable(x, y + 1)) {
+		if (
+			y + 1 < inputLines.length &&
+			!visited.has((y + 1) * 50 + x) &&
+			isPrintable(x, y + 1)
+		) {
 			visited.add((y + 1) * 50 + x);
 			queue.push({x, y: y + 1});
 		}

@@ -1,6 +1,6 @@
 const assert = require('assert');
-const shuffle = require('lodash/shuffle');
 const sample = require('lodash/sample');
+const shuffle = require('lodash/shuffle');
 const languages = require('../data/languages/hackathon2018.js');
 
 const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -8,11 +8,7 @@ const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 module.exports.getPrecedingIndices = () => languages.map((_, i) => i);
 
 const generateInputCase = () => {
-	const tokens = [
-		...Array(81).fill('x'),
-		'0123456789',
-		'9876543210',
-	];
+	const tokens = [...Array(81).fill('x'), '0123456789', '9876543210'];
 
 	let input = shuffle(tokens).join('');
 
@@ -20,7 +16,9 @@ const generateInputCase = () => {
 		const xIndex = input.indexOf('x');
 		const prevChar = input[xIndex - 1];
 		const nextChar = input[xIndex + 1];
-		const candidates = digits.filter((digit) => digit.toString() !== prevChar && digit.toString() !== nextChar);
+		const candidates = digits.filter(
+			(digit) => digit.toString() !== prevChar && digit.toString() !== nextChar,
+		);
 		input = input.replace('x', sample(candidates).toString());
 	}
 
@@ -44,20 +42,22 @@ module.exports.isValidAnswer = (input, output) => {
 		return true;
 	}
 
-	const correctOutput = input.trim().split('').map((char, i, chars) => {
-		if (i + 1 >= chars.length) {
-			return '';
-		}
+	const correctOutput = input
+		.trim()
+		.split('')
+		.map((char, i, chars) => {
+			if (i + 1 >= chars.length) {
+				return '';
+			}
 
-		const nextChar = chars[i + 1];
-		return nextChar > char ? '1' : '0';
-	}).join('');
+			const nextChar = chars[i + 1];
+			return nextChar > char ? '1' : '0';
+		})
+		.join('');
 	assert(correctOutput.length === 100);
 
 	// Trim
-	const trimmedOutput = output
-		.toString()
-		.replace(/\s/g, '');
+	const trimmedOutput = output.toString().replace(/\s/g, '');
 
 	console.log('info:', {input, correctOutput, output, trimmedOutput});
 

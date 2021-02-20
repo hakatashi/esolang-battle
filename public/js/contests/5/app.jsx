@@ -1,3 +1,4 @@
+const range = require('lodash/range');
 const React = require('react');
 const {
 	Button,
@@ -9,7 +10,6 @@ const {
 	FormGroup,
 	Input,
 } = require('reactstrap');
-const range = require('lodash/range');
 const api = require('../../api.js');
 
 const boardShape = [
@@ -197,15 +197,21 @@ class App extends React.Component {
 		if (this.svg) {
 			if (window.innerWidth > window.innerHeight) {
 				await new Promise((resolve) => {
-					this.setState({
-						mapWidth: `${this.svg.clientWidth}px`,
-					}, resolve);
+					this.setState(
+						{
+							mapWidth: `${this.svg.clientWidth}px`,
+						},
+						resolve,
+					);
 				});
 			} else {
 				await new Promise((resolve) => {
-					this.setState({
-						mapWidth: '100%',
-					}, resolve);
+					this.setState(
+						{
+							mapWidth: '100%',
+						},
+						resolve,
+					);
 				});
 			}
 
@@ -232,19 +238,34 @@ class App extends React.Component {
 			.fill()
 			.map(
 				(_, index) => this.state.languages.filter((language) => language.team === index)
-					.length
+					.length,
 			);
 		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
 
 		return (
 			<div className="world">
 				<div className="spacer"/>
-				<div className="map" style={{flexBasis: this.state.mapWidth, width: this.state.mapWidth}}>
-					<svg ref={this.handleRefSvg} viewBox="0 0 14.7 15.6" className="paint">
+				<div
+					className="map"
+					style={{flexBasis: this.state.mapWidth, width: this.state.mapWidth}}
+				>
+					<svg
+						ref={this.handleRefSvg}
+						viewBox="0 0 14.7 15.6"
+						className="paint"
+					>
 						{range(7).map((y) => (
-							<g key={y} style={{transform: `translate(${y % 2 * -1.366}px, ${y * 2.366}px)`}}>
+							<g
+								key={y}
+								style={{
+									transform: `translate(${(y % 2) * -1.366}px, ${y * 2.366}px)`,
+								}}
+							>
 								{range(6).map((x) => (
-									<g key={x} style={{transform: `translate(${x * 2.732}px, 0px)`}}>
+									<g
+										key={x}
+										style={{transform: `translate(${x * 2.732}px, 0px)`}}
+									>
 										{[
 											'0.5,0.5 1,1.366 0,1.366',
 											'0.5,0.5 1.366,0 1.866,0.866 1,1.366',
@@ -253,7 +274,7 @@ class App extends React.Component {
 											'0,1.366 1,1.366 1,2.366 0,2.366',
 											'1,1.366 1.866,0.866 2.732,1.366 2.732,2.366 1.866,2.866 1,2.366',
 										].map((points, i) => {
-											const dx = x * 4 + i % 4;
+											const dx = x * 4 + (i % 4);
 											const dy = y * 2 + Math.floor(i / 4);
 											const index = dy * 24 + dx;
 											const language = this.state.languages[index];
@@ -269,7 +290,9 @@ class App extends React.Component {
 														stroke="white"
 														strokeWidth="0.05"
 														style={{
-															...(language && language.solved ? {cursor: 'pointer'} : {}),
+															...(language && language.solved
+																? {cursor: 'pointer'}
+																: {}),
 														}}
 														onClick={this.handleClickCell}
 														data-index={index}
@@ -278,7 +301,9 @@ class App extends React.Component {
 											}
 
 											if (boardShape[dy][dx].match(/[ABC]/)) {
-												const portalNumber = boardShape[dy][dx].codePointAt(0) - 'A'.codePointAt(0);
+												const portalNumber =
+													boardShape[dy][dx].codePointAt(0) -
+													'A'.codePointAt(0);
 												return (
 													<circle
 														key={i}
@@ -286,7 +311,9 @@ class App extends React.Component {
 														cy="1.866"
 														r="0.6"
 														fill="transparent"
-														stroke={['#6A1B9A', '#00838F', '#E65100'][portalNumber]}
+														stroke={
+															['#6A1B9A', '#00838F', '#E65100'][portalNumber]
+														}
 														strokeWidth="0.2"
 													/>
 												);
@@ -298,7 +325,10 @@ class App extends React.Component {
 							</g>
 						))}
 					</svg>
-					<div className="language-labels" style={{width: this.state.labelsWidth}}>
+					<div
+						className="language-labels"
+						style={{width: this.state.labelsWidth}}
+					>
 						{range(7).map((y) => (
 							<div key={y}>
 								{range(6).map((x) => (
@@ -311,14 +341,14 @@ class App extends React.Component {
 											{left: 0.5, top: 1.866, width: 1, height: 1},
 											{left: 1.866, top: 1.866, width: 1.6, height: 1.5},
 										].map(({left, top, width, height}, i) => {
-											const dx = x * 4 + i % 4;
+											const dx = x * 4 + (i % 4);
 											const dy = y * 2 + Math.floor(i / 4);
 											const index = dy * 24 + dx;
 											const language = this.state.languages[index];
 											const color = getColor(language);
 
 											if (boardShape[dy][dx] === '*') {
-												const cx = x * 2.732 + y % 2 * -1.366 + left;
+												const cx = x * 2.732 + (y % 2) * -1.366 + left;
 												const cy = y * 2.366 + top;
 
 												return (
@@ -327,20 +357,19 @@ class App extends React.Component {
 														key={i}
 														style={{
 															position: 'absolute',
-															left: `${(cx - width / 2) / 14.7 * 100}%`,
-															top: `${(cy - height / 2) / 15.6 * 100}%`,
-															right: `${100 - (cx + width / 2) / 14.7 * 100}%`,
-															bottom: `${100 - (cy + height / 2) / 15.6 * 100}%`,
+															left: `${((cx - width / 2) / 14.7) * 100}%`,
+															top: `${((cy - height / 2) / 15.6) * 100}%`,
+															right: `${100 -
+																((cx + width / 2) / 14.7) * 100}%`,
+															bottom: `${100 -
+																((cy + height / 2) / 15.6) * 100}%`,
 														}}
 													>
 														<div className="language-name">
-															{language
-																? language.name
-																: ''}
+															{language ? language.name : ''}
 														</div>
 														<div className="language-size">
-															{language &&
-															language.solution
+															{language && language.solution
 																? language.solution.size
 																: ''}
 														</div>
@@ -361,7 +390,7 @@ class App extends React.Component {
 							<div
 								className="bar"
 								style={{
-									flexBasis: `${cellCounts[index] / totalCellCounts * 100}%`,
+									flexBasis: `${(cellCounts[index] / totalCellCounts) * 100}%`,
 								}}
 							>
 								<div className="count">{cellCounts[index]}</div>
@@ -385,30 +414,27 @@ class App extends React.Component {
 					</ModalHeader>
 					<ModalBody>
 						{selectedLanguage.solution ? (
-							<React.Fragment>
+							<>
 								<p>
-									Owner: {selectedLanguage.solution.user} ({
-										selectedLanguage.team
-									})
+									Owner: {selectedLanguage.solution.user} (
+									{selectedLanguage.team})
 								</p>
 								<p>
 									{'Solution: '}
 									<a
-										href={`/contests/5/submissions/${
-											selectedLanguage.solution._id
-										}`}
+										href={`/contests/5/submissions/${selectedLanguage.solution._id}`}
 										target="_blank"
 									>
 										{selectedLanguage.solution._id}
 									</a>
 									{` (${selectedLanguage.solution.size} bytes)`}
 								</p>
-							</React.Fragment>
+							</>
 						) : (
-							<React.Fragment>
+							<>
 								<p>Owner: N/A</p>
 								<p>Solution: N/A</p>
-							</React.Fragment>
+							</>
 						)}
 						<Form>
 							<FormGroup
@@ -430,27 +456,22 @@ class App extends React.Component {
 							<p className={`p-3 mb-2 bg-${this.state.messageType} text-white`}>
 								{this.state.message}
 								{this.state.messageDetail && (
-									<React.Fragment>
+									<>
 										{' Check out the detail '}
 										<a
-											href={`/contests/5/submissions/${
-												this.state.messageDetail
-											}`}
+											href={`/contests/5/submissions/${this.state.messageDetail}`}
 											target="_blank"
 										>
 											here
-										</a>.
-									</React.Fragment>
+										</a>
+										.
+									</>
 								)}
 							</p>
 						)}
 					</ModalBody>
 					<ModalFooter>
-						<Button
-							color="primary"
-							onClick={this.handleSend}
-							disabled
-						>
+						<Button color="primary" onClick={this.handleSend} disabled>
 							Send
 						</Button>{' '}
 						<Button color="secondary" onClick={this.handleCloseModal}>

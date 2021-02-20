@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
 const assert = require('assert');
-const Contest = require('../models/Contest');
-const Submission = require('../models/Submission');
-const Language = require('../models/Language');
-const validation = require('../lib/validation');
+const mongoose = require('mongoose');
 const languagesData = require('../data/languages');
+const validation = require('../lib/validation');
+const Contest = require('../models/Contest');
+const Language = require('../models/Language');
+const Submission = require('../models/Submission');
 
 require('../models/User');
 
@@ -13,13 +13,17 @@ mongoose.Promise = global.Promise;
 (async () => {
 	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
 	const contest = await Contest.findOne({id: '7'});
-	const languages = await Language.find({contest, solution: {$ne: null}, slug: 'canvas'});
+	const languages = await Language.find({
+		contest,
+		solution: {$ne: null},
+		slug: 'canvas',
+	});
 
 	// rollback
 	for (const language of languages) {
 		console.log(`Rejudging language ${language.slug}...`);
 		const languageData = languagesData[contest.id].find(
-			(l) => l && l.slug === language.slug
+			(l) => l && l.slug === language.slug,
 		);
 		assert(languageData);
 
@@ -27,7 +31,9 @@ mongoose.Promise = global.Promise;
 			const submission = await Submission.findOne({
 				contest,
 				language,
-			}).sort({createdAt: -1}).exec();
+			})
+				.sort({createdAt: -1})
+				.exec();
 
 			if (!submission) {
 				console.log('Solution not found.');

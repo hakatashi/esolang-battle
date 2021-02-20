@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 768">
+    <defs>
+        <style>
+            .cls-1{opacity:.3}
+        </style>
+    </defs>
+    <rect class="cls-1" x="1137.58" y="106.28" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1196.865 165.565)"/>
+    <rect class="cls-1" x="1261.51" y="106.28" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1320.79 165.565)"/>
+    <rect class="cls-1" x="1261.51" y="-17.42" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1320.79 41.865)"/>
+    <rect class="cls-1" x="1137.58" y="230.34" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1196.865 289.625)"/>
+    <rect class="cls-1" x="1261.51" y="230.34" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1320.79 289.625)"/>
+    <rect class="cls-1" x="1137.58" y="-17.77" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1196.865 41.51)"/>
+    <rect class="cls-1" x="1013.53" y="106.28" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1072.815 165.565)"/>
+    <rect class="cls-1" x="1013.53" y="230.34" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1072.815 289.625)"/>
+    <rect class="cls-1" x="1137.58" y="354.39" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1196.865 413.675)"/>
+    <rect class="cls-1" x="1261.51" y="354.39" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1320.79 413.675)"/>
+    <rect class="cls-1" x="1013.53" y="354.39" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1072.815 413.675)"/>
+    <rect class="cls-1" x="1013.53" y="478.09" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1072.815 537.375)"/>
+    <rect class="cls-1" x="1013.53" y="-17.77" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1072.815 41.51)"/>
+    <rect class="cls-1" x="1137.58" y="478.44" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1196.865 537.72)"/>
+    <rect class="cls-1" x="1261.51" y="478.44" width="118.57" height="118.57" rx="11.47" transform="rotate(-180 1320.79 537.72)"/>
+</svg>

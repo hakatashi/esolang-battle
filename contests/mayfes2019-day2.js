@@ -1,8 +1,8 @@
 const assert = require('assert');
-const range = require('lodash/range');
-const shuffle = require('lodash/shuffle');
-const sample = require('lodash/sample');
 const flatten = require('lodash/flatten');
+const range = require('lodash/range');
+const sample = require('lodash/sample');
+const shuffle = require('lodash/shuffle');
 
 module.exports.getPrecedingIndices = (cellIndex) => {
 	assert(cellIndex >= 0);
@@ -29,7 +29,9 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 		precedingCells.push((y + 1) * 5 + x);
 	}
 
-	return precedingCells.filter((cell) => ![0, 3, 4, 5, 19, 20, 21, 24].includes(cell));
+	return precedingCells.filter(
+		(cell) => ![0, 3, 4, 5, 19, 20, 21, 24].includes(cell),
+	);
 };
 
 const wins = ['01', '12', '20'];
@@ -78,9 +80,7 @@ module.exports.isValidAnswer = (input, output) => {
 
 	const correctOutput = '1'.repeat(winCount);
 
-	const trimmedOutput = output
-		.toString()
-		.replace(/\s/g, '');
+	const trimmedOutput = output.toString().replace(/\s/g, '');
 
 	console.log('info:', {input, correctOutput, output, trimmedOutput});
 

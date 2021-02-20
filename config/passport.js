@@ -124,8 +124,8 @@ passport.use(
 					done(error);
 				}
 			}
-		}
-	)
+		},
+	),
 );
 
 /*

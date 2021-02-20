@@ -1,8 +1,8 @@
 const assert = require('assert');
 const shuffle = require('array-shuffle');
-const math = require('mathjs');
 const chunk = require('lodash/chunk');
 const random = require('lodash/random');
+const math = require('mathjs');
 const snubDodecahedron = require('../data/snub-dodecahedron.js');
 
 module.exports.getPrecedingIndices = (cellIndex) => {
@@ -31,7 +31,7 @@ const generateTestInput = () => chunk(
 			.fill()
 			.map(() => random(1, 99)),
 	]),
-	3
+	3,
 );
 
 const getDeterminant = (vectors) => {
@@ -63,7 +63,7 @@ module.exports.generateInput = () => {
 		.map(
 			(vector) => `${vector
 				.map((value) => value.toString(10).padStart(2, '0'))
-				.join(' ')}\n`
+				.join(' ')}\n`,
 		)
 		.join('');
 };

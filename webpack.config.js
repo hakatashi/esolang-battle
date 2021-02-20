@@ -28,6 +28,10 @@ module.exports = (env, argv = {}) => {
 				['check', 'js/check.babel.js'],
 				['contest-5', 'js/contests/5/index.babel.js'],
 				['contest-6', 'js/contests/6/index.babel.js'],
+				[
+					'contest-mayfes2020-day2',
+					'js/contests/mayfes2020-day2/index.babel.js',
+				],
 				['contest-7', 'js/contests/7/index.babel.js'],
 			].map(([name, entry]) => ({
 				[name]: [
@@ -46,7 +50,7 @@ module.exports = (env, argv = {}) => {
 		devtool:
 			argv.mode === 'production'
 				? 'source-map'
-				: 'cheap-module-eval-source-map',
+				: 'eval-cheap-module-source-map',
 		module: {
 			rules: [
 				{
@@ -67,11 +71,6 @@ module.exports = (env, argv = {}) => {
 					},
 				},
 			],
-		},
-		node: {
-			fs: 'empty',
-			net: 'empty',
-			tls: 'empty',
 		},
 		plugins: [
 			new webpack.HotModuleReplacementPlugin(),

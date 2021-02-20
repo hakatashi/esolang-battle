@@ -1,9 +1,9 @@
+const qs = require('querystring');
 const classnames = require('classnames');
 const MarkdownIt = require('markdown-it');
+const {getLanguageMap} = require('../controllers/utils');
 const Contest = require('../models/Contest');
 const User = require('../models/User');
-const {getLanguageMap} = require('../controllers/utils');
-const qs = require('querystring');
 
 /*
  * Middleware for all /contest/:contest routes

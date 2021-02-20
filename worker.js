@@ -21,7 +21,10 @@ const submissionsRef = db.collection('polyglot-battle-submissions');
 
 const dequeue = async () => {
 	const submissionDoc = await db.runTransaction(async (transaction) => {
-		const query = submissionsRef.where('status', '==', 'pending').orderBy('createdAt').limit(1);
+		const query = submissionsRef
+			.where('status', '==', 'pending')
+			.orderBy('createdAt')
+			.limit(1);
 		const snapshot = await transaction.get(query);
 
 		if (snapshot.size <= 0) {
@@ -42,7 +45,9 @@ const dequeue = async () => {
 
 	const submission = submissionDoc.data();
 	console.log(`Processing ${submissionDoc.id}...`);
-	console.log(`date: ${new Date(submission.createdAt._seconds * 1000).toString()}`);
+	console.log(
+		`date: ${new Date(submission.createdAt._seconds * 1000).toString()}`,
+	);
 	console.log(`lang: ${submission.lang}`);
 	console.log(`code: ${submission.code.slice(0, 50).replace(/\n/g, ' ')}...`);
 
@@ -74,4 +79,3 @@ const dequeue = async () => {
 		mutex.runExclusive(dequeue);
 	});
 })();
-

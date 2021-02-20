@@ -10,7 +10,7 @@ const executionSchema = new mongoose.Schema(
 		stderr: String,
 		duration: Number,
 	},
-	{timestamps: true}
+	{timestamps: true},
 );
 
 const Execution = mongoose.model('Execution', executionSchema);
