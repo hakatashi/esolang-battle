@@ -12,7 +12,7 @@ mongoose.Promise = global.Promise;
 
 (async () => {
 	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
-	const contest = await Contest.findOne({id: '5'});
+	const contest = await Contest.findOne({id: '7'});
 	const languages = await Language.find({contest, solution: {$ne: null}, slug: 'canvas'});
 
 	// rollback
@@ -58,6 +58,7 @@ mongoose.Promise = global.Promise;
 			}
 
 			console.log(`${newSubmission._id} is invalid`);
+                   break;
 		}
 	}
 

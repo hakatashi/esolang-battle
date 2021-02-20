@@ -51,6 +51,8 @@ html, body, #app {
 
 			pointer-events: none;
 
+                        // see color universal design guidebook:
+                        // https://jfly.uni-koeln.de/colorset/
 			&.black polygon {
 				fill: #111111;
 			}
@@ -61,13 +63,13 @@ html, body, #app {
 				fill: #ffffff;
 			}
 			&.red polygon {
-				fill: #ef2011;
+				fill: #ff4b00;
 			}
 			&.blue polygon {
-				fill: #0e30ec;
+				fill: #005aff;
 			}
 			&.green polygon {
-				fill: #167516;
+				fill: #03af7a;
 			}
 
 			.hexagon {
@@ -149,16 +151,16 @@ html, body, #app {
 			}
 
 			&.red .bar {
-				background-color: #ef2011;
-				color: #ef2011;
+				background-color: #ff4b00;
+				color: #ff4b00;
 			}
 			&.blue .bar {
-				background-color: #0e30ec;
-				color: #0e30ec;
+				background-color: #005aff;
+				color: #005aff;
 			}
 			&.green .bar {
-				background-color: #167516;
-				color: #167516;
+				background-color: #03af7a;
+				color: #03af7a;
 			}
 
 			.bar {

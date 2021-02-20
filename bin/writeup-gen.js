@@ -28,7 +28,7 @@ mongoose.Promise = global.Promise;
 
 		const lang = langs.find(({slug}) => slug === language.slug);
 		console.log(stripIndent`
-			# [${lang.name}](https://esolang.hakatashi.com/contests/5/submissions/${language.solution._id}) (@${language.solution.user.email.replace(/@.+$/, '')}, ${language.solution.size} bytes)
+			# [${lang.name}](https://esolang-codegolf.hiromi-mi.jp/contests/7/submissions/${language.solution._id}) (@${language.solution.user.email.replace(/@.+$/, '')}, ${language.solution.size} bytes)
 		`);
 		console.log('');
 		const isVisible = isValidUTF8(language.solution.code);
