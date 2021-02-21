@@ -18,6 +18,18 @@
     "disasm": false
   },
   {
+    "slug": "osecpu",
+    "name": "osecpu",
+    "link": "http://osecpu.osask.jp/wiki/",
+    "disasm": false
+  },
+  {
+    "slug": "osecpu-aska",
+    "name": "osecpu-aska",
+    "link": "http://osecpu.osask.jp/wiki/",
+    "disasm": false
+  },
+  {
     "slug": "codemania",
     "name": "CodeMania",
     "link": "https://github.com/Tiramister/codemania",
@@ -336,12 +348,6 @@
     "disasm": false
   },
   {
-    "slug": "emojicode",
-    "name": "Emojicode",
-    "link": "http://www.emojicode.org/",
-    "disasm": false
-  },
-  {
     "slug": "intercal",
     "name": "INTERCAL",
     "link": "https://en.wikipedia.org/wiki/INTERCAL",
@@ -357,12 +363,6 @@
     "slug": "minus",
     "name": "Minus",
     "link": "http://www.golfscript.com/minus/",
-    "disasm": false
-  },
-  {
-    "slug": "sqlite3",
-    "name": "SQLite3",
-    "link": "https://sqlite.org/",
     "disasm": false
   },
   {
@@ -690,21 +690,9 @@
     "disasm": false
   },
   {
-    "slug": "ffb",
-    "name": "Foobar and Foobaz and Barbaz, oh my!",
-    "link": "https://esolangs.org/wiki/Foobar_and_Foobaz_and_Barbaz,_oh_my!",
-    "disasm": false
-  },
-  {
     "slug": "aubergine",
     "name": "Aubergine",
     "link": "https://esolangs.org/wiki/Aubergine",
-    "disasm": false
-  },
-  {
-    "slug": "ubergenes",
-    "name": "UberGenes",
-    "link": "https://esolangs.org/wiki/UberGenes",
     "disasm": false
   },
   {
@@ -771,12 +759,6 @@
     "slug": "fish-shell-pure",
     "name": "Fish (pure)",
     "link": "https://fishshell.com/",
-    "disasm": false
-  },
-  {
-    "slug": "ezhil",
-    "name": "எழில்",
-    "link": "http://ezhillang.org/",
     "disasm": false
   },
   {
@@ -996,6 +978,18 @@
     "disasm": false
   },
   {
+    "slug": "ffb",
+    "name": "Foobar and Foobaz and Barbaz, oh my!",
+    "link": "https://esolangs.org/wiki/Foobar_and_Foobaz_and_Barbaz,_oh_my!",
+    "disasm": false
+  },
+  {
+    "slug": "ezhil",
+    "name": "எழில்",
+    "link": "http://ezhillang.org/",
+    "disasm": false
+  },
+  {
     "slug": "exchangeif",
     "name": "ExchangeIF",
     "link": "https://github.com/HyogaGlacier/ExchangeIF",
@@ -1005,6 +999,12 @@
     "slug": "trumpscript",
     "name": "TrumpScript",
     "link": "http://samshadwell.me/TrumpScript/",
+    "disasm": false
+  },
+  {
+    "slug": "ubergenes",
+    "name": "UberGenes",
+    "link": "https://esolangs.org/wiki/UberGenes",
     "disasm": false
   },
   {
@@ -1260,12 +1260,6 @@
     "disasm": false
   },
   {
-    "slug": "zen",
-    "name": "Zen",
-    "link": "https://zen-lang.org/",
-    "disasm": false
-  },
-  {
     "slug": "ubuntu-base",
     "name": null,
     "link": null,
@@ -1287,6 +1281,12 @@
     "slug": "d-gdc",
     "name": "D (GDC)",
     "link": "https://dlang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "emojicode",
+    "name": "Emojicode",
+    "link": "http://www.emojicode.org/",
     "disasm": false
   },
   {
@@ -1383,6 +1383,12 @@
     "slug": "alif",
     "name": "ألف",
     "link": "https://www.aliflang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "sqlite3",
+    "name": "SQLite3",
+    "link": "https://sqlite.org/",
     "disasm": false
   },
   {

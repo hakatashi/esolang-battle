@@ -1,5 +1,7 @@
 const range = require('lodash/range');
 const React = require('react');
+const corejs = require('core-js');
+
 const {
 	Button,
 	Modal,
@@ -9,8 +11,12 @@ const {
 	Form,
 	FormGroup,
 	Input,
+	CheckBox,
 } = require('reactstrap');
 const api = require('../../api.js');
+
+const WIDTH = 13;
+const HEIGHT = 15;
 
 class App extends React.Component {
 	constructor(props, context) {
@@ -20,7 +26,7 @@ class App extends React.Component {
 			.querySelector('meta[name=contest-id]')
 			.getAttribute('content');
 
-		this.size = 11;
+		this.size = WIDTH;
 
 		this.state = {
 			code: '',
@@ -73,12 +79,12 @@ class App extends React.Component {
 	};
 
 	isEmpty = (cell) => {
-		const x = cell % 11;
-		const y = Math.floor(cell / 11);
+		const x = cell % WIDTH;
+		const y = Math.floor(cell / WIDTH);
 		const u = x + Math.floor((y + 1) / 2);
 		const v = x - Math.floor(y / 2);
 
-		if (y <= 0 || y >= 12 || u <= 2 || u >= 14 || v <= -4 || v >= 8) {
+		if (y < 0 || y >= WIDTH || u < 3 || u >= HEIGHT + 1 || v <= -4 || v >= 10) {
 			return true;
 		}
 
@@ -223,11 +229,11 @@ class App extends React.Component {
 			<div className="world">
 				<div className="teams left">{this.renderTeam('Blue', 1)}</div>
 				<div className="map">
-					{Array(13)
+					{Array(HEIGHT)
 						.fill()
 						.map((_, y) => (
 							<div key={y} className="row">
-								{Array(11)
+								{Array(WIDTH)
 									.fill()
 									.map((_, x) => this.isEmpty(y * this.size + x) ? (
 										<div key={x} className="cell white empty"/>

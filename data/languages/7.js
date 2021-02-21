@@ -2,61 +2,51 @@ const assert = require('assert');
 const langsData = require('../langs.json');
 
 const languages = {
-	0: null,
-	1: null,
-	2: null,
-	3: null,
-	4: null,
-	5: null,
-	6: null,
-	7: null,
-	8: null,
-	9: null,
-	10: null,
-	11: null,
-	12: null,
-	13: 'snowman',
-	14: 'hexagony',
+   // Row 1 Begin
+	3: 'lazyk',
+	4: 'dis',
+	5: 'functional',
+	6: null, // 'base'
+	7: 'snowman',
+	8: 'hexagony',
+        9: 'spl',
+   // Row 1 End
+   // Row 2 Begin
 	15: 'hypertorus',
 	16: 'pyramid-scheme',
 	17: 'cobol',
 	18: 'gnuplot',
-	19: null,
-	20: null,
-	21: null,
-	22: null,
-	23: null,
-	24: 'alphabeta',
-	25: 'braintwist',
-	26: 'v-vim',
-	27: 'transceternal',
+	19: 'v-vim',
+	20: 'transceternal',
+	21: 'braintwist',
+	22: 'alphabeta',
+   // Row 2 End
+   // Row 3 Begin
 	28: 'racket',
 	29: 'wysiscript',
 	30: 'abc',
-	31: null,
-	32: null,
-	33: null,
+	31: 'wat',
+	32: 'clisp-sbcl',
+	33: '2sable',
 	34: 'oh',
 	35: 'husk',
 	36: 'produire',
-	37: 'olang',
-	38: 'golfscript',
-	39: 'make',
+   // Row 3 End
+   // Row 4 Begin
 	40: 'reasonml',
 	41: 'unlambda',
-	42: null,
-	43: null,
-	44: null,
+	42: 'goruby',
+	43: 'element',
+	44: 'simula',
 	45: 'rail',
 	46: 'qlb',
 	47: 'mines',
 	48: 'vlang',
-	49: null,
-	50: 'egison',
-	51: 'tex',
-	52: 'pure-folders',
-	53: 'cpp-compile-time-clang',
-	54: null,
+	49: 'osecpu-aska',
+   // Row 4 End
+   // Row 5 Begin
+	53: 'cpp-compile-time-clang', // TODO
+	54: 'cpp-clang',
 	55: 'piet',
 	56: 'golfish',
 	57: 'tetris',
@@ -66,132 +56,153 @@ const languages = {
 	61: 'lua',
 	62: 'classic-music-theory',
 	63: 'backhand',
-	64: 'pxem',
-	65: null,
+   // Row 5 End
+   // Row 6 Begin
+	65: 'bubble-sort',
 	66: 'starry',
-	67: 'bubble-sort',
+	67: 'elixir',
 	68: 'vim',
-	69: 'node',
+	69: null, // 'base'
 	70: 'ruby',
 	71: 'c-gcc',
-	72: 'golang',
+	72: null, // 'base'
 	73: 'haskell',
 	74: 'bash-pure',
 	75: 'brainfuck-esotope',
 	76: 'coq',
-	77: 'z80',
+   // Row 6 End
+   // Row 7 Begin
 	78: 'fish',
 	79: 'stuck',
-	80: null,
+	80: 'fsharp-dotnet',
 	81: 'rust',
 	82: 'python3',
-	83: null,
-	84: 'japt',
+	83: 'node',
+	84: 'kotlin',
 	85: 'erlang',
-	86: 'fortran',
-	87: null,
-	88: null,
+	86: 'csharp-dotnet',
+	87: 'grass',
+	88: 'serenity',
 	89: 'whitespace',
 	90: 'function2d',
+   // Row 7 End
+   // Row 8 Begin
 	91: 'jelly',
 	92: 'wren',
 	93: 'bash-busybox',
 	94: 'powershell',
 	95: 'cjam',
-	96: 'bots',
-	97: 'ring',
-	98: null,
-	99: null,
+	96: 'golang',
+	97: 'swift',
+	98: 'octave',
+	99: 'bots',
 	100: 'emojicode',
 	101: 'fish-shell-pure',
 	102: 'calc',
-	103: 'wenyan',
-	104: 'cyclicbrainfuck',
+   // Row 8 End
+   // Row 9 Begin
 	105: 'verilog',
 	106: 'awk',
 	107: 'ballerina',
-	108: null,
-	109: null,
-	110: null,
-	111: null,
+	108: 'ring',
+	109: 'jq',
+	110: null, // 'base'
+	111: 'python2',
 	112: 'sqlite3',
 	113: 'xslt',
 	114: 'gs2',
 	115: 'fernando',
-	116: 'jq',
-	117: 'fugue',
-	118: 'hanoi_stack',
-	119: null,
-	120: null,
-	121: null,
-	122: null,
+   // Row 9 End
+   // Row 10 Begin
+	118: null, // 'base'
+	119: 'hanoi_stack',
+	120: 'tex',
+	121: 'r',
+	122: 'sed',
 	123: 'moo',
 	124: 'standback',
 	125: 'iwashi',
 	126: 'apl',
-	127: 'cubically',
-	128: 'irc',
-	129: null,
-	130: null,
-	131: null,
-	132: null,
-	133: null,
-	134: null,
-	135: null,
-	136: null,
-	137: null,
-	138: null,
-	139: null,
-	140: null,
-	141: null,
-	142: null,
+	127: null, // 'base'
+   // Row 10 End
+   // Row 11 Begin
+	131: 'irc',
+	132: 'cubically',
+	133: 'wenyan',
+	134: 'cyclicbrainfuck',
+	135: 'olang',
+	136: 'fish-shell-pure',
+	137: 'make',
+	138: 'befunge98',
+	139: 'nadesiko',
+	140: 'llvm-ir',
+   // Row 11 End
+   // Row 12 Begin
+	145: 'golfscript',
+	146: 'z80',
+	147: 'pxem',
+	148: 'osecpu',
+	149: 'pure-folders',
+	150: 'egison',
+	151: 'encapsulation',
+	152: 'tcl',
+   // Row 12 End
+   // Row 13 Begin
+	159: 'ocaml',
+	160: 'perl6',
+	161: 'ruby0.49',
+	162: 'seclusion',
+	163: 'wake',
+	164: 'multi-reader',
+	165: 'fugue',
+   // Row 13 End
 };
 
-const WIDTH = 11;
-const HEIGHT = 13;
+const WIDTH = 13;
+const HEIGHT = 15;
 module.exports = Array(WIDTH * HEIGHT)
 	.fill()
 	.map((_, index) => {
-		if (index === 49) {
+		if (index === 69) {
 			return {
 				type: 'base',
 				team: 0,
 			};
 		}
 
-		if (index === 80) {
+		if (index === 72) {
 			return {
 				type: 'base',
 				team: 1,
 			};
 		}
 
-		if (index === 83) {
+		if (index === 110) {
 			return {
 				type: 'base',
 				team: 2,
 			};
 		}
-                if (index == 123 || index == 128) {
+                if (index == 127) { //if (index == 90 || index == 165) {
 			return {
 				type: 'base',
 				team: 0,
 			};
                 }
-		if (index === 18 || index == 76 ) {
+		if (index == 118) {// if (index === 159 || index == 78 ) {
 			return {
 				type: 'base',
 				team: 1,
 			};
 		}
-		if (index  === 13 || index == 66) {
+		if (index == 6) { //if (index  === 3 || index == 9) {
 			return {
 				type: 'base',
 				team: 2,
 			};
 		}
 
-		if (languages[index] === null) {
+		if (languages[index] === null || languages[index] === undefined) {
 			return null;
 		}
 
