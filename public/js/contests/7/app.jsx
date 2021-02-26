@@ -16,7 +16,8 @@ const {
 const api = require('../../api.js');
 
 const WIDTH = 13;
-const HEIGHT = 15;
+//const HEIGHT = 15;
+const HEIGHT = 13;
 
 class App extends React.Component {
 	constructor(props, context) {
@@ -253,7 +254,7 @@ class App extends React.Component {
 														this.state.languages[y * this.size + x] &&
 														this.state.languages[y * this.size + x].team ===
 															undefined
-															? '#222'
+															? '#e0e0e0'
 															: 'white',
 											}}
 											data-index={y * this.size + x}
