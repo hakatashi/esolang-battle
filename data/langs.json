@@ -30,6 +30,18 @@
     "disasm": false
   },
   {
+    "slug": "rescript",
+    "name": "ReScript",
+    "link": "https://rescript-lang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "reasonml",
+    "name": "reasonml TODO",
+    "link": "https://rescript-lang.org/",
+    "disasm": false
+  },
+  {
     "slug": "codemania",
     "name": "CodeMania",
     "link": "https://github.com/Tiramister/codemania",
@@ -882,12 +894,6 @@
     "disasm": false
   },
   {
-    "slug": "reasonml",
-    "name": "ReasonML",
-    "link": "https://reasonml.github.io/",
-    "disasm": false
-  },
-  {
     "slug": "hakerh-base",
     "name": null,
     "link": null,
@@ -1260,6 +1266,12 @@
     "disasm": false
   },
   {
+    "slug": "zig",
+    "name": "Zig",
+    "link": "https://ziglang.org/",
+    "disasm": false
+  },
+  {
     "slug": "ubuntu-base",
     "name": null,
     "link": null,
@@ -1293,6 +1305,12 @@
     "slug": "powershell",
     "name": "PowerShell",
     "link": "https://github.com/PowerShell/PowerShell",
+    "disasm": false
+  },
+  {
+    "slug": "ed",
+    "name": "GNU ed",
+    "link": "http://www.gnu.org/software/ed/",
     "disasm": false
   },
   {
@@ -1374,6 +1392,12 @@
     "disasm": false
   },
   {
+    "slug": "bibtex",
+    "name": "BiBTeX",
+    "link": "http://tug.ctan.org/tex-archive/info/bibtex/tamethebeast/ttb_en.pdf",
+    "disasm": false
+  },
+  {
     "slug": "egison",
     "name": "Egison",
     "link": "https://www.egison.org/",
@@ -1389,6 +1413,18 @@
     "slug": "sqlite3",
     "name": "SQLite3",
     "link": "https://sqlite.org/",
+    "disasm": false
+  },
+  {
+    "slug": "imagemagick",
+    "name": "ImageMagick",
+    "link": "https://imagemagick.org/",
+    "disasm": false
+  },
+  {
+    "slug": "apache2-rewrite",
+    "name": "Apache mod_rewrite",
+    "link": "https://httpd.apache.org/docs/2.4/rewrite/",
     "disasm": false
   },
   {
