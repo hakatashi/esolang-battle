@@ -78,7 +78,7 @@ const languages = {
 	81: 'cpp-compile-time-clang',
 	82: 'cjam',
 	83: 'java',
-        84: 'brainfuck-bfi',
+        84: 'brainfuck-esotope',
 	85: 'perl',
 	86: 'jelly',
 	87: 'fortran',
