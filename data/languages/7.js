@@ -12,7 +12,7 @@ const languages = {
         9: 'picfunge',
    // Row 1 End
    // Row 2 Begin
-	15: 'perl1',
+	15: 'jq',
 	16: 'snobol',
 	17: 'cubically',
 	18: 'ballerina',

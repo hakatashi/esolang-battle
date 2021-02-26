@@ -36,6 +36,12 @@
     "disasm": false
   },
   {
+    "slug": "reasonml",
+    "name": "ReasonML",
+    "link": "https://rescript-lang.org/",
+    "disasm": false
+  },
+  {
     "slug": "codemania",
     "name": "CodeMania",
     "link": "https://github.com/Tiramister/codemania",
