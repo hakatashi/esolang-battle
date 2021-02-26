@@ -20,10 +20,11 @@ html, body, #app {
 	.map {
 		display: flex;
 		flex-direction: column;
-		width: 90vmin;
-		height: 90vmin;
+                // see: WIDTH : HEIGHT = 13:15-2
+		width: 95vmin;
+		height: 80vmin;
 		transform: scale(1.1);
-		margin: 5vmin 5vmin;
+		margin: 6vmin 6vmin;
 
 		.row {
 			display: flex;

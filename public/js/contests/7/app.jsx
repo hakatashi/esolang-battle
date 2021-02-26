@@ -85,7 +85,7 @@ class App extends React.Component {
 		const u = x + Math.floor((y + 1) / 2);
 		const v = x - Math.floor(y / 2);
 
-		if (y < 0 || y >= WIDTH || u < 3 || u >= HEIGHT + 1 || v <= -4 || v >= 10) {
+		if (y < 0 || y >= WIDTH || u < 3 || u >= HEIGHT + 3 || v <= -4 || v >= 10) {
 			return true;
 		}
 
