@@ -36,12 +36,6 @@
     "disasm": false
   },
   {
-    "slug": "reasonml",
-    "name": "reasonml TODO",
-    "link": "https://rescript-lang.org/",
-    "disasm": false
-  },
-  {
     "slug": "codemania",
     "name": "CodeMania",
     "link": "https://github.com/Tiramister/codemania",
@@ -1425,6 +1419,12 @@
     "slug": "apache2-rewrite",
     "name": "Apache mod_rewrite",
     "link": "https://httpd.apache.org/docs/2.4/rewrite/",
+    "disasm": false
+  },
+  {
+    "slug": "csound",
+    "name": "Csound",
+    "link": "https://csound.com/",
     "disasm": false
   },
   {

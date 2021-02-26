@@ -63,7 +63,7 @@ const languages = {
 	67: 'make',
 	68: 'vim',
 	69: null, // 'base'
-	70: 'python3',
+	70: 'c-gcc',
 	71: 'csharp-dotnet',
 	72: null, // 'base'
 	73: 'kotlin',
@@ -94,7 +94,7 @@ const languages = {
 	95: 'rust',
 	96: 'ruby',
 	97: 'golang',
-	98: 'c-gcc',
+	98: 'python3',
 	99: 'crystal',
 	100: 'evil',
 	101: 'wenyan',
@@ -108,7 +108,7 @@ const languages = {
 	109: 'golfscript',
 	110: null, // 'base'
 	111: 'sed',
-	112: 'tex',
+	112: 'csound',
 	113: 'apache2-rewrite',
 	114: 'ring',
 	115: 'jellyfish',
@@ -132,7 +132,7 @@ const languages = {
 	135: 'ed',
 	136: 'emojicode',
 	137: 'octave',
-	138: 'cy',
+	138: 'tex',
 	139: 'moo',
 	140: 'spl',
    // Row 11 End
@@ -148,7 +148,7 @@ const languages = {
    // Row 12 End
    // Row 13 Begin
 	159: 'apl',
-	160: 'ruby0.49',
+	160: 'cy',
 	161: 'pxem',
 	162: 'serenity',
 	163: 'perl6',
