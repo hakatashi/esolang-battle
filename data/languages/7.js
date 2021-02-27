@@ -8,7 +8,7 @@ const languages = {
 	5: 'fernando',
 	6: null, // 'base'
 	7: 'aheui',
-	8: 'nadesiko',
+	8: 'ezhil',
         9: 'picfunge',
    // Row 1 End
    // Row 2 Begin
@@ -97,7 +97,7 @@ const languages = {
 	98: 'python3',
 	99: 'crystal',
 	100: 'evil',
-	101: 'wenyan',
+	101: 'produire',
 	102: 'streem',
    // Row 8 End
    // Row 9 Begin
