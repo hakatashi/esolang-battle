@@ -17,7 +17,7 @@ block content
         tbody
           each user in users
             tr
-              td= user.name()
+              td= user.email
               td
                 button.btn.text-white(style={'background-color': colors[user.getTeam(contest)]})= teams[user.getTeam(contest)]
               td
