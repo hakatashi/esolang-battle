@@ -250,7 +250,7 @@ class App extends React.Component {
 														this.state.languages[y * this.size + x]
 															? 'pointer'
 															: '',
-												color: (this.state.languages[y * this.size + x].available === true) ? 'black' : 'white'
+                                                                                              color: (this.state.languageColors[y * this.size + x] === 'white' ) ? 'black' : 'white'
 											}}
 											data-index={y * this.size + x}
 										>
