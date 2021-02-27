@@ -30,14 +30,14 @@ const languages = {
 	33: 'powershell',
 	34: 'node',
 	35: 'stuck',
-	36: 'v-vim',
+	36: 'erlang',
    // Row 3 End
    // Row 4 Begin
 	40: 'seclusion',
 	41: 'coq',
 	42: 'tcl',
 	43: 'starry',
-	44: 'erlang',
+	44: 'nim-lang',
 	45: 'osecpu',
 	46: 'dis',
 	47: 'gnuplot',

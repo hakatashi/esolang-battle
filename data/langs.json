@@ -1428,6 +1428,12 @@
     "disasm": false
   },
   {
+    "slug": "nim-lang",
+    "name": "Nim",
+    "link": "https://nim-lang.org/",
+    "disasm": false
+  },
+  {
     "slug": "csound",
     "name": "Csound",
     "link": "https://csound.com/",
