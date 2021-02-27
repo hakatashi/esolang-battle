@@ -1278,6 +1278,12 @@
     "disasm": false
   },
   {
+    "slug": "ada",
+    "name": "Ada (GNU GNAT)",
+    "link": "https://gcc.gnu.org/wiki/GNAT",
+    "disasm": false
+  },
+  {
     "slug": "crystal",
     "name": "Crystal",
     "link": "https://crystal-lang.org/",

@@ -83,7 +83,7 @@ const languages = {
 	86: 'jelly',
 	87: 'fortran',
 	88: 'fish',
-	89: 'streem',
+	89: 'ada',
 	90: 'simula',
    // Row 7 End
    // Row 8 Begin
