@@ -142,6 +142,7 @@ app.use(lusca.csp({
       'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
       // THIS IS INSECURE https://security.stackexchange.com/questions/94993/is-including-the-data-scheme-in-your-content-security-policy-safe
       'img-src': "'self' https://gravatar.com data:",
+      'connect-src': "'self'",
       'object-src': "'self'"
    }
 }));
