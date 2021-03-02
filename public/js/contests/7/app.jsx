@@ -208,13 +208,14 @@ class App extends React.Component {
 				(_, index) => this.state.languages.filter((language) => language.team === index).length,
 			);
 		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
+                const flexBasisCSS = {
+						flexBasis: `${(cellCounts[index] / totalCellCounts) * 100}%`,
+                };
 		return (
 			<div key={color} className={`team ${color.toLowerCase()}`}>
 				<div
 					className="bar"
-					style={{
-						flexBasis: `${(cellCounts[index] / totalCellCounts) * 100}%`,
-					}}
+					style={ flexBasisCSS }
 				>
 					<div className="count">{cellCounts[index]}</div>
 					<div className="team-name">{color}</div>
@@ -225,6 +226,9 @@ class App extends React.Component {
 
 	render() {
 		const selectedLanguage = this.state.selectedLanguage || {};
+                const deniedCSS = {
+                   color : 'red',
+                }
 
 		return (
 			<div className="world">
@@ -320,7 +324,7 @@ class App extends React.Component {
 						<p>
 							Exec: {
 								(selectedLanguage.info && selectedLanguage.info.time > 10) || ['bash-busybox', 'm4', 'cmd'].includes(selectedLanguage.slug) ? 'Allowed' : (
-									<strong style={{color: 'red'}}>Denied</strong>
+									<strong style={deniedCSS}>Denied</strong>
 								)
 							}
 						</p>
