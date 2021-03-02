@@ -27,7 +27,7 @@ const languages = {
 	30: 'golfish',
 	31: 'element',
 	32: 'imagemagick',
-	33: 'powershell',
+	33: 'crystal',
 	34: 'node',
 	35: 'stuck',
 	36: 'erlang',
@@ -39,7 +39,7 @@ const languages = {
 	43: 'starry',
 	44: 'nim-lang',
 	45: 'osecpu',
-	46: 'dis',
+	46: 'tsp',
 	47: 'gnuplot',
 	48: 'wat',
 	49: 'functional',
@@ -74,7 +74,7 @@ const languages = {
    // Row 7 Begin
 	78: 'tetris',
 	79: 'php',
-	80: 'crystal',
+	80: 'emojifunge',
 	81: 'cpp-compile-time-clang',
 	82: 'cjam',
 	83: 'java',
@@ -87,7 +87,7 @@ const languages = {
 	90: 'simula',
    // Row 7 End
    // Row 8 Begin
-	91: 'htms',
+	91: 'exchangeif',
 	92: 'husk',
 	93: 'zsh-pure',
 	94: 'bibtex',
@@ -120,13 +120,13 @@ const languages = {
 	121: 'm4',
 	122: 'swift',
 	123: 'fsharp-dotnet',
-	124: 'exchangeif',
+	124: 'tsp',
 	125: 'bash-busybox',
 	126: 'mines',
 	127: null, // 'base'
    // Row 10 End
    // Row 11 Begin
-	132: 'arcyou',
+	132: 'dis',
 	133: 'braintwist',
 	134: 'gs2',
 	135: 'ed',
@@ -139,7 +139,7 @@ const languages = {
    // Row 12 Begin
 	145: 'js-rhino',
 	146: 'cobol',
-	147: 'hanoi_stack',
+	147: 'mao',
 	148: 'sqlite3',
 	149: 'wake',
 	150: 'bots',
