@@ -2,7 +2,7 @@ extends layout
 
 block head
   if contest.isStarted() || (user && user.admin)
-    style
+    style(nonce=`${nonce}`) src
       if contest.id === '1'
         include:scss maps/1.scss
       else if contest.id === '2'

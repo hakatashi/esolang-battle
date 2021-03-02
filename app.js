@@ -140,12 +140,13 @@ app.use(lusca.csp({
       'default-src': '\'self\'',
       //'script-src': "'self' 'unsafe-eval' https://www.googletagmanager.com https://maxcdn.bootstrapcdn.com https://cdnjs.cloudflare.com https://code.jquery.com",
       'script-src': "'self' https://www.googletagmanager.com https://maxcdn.bootstrapcdn.com https://cdnjs.cloudflare.com https://code.jquery.com",
-      'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
+      'style-src': "'self' https://fonts.googleapis.com",
       // THIS IS INSECURE https://security.stackexchange.com/questions/94993/is-including-the-data-scheme-in-your-content-security-policy-safe
       'img-src': "'self' https://gravatar.com data:",
       'connect-src': "'self'",
       'object-src': "'self'"
-   }
+   },
+   styleNonce: true,
 }));
 // TODO
 // app.use(lusca.p3p("Privacy Policy"));
