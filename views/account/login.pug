@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   .container.content
-    form.form-horizontal(method='POST', style={margin: '5em 0'})
+    form.form-horizontal(class='login-form' method='POST')
       input(type='hidden', name='_csrf', value=_csrf)
       .form-group
         a.btn.btn-primary.btn-lg.btn-block(href='/auth/twitter')
