@@ -480,6 +480,12 @@
     "disasm": false
   },
   {
+    "slug": "visualbasic-dotnet",
+    "name": "Visual Basic (.NET Core)",
+    "link": "https://docs.microsoft.com/en-us/dotnet/visual-basic/",
+    "disasm": false
+  },
+  {
     "slug": "fortran",
     "name": "Fortran 2018",
     "link": "https://gcc.gnu.org/fortran/",
@@ -936,6 +942,12 @@
     "disasm": false
   },
   {
+    "slug": "emojifunge",
+    "name": "emojifunge",
+    "link": "https://github.com/ten986/emojifunge-lang",
+    "disasm": false
+  },
+  {
     "slug": "octave",
     "name": "Octave",
     "link": "https://www.gnu.org/software/octave/",
@@ -1128,6 +1140,12 @@
     "disasm": false
   },
   {
+    "slug": "mao",
+    "name": "MAO",
+    "link": "https://github.com/Muratam/markov-algorithm-offline",
+    "disasm": false
+  },
+  {
     "slug": "cmd",
     "name": "cmd.exe",
     "link": "https://en.wikipedia.org/wiki/Cmd.exe",
@@ -1260,6 +1278,12 @@
     "disasm": false
   },
   {
+    "slug": "tsp",
+    "name": "TSP",
+    "link": "https://github.com/nakario/tsp",
+    "disasm": false
+  },
+  {
     "slug": "oh",
     "name": "oh",
     "link": "https://github.com/michaelmacinnis/oh",
@@ -1280,7 +1304,7 @@
   {
     "slug": "ada",
     "name": "Ada (GNU GNAT)",
-    "link": "https://gcc.gnu.org/wiki/GNAT",
+    "link": "https://learn.adacore.com/",
     "disasm": false
   },
   {

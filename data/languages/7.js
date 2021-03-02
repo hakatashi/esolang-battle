@@ -74,7 +74,7 @@ const languages = {
    // Row 7 Begin
 	78: 'tetris',
 	79: 'php',
-	80: 'goruby',
+	80: 'crystal',
 	81: 'cpp-compile-time-clang',
 	82: 'cjam',
 	83: 'java',
@@ -95,7 +95,7 @@ const languages = {
 	96: 'ruby',
 	97: 'golang',
 	98: 'python3',
-	99: 'crystal',
+	99: 'visualbasic-dotnet',
 	100: 'evil',
 	101: 'produire',
 	102: 'streem',
