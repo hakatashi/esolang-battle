@@ -246,3 +246,12 @@ textarea.code {
 .rule-description-hr {
    margin: 5em 0;
 }
+
+// Admin
+$admin_team_color : ("Red" : #ff4b00, "Blue": #005aff, "Green": #03af7a, "Orange" : #f6aa00, "Purple": #990099);
+
+@each $team, $color in $admin_team_color {
+   .admin-team-#{$team} {
+      background-color: #{$color};
+   }
+}

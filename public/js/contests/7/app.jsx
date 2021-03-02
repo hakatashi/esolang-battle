@@ -230,6 +230,13 @@ class App extends React.Component {
                    color : 'red',
                 }
 
+                const cellCSS = (x, y) => {
+                   return {
+                      cursor: this.state.languages[y * this.size + x] ? 'pointer' : '',
+                      color: (this.state.languageColors[y * this.size + x] === 'white' ) ? 'black' : 'white'
+                   }
+                }
+
 		return (
 			<div className="world">
 				<div className="teams left">{this.renderTeam('Blue', 1)}</div>
@@ -249,13 +256,7 @@ class App extends React.Component {
 												this.state.languageColors[y * this.size + x]
 											}`}
 											onClick={this.handleClickCell}
-											style={{
-												cursor:
-														this.state.languages[y * this.size + x]
-															? 'pointer'
-															: '',
-                                                                                              color: (this.state.languageColors[y * this.size + x] === 'white' ) ? 'black' : 'white'
-											}}
+											style={ cellCSS(x,y) }
 											data-index={y * this.size + x}
 										>
 											<svg className="hexagon" viewBox="-0.866 -0.866 1.732 1.732">

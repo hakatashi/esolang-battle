@@ -19,8 +19,8 @@ block content
             tr
               td= user.email
               td
-                button.btn.text-white(style={'background-color': colors[user.getTeam(contest)]})= teams[user.getTeam(contest)]
+                button(class=`btn admin-team-${teams[user.getTeam(contest)]}`)= teams[user.getTeam(contest)]
               td
-                each color, index in colors
-                  a.btn.text-white(style={'background-color': color}, href=`?${qs.encode({user: user._id.toString(), team: index})}`)= teams[index]
+                each team, index in teams
+                  a(class=`btn admin-team-${team}`, href=`?${qs.encode({user: user._id.toString(), team: index})}`)= team
                   = ' '
