@@ -27,11 +27,11 @@ module.exports = (env, argv = {}) => {
                 },
 		entry: Object.assign(
 			...[
+                           // Note: do not compile old contest
                            /*
 				['contest-4', 'js/contests/4/index.babel.js'],
 				['contest-mayfes2018', 'js/contests/mayfes2018/index.babel.js'],
 				['contest-hackathon2018', 'js/contests/hackathon2018/index.babel.js'],
-				['check', 'js/check.babel.js'],
 				['contest-5', 'js/contests/5/index.babel.js'],
 				['contest-6', 'js/contests/6/index.babel.js'],
 				[
@@ -39,6 +39,7 @@ module.exports = (env, argv = {}) => {
 					'js/contests/mayfes2020-day2/index.babel.js',
 				],
                                 */
+				['check', 'js/check.babel.js'],
 				['contest-7', 'js/contests/7/index.babel.js'],
 			].map(([name, entry]) => ({
 				[name]: [
@@ -55,9 +56,12 @@ module.exports = (env, argv = {}) => {
 			filename: '[name].js',
 		},
 		devtool:
+           'source-map',
+           /*
 			argv.mode === 'production'
 				? 'source-map'
 				: 'eval-cheap-module-source-map',
+                                */
 		module: {
 			rules: [
 				{
