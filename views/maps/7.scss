@@ -1,4 +1,9 @@
-html, body, #app {
+body, #app {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
