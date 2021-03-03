@@ -53,7 +53,8 @@ class App extends React.Component {
 			return;
 		}
 
-		this.socket = window.io(location.origin);
+           // TODO Disable WebSocket due to nginx error
+		this.socket = window.io(location.origin, { transports: ["polling"]});
 		this.socket.on('update-submission', this.handleUpdateSubmission);
 		this.socket.on('update-languages', this.handleUpdateLanguages);
 	};
