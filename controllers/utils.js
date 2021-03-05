@@ -168,7 +168,7 @@ module.exports.getCodeLimit = getCodeLimit;
 
 // タイムアウト; 言語ごとに指定
 module.exports.getTimeLimit = (languageId) => {
-	if (['kotlin', 'husk'].includes(languageId)) {
+	if (['kotlin', 'husk', 'compile-time-typescript'].includes(languageId)) {
 		return 30 * 1000;
 	}
 
