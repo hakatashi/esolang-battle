@@ -48,10 +48,16 @@ const onSubmit = async () => {
 };
 
 submitEl.addEventListener('click', onSubmit);
+// https://qiita.com/xtetsuji/items/a8490a7fea3f5a01e49c
+function bytes2(str) {
+    return(encodeURIComponent(str).replace(/%../g,"x").length);
+}
+
 
 for (const eventName of ['input', 'focus', 'paste']) {
 	codeEl.addEventListener(eventName, () => {
-		countEl.textContent = Buffer.from(codeEl.value).length;
+		//countEl.textContent = Buffer.from(codeEl.value).length;
+                countEl.textContent = bytes2(codeEl.value);
 	});
 }
 
