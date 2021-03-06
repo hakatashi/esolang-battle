@@ -26,6 +26,8 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
+
+
 const MongoStore = connectMongo(session);
 
 /*
@@ -126,14 +128,21 @@ if (process.env.NODE_ENV !== 'development') {
    app.set('trust proxy', true); 
    sess.cookie.secure =  true;
 }
+const crypto = require('crypto');
+app.use((req, res, next) => {
+      Object.defineProperty(res.locals, 'nonce', {
+            value: crypto.pseudoRandomBytes(36).toString('base64'),
+            enumerable: true
+      });
+   console.log(res.locals.nonce);
+   next();
+});
 // https://
 app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use((req, res, next) => {
-	lusca.csrf()(req, res, next);
-});
+app.use(lusca.csrf());
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.csp({
    policy: {
