@@ -37,6 +37,8 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 			const langInfo = langInfos.find(({slug}) => slug === cell.slug);
 			const codeLimit = getCodeLimit(cell.slug);
 
+                        const isOverTimed = contest.isOverTime();
+
 			if (contest.isEnded()) {
 				if (cell.record && cell.record.solution) {
 					return {
@@ -53,7 +55,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 						link: cell.link,
 						info: langInfo,
 						limit: codeLimit,
-						available: false,
+						available: isOverTimed,
 					};
 				}
 
@@ -65,7 +67,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 					link: cell.link,
 					info: langInfo,
 					limit: codeLimit,
-					available: false,
+					available: isOverTimed,
 				};
 			}
 

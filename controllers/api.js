@@ -74,7 +74,7 @@ module.exports.getSubmission = (req, res, next) => {
  */
 module.exports.postExecution = async (req, res) => {
 	try {
-		if (!req.contest.isOpen()) {
+		if (!req.contest.isOpen() && !req.contest.isOverTime()) {
 			throw new Error('Competition has closed');
 		}
 
@@ -212,7 +212,7 @@ module.exports.postExecution = async (req, res) => {
  */
 module.exports.postSubmission = async (req, res) => {
 	try {
-		if (!req.contest.isOpen()) {
+           if (!req.contest.isOpen() && !req.contest.isOverTime()) {
 			throw new Error('Competition has closed');
 		}
 

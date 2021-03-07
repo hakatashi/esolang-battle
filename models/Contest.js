@@ -39,6 +39,14 @@ contestSchema.methods.isEnded = function() {
 	return this.end < now;
 };
 
+contestSchema.methods.isOverTime = function() {
+	if (process.env.NODE_ENV === 'development') {
+		return false;
+	}
+	const now = new Date();
+	return this.isEnded() && process.env.OVERTIME === 'TRUE';
+}
+
 contestSchema.methods.spanText = function() {
 	const startText = moment(this.start)
 		.utcOffset(9)
