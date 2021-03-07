@@ -158,6 +158,7 @@ const getCodeLimit = (languageId) => {
 			'brainfuck-esotope',
 			'taxi',
 			'function2d',
+			'classic-music-theory',
 		].includes(languageId)
 	) {
 		return 100 * 1024;
@@ -170,9 +171,9 @@ module.exports.getCodeLimit = getCodeLimit;
 
 // タイムアウト; 言語ごとに指定
 module.exports.getTimeLimit = (languageId) => {
-	if (['kotlin', 'husk', 'compile-time-typescript'].includes(languageId)) {
+	if (['kotlin', 'husk', 'compile-time-typescript', 'fsharp-dotnet', 'verilog', 'csharp-dotnet', 'evil'].includes(languageId)) {
 		return 30 * 1000;
 	}
 
-	return 10 * 1000;
+	return 20 * 1000;
 };
