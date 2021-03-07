@@ -12,7 +12,7 @@ mongoose.Promise = global.Promise;
 (async () => {
 	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
 
-	const contest = await Contest.find({id: '5'});
+	const contest = await Contest.find({id: '7'});
 	const languages = await Language.find({contest})
 		.populate({
 			path: 'solution',
@@ -29,7 +29,7 @@ mongoose.Promise = global.Promise;
 		const lang = langs.find(({slug}) => slug === language.slug);
                 // TODO Add options to change submission URL
 		console.log(stripIndent`
-			# [${lang.name}](https://esolang-codegolf.hiromi-mi.jpm/contests/7/submissions/${
+			# [${lang.name}](https://esolang-codegolf.hiromi-mi.jp/contests/7/submissions/${
 		language.solution._id
 	}) (@${language.solution.user.email.replace(/@.+$/, '')}, ${
 		language.solution.size
