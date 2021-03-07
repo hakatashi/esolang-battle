@@ -156,6 +156,7 @@ module.exports.postExecution = async (req, res) => {
 		}
 
 		const {stdout, stderr, duration, error, trace} = info;
+		const trace_nonnull = (trace == null) ? "" : trace;
 
 		if (error) {
 			throw error;
@@ -184,14 +185,14 @@ module.exports.postExecution = async (req, res) => {
                   res.json({
                            stdout: stdout.toString(),
                            stderr: stderr.toString(),
-                           strace: trace.toString(),
+                           strace: trace_nonnull.toString(),
                            duration,
                   });
                 } else {
                   res.json({
                            stdout: stdout.toString(),
                            stderr: stderr.toString(),
-                           strace: trace.toString(),
+                           strace: trace_nonnull.toString(),
                            error: "Exec validation failed.",
                            duration,
                   });
