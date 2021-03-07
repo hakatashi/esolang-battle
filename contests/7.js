@@ -81,7 +81,8 @@ module.exports.generateInput = () => {
            generatedPatterns.push(doubleShuffle(pattern));
 	}
         const shuffledGeneratedPatterns = shuffle(generatedPatterns);
-        return shuffledGeneratedPatterns.flat().join('\n');
+// last pattern: add '\n'
+        return shuffledGeneratedPatterns.flat().join('\n') + '\n';
 };
 
 module.exports.isValidAnswer = (input, output) => {
