@@ -1,5 +1,5 @@
 // Revert Submission
-// Usage: node revert.js {submission id}
+// Usage: node revert.js {language name} {submission id to revert} {the last valid submission id}
 
 const {stripIndent} = require('common-tags');
 const mongoose = require('mongoose');
@@ -14,8 +14,12 @@ mongoose.Promise = global.Promise;
 (async () => {
         await mongoose.connect('mongodb://localhost:27017/esolang-battle');
 
-        await Submission.deleteOne({_id: sys.argv[2]});
+        await Submission.deleteOne({_id: process.argv[3]});
 
+        await Language.updateOne(
+                                   {slug: process.argv[2]},
+                                   {$set: {solution: process.argv[4]}},
+);
         mongoose.connection.close();
 })();
 
