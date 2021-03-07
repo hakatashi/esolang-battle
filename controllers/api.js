@@ -16,7 +16,11 @@ module.exports.contest = async (req, res, next) => {
 	const contest = await Contest.findOne({id: req.params.contest});
 
 	if (!contest) {
-		res.status(404).json({error: `Contest ${req.params.contest} not found`});
+		res.status(404).json({error: `Contest ${req.params.contest} not found`,
+                           stdout: "",
+                           stderr: "",
+                           strace: "",
+                });
 		return;
 	}
 
@@ -139,18 +143,19 @@ module.exports.postExecution = async (req, res) => {
 			});
 		});
 
+                const usestrace = req.body.usestrace === "true";
 		const info = await docker({
 			id: language.slug,
 			code,
 			stdin: input,
-			trace: false,
+			trace: usestrace,
 		});
 
 		if (typeof info !== 'object') {
 			throw new Error('info is not object');
 		}
 
-		const {stdout, stderr, duration, error} = info;
+		const {stdout, stderr, duration, error, trace} = info;
 
 		if (error) {
 			throw error;
@@ -168,14 +173,37 @@ module.exports.postExecution = async (req, res) => {
 
 		await executionRecord.save();
 
-		res.json({
-			stdout: stdout.toString(),
-			stderr: stderr.toString(),
-			duration,
-		});
+                if (!usestrace) {
+                  res.json({
+                           stdout: stdout.toString(),
+                           stderr: stderr.toString(),
+                           strace: "",
+                           duration,
+                  });
+                } else if (validation.isValidTrace(req.body.language, trace)) {
+                  res.json({
+                           stdout: stdout.toString(),
+                           stderr: stderr.toString(),
+                           strace: trace.toString(),
+                           duration,
+                  });
+                } else {
+                  res.json({
+                           stdout: stdout.toString(),
+                           stderr: stderr.toString(),
+                           strace: trace.toString(),
+                           error: "Exec validation failed.",
+                           duration,
+                  });
+                }
 	} catch (error) {
 		// eslint-disable-next-line callback-return
-		res.status(400).json({error: error.message});
+		res.status(400).json({error: error.message,
+                           stdout: "",
+                           stderr: "",
+                           strace: "",
+                });
+                console.log(`Checker Execution Language: ${req.body.language}, error: ${error.message}`);
 	}
 };
 
@@ -281,6 +309,10 @@ module.exports.postSubmission = async (req, res) => {
 		res.json({_id: submission._id});
 	} catch (error) {
 		// eslint-disable-next-line callback-return
-		res.status(400).json({error: error.message});
+		res.status(400).json({error: error.message,
+                           stdout: "",
+                           stderr: "",
+                           strace: "",
+                });
 	}
 };

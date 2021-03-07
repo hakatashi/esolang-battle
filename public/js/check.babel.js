@@ -9,8 +9,10 @@ const codeEl = checkerEl.querySelector('.checker-code');
 const fileEl = checkerEl.querySelector('.checker-file');
 const countEl = checkerEl.querySelector('.checker-count');
 const stdinEl = checkerEl.querySelector('.checker-stdin');
+const usestraceEl = checkerEl.querySelector('.checker-usestrace');
 const stdoutEl = checkerEl.querySelector('.checker-stdout');
 const stderrEl = checkerEl.querySelector('.checker-stderr');
+const straceEl = checkerEl.querySelector('.checker-strace');
 const submitEl = checkerEl.querySelector('.checker-submit');
 const alertEl = checkerEl.querySelector('.checker-alert');
 
@@ -32,16 +34,19 @@ const onSubmit = async () => {
 		...(fileEl.files.length > 0
 			? {file: fileEl.files[0]}
 			: {code: codeEl.value}),
+                usestrace: usestraceEl.checked,
 	});
 
 	if (result.error) {
 		alertEl.style.display = 'block';
 		alertEl.textContent = result.error;
-		stdoutEl.value = '';
-		stderrEl.value = '';
+		stdoutEl.value = result.stdout;
+		stderrEl.value = result.stderr;
+		straceEl.value = result.strace;
 	} else {
 		stdoutEl.value = result.stdout;
 		stderrEl.value = result.stderr;
+		straceEl.value = result.strace;
 	}
 
 	submitEl.disabled = false;

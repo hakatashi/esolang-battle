@@ -27,6 +27,9 @@ block content
       .form-group
         label stdin
         textarea.form-control.code.checker-stdin(name='stdin')
+      .form-group.form-check
+        input.form-check-input.checker-usestrace(type='checkbox' name='usestrace')
+        label.form-check-label Enable exec check if possible
       button.btn.btn-primary.checker-submit(type='button') Submit
       hr
       .alert.alert-danger.checker-alert(style={display: 'none'})
@@ -36,3 +39,6 @@ block content
       .form-group
         label stderr
         textarea.form-control.code.checker-stderr(readonly, name='stderr', data-storage='false')
+      .form-group
+        label strace
+        textarea.form-control.code.checker-strace(readonly, name='strace', data-storage='false')
