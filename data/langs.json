@@ -319,7 +319,7 @@
   },
   {
     "slug": "verilog",
-    "name": "Verilog (Icarus Verilog)",
+    "name": "Icarus Verilog",
     "link": "http://iverilog.icarus.com/",
     "disasm": false
   },
@@ -421,7 +421,7 @@
   },
   {
     "slug": "wat",
-    "name": "WebAssembly Text Format",
+    "name": "WebAssembly WAT",
     "link": "https://webassembly.github.io/spec/core/text/index.html",
     "disasm": false
   },
@@ -481,7 +481,7 @@
   },
   {
     "slug": "visualbasic-dotnet",
-    "name": "Visual Basic (.NET Core)",
+    "name": "VB.NET Core",
     "link": "https://docs.microsoft.com/en-us/dotnet/visual-basic/",
     "disasm": false
   },
@@ -673,7 +673,7 @@
   },
   {
     "slug": "classic-music-theory",
-    "name": "ClassicMusicTheoryForProgrammer",
+    "name": "古典派音楽理論",
     "link": "https://github.com/lv100tomato/ClassicMusicTheoryForProgrammer",
     "disasm": false
   },
@@ -937,7 +937,7 @@
   },
   {
     "slug": "compile-time-typescript",
-    "name": "Compile-time TypeScript",
+    "name": "CompileTime TypeScript",
     "link": "https://github.com/n4o847/compile-time-typescript",
     "disasm": false
   },
@@ -1219,7 +1219,7 @@
   },
   {
     "slug": "awk",
-    "name": "awk (GNU awk)",
+    "name": "GNU awk",
     "link": "http://www.gnu.org/software/gawk/",
     "disasm": false
   },
@@ -1381,7 +1381,7 @@
   },
   {
     "slug": "cpp-compile-time-clang",
-    "name": "Compile-time C++ (Clang, C++11)",
+    "name": "C++11 constexpr",
     "link": "https://clang.llvm.org/",
     "disasm": false
   },
@@ -1453,7 +1453,7 @@
   },
   {
     "slug": "apache2-rewrite",
-    "name": "Apache mod_rewrite",
+    "name": "mod_rewrite",
     "link": "https://httpd.apache.org/docs/2.4/rewrite/",
     "disasm": false
   },
