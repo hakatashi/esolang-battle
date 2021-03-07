@@ -39,7 +39,7 @@ const languages = {
 	43: 'starry',
 	44: 'nim-lang',
 	45: 'osecpu',
-	46: 'tsp',
+	46: 'reversed-c',
 	47: 'gnuplot',
 	48: 'wat',
 	49: 'functional',
