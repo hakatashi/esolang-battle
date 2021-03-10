@@ -48,7 +48,7 @@ module.exports.getSubmissions = async (req, res) => {
 		.exec();
 
 	const totalSubmissions = await Submission.find(query)
-		.count()
+		.countDocuments()
 		.exec();
 
 	const users_id = await Submission.find({contest: req.contest})
