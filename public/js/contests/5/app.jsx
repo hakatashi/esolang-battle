@@ -407,7 +407,7 @@ class App extends React.Component {
 					<ModalHeader>
 						{selectedLanguage.name}{' '}
 						<small>
-							<a href={selectedLanguage.link} target="_blank">
+							<a href={selectedLanguage.link} target="_blank" rel="noopener noreferrer">
 								[detail]
 							</a>
 						</small>
@@ -423,7 +423,7 @@ class App extends React.Component {
 									{'Solution: '}
 									<a
 										href={`/contests/5/submissions/${selectedLanguage.solution._id}`}
-										target="_blank"
+										target="_blank" rel="noopener noreferrer"
 									>
 										{selectedLanguage.solution._id}
 									</a>
@@ -460,7 +460,7 @@ class App extends React.Component {
 										{' Check out the detail '}
 										<a
 											href={`/contests/5/submissions/${this.state.messageDetail}`}
-											target="_blank"
+											target="_blank" rel="noopener noreferrer"
 										>
 											here
 										</a>

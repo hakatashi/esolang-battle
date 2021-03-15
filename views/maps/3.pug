@@ -12,7 +12,7 @@
           invalid: x < margin || 14 - x < margin,
         }),
         href=language.solution ? `/contests/${contest.id}/submissions/${language.solution._id}` : undefined,
-        target='_blank'
+        target='_blank', rel='noopener noreferrer'
       )
         svg.triangle-area(viewBox="0 0 1000 866")
           polygon.triangle(points="0,866 500,0 1000,866")

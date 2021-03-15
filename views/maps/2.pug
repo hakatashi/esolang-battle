@@ -9,7 +9,7 @@
           gray: language.team === undefined,
         }),
         href=language.solution ? `/contests/${contest.id}/submissions/${language.solution._id}` : undefined,
-        target='_blank'
+        target='_blank', rel='noopener noreferrer'
       )
         .language-label
           .name= language.name
