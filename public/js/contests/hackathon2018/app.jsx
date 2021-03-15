@@ -251,7 +251,7 @@ class App extends React.Component {
 						<small>
 							<a
 								href={selectedLanguage.link}
-								target="_blank"
+								target="_blank" rel="noopener noreferrer"
 								rel="noopener noreferrer"
 							>
 								[detail]
@@ -269,7 +269,7 @@ class App extends React.Component {
 									{'Solution: '}
 									<a
 										href={`/contests/${this.contestId}/submissions/${selectedLanguage.solution._id}`}
-										target="_blank"
+										target="_blank" rel="noopener noreferrer"
 										rel="noopener noreferrer"
 									>
 										{selectedLanguage.solution._id}
@@ -307,7 +307,7 @@ class App extends React.Component {
 										{' Check out the detail '}
 										<a
 											href={`/contests/${this.contestId}/submissions/${this.state.messageDetail}`}
-											target="_blank"
+											target="_blank" rel="noopener noreferrer"
 											rel="noopener noreferrer"
 										>
 											here

@@ -20,7 +20,7 @@ block content
       if submission.url
         = ' '
         small
-          a(href=submission.url, target='_blank') [link]
+          a(href=submission.url, target='_blank', rel='noopener noreferrer') [link]
         
     p
       +submissionBadge(submission)

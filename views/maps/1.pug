@@ -5,7 +5,7 @@
       a.language.cell(
         class=classnames(language.solution && `user-${language.solution.user.slice(1)}`),
         href=language.solution ? `/contests/${contest.id}/submissions/${language.solution._id}` : undefined,
-        target='_blank'
+        target='_blank', rel='noopener noreferrer'
       )
         .language-label
           .name= language.name
