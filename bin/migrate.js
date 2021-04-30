@@ -103,12 +103,12 @@ mongoose.Promise = global.Promise;
 	);
 
 	await Contest.updateOne(
-		{id: 'mayfes2020-day2'},
+		{id: 'mayfes2021-day2'},
 		{
-			name: '五月祭2020 Live CodeGolf Contest Day2',
-			id: 'mayfes2020-day2',
-			start: new Date('2020-09-21T12:03:00+0900'),
-			end: new Date('2020-09-21T13:18:00+0900'),
+			name: '五月祭2021 Live CodeGolf Contest Day2',
+			id: 'mayfes2021-day2',
+			start: new Date('2021-05-16T12:33:00+0900'),
+			end: new Date('2021-05-16T13:48:00+0900'),
 			description: {
 				ja: stripIndent`
 				\`\`\`
