@@ -22,12 +22,12 @@ mongoose.Promise = global.Promise;
 	}
 
 	await Contest.updateOne(
-		{id: 'hello'},
+		{id: 'mayfes2021-practice1'},
 		{
-			name: 'Hello Contest',
-			id: 'hello',
-			start: new Date('2020-09-15T00:00:00+0900'),
-			end: new Date('2020-09-21T11:00:00+0900'),
+			name: '五月祭2021 Practice Contest 1',
+			id: 'mayfes2021-practice1',
+			start: new Date('2021-04-30T00:00:00+0900'),
+			end: new Date('2021-05-15T13:33:00+0900'),
 			description: {
 				ja: stripIndent`
 				"hello" と出力せよ。
@@ -39,12 +39,12 @@ mongoose.Promise = global.Promise;
 	);
 
 	await Contest.updateOne(
-		{id: 'hello2'},
+		{id: 'mayfes2021-practice2'},
 		{
-			name: 'Hello Contest 2',
-			id: 'hello2',
-			start: new Date('2020-09-15T00:00:00+0900'),
-			end: new Date('2020-09-20T09:00:00+0900'),
+			name: '五月祭2021 Practice Contest 2',
+			id: 'mayfes2021-practice2',
+			start: new Date('2021-04-30T00:00:00+0900'),
+			end: new Date('2021-05-16T12:33:00+0900'),
 			description: {
 				ja: stripIndent`
 				"hello" と出力せよ。

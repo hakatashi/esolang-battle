@@ -36,4 +36,6 @@ module.exports = {
 	'mayfes2020-day2': mayfes2020Day2,
 	'mayfes2021-day1': mayfes2021Day1,
 	'mayfes2021-day2': mayfes2021Day2,
+	'mayfes2021-practice1': mayfes2021Day1,
+	'mayfes2021-practice2': mayfes2021Day2,
 };
