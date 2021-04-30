@@ -16,6 +16,10 @@ class App extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 
+		this.contestId = document
+			.querySelector('meta[name=contest-id]')
+			.getAttribute('content');
+
 		this.state = {
 			code: '',
 			files: [],
@@ -46,7 +50,7 @@ class App extends React.Component {
 	};
 
 	updateLanguages = async () => {
-		const languages = await api('GET', '/contests/mayfes2021-day2/languages');
+		const languages = await api('GET', `/contests/${this.contestId}/languages`);
 		this.setState({languages});
 		this.map &&
 			this.map.setFaceColors(
@@ -126,7 +130,7 @@ class App extends React.Component {
 			messageDetail: null,
 		});
 
-		const result = await api('POST', '/contests/mayfes2021-day2/submission', {
+		const result = await api('POST', `/contests/${this.contestId}/submission`, {
 			language: this.state.selectedLanguage.slug,
 			...(this.state.files.length > 0
 				? {file: this.state.files[0]}
@@ -151,7 +155,7 @@ class App extends React.Component {
 		}
 
 		this.pendingSubmission = null;
-		const submission = await api('GET', '/contests/mayfes2021-day2/submission', {
+		const submission = await api('GET', `/contests/${this.contestId}/submission`, {
 			_id: data._id,
 		});
 
