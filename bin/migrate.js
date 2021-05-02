@@ -30,7 +30,37 @@ mongoose.Promise = global.Promise;
 			end: new Date('2021-05-15T13:33:00+0900'),
 			description: {
 				ja: stripIndent`
-				"hello" と出力せよ。
+				\`\`\`
+				大文字か小文字かを判定せよ。
+				\`\`\`
+				## 入力
+				* ラテン文字 A から Z の 26 文字が順番に、一行で与えられる。
+				* 各文字は大文字あるいは小文字である。
+				* 入力の最後には改行が付与される。
+				## 出力
+				* 与えられた文字それぞれについて、大文字であれば \`1\` を、小文字であれば \`0\` を出力せよ。
+				* 出力された文字列に含まれる空白文字（改行含む）は無視される。
+				## 制約
+				* 入力には必ず大文字がひとつ以上、小文字がひとつ以上含まれる。
+				## お知らせ
+				今回はライブコードゴルフ完全初心者同士の対決なので、初心者に不親切な言語の資料と、ヒントを用意しました。
+				適宜活用してください。
+				### 言語
+				* Emoji：[https://github.com/n4o847/esolangs/wiki/Emoji](https://github.com/n4o847/esolangs/wiki/Emoji)
+				* PPAP：[https://github.com/n4o847/esolangs/wiki/PPAP](https://github.com/n4o847/esolangs/wiki/PPAP)
+				* \`><>\`：[https://github.com/n4o847/esolangs/wiki/Fish](https://github.com/n4o847/esolangs/wiki/Fish)
+				* Brainfuck：[https://github.com/n4o847/esolangs/wiki/Brainfuck](https://github.com/n4o847/esolangs/wiki/Brainfuck)
+				### ヒント
+				* ライブコードゴルフは早く出すことが正義で、そして一般にesoによるループは難しいです。愚直に26回書くことも検討してみては？
+				## 入出力例
+				### 入力
+				\`\`\`
+				ABCdefghiJKLmnopqRSTUvwxYz
+				\`\`\`
+				### 出力
+				\`\`\`
+				11100000011100000111100010
+				\`\`\`
 				`,
 				en: '',
 			},

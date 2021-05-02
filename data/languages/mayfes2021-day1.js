@@ -3,11 +3,11 @@ const flatten = require('lodash/flatten');
 const langsData = require('../langs.json');
 
 const languages = [
-	['', 'golfscript', 'brainfuck-esotope', 'bash-busybox', ''],
-	['', '', 'ruby', '', ''],
-	['', 'node', 'fish', 'python3', ''],
+	['', 'asciidots', 'bash-busybox', 'brainfuck-esotope', ''],
 	['', '', 'c-gcc', '', ''],
-	['', 'fernando', 'emoji', 'ppap', ''],
+	['', 'fernando', 'golfscript', '', ''],
+	['', '', 'node', '', ''],
+	['', 'produire', 'python3', 'ruby', ''],
 ];
 
 module.exports = flatten(languages).map((language, index) => {
