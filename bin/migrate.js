@@ -13,7 +13,7 @@ mongoose.Promise = global.Promise;
 
 	await User.updateMany({admin: true}, {$set: {admin: false}});
 
-	for (const id of ['__fiord', 'gh_end_', 'hideo54', 'naan112358', 'n4o847']) {
+	for (const id of ['sitositositoo', 'u6606u5e03', 'n4o847']) {
 		const user = await User.findOne({email: `${id}@twitter.com`});
 		if (user) {
 			user.admin = true;
