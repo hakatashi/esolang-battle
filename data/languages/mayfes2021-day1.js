@@ -5,7 +5,7 @@ const langsData = require('../langs.json');
 const languages = [
 	['', 'asciidots', 'bash-busybox', 'brainfuck-esotope', ''],
 	['', '', 'c-gcc', '', ''],
-	['', 'fernando', 'golfscript', '', ''],
+	['', 'fernando', 'golfscript', 'mao', ''],
 	['', '', 'node', '', ''],
 	['', 'produire', 'python3', 'ruby', ''],
 ];
