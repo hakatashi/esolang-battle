@@ -26,7 +26,7 @@ class App extends React.Component {
 			faces: [],
 			languages: [],
 			selectedLanguage: null,
-			isPending: true,
+			isPending: false,
 			message: null,
 			messageType: 'success',
 			messageDetail: null,
@@ -325,7 +325,11 @@ class App extends React.Component {
 						)}
 					</ModalBody>
 					<ModalFooter>
-						<Button color="primary" onClick={this.handleSend} disabled>
+						<Button
+							color="primary"
+							onClick={this.handleSend}
+							disabled={this.state.isPending}
+						>
 							Send
 						</Button>{' '}
 						<Button color="secondary" onClick={this.handleCloseModal}>
