@@ -1,32 +1,37 @@
 const langsData = require('../langs.json');
 
 const languages = {
-	0: 'c-gcc',
-	1: 'c-gcc',
-	2: 'c-gcc',
-	3: 'c-gcc',
-	4: 'c-gcc',
-	5: 'c-gcc',
-	6: 'c-gcc',
-	7: 'c-gcc',
-	8: 'c-gcc',
-	9: 'c-gcc',
-	10: 'c-gcc',
-	11: 'c-gcc',
-	12: 'c-gcc',
-	13: 'c-gcc',
-	14: 'c-gcc',
-	15: 'c-gcc',
-	16: 'c-gcc',
-	17: 'c-gcc',
-	18: 'c-gcc',
-	19: 'c-gcc',
-	20: 'c-gcc',
-	21: 'c-gcc',
+	// squares
+	0: '',
+	1: 'ppap',
+	2: 'aheui',
+	3: 'cpp-compile-time-clang',
+	4: 'tex',
+	5: '',
+	6: '',
+	7: 'bash-busybox',
+	8: 'compile-time-typescript',
+	9: 'jq',
+	10: 'ocaml',
+	11: '',
+
+	// hexagons
+	12: 'perl',
+	13: 'befunge98',
+	14: 'fernando',
+	15: 'starry',
+	16: 'produire',
+	17: 'php',
+	18: 'fish',
+	19: 'mao',
+
+	// octagons
+	20: 'whitespace',
+	21: 'node',
 	22: 'c-gcc',
-	23: 'c-gcc',
-	24: 'c-gcc',
-	25: 'c-gcc',
+	23: 'python3',
+	24: 'ruby',
+	25: 'brainfuck-esotope',
 };
 
 module.exports = Array(26)
