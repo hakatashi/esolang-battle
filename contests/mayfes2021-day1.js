@@ -33,8 +33,8 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 	);
 };
 
-const ascendingCases = ["0123", "1230", "2301", "3012"];
-const descendingCases = ["3210", "0321", "1032", "2103"];
+const ascendingCases = ['0123', '1230', '2301', '3012'];
+const descendingCases = ['3210', '0321', '1032', '2103'];
 const cases = concat(ascendingCases, descendingCases);
 
 const lineNum = 32;
@@ -44,19 +44,19 @@ assert(lineNum > cases.length);
 module.exports.generateInput = () => {
 	const determinedNumbers = range(cases.length);
 	const randomNumbers = range(lineNum - cases.length).map(() => sample(range(cases.length)));
-    const numbers = shuffle(concat(determinedNumbers, randomNumbers));
-	const lines = numbers.map(n => cases[n]);
+	const numbers = shuffle(concat(determinedNumbers, randomNumbers));
+	const lines = numbers.map((n) => cases[n]);
 
 	return `${lines.join('\n')}\n`;
 };
 
 module.exports.isValidAnswer = (input, output) => {
-	const inputLines = input.trim().split("\n");
+	const inputLines = input.trim().split('\n');
 
 	assert(inputLines.length === lineNum);
 
 	const correctOutput = inputLines
-		.map(line => (includes(ascendingCases, line) ? 1 : 0))
+		.map((line) => (includes(ascendingCases, line) ? 1 : 0))
 		.join('');
 	const trimmedOutput = output.toString().replace(/\s/g, '');
 
