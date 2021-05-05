@@ -51,7 +51,7 @@ module.exports.generateInput = () => {
 };
 
 module.exports.isValidAnswer = (input, output) => {
-	const inputLines = input.split("\n");
+	const inputLines = input.trim().split("\n");
 
 	assert(inputLines.length === lineNum);
 
