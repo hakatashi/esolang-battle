@@ -1,4 +1,6 @@
 const assert = require('assert');
+const concat = require('lodash/concat');
+const includes = require('lodash/includes');
 const range = require('lodash/range');
 const sample = require('lodash/sample');
 const shuffle = require('lodash/shuffle');
@@ -31,23 +33,30 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 	);
 };
 
+const ascendingCases = ["0123", "1230", "2301", "3012"];
+const descendingCases = ["3210", "0321", "1032", "2103"];
+const cases = concat(ascendingCases, descendingCases);
+
+const lineNum = 32;
+
+assert(lineNum > cases.length);
+
 module.exports.generateInput = () => {
-	const n = sample(range(1, 26));
-	const numbers = shuffle(('1'.repeat(n) + '0'.repeat(26 - n)).split(''));
-	const letters = numbers.map((n, i) => String.fromCharCode(i + (n === '1' ? 'A' : 'a').charCodeAt()));
+	const determinedNumbers = range(cases.length);
+	const randomNumbers = range(lineNum - cases.length).map(() => sample(range(cases.length)));
+    const numbers = shuffle(concat(determinedNumbers, randomNumbers));
+	const lines = numbers.map(n => cases[n]);
 
-	assert(letters.length === 26);
-
-	return `${letters.join('')}\n`;
+	return `${lines.join('\n')}\n`;
 };
 
 module.exports.isValidAnswer = (input, output) => {
-	const chunks = input.split(/(?=[a-zA-Z])/);
+	const inputLines = input.trim().split("\n");
 
-	assert(chunks.length === 26);
+	assert(inputLines.length === lineNum);
 
-	const correctOutput = chunks
-		.map((chunk) => (chunk === chunk.toUpperCase() ? 1 : 0))
+	const correctOutput = inputLines
+		.map(line => (includes(ascendingCases, line) ? 1 : 0))
 		.join('');
 	const trimmedOutput = output.toString().replace(/\s/g, '');
 
