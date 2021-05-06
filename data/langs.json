@@ -109,7 +109,7 @@
   },
   {
     "slug": "ruby",
-    "name": "Ruby 2.7.1",
+    "name": "Ruby 3.0.0",
     "link": "https://www.ruby-lang.org/",
     "disasm": false
   },
@@ -979,7 +979,7 @@
   },
   {
     "slug": "php",
-    "name": "PHP 7.0",
+    "name": "PHP 7.4",
     "link": "https://secure.php.net/",
     "disasm": false
   },
