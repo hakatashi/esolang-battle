@@ -45,7 +45,7 @@ module.exports = class {
 			[8, truncatedCuboctahedron.octagons],
 		]) {
 			for (const polygon of polygons) {
-				const geometry = new THREE.Geometry();
+				const geometry = new THREE.BufferGeometry();
 
 				const vertices = [];
 
@@ -60,26 +60,35 @@ module.exports = class {
 				const median = vertices
 					.reduce((a, b) => a.clone().add(b))
 					.divideScalar(sides);
-				geometry.vertices = vertices.map((v) => v.clone().lerp(median, sides === 4 ? 0.1 : 0.05));
+				const lerpedVertices = vertices.map((v) => v.clone().lerp(median, sides === 4 ? 0.1 : 0.05));
+
+				const positions = new Float32Array(lerpedVertices.flatMap((v) => [v.x, v.y, v.z]));
+				geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
 				this.faceMedians.push(median);
 
 				if (sides === 4) {
-					geometry.faces.push(new THREE.Face3(0, 1, 2));
-					geometry.faces.push(new THREE.Face3(0, 2, 3));
+					geometry.setIndex([
+						0, 1, 2,
+						0, 2, 3,
+					]);
 				} else if (sides === 6) {
-					geometry.faces.push(new THREE.Face3(0, 1, 2));
-					geometry.faces.push(new THREE.Face3(0, 2, 3));
-					geometry.faces.push(new THREE.Face3(0, 3, 4));
-					geometry.faces.push(new THREE.Face3(0, 4, 5));
+					geometry.setIndex([
+						0, 1, 2,
+						0, 2, 3,
+						0, 3, 4,
+						0, 4, 5,
+					]);
 				} else if (sides === 8) {
-					geometry.faces.push(new THREE.Face3(0, 1, 2));
-					geometry.faces.push(new THREE.Face3(0, 2, 3));
-					geometry.faces.push(new THREE.Face3(0, 3, 4));
-					geometry.faces.push(new THREE.Face3(0, 4, 5));
-					geometry.faces.push(new THREE.Face3(0, 5, 6));
-					geometry.faces.push(new THREE.Face3(0, 6, 7));
+					geometry.setIndex([
+						0, 1, 2,
+						0, 2, 3,
+						0, 3, 4,
+						0, 4, 5,
+						0, 5, 6,
+						0, 6, 7,
+					]);
 				}
-				geometry.computeFaceNormals();
 
 				const material = new THREE.MeshBasicMaterial({color: 0x111111});
 				const mesh = new THREE.Mesh(geometry, material);
