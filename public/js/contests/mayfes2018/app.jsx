@@ -338,6 +338,21 @@ class App extends React.Component {
 								<p>Solution: N/A</p>
 							</>
 						)}
+						<p>
+							Exec:{' '}
+							{(selectedLanguage.info && selectedLanguage.info.time > 10) ||
+							['bash-busybox', 'm4', 'cmd'].includes(selectedLanguage.slug) ? (
+									'Allowed'
+								) : (
+									<strong style={{color: 'red'}}>Denied</strong>
+								)}
+						</p>
+						{typeof selectedLanguage.limit === 'number' && (
+							<p>
+								Length Limit: {selectedLanguage.limit.toLocaleString('en-US')}{' '}
+								bytes
+							</p>
+						)}
 						<Form>
 							<FormGroup
 								disabled={!this.state.files || this.state.files.length === 0}
