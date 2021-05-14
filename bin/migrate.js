@@ -24,7 +24,7 @@ mongoose.Promise = global.Promise;
 	await Contest.updateOne(
 		{id: 'mayfes2021-practice1'},
 		{
-			name: '五月祭2021 Practice Contest 1',
+			name: 'Practice Contest 1',
 			id: 'mayfes2021-practice1',
 			start: new Date('2021-04-30T00:00:00+0900'),
 			end: new Date('2021-05-14T00:00:00+0900'),
@@ -71,7 +71,7 @@ mongoose.Promise = global.Promise;
 	await Contest.updateOne(
 		{id: 'mayfes2021-practice2'},
 		{
-			name: '五月祭2021 Practice Contest 2',
+			name: 'Practice Contest 2',
 			id: 'mayfes2021-practice2',
 			start: new Date('2021-04-30T00:00:00+0900'),
 			end: new Date('2021-05-14T00:00:00+0900'),
@@ -161,7 +161,7 @@ mongoose.Promise = global.Promise;
 	await Contest.updateOne(
 		{id: 'mayfes2021-day1'},
 		{
-			name: '五月祭2021 Live CodeGolf Contest Day1',
+			name: '[TSG LIVE! 6] Live CodeGolf Contest Day1',
 			id: 'mayfes2021-day1',
 			start: new Date('2021-05-15T13:33:00+0900'),
 			end: new Date('2021-05-15T14:48:00+0900'),
@@ -235,7 +235,7 @@ mongoose.Promise = global.Promise;
 	await Contest.updateOne(
 		{id: 'mayfes2021-day2'},
 		{
-			name: '五月祭2021 Live CodeGolf Contest Day2',
+			name: '[TSG LIVE! 6] Live CodeGolf Contest Day2',
 			id: 'mayfes2021-day2',
 			start: new Date('2021-05-16T12:33:00+0900'),
 			end: new Date('2021-05-16T13:48:00+0900'),
