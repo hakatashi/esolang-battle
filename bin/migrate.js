@@ -272,7 +272,7 @@ mongoose.Promise = global.Promise;
 				\`\`\`
 				### 出力2
 				\`\`\`
-					 k            k      k    k      k       k      
+				   k            k      k    k      k       k      
 				\`\`\`
 				`,
 				en: '',
