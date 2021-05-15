@@ -1,4 +1,5 @@
 const assert = require('assert');
+const range = require('lodash/range');
 const shuffle = require('lodash/shuffle');
 const truncatedCuboctahedron = require('../data/truncated-cuboctahedron');
 
@@ -25,45 +26,42 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 		});
 };
 
-const numbers = Array(90)
-	.fill()
-	.map((_, x) => (x + 10).toString());
-
 module.exports.generateInput = () => {
-	// input generator
-	const nums = shuffle(numbers).filter((_, x) => x < 50);
-	const input = `${nums.join('\n')}\n`;
-	console.log(input);
-	return input;
+	const syllables = [
+		...range(10).map(() => 'to'),
+		...range(10).map(() => 'kyo'),
+	];
+	assert(syllables.length === 20);
+
+	const line = shuffle(syllables).join('');
+	assert(line.length === 50);
+	assert(line.includes('tokyo') || line.includes('kyoto'));
+
+	return `${line}\n`;
 };
 
 module.exports.isValidAnswer = (input, output) => {
-	if (process.env.NODE_ENV !== 'production') {
-		return true;
-	}
+	const count = (s, t) => s.split(t).length - 1;
 
-	const lines = input.split('\n').filter((line) => line.length > 0);
-
-	assert(lines.length === 50);
-
-	let minValue = parseInt(lines[0]) + 1;
-	let cnt = '';
-
-	for (const line of lines) {
-		const val = parseInt(line);
-		if (val < minValue) {
-			minValue = val;
-			cnt += '1';
-		} else {
-			cnt += '0';
-		}
-	}
-
-	const correctOutput = cnt;
+	const tokyoCount = count(input, 'tokyo');
+	const kyotoCount = count(input, 'kyoto');
 
 	const trimmedOutput = output.toString().replace(/\s/g, '');
 
-	console.log('info:', {input, correctOutput, output, trimmedOutput});
+	console.log('info:', {input, tokyoCount, kyotoCount, output, trimmedOutput});
 
-	return trimmedOutput === correctOutput;
+	let t = 0;
+	let k = 0;
+
+	for (const char of trimmedOutput) {
+		if (char === 't' || char === 'T') {
+			t += 1;
+		} else if (char === 'k' || char === 'K') {
+			k += 1;
+		} else {
+			return false;
+		}
+	}
+
+	return (t === tokyoCount && k === 0) || (t === 0 && k === kyotoCount);
 };
