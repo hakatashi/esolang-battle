@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha --reporter spec",
+    "test": "mocha --reporter spec --exit",
     "dev": "nodemon app.js --ignore public",
     "lint": "prettier-eslint **/*.js **/*.jsx --ignore public/js/lib/** --write && eslint **/*.js --ignore-pattern public/js/lib/**"
   },

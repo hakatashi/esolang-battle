@@ -7,7 +7,7 @@ const util = require('util');
 const bodyParser = require('body-parser');
 const chalk = require('chalk');
 const compression = require('compression');
-const connectMongo = require('connect-mongo');
+const MongoStore = require('connect-mongo');
 const dotenv = require('dotenv');
 const dotenvExpand = require('dotenv-expand');
 const errorHandler = require('errorhandler');
@@ -25,8 +25,6 @@ const passport = require('passport');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-
-const MongoStore = connectMongo(session);
 
 /*
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -110,8 +108,8 @@ app.use(
 		resave: true,
 		saveUninitialized: true,
 		secret: process.env.SESSION_SECRET,
-		store: new MongoStore({
-			url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+		store: MongoStore.create({
+			mongoUrl: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
 			autoReconnect: true,
 		}),
 	}),
