@@ -1,6 +1,6 @@
 mixin submissionBadge(submission)
-  - 
-    const badgeClass = {pending: 'badge-secondary', success: 'badge-success', failed: 'badge-warning', error: 'badge-danger', invalid: 'badge-danger'}[submission.status]
+  -
+    const badgeClass = {pending: 'bg-secondary', success: 'bg-success', failed: 'bg-warning', error: 'bg-danger', invalid: 'bg-danger'}[submission.status]
     const badgeText = {pending: 'WJ', success: 'AC', failed: 'WA', error: 'ERROR', invalid: 'INVALID'}[submission.status]
   span.badge(class=badgeClass)
     if submission.error && submission.error.name === 'TimeoutError'

@@ -1,41 +1,41 @@
 .navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top
-  a.navbar-brand.contest-title(href=contest ? `/contests/${contest.id}` : '/')
-    = contest ? contest.name : 'Esolang Battler'
-    = ' '
-  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
-    span.navbar-toggler-icon
-  .collapse.navbar-collapse.justify-content-end#navbarSupportedContent
-    if contest
-      ul.navbar-nav.mr-auto
-        li.nav-item(class=(title == '') ? 'active' : undefined)
-          a.nav-link(href=`/contests/${contest.id}`) Home
-        li.nav-item(class=(title == 'Rule') ? 'active' : undefined)
-          a.nav-link(href=`/contests/${contest.id}/rule`) Rule
-        li.nav-item(class=(title == 'Submissions') ? 'active' : undefined)
-          a.nav-link(href=`/contests/${contest.id}/submissions`) Submissions
-        if contest.isOpen()
-          li.nav-item(class=(title == 'Check') ? 'active' : undefined)
-            a.nav-link(href=`/contests/${contest.id}/check`) Check
-    ul.navbar-nav
-      li.nav-item
-        small.nav-link
-          = contest ? contest.spanText() : ''
-    ul.navbar-nav
-      if !user
-        if title !== 'Login'
-          li.nav-item
-            a.nav-link(href='/login') Login
-      else
-        li.nav-item.dropdown
-          a.nav-link.dropdown-toggle#navbarDropdown(href='#', data-toggle='dropdown')
-            if user.profile.picture
-              img(src=user.profile.picture)
-            else
-              img(src=user.gravatar(60))
-            span= user.name() || user.email || user.id
-            i.caret
-          .dropdown-menu
-            a.dropdown-item(href='/account') My Account
-            a.dropdown-item(href='/logout') Logout
-      li.nav-item
-        a.nav-link.btn.btn-outline-secondary.btn-sm(href='/') Top
+  .container-fluid
+    a.navbar-brand.contest-title(href=contest ? `/contests/${contest.id}` : '/')
+      = contest ? contest.name : 'Esolang Battler'
+      = ' '
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarSupportedContent
+      ul.navbar-nav.me-auto
+        if contest
+          li.nav-item(class=(title == '') ? 'active' : undefined)
+            a.nav-link(href=`/contests/${contest.id}`) Home
+          li.nav-item(class=(title == 'Rule') ? 'active' : undefined)
+            a.nav-link(href=`/contests/${contest.id}/rule`) Rule
+          li.nav-item(class=(title == 'Submissions') ? 'active' : undefined)
+            a.nav-link(href=`/contests/${contest.id}/submissions`) Submissions
+          if contest.isOpen()
+            li.nav-item(class=(title == 'Check') ? 'active' : undefined)
+              a.nav-link(href=`/contests/${contest.id}/check`) Check
+        li.nav-item
+          small.nav-link
+            = contest ? contest.spanText() : ''
+      ul.navbar-nav
+        if !user
+          if title !== 'Login'
+            li.nav-item
+              a.nav-link(href='/login') Login
+        else
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle#navbarDropdown(href='#', data-toggle='dropdown')
+              if user.profile.picture
+                img(src=user.profile.picture)
+              else
+                img(src=user.gravatar(60))
+              span= user.name() || user.email || user.id
+              i.caret
+            .dropdown-menu
+              a.dropdown-item(href='/account') My Account
+              a.dropdown-item(href='/logout') Logout
+        li.nav-item
+          a.nav-link.btn.btn-outline-secondary.btn-sm(href='/') Top

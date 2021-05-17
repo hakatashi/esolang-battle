@@ -1,6 +1,6 @@
 @import "themes/default/variables";
 
-@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap.scss";
 @import "node_modules/material-colors/dist/colors.sass";
 @import "lib/font-awesome/font-awesome";
 
@@ -88,13 +88,23 @@ pre.hexdump {
   color: darkgray;
 }
 
+a {
+  text-decoration: none;
+}
+
 .jumbotron-wrap {
   color: white;
 
   .jumbotron {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+
     background-color: $md-blue-grey-900;
     background-size: cover;
     background-position: center;
+    min-height: 20rem;
 
     &.contest-1 {
       background-color: $md-lime-700;
