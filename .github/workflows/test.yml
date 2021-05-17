@@ -1,6 +1,8 @@
 name: Run tests
 
-on: [push]
+on:
+  - push
+  - pull_request
 
 jobs:
   build:
@@ -16,7 +18,7 @@ jobs:
           node-version: 14
 
       - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@^1
+        uses: supercharge/mongodb-github-action@1.4.0
         with:
           mongodb-version: 4.4
 
