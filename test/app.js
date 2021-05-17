@@ -1,10 +1,5 @@
 /* eslint-env mocha */
 
-process.env.TWITTER_KEY = 'dummy';
-process.env.TWITTER_SECRET = 'dummy';
-process.env.MONGODB_URI = 'mongodb://localhost:27017/esolang-battle';
-process.env.SESSION_SECRET = 'secret';
-
 const request = require('supertest');
 const app = require('../app.js');
 
