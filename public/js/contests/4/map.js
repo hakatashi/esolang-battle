@@ -44,7 +44,7 @@ module.exports = class {
 			snubDodecahedron.pentagons,
 		].entries()) {
 			for (const polygon of polygons) {
-				const geometry = new THREE.Geometry();
+				const geometry = new THREE.BufferGeometry();
 
 				const vertices = [];
 
@@ -59,17 +59,22 @@ module.exports = class {
 				const median = vertices
 					.reduce((a, b) => a.clone().add(b))
 					.divideScalar(index === 0 ? 3 : 5);
-				geometry.vertices = vertices.map((v) => v.clone().lerp(median, index === 0 ? 0.1 : 0.05));
+				const lerpedVertices = vertices.map((v) => v.clone().lerp(median, index === 0 ? 0.1 : 0.05));
+
+				const positions = new Float32Array(lerpedVertices.flatMap((v) => [v.x, v.y, v.z]));
+				geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
 				this.faceMedians.push(median);
 
 				if (index === 0) {
-					geometry.faces.push(new THREE.Face3(0, 1, 2));
+					geometry.setIndex([0, 1, 2]);
 				} else if (index === 1) {
-					geometry.faces.push(new THREE.Face3(0, 1, 2));
-					geometry.faces.push(new THREE.Face3(0, 2, 3));
-					geometry.faces.push(new THREE.Face3(0, 3, 4));
+					geometry.setIndex([
+						0, 1, 2,
+						0, 2, 3,
+						0, 3, 4,
+					]);
 				}
-				geometry.computeFaceNormals();
 
 				const material = new THREE.MeshBasicMaterial({color: 0x111111});
 				const mesh = new THREE.Mesh(geometry, material);
