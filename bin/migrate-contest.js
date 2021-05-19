@@ -7,7 +7,12 @@ const User = require('../models/User');
 
 mongoose.Promise = global.Promise;
 
-const contestIds = ['mayfes2020-day1', 'mayfes2020-day2'];
+const contestIds = [
+	'mayfes2021-practice1',
+	'mayfes2021-practice2',
+	'mayfes2021-day1',
+	'mayfes2021-day2',
+];
 
 (async () => {
 	const oldConnection = mongoose.createConnection('mongodb://localhost:27017/esolang-battle-hideo54');
@@ -47,7 +52,7 @@ const contestIds = ['mayfes2020-day1', 'mayfes2020-day2'];
 		const existingUser = await NewUser.findOne({email: user.email});
 		const newTeams = await Promise.all(userObj.team.filter((team) => (
 			contestIds.includes(team.contest.id)
-		)).map(async (team) => { 
+		)).map(async (team) => {
 			team.contest = await NewContest.findOne({id: team.contest.id});
 			return team;
 		}));
@@ -106,6 +111,10 @@ const contestIds = ['mayfes2020-day1', 'mayfes2020-day2'];
 		for (const execution of await OldExecution.find({language: {$in: oldLanguages.map((language) => language._id)}}).populate('user').populate('language').exec()) {
 			const executionObj = execution.toJSON();
 			delete executionObj._id;
+
+			if (execution.user === null) {
+				continue;
+			}
 
 			const user = await NewUser.findOne({email: execution.user.email});
 			const language = await NewLanguage.findOne({

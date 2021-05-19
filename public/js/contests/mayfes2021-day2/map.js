@@ -2,7 +2,7 @@ const THREE = require('three');
 const OrbitControls = require('three-orbitcontrols');
 const TrackballControls = require('three-trackballcontrols');
 
-const snubDodecahedron = require('../../../../data/snub-dodecahedron.js');
+const truncatedCuboctahedron = require('../../../../data/truncated-cuboctahedron');
 
 module.exports = class {
 	constructor(element, onFacesUpdate, onClick) {
@@ -15,7 +15,7 @@ module.exports = class {
 		this.scene = new THREE.Scene();
 
 		this.scene.add(this.camera);
-		this.camera.position.set(-60, 30, 260);
+		this.camera.position.set(-60, 30, 360);
 		this.camera.lookAt(this.scene.position);
 		this.element.appendChild(this.renderer.domElement);
 
@@ -36,20 +36,21 @@ module.exports = class {
 		}
 
 		this.faceMedians = [];
-		this.faceColors = Array(92).fill('black');
+		this.faceColors = Array(26).fill('black');
 		let faceIndex = 0;
 
-		for (const [index, polygons] of [
-			snubDodecahedron.triangles,
-			snubDodecahedron.pentagons,
-		].entries()) {
+		for (const [sides, polygons] of [
+			[4, truncatedCuboctahedron.squares],
+			[6, truncatedCuboctahedron.hexagons],
+			[8, truncatedCuboctahedron.octagons],
+		]) {
 			for (const polygon of polygons) {
 				const geometry = new THREE.BufferGeometry();
 
 				const vertices = [];
 
 				for (const pointIndex of polygon) {
-					const vertex = snubDodecahedron.points[pointIndex];
+					const vertex = truncatedCuboctahedron.points[pointIndex];
 					const vector = new THREE.Vector3(
 						...vertex.map((value) => value * 100),
 					);
@@ -58,21 +59,34 @@ module.exports = class {
 
 				const median = vertices
 					.reduce((a, b) => a.clone().add(b))
-					.divideScalar(index === 0 ? 3 : 5);
-				const lerpedVertices = vertices.map((v) => v.clone().lerp(median, index === 0 ? 0.1 : 0.05));
+					.divideScalar(sides);
+				const lerpedVertices = vertices.map((v) => v.clone().lerp(median, sides === 4 ? 0.1 : 0.05));
 
 				const positions = new Float32Array(lerpedVertices.flatMap((v) => [v.x, v.y, v.z]));
 				geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
 				this.faceMedians.push(median);
 
-				if (index === 0) {
-					geometry.setIndex([0, 1, 2]);
-				} else if (index === 1) {
+				if (sides === 4) {
+					geometry.setIndex([
+						0, 1, 2,
+						0, 2, 3,
+					]);
+				} else if (sides === 6) {
 					geometry.setIndex([
 						0, 1, 2,
 						0, 2, 3,
 						0, 3, 4,
+						0, 4, 5,
+					]);
+				} else if (sides === 8) {
+					geometry.setIndex([
+						0, 1, 2,
+						0, 2, 3,
+						0, 3, 4,
+						0, 4, 5,
+						0, 5, 6,
+						0, 6, 7,
 					]);
 				}
 
