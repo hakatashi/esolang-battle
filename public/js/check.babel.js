@@ -51,7 +51,7 @@ submitEl.addEventListener('click', onSubmit);
 
 for (const eventName of ['input', 'focus', 'paste']) {
 	codeEl.addEventListener(eventName, () => {
-		countEl.textContent = Buffer.from(codeEl.value).length;
+		countEl.textContent = new TextEncoder().encode(codeEl.value).length;
 	});
 }
 

@@ -18,6 +18,30 @@
     "disasm": false
   },
   {
+    "slug": "osecpu",
+    "name": "osecpu",
+    "link": "http://osecpu.osask.jp/wiki/",
+    "disasm": false
+  },
+  {
+    "slug": "osecpu-aska",
+    "name": "osecpu-aska",
+    "link": "http://osecpu.osask.jp/wiki/",
+    "disasm": false
+  },
+  {
+    "slug": "rescript",
+    "name": "ReScript",
+    "link": "https://rescript-lang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "reasonml",
+    "name": "ReasonML",
+    "link": "https://rescript-lang.org/",
+    "disasm": false
+  },
+  {
     "slug": "codemania",
     "name": "CodeMania",
     "link": "https://github.com/Tiramister/codemania",
@@ -78,8 +102,14 @@
     "disasm": false
   },
   {
+    "slug": "r",
+    "name": "R",
+    "link": "https://cran.r-project.org",
+    "disasm": false
+  },
+  {
     "slug": "ruby",
-    "name": "Ruby 2.7.1",
+    "name": "Ruby 3.0.0",
     "link": "https://www.ruby-lang.org/",
     "disasm": false
   },
@@ -289,7 +319,7 @@
   },
   {
     "slug": "verilog",
-    "name": "Verilog (Icarus Verilog)",
+    "name": "Icarus Verilog",
     "link": "http://iverilog.icarus.com/",
     "disasm": false
   },
@@ -330,12 +360,6 @@
     "disasm": false
   },
   {
-    "slug": "emojicode",
-    "name": "Emojicode",
-    "link": "http://www.emojicode.org/",
-    "disasm": false
-  },
-  {
     "slug": "intercal",
     "name": "INTERCAL",
     "link": "https://en.wikipedia.org/wiki/INTERCAL",
@@ -351,12 +375,6 @@
     "slug": "minus",
     "name": "Minus",
     "link": "http://www.golfscript.com/minus/",
-    "disasm": false
-  },
-  {
-    "slug": "sqlite3",
-    "name": "SQLite3",
-    "link": "https://sqlite.org/",
     "disasm": false
   },
   {
@@ -403,7 +421,7 @@
   },
   {
     "slug": "wat",
-    "name": "WebAssembly Text Format",
+    "name": "WebAssembly WAT",
     "link": "https://webassembly.github.io/spec/core/text/index.html",
     "disasm": false
   },
@@ -459,6 +477,12 @@
     "slug": "fsharp-dotnet",
     "name": "F# (.NET Core)",
     "link": "https://fsharp.org/",
+    "disasm": false
+  },
+  {
+    "slug": "visualbasic-dotnet",
+    "name": "VB.NET Core",
+    "link": "https://docs.microsoft.com/en-us/dotnet/visual-basic/",
     "disasm": false
   },
   {
@@ -649,7 +673,7 @@
   },
   {
     "slug": "classic-music-theory",
-    "name": "ClassicMusicTheoryForProgrammer",
+    "name": "古典派音楽理論",
     "link": "https://github.com/lv100tomato/ClassicMusicTheoryForProgrammer",
     "disasm": false
   },
@@ -684,21 +708,9 @@
     "disasm": false
   },
   {
-    "slug": "ffb",
-    "name": "Foobar and Foobaz and Barbaz, oh my!",
-    "link": "https://esolangs.org/wiki/Foobar_and_Foobaz_and_Barbaz,_oh_my!",
-    "disasm": false
-  },
-  {
     "slug": "aubergine",
     "name": "Aubergine",
     "link": "https://esolangs.org/wiki/Aubergine",
-    "disasm": false
-  },
-  {
-    "slug": "ubergenes",
-    "name": "UberGenes",
-    "link": "https://esolangs.org/wiki/UberGenes",
     "disasm": false
   },
   {
@@ -765,12 +777,6 @@
     "slug": "fish-shell-pure",
     "name": "Fish (pure)",
     "link": "https://fishshell.com/",
-    "disasm": false
-  },
-  {
-    "slug": "ezhil",
-    "name": "எழில்",
-    "link": "http://ezhillang.org/",
     "disasm": false
   },
   {
@@ -894,21 +900,51 @@
     "disasm": false
   },
   {
-    "slug": "reasonml",
-    "name": "ReasonML",
-    "link": "https://reasonml.github.io/",
-    "disasm": false
-  },
-  {
     "slug": "hakerh-base",
     "name": null,
     "link": null,
     "disasm": false
   },
   {
+    "slug": "encapsulation",
+    "name": "Encapsulation",
+    "link": "https://esolangs.org/wiki/Encapsulation",
+    "disasm": false
+  },
+  {
+    "slug": "functional",
+    "name": "Functional()",
+    "link": "https://esolangs.org/wiki/Functional()",
+    "disasm": false
+  },
+  {
+    "slug": "seclusion",
+    "name": "Seclusion",
+    "link": "https://esolangs.org/wiki/Seclusion",
+    "disasm": false
+  },
+  {
+    "slug": "serenity",
+    "name": "Serenity",
+    "link": "https://esolangs.org/wiki/Serenity",
+    "disasm": false
+  },
+  {
     "slug": "transceternal",
     "name": "Transceternal",
     "link": "https://esolangs.org/wiki/Transceternal",
+    "disasm": false
+  },
+  {
+    "slug": "compile-time-typescript",
+    "name": "CompileTime TypeScript",
+    "link": "https://github.com/n4o847/compile-time-typescript",
+    "disasm": false
+  },
+  {
+    "slug": "emojifunge",
+    "name": "emojifunge",
+    "link": "https://github.com/ten986/emojifunge-lang",
     "disasm": false
   },
   {
@@ -943,7 +979,7 @@
   },
   {
     "slug": "php",
-    "name": "PHP 7.0",
+    "name": "PHP 7.4",
     "link": "https://secure.php.net/",
     "disasm": false
   },
@@ -960,6 +996,18 @@
     "disasm": false
   },
   {
+    "slug": "ffb",
+    "name": "Foobar and Foobaz and Barbaz, oh my!",
+    "link": "https://esolangs.org/wiki/Foobar_and_Foobaz_and_Barbaz,_oh_my!",
+    "disasm": false
+  },
+  {
+    "slug": "ezhil",
+    "name": "எழில்",
+    "link": "http://ezhillang.org/",
+    "disasm": false
+  },
+  {
     "slug": "exchangeif",
     "name": "ExchangeIF",
     "link": "https://github.com/HyogaGlacier/ExchangeIF",
@@ -969,6 +1017,12 @@
     "slug": "trumpscript",
     "name": "TrumpScript",
     "link": "http://samshadwell.me/TrumpScript/",
+    "disasm": false
+  },
+  {
+    "slug": "ubergenes",
+    "name": "UberGenes",
+    "link": "https://esolangs.org/wiki/UberGenes",
     "disasm": false
   },
   {
@@ -1086,6 +1140,12 @@
     "disasm": false
   },
   {
+    "slug": "mao",
+    "name": "MAO",
+    "link": "https://github.com/Muratam/markov-algorithm-offline",
+    "disasm": false
+  },
+  {
     "slug": "cmd",
     "name": "cmd.exe",
     "link": "https://en.wikipedia.org/wiki/Cmd.exe",
@@ -1159,7 +1219,7 @@
   },
   {
     "slug": "awk",
-    "name": "awk (GNU awk)",
+    "name": "GNU awk",
     "link": "http://www.gnu.org/software/gawk/",
     "disasm": false
   },
@@ -1218,21 +1278,33 @@
     "disasm": false
   },
   {
+    "slug": "tsp",
+    "name": "TSP",
+    "link": "https://github.com/nakario/tsp",
+    "disasm": false
+  },
+  {
     "slug": "oh",
     "name": "oh",
     "link": "https://github.com/michaelmacinnis/oh",
     "disasm": false
   },
   {
-    "slug": "zen",
-    "name": "Zen",
-    "link": "https://zen-lang.org/",
+    "slug": "zig",
+    "name": "Zig",
+    "link": "https://ziglang.org/",
     "disasm": false
   },
   {
     "slug": "ubuntu-base",
     "name": null,
     "link": null,
+    "disasm": false
+  },
+  {
+    "slug": "ada",
+    "name": "Ada (GNU GNAT)",
+    "link": "https://learn.adacore.com/",
     "disasm": false
   },
   {
@@ -1254,9 +1326,21 @@
     "disasm": false
   },
   {
+    "slug": "emojicode",
+    "name": "Emojicode",
+    "link": "http://www.emojicode.org/",
+    "disasm": false
+  },
+  {
     "slug": "powershell",
     "name": "PowerShell",
     "link": "https://github.com/PowerShell/PowerShell",
+    "disasm": false
+  },
+  {
+    "slug": "ed",
+    "name": "GNU ed",
+    "link": "http://www.gnu.org/software/ed/",
     "disasm": false
   },
   {
@@ -1297,7 +1381,7 @@
   },
   {
     "slug": "cpp-compile-time-clang",
-    "name": "Compile-time C++ (Clang, C++11)",
+    "name": "C++11 constexpr",
     "link": "https://clang.llvm.org/",
     "disasm": false
   },
@@ -1338,6 +1422,12 @@
     "disasm": false
   },
   {
+    "slug": "bibtex",
+    "name": "BiBTeX",
+    "link": "http://tug.ctan.org/tex-archive/info/bibtex/tamethebeast/ttb_en.pdf",
+    "disasm": false
+  },
+  {
     "slug": "egison",
     "name": "Egison",
     "link": "https://www.egison.org/",
@@ -1347,6 +1437,36 @@
     "slug": "alif",
     "name": "ألف",
     "link": "https://www.aliflang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "sqlite3",
+    "name": "SQLite3",
+    "link": "https://sqlite.org/",
+    "disasm": false
+  },
+  {
+    "slug": "imagemagick",
+    "name": "ImageMagick",
+    "link": "https://imagemagick.org/",
+    "disasm": false
+  },
+  {
+    "slug": "apache2-rewrite",
+    "name": "mod_rewrite",
+    "link": "https://httpd.apache.org/docs/2.4/rewrite/",
+    "disasm": false
+  },
+  {
+    "slug": "nim-lang",
+    "name": "Nim",
+    "link": "https://nim-lang.org/",
+    "disasm": false
+  },
+  {
+    "slug": "csound",
+    "name": "Csound",
+    "link": "https://csound.com/",
     "disasm": false
   },
   {

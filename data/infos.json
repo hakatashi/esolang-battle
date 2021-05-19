@@ -6,7 +6,19 @@
       "/bin/cat",
       "/usr/bin/multi-reader"
     ],
-    "time": 0.1715744880202692
+    "time": 0.237267000018619
+  },
+  {
+    "slug": "osecpu"
+  },
+  {
+    "slug": "osecpu-aska"
+  },
+  {
+    "slug": "rescript"
+  },
+  {
+    "slug": "reasonml"
   },
   {
     "slug": "codemania",
@@ -15,7 +27,7 @@
       "/bin/cat",
       "/usr/bin/codemania"
     ],
-    "time": 0.13866756900097243
+    "time": 0.2192559999821242
   },
   {
     "slug": "3var",
@@ -24,7 +36,7 @@
       "/bin/cat",
       "/root/3var"
     ],
-    "time": 0.15269844001159072
+    "time": 0.2190720000071451
   },
   {
     "slug": "axo",
@@ -33,7 +45,7 @@
       "/bin/cat",
       "/root/axopp"
     ],
-    "time": 0.16138824200606905
+    "time": 0.17600300000049174
   },
   {
     "slug": "befunge93",
@@ -45,7 +57,7 @@
       "/root/bef",
       "/bin/rm"
     ],
-    "time": 0.1538292079931125
+    "time": 0.18810600001597777
   },
   {
     "slug": "befunge98",
@@ -54,7 +66,7 @@
       "/bin/cat",
       "/root/cfunge"
     ],
-    "time": 0.16381199800525792
+    "time": 0.1624899999878835
   },
   {
     "slug": "seed",
@@ -65,7 +77,7 @@
       "/root/cfunge",
       "/bin/rm"
     ],
-    "time": 0.27630477500497364
+    "time": 1.0765619999999672
   },
   {
     "slug": "brainfuck-esotope",
@@ -73,15 +85,15 @@
       "/bin/sh",
       "/usr/bin/python",
       "/usr/bin/gcc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.5775847129989415
+    "time": 3.308969999983674
   },
   {
     "slug": "c-gcc",
@@ -90,18 +102,24 @@
       "/usr/bin/realpath",
       "/bin/ln",
       "/usr/bin/gcc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.325236139993649
+    "time": 0.9153169999772217
   },
   {
-    "slug": "dis"
+    "slug": "dis",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/root/dis"
+    ],
+    "time": 0.15850099999806844
   },
   {
     "slug": "glass",
@@ -110,115 +128,135 @@
       "/bin/cat",
       "/root/glass"
     ],
-    "time": 0.16430915700038895
+    "time": 0.21027099998900667
+  },
+  {
+    "slug": "r",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/usr/bin/Rscript",
+      "/usr/lib/R/bin/R",
+      "/usr/lib/R/bin/exec/R",
+      "/bin/uname",
+      "/bin/sed",
+      "/bin/sed",
+      "/bin/sh",
+      "/usr/bin/which",
+      "/bin/sh",
+      "/bin/uname",
+      "/bin/sh",
+      "/bin/rm"
+    ],
+    "time": 3.964936000003945
   },
   {
     "slug": "ruby",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.3407542420027312
+    "time": 1.3555150000029244
   },
   {
     "slug": "ruby-trunk",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.0-dev/bin/ruby"
+      "/usr/local/ruby-trunk/bin/ruby"
     ],
-    "time": 0.3386408450023737
+    "time": 0.5576049999799579
   },
   {
     "slug": "golfscript",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.3898211670166347
+    "time": 1.5620819999894593
   },
   {
     "slug": "hexagony",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.3777908569900319
+    "time": 2.2875460000068415
   },
   {
     "slug": "stackcats",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.33405919099459425
+    "time": 1.8847269999969285
   },
   {
     "slug": "standback",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.3532268769922666
+    "time": 1.7061769999854732
   },
   {
     "slug": "starry",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.36020540801109746
+    "time": 2.4559149999986403
   },
   {
     "slug": "cy",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.39795472301193513
+    "time": 2.4544910000113305
   },
   {
     "slug": "labyrinth",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.3520278740033973
+    "time": 1.8268779999925755
   },
   {
     "slug": "typhon",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.35036614001728594
+    "time": 1.7505480000108946
   },
   {
     "slug": "alice",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.3991841889801435
+    "time": 2.4840039999980945
   },
   {
     "slug": "wake",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.3576901739870664
+    "time": 0.4322439999959897
   },
   {
     "slug": "reversed-c",
@@ -226,53 +264,53 @@
       "/bin/sh",
       "/usr/bin/realpath",
       "/bin/ln",
-      "/usr/local/ruby-2.7.1/bin/ruby",
+      "/usr/local/ruby-latest/bin/ruby",
       "/usr/bin/gcc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 1.1524038669886068
+    "time": 1.6166140000000269
   },
   {
     "slug": "copos-rb",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.32414108599186875
+    "time": 0.5581660000025295
   },
   {
     "slug": "golfish",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.35823867900762707
+    "time": 0.556319999974221
   },
   {
     "slug": "pxem",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.4083148310019169
+    "time": 3.4598689999838825
   },
   {
     "slug": "arithmetic",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/local/ruby-2.7.1/bin/ruby"
+      "/usr/local/ruby-latest/bin/ruby"
     ],
-    "time": 0.3436391549766995
+    "time": 0.8689920000033453
   },
   {
     "slug": "vim",
@@ -283,7 +321,7 @@
       "/bin/cat",
       "/bin/rm"
     ],
-    "time": 0.22048911100137047
+    "time": 0.7620659999956843
   },
   {
     "slug": "autovim",
@@ -299,7 +337,7 @@
       "/bin/cat",
       "/bin/rm"
     ],
-    "time": 2.2322378199896775
+    "time": 2.5728649999946356
   },
   {
     "slug": "v-vim",
@@ -312,7 +350,7 @@
       "/usr/bin/vim",
       "/usr/bin/head"
     ],
-    "time": 0.23395373998209834
+    "time": 0.926605999993626
   },
   {
     "slug": "pyramid-scheme",
@@ -321,7 +359,7 @@
       "/bin/cat",
       "/usr/local/ruby-2.7.1/bin/ruby"
     ],
-    "time": 0.3410959580214694
+    "time": 1.7517430000007153
   },
   {
     "slug": "goruby",
@@ -330,7 +368,7 @@
       "/bin/cat",
       "/root/goruby"
     ],
-    "time": 0.3651132700033486
+    "time": 2.057096000004094
   },
   {
     "slug": "ruby1",
@@ -339,7 +377,7 @@
       "/bin/cat",
       "/usr/local/ruby-1.8.7/bin/ruby"
     ],
-    "time": 0.14789191901218146
+    "time": 0.18974299999536015
   },
   {
     "slug": "grass",
@@ -348,7 +386,7 @@
       "/bin/cat",
       "/usr/local/ruby-1.8.7/bin/ruby"
     ],
-    "time": 0.20820090101915412
+    "time": 0.20995300001231954
   },
   {
     "slug": "modanshogi",
@@ -357,7 +395,7 @@
       "/bin/cat",
       "/usr/local/ruby-1.8.7/bin/ruby"
     ],
-    "time": 0.18645569699583575
+    "time": 0.4124090000113938
   },
   {
     "slug": "ppap"
@@ -370,7 +408,7 @@
       "/usr/bin/ag_launcher",
       "/usr/bin/make"
     ],
-    "time": 0.14915441299672239
+    "time": 0.1824569999880623
   },
   {
     "slug": "malbolge",
@@ -379,7 +417,7 @@
       "/bin/cat",
       "/root/malbolge"
     ],
-    "time": 0.17322559500462376
+    "time": 0.37430399999720976
   },
   {
     "slug": "piet",
@@ -388,7 +426,7 @@
       "/bin/cat",
       "/root/npiet"
     ],
-    "time": 0.2207693419768475
+    "time": 0.25139399999170564
   },
   {
     "slug": "python1",
@@ -397,7 +435,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.1618699599930551
+    "time": 0.1630109999969136
   },
   {
     "slug": "rail",
@@ -406,7 +444,7 @@
       "/bin/cat",
       "/usr/bin/rail"
     ],
-    "time": 0.17499676000443287
+    "time": 0.20183299999916926
   },
   {
     "slug": "simula",
@@ -419,18 +457,18 @@
       "/bin/sh",
       "/bin/chmod",
       "/usr/bin/gcc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
       "/bin/rm",
       "/usr/bin/gcc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/rm",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.6691271270101424
+    "time": 1.1798279999929946
   },
   {
     "slug": "snowman",
@@ -439,7 +477,7 @@
       "/bin/cat",
       "/usr/bin/snowman"
     ],
-    "time": 0.16500107699539512
+    "time": 0.18968599999789149
   },
   {
     "slug": "streem",
@@ -448,7 +486,7 @@
       "/bin/cat",
       "/usr/bin/streem"
     ],
-    "time": 0.1478333400154952
+    "time": 0.2026649999897927
   },
   {
     "slug": "unlambda",
@@ -457,7 +495,7 @@
       "/bin/cat",
       "/usr/bin/unlambda"
     ],
-    "time": 0.1419961469946429
+    "time": 0.17989400000078604
   },
   {
     "slug": "verilog",
@@ -471,7 +509,7 @@
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.18201621901243925
+    "time": 0.4234510000096634
   },
   {
     "slug": "wierd",
@@ -480,7 +518,7 @@
       "/bin/cat",
       "/usr/bin/wierd-jnc"
     ],
-    "time": 0.14629655101452954
+    "time": 0.1793959999922663
   },
   {
     "slug": "wordcpu",
@@ -489,7 +527,7 @@
       "/bin/cat",
       "/usr/bin/wordcpu"
     ],
-    "time": 0.14006166299805045
+    "time": 0.8248669999884441
   },
   {
     "slug": "aheui",
@@ -498,7 +536,7 @@
       "/bin/cat",
       "/usr/bin/aheui"
     ],
-    "time": 0.16780822598957457
+    "time": 0.2974990000075195
   },
   {
     "slug": "beatnik",
@@ -507,7 +545,7 @@
       "/bin/cat",
       "/usr/bin/BEATNIK"
     ],
-    "time": 0.16556731099262834
+    "time": 0.45959500002209097
   },
   {
     "slug": "blc",
@@ -517,7 +555,7 @@
       "/usr/bin/tromp64",
       "/bin/cat"
     ],
-    "time": 0.16196397301973775
+    "time": 0.2777760000026319
   },
   {
     "slug": "spl",
@@ -527,32 +565,15 @@
       "/usr/bin/python3",
       "/bin/ln",
       "/usr/bin/gcc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.5707674329751171
-  },
-  {
-    "slug": "emojicode",
-    "execs": [
-      "/bin/sh",
-      "/usr/bin/realpath",
-      "/bin/ln",
-      "/usr/local/bin/emojicodec",
-      "/bin/sh",
-      "/usr/bin/c++",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
-      "/bin/cat",
-      "/tmp/code",
-      "/bin/rm"
-    ],
-    "time": 0.5794282249989919
+    "time": 3.210525000002235
   },
   {
     "slug": "intercal",
@@ -560,18 +581,18 @@
       "/bin/sh",
       "/usr/bin/realpath",
       "/bin/ln",
-      "/root/intercal/intercal-0.30/ick",
+      "/root/intercal/intercal-latest/ick",
       "/bin/sh",
       "/usr/bin/gcc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.43095289199845865
+    "time": 1.8824469999817666
   },
   {
     "slug": "lolcode",
@@ -580,7 +601,7 @@
       "/bin/cat",
       "/usr/bin/lci"
     ],
-    "time": 0.1528354460024275
+    "time": 0.19641599999158643
   },
   {
     "slug": "minus",
@@ -589,17 +610,7 @@
       "/bin/cat",
       "/usr/bin/iminus"
     ],
-    "time": 0.14336085598915815
-  },
-  {
-    "slug": "sqlite3",
-    "execs": [
-      "/bin/sh",
-      "/bin/cat",
-      "/bin/cat",
-      "/usr/bin/sqlite3"
-    ],
-    "time": 0.16418575000716373
+    "time": 0.2794690000009723
   },
   {
     "slug": "taxi",
@@ -608,7 +619,7 @@
       "/bin/cat",
       "/usr/bin/taxi"
     ],
-    "time": 0.1445188480138313
+    "time": 0.3011760000081267
   },
   {
     "slug": "adjust",
@@ -617,7 +628,7 @@
       "/bin/cat",
       "/usr/bin/adjust"
     ],
-    "time": 0.15205266699194908
+    "time": 0.31268699999782257
   },
   {
     "slug": "braille",
@@ -626,7 +637,7 @@
       "/bin/cat",
       "/usr/bin/braille"
     ],
-    "time": 0.17590301498421468
+    "time": 0.19287899998016655
   },
   {
     "slug": "rust",
@@ -641,13 +652,13 @@
       "/usr/local/bin/cc",
       "/usr/sbin/cc",
       "/usr/bin/cc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 1.258417406002991
+    "time": 5.060721999994712
   },
   {
     "slug": "cubically",
@@ -656,7 +667,7 @@
       "/bin/cat",
       "/usr/bin/cubically"
     ],
-    "time": 0.1710031520051416
+    "time": 0.29980799998156726
   },
   {
     "slug": "sceql",
@@ -665,7 +676,7 @@
       "/bin/cat",
       "/usr/bin/sceql"
     ],
-    "time": 0.1458163249772042
+    "time": 0.34052900000824593
   },
   {
     "slug": "apl",
@@ -674,7 +685,7 @@
       "/bin/cat",
       "/usr/bin/apl"
     ],
-    "time": 0.21430034399963915
+    "time": 0.683699000015622
   },
   {
     "slug": "wat",
@@ -687,7 +698,7 @@
       "/usr/bin/node",
       "/bin/rm"
     ],
-    "time": 0.7380848079919815
+    "time": 1.811807999998564
   },
   {
     "slug": "lazyk",
@@ -696,7 +707,7 @@
       "/bin/cat",
       "/usr/bin/lazyk"
     ],
-    "time": 0.17478185199433938
+    "time": 0.2506660000071861
   },
   {
     "slug": "doubleplusungood",
@@ -707,15 +718,15 @@
       "/bin/cat",
       "/bin/cat",
       "/usr/bin/g++",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1plus",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1plus",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 5.206436066015158
+    "time": 109.01347799997893
   },
   {
     "slug": "llvm-ir",
@@ -725,13 +736,13 @@
       "/bin/ln",
       "/usr/bin/llc",
       "/usr/bin/gcc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.8572721829987131
+    "time": 1.2003379999950994
   },
   {
     "slug": "cmm"
@@ -743,66 +754,19 @@
       "/bin/cat",
       "/usr/bin/hanoi_stack"
     ],
-    "time": 0.17354229401098564
+    "time": 0.16306999998050742
   },
   {
-    "slug": "brainfuck-moratorium",
-    "execs": [
-      "/bin/sh",
-      "/usr/bin/python",
-      "/bin/mv",
-      "/bin/chmod",
-      "/bin/cat",
-      "/tmp/code",
-      "/bin/rm"
-    ],
-    "time": 0.38089322799351066
+    "slug": "brainfuck-moratorium"
   },
   {
-    "slug": "csharp-dotnet",
-    "execs": [
-      "/bin/sh",
-      "/usr/bin/realpath",
-      "/root/dotnet-sdk/dotnet",
-      "/root/dotnet-sdk/dotnet",
-      "/root/dotnet-sdk/dotnet",
-      "/bin/uname",
-      "/bin/uname",
-      "/bin/ln",
-      "/bin/cat",
-      "/root/dotnet-sdk/dotnet",
-      "/root/dotnet-sdk/dotnet",
-      "/bin/uname",
-      "/bin/uname",
-      "/root/dotnet-sdk/dotnet",
-      "/bin/uname",
-      "/tmp/Proj/bin/Debug/net5.0/Proj",
-      "/bin/rm"
-    ],
-    "time": 618.4820552640012
+    "slug": "csharp-dotnet"
   },
   {
-    "slug": "fsharp-dotnet",
-    "execs": [
-      "/bin/sh",
-      "/usr/bin/realpath",
-      "/root/dotnet-sdk/dotnet",
-      "/root/dotnet-sdk/dotnet",
-      "/root/dotnet-sdk/dotnet",
-      "/bin/uname",
-      "/bin/uname",
-      "/bin/ln",
-      "/bin/cat",
-      "/root/dotnet-sdk/dotnet",
-      "/root/dotnet-sdk/dotnet",
-      "/bin/uname",
-      "/bin/uname",
-      "/root/dotnet-sdk/dotnet",
-      "/bin/uname",
-      "/tmp/Proj/bin/Debug/net5.0/Proj",
-      "/bin/rm"
-    ],
-    "time": 25.266029636986786
+    "slug": "fsharp-dotnet"
+  },
+  {
+    "slug": "visualbasic-dotnet"
   },
   {
     "slug": "fortran",
@@ -811,15 +775,15 @@
       "/usr/bin/realpath",
       "/bin/ln",
       "/usr/bin/gfortran",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/f951",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/f951",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.40847594098886475
+    "time": 1.3306739999970887
   },
   {
     "slug": "ring",
@@ -831,7 +795,7 @@
       "/root/ring",
       "/bin/rm"
     ],
-    "time": 0.1726294840045739
+    "time": 0.3239460000186227
   },
   {
     "slug": "snobol",
@@ -840,7 +804,7 @@
       "/bin/cat",
       "/usr/local/bin/snobol4"
     ],
-    "time": 0.14643892901949584
+    "time": 0.21457300000474788
   },
   {
     "slug": "cobol",
@@ -851,17 +815,17 @@
       "/usr/local/bin/cobc",
       "/bin/sh",
       "/usr/bin/gcc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
       "/bin/sh",
       "/usr/bin/gcc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.44375783298164606
+    "time": 1.218894999998156
   },
   {
     "slug": "fetlang",
@@ -872,29 +836,29 @@
       "/usr/local/bin/fetlang",
       "/bin/sh",
       "/usr/bin/cc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
       "/bin/sh",
       "/usr/bin/cc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
       "/bin/sh",
       "/usr/bin/cc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
       "/bin/sh",
       "/usr/bin/cc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
       "/bin/sh",
       "/usr/bin/c++",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.6345591869903728
+    "time": 4.901272000017343
   },
   {
     "slug": "alphabeta",
@@ -903,7 +867,7 @@
       "/bin/cat",
       "/root/ab"
     ],
-    "time": 0.16527278398280032
+    "time": 0.18226199998753145
   },
   {
     "slug": "tcl",
@@ -912,7 +876,7 @@
       "/bin/cat",
       "/usr/bin/tclsh"
     ],
-    "time": 0.18048346700379625
+    "time": 0.3130339999916032
   },
   {
     "slug": "rapira",
@@ -921,7 +885,7 @@
       "/bin/cat",
       "/root/rapira"
     ],
-    "time": 0.18980731000192463
+    "time": 0.41798800000105985
   },
   {
     "slug": "vlang",
@@ -932,15 +896,15 @@
       "/bin/cat",
       "/root/v",
       "/bin/sh",
-      "/usr/bin/cc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/bin/gcc",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/cc1",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/as",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/sh",
       "/tmp/code"
     ],
-    "time": 1.5266099910077173
+    "time": 10.193245999980718
   },
   {
     "slug": "cyclicbrainfuck",
@@ -949,7 +913,7 @@
       "/bin/cat",
       "/root/cyclicbrainfuck"
     ],
-    "time": 0.14320360199781135
+    "time": 0.49762599999667145
   },
   {
     "slug": "olang",
@@ -958,7 +922,7 @@
       "/bin/cat",
       "/root/o"
     ],
-    "time": 0.15477040398400277
+    "time": 0.3060970000224188
   },
   {
     "slug": "wren",
@@ -967,7 +931,7 @@
       "/bin/cat",
       "/root/wren"
     ],
-    "time": 0.1765554549638182
+    "time": 0.1854239999956917
   },
   {
     "slug": "java",
@@ -975,14 +939,14 @@
       "/bin/sh",
       "/usr/bin/realpath",
       "/bin/cp",
-      "/usr/bin/javac",
-      "/usr/bin/javac",
+      "/usr/lib/jvm/default-jvm/bin/javac",
+      "/usr/lib/jvm/java-15-openjdk/bin/javac",
       "/bin/cat",
       "/usr/bin/java",
-      "/usr/bin/java",
+      "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/bin/rm"
     ],
-    "time": 4.800435382989235
+    "time": 19.54243100000167
   },
   {
     "slug": "arnoidc",
@@ -991,13 +955,13 @@
       "/usr/bin/realpath",
       "/bin/ln",
       "/usr/bin/java",
-      "/usr/bin/java",
+      "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/bin/cat",
       "/usr/bin/java",
-      "/usr/bin/java",
+      "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/bin/rm"
     ],
-    "time": 2.9420608679938596
+    "time": 14.660282000004372
   },
   {
     "slug": "evil",
@@ -1006,9 +970,9 @@
       "/usr/bin/realpath",
       "/bin/cat",
       "/usr/bin/java",
-      "/usr/bin/java"
+      "/usr/lib/jvm/java-15-openjdk/bin/java"
     ],
-    "time": 0.8041886310093105
+    "time": 3.7078869999968447
   },
   {
     "slug": "js-rhino",
@@ -1016,9 +980,9 @@
       "/bin/sh",
       "/bin/cat",
       "/usr/bin/java",
-      "/usr/bin/java"
+      "/usr/lib/jvm/java-15-openjdk/bin/java"
     ],
-    "time": 1.7356266179995146
+    "time": 7.658888999998453
   },
   {
     "slug": "floater",
@@ -1027,9 +991,9 @@
       "/usr/bin/realpath",
       "/bin/cat",
       "/usr/bin/java",
-      "/usr/bin/java"
+      "/usr/lib/jvm/java-15-openjdk/bin/java"
     ],
-    "time": 1.1919241169816814
+    "time": 5.855288999999175
   },
   {
     "slug": "cjam",
@@ -1037,9 +1001,9 @@
       "/bin/sh",
       "/bin/cat",
       "/usr/bin/java",
-      "/usr/bin/java"
+      "/usr/lib/jvm/java-15-openjdk/bin/java"
     ],
-    "time": 1.2819511280104052
+    "time": 6.739312999998219
   },
   {
     "slug": "convex",
@@ -1047,9 +1011,9 @@
       "/bin/sh",
       "/bin/cat",
       "/usr/bin/java",
-      "/usr/bin/java"
+      "/usr/lib/jvm/java-15-openjdk/bin/java"
     ],
-    "time": 1.4004821330017876
+    "time": 6.495555000001332
   },
   {
     "slug": "kotlin",
@@ -1062,13 +1026,13 @@
       "/bin/uname",
       "/usr/bin/dirname",
       "/usr/bin/java",
-      "/usr/bin/java",
+      "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/bin/cat",
       "/usr/bin/java",
-      "/usr/bin/java",
+      "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/bin/rm"
     ],
-    "time": 21.43147230098839
+    "time": 112.709357000007
   },
   {
     "slug": "whenever",
@@ -1077,10 +1041,10 @@
       "/usr/bin/realpath",
       "/bin/cat",
       "/usr/bin/java",
-      "/usr/bin/java",
+      "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/usr/bin/tail"
     ],
-    "time": 0.5816830419935286
+    "time": 2.597042000001238
   },
   {
     "slug": "xslt",
@@ -1088,15 +1052,15 @@
       "/bin/sh",
       "/bin/cat",
       "/usr/bin/java",
-      "/usr/bin/java",
+      "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/usr/bin/realpath",
       "/bin/ln",
       "/usr/bin/java",
-      "/usr/bin/java",
+      "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/bin/cat",
       "/bin/rm"
     ],
-    "time": 9.123840478016064
+    "time": 38.512439999998605
   },
   {
     "slug": "python2",
@@ -1105,7 +1069,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.3002940459991805
+    "time": 1.237438000011025
   },
   {
     "slug": "csharp",
@@ -1119,7 +1083,7 @@
       "/usr/bin/mono",
       "/bin/rm"
     ],
-    "time": 2.470124298997689
+    "time": 3.8999820000026375
   },
   {
     "slug": "velato",
@@ -1134,7 +1098,7 @@
       "/usr/bin/mono",
       "/bin/rm"
     ],
-    "time": 4.734641001996351
+    "time": 13.057101999991573
   },
   {
     "slug": "pure-folders",
@@ -1146,34 +1110,13 @@
       "/bin/tar",
       "/root/cat.sh",
       "/bin/cat",
-      "/usr/bin/mono",
-      "/usr/bin/g++",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/cc1plus",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/as",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
-      "/bin/cat",
-      "/tmp/code.out",
+      "/usr/bin/python3",
       "/bin/rm"
     ],
-    "time": 2.0004092140006833
+    "time": 1.5404010000000312
   },
   {
-    "slug": "concise-folders",
-    "execs": [
-      "/bin/sh",
-      "/usr/bin/realpath",
-      "/bin/ln",
-      "/bin/mkdir",
-      "/bin/tar",
-      "/usr/bin/mono",
-      "/usr/bin/mcs",
-      "/usr/bin/mono",
-      "/bin/cat",
-      "/usr/bin/mono",
-      "/bin/rm"
-    ],
-    "time": 4.888787924981443
+    "slug": "concise-folders"
   },
   {
     "slug": "function2d",
@@ -1185,7 +1128,7 @@
       "/bin/sed",
       "/usr/bin/hexdump"
     ],
-    "time": 2.2911398579890374
+    "time": 5.544541000010213
   },
   {
     "slug": "produire",
@@ -1194,7 +1137,7 @@
       "/bin/cat",
       "/usr/bin/mono"
     ],
-    "time": 5.7439739639812615
+    "time": 9.107482000021264
   },
   {
     "slug": "z80",
@@ -1203,7 +1146,7 @@
       "/bin/cat",
       "/usr/bin/z80golf"
     ],
-    "time": 0.16311288898577914
+    "time": 0.23970299999928102
   },
   {
     "slug": "bubble-sort",
@@ -1212,7 +1155,7 @@
       "/bin/cat",
       "/usr/bin/mono"
     ],
-    "time": 0.5375614509976003
+    "time": 1.8682390000030864
   },
   {
     "slug": "classic-music-theory",
@@ -1221,7 +1164,7 @@
       "/bin/cat",
       "/usr/bin/mono"
     ],
-    "time": 1.0839881790161598
+    "time": 2.997168999980204
   },
   {
     "slug": "haystack",
@@ -1230,7 +1173,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.3003012779809069
+    "time": 1.8609810000052676
   },
   {
     "slug": "stuck",
@@ -1242,7 +1185,7 @@
       "/usr/bin/python",
       "/bin/rm"
     ],
-    "time": 0.3052301069837995
+    "time": 1.5979529999895021
   },
   {
     "slug": "unicat",
@@ -1251,7 +1194,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.43736847999389283
+    "time": 1.9120650000113528
   },
   {
     "slug": "unreadable",
@@ -1260,7 +1203,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.29685065598459914
+    "time": 0.6049960000000283
   },
   {
     "slug": "zombie",
@@ -1269,16 +1212,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 1.3733761720068287
-  },
-  {
-    "slug": "ffb",
-    "execs": [
-      "/bin/sh",
-      "/bin/cat",
-      "/usr/bin/python"
-    ],
-    "time": 0.3210138599970378
+    "time": 3.121084999991581
   },
   {
     "slug": "aubergine",
@@ -1287,16 +1221,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.28034756597480737
-  },
-  {
-    "slug": "ubergenes",
-    "execs": [
-      "/bin/sh",
-      "/bin/cat",
-      "/usr/bin/python"
-    ],
-    "time": 0.3412976360123139
+    "time": 0.44284100001095794
   },
   {
     "slug": "path",
@@ -1305,7 +1230,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.31263032599235885
+    "time": 0.609517999982927
   },
   {
     "slug": "recurse",
@@ -1314,7 +1239,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.2963692389894277
+    "time": 1.9836300000024494
   },
   {
     "slug": "fernando",
@@ -1323,7 +1248,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.45490508200600743
+    "time": 3.5625530000252184
   },
   {
     "slug": "gs2",
@@ -1332,7 +1257,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.724928932992043
+    "time": 7.7746729999780655
   },
   {
     "slug": "logicode",
@@ -1341,7 +1266,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.5014848209975753
+    "time": 2.8961859999981243
   },
   {
     "slug": "minimal2d",
@@ -1350,7 +1275,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.3250608319940511
+    "time": 0.47258299999521114
   },
   {
     "slug": "i4004asm",
@@ -1359,7 +1284,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 0.299595488992054
+    "time": 0.6955359999847133
   },
   {
     "slug": "suzy",
@@ -1376,55 +1301,16 @@
       "/usr/bin/python",
       "/bin/rm"
     ],
-    "time": 0.5816503999812994
+    "time": 6.171342999994522
   },
   {
-    "slug": "bash-pure",
-    "execs": [
-      "/bin/sh",
-      "/usr/bin/realpath",
-      "/bin/cp",
-      "/bin/cat",
-      "/usr/sbin/jk_chrootlaunch",
-      "/bin/bash",
-      "/bin/rm"
-    ],
-    "time": 0.2759117090026848
+    "slug": "bash-pure"
   },
   {
-    "slug": "bash-busybox",
-    "execs": [
-      "/bin/sh",
-      "/usr/bin/realpath",
-      "/bin/cp",
-      "/bin/cat",
-      "/usr/sbin/jk_chrootlaunch",
-      "/bin/bash",
-      "/bin/rm"
-    ],
-    "time": 0.2302227180043701
+    "slug": "bash-busybox"
   },
   {
-    "slug": "fish-shell-pure",
-    "execs": [
-      "/bin/sh",
-      "/usr/bin/realpath",
-      "/bin/cp",
-      "/bin/cat",
-      "/usr/sbin/jk_chrootlaunch",
-      "/bin/fish",
-      "/bin/rm"
-    ],
-    "time": 0.2530053029768169
-  },
-  {
-    "slug": "ezhil",
-    "execs": [
-      "/bin/sh",
-      "/bin/cat",
-      "/usr/bin/ezhili"
-    ],
-    "time": 0.5781930859957356
+    "slug": "fish-shell-pure"
   },
   {
     "slug": "snusp",
@@ -1434,20 +1320,10 @@
       "/usr/bin/python",
       "/bin/rm"
     ],
-    "time": 0.3237502679985482
+    "time": 3.2297789999865927
   },
   {
-    "slug": "zsh-pure",
-    "execs": [
-      "/bin/sh",
-      "/usr/bin/realpath",
-      "/bin/cp",
-      "/bin/cat",
-      "/usr/sbin/jk_chrootlaunch",
-      "/bin/zsh",
-      "/bin/rm"
-    ],
-    "time": 0.24493481998797506
+    "slug": "zsh-pure"
   },
   {
     "slug": "jq",
@@ -1456,7 +1332,7 @@
       "/bin/cat",
       "/usr/bin/jq"
     ],
-    "time": 0.21159793800325133
+    "time": 0.36604399999487214
   },
   {
     "slug": "node",
@@ -1465,7 +1341,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 0.37633593400823884
+    "time": 0.8279469999833964
   },
   {
     "slug": "unicue",
@@ -1474,7 +1350,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 7.368242485012161
+    "time": 11.89675700000953
   },
   {
     "slug": "beam",
@@ -1483,7 +1359,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 0.3748693639936391
+    "time": 2.8324889999930747
   },
   {
     "slug": "cubix",
@@ -1492,7 +1368,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 0.3892738619761076
+    "time": 2.33423199999379
   },
   {
     "slug": "japt",
@@ -1501,7 +1377,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 0.6262972980039194
+    "time": 3.162146999995457
   },
   {
     "slug": "stop",
@@ -1510,7 +1386,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 0.4113080370007083
+    "time": 2.601770999986911
   },
   {
     "slug": "htms",
@@ -1519,7 +1395,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 3.805746021011146
+    "time": 28.068965999991633
   },
   {
     "slug": "maybelater",
@@ -1528,7 +1404,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 0.4533563549921382
+    "time": 2.3168059999879915
   },
   {
     "slug": "nadesiko",
@@ -1545,7 +1421,7 @@
       "/usr/bin/node",
       "/bin/rm"
     ],
-    "time": 0.8387577329995111
+    "time": 4.005563999991864
   },
   {
     "slug": "floating",
@@ -1554,7 +1430,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 1.7878217620018404
+    "time": 7.488911000022199
   },
   {
     "slug": "qlb",
@@ -1564,7 +1440,7 @@
       "/usr/bin/node",
       "/bin/rm"
     ],
-    "time": 3.1032716050103772
+    "time": 18.601388000010047
   },
   {
     "slug": "calc",
@@ -1591,7 +1467,7 @@
       "/usr/bin/node",
       "/bin/rm"
     ],
-    "time": 8.344457845989382
+    "time": 17.53690100001404
   },
   {
     "slug": "nuts",
@@ -1601,7 +1477,7 @@
       "/usr/bin/node",
       "/bin/rm"
     ],
-    "time": 0.5068563350068871
+    "time": 2.2280480000190437
   },
   {
     "slug": "canvas",
@@ -1610,7 +1486,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 0.47593144097481854
+    "time": 2.9341780000249855
   },
   {
     "slug": "wysiscript",
@@ -1620,7 +1496,7 @@
       "/usr/bin/node",
       "/bin/rm"
     ],
-    "time": 3.2168827750138007
+    "time": 19.5415009999997
   },
   {
     "slug": "tetris",
@@ -1629,7 +1505,7 @@
       "/bin/cat",
       "/usr/bin/node"
     ],
-    "time": 2.6995700809929986
+    "time": 10.649680000002263
   },
   {
     "slug": "wenyan",
@@ -1643,28 +1519,55 @@
       "/usr/sbin/node",
       "/usr/bin/node"
     ],
-    "time": 0.5691165280004498
+    "time": 2.4841270000033546
   },
   {
-    "slug": "reasonml",
+    "slug": "encapsulation",
     "execs": [
       "/bin/sh",
-      "/usr/bin/realpath",
-      "/bin/ln",
-      "/usr/bin/bsc",
-      "/bin/node",
-      "/usr/local/sbin/node",
-      "/usr/local/bin/node",
-      "/usr/sbin/node",
-      "/usr/bin/node",
-      "/usr/lib/node_modules/bs-platform/linux/bsc.exe",
-      "/bin/sh",
-      "/usr/lib/node_modules/bs-platform/linux/refmt.exe",
       "/bin/cat",
+      "/bin/touch",
       "/usr/bin/node",
+      "/bin/cat",
       "/bin/rm"
     ],
-    "time": 0.8534955360228196
+    "time": 4.059990999987349
+  },
+  {
+    "slug": "functional",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/bin/touch",
+      "/usr/bin/node",
+      "/bin/cat",
+      "/bin/rm"
+    ],
+    "time": 4.961175000004005
+  },
+  {
+    "slug": "seclusion",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/bin/touch",
+      "/usr/bin/node",
+      "/bin/cat",
+      "/bin/rm"
+    ],
+    "time": 8.117353999987245
+  },
+  {
+    "slug": "serenity",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/bin/touch",
+      "/usr/bin/node",
+      "/bin/cat",
+      "/bin/rm"
+    ],
+    "time": 6.436547999997856
   },
   {
     "slug": "transceternal",
@@ -1676,17 +1579,38 @@
       "/bin/cat",
       "/bin/rm"
     ],
-    "time": 0.5298975580371916
+    "time": 4.6338769999856595
   },
   {
-    "slug": "octave",
+    "slug": "compile-time-typescript",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/bin/octave",
-      "/usr/bin/octave-cli-5.1.0"
+      "./node_modules/.bin/ts-node",
+      "/bin/node",
+      "/usr/local/sbin/node",
+      "/usr/local/bin/node",
+      "/usr/sbin/node",
+      "/usr/bin/node"
     ],
-    "time": 1.5406972369819414
+    "time": 54.62011899999925
+  },
+  {
+    "slug": "emojifunge",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "./node_modules/.bin/ts-node",
+      "/bin/node",
+      "/usr/local/sbin/node",
+      "/usr/local/bin/node",
+      "/usr/sbin/node",
+      "/usr/bin/node"
+    ],
+    "time": 34.48345100000006
+  },
+  {
+    "slug": "octave"
   },
   {
     "slug": "matl",
@@ -1696,9 +1620,9 @@
       "/bin/ln",
       "/bin/cat",
       "/usr/bin/octave",
-      "/usr/bin/octave-cli-5.1.0"
+      "/usr/bin/octave-cli-6.1.0"
     ],
-    "time": 1.8092952250153758
+    "time": 5.9589970000088215
   },
   {
     "slug": "perl",
@@ -1707,7 +1631,7 @@
       "/bin/cat",
       "/usr/bin/perl"
     ],
-    "time": 0.1521896280173678
+    "time": 0.28339599998435006
   },
   {
     "slug": "slashes",
@@ -1716,7 +1640,7 @@
       "/bin/cat",
       "/usr/bin/perl"
     ],
-    "time": 0.15289604500867426
+    "time": 0.21431700000539422
   },
   {
     "slug": "element",
@@ -1726,16 +1650,10 @@
       "/bin/cat",
       "/usr/bin/perl"
     ],
-    "time": 0.1839922170038335
+    "time": 0.40131299998029135
   },
   {
-    "slug": "php",
-    "execs": [
-      "/bin/sh",
-      "/bin/cat",
-      "/usr/bin/php"
-    ],
-    "time": 0.16734174801968038
+    "slug": "php"
   },
   {
     "slug": "irc",
@@ -1748,7 +1666,7 @@
       "/usr/bin/php",
       "/bin/rm"
     ],
-    "time": 0.23114072100725025
+    "time": 0.8381870000157505
   },
   {
     "slug": "python3",
@@ -1757,19 +1675,40 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.19934781102347188
+    "time": 0.463621000002604
   },
   {
-    "slug": "exchangeif",
+    "slug": "ffb",
     "execs": [
       "/bin/sh",
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 1.816356850991724
+    "time": 2.31546799998614
+  },
+  {
+    "slug": "ezhil",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/usr/bin/ezhili"
+    ],
+    "time": 3.1974389999813866
+  },
+  {
+    "slug": "exchangeif"
   },
   {
     "slug": "trumpscript"
+  },
+  {
+    "slug": "ubergenes",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/usr/bin/python3"
+    ],
+    "time": 1.2116110000060871
   },
   {
     "slug": "2sable",
@@ -1778,7 +1717,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.4014894620049745
+    "time": 2.2670520000101533
   },
   {
     "slug": "fish",
@@ -1787,7 +1726,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.2890505050017964
+    "time": 1.279538999981014
   },
   {
     "slug": "arcyou",
@@ -1797,7 +1736,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.29123519101995043
+    "time": 1.2680939999991097
   },
   {
     "slug": "bots",
@@ -1806,7 +1745,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.3140608590329066
+    "time": 0.49482500000158325
   },
   {
     "slug": "emoji",
@@ -1815,7 +1754,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.24421649100258946
+    "time": 1.060858000011649
   },
   {
     "slug": "zucchini",
@@ -1824,7 +1763,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.23936567999771796
+    "time": 1.2859560000069905
   },
   {
     "slug": "cardinal",
@@ -1833,7 +1772,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.20056007098173723
+    "time": 0.7084990000003017
   },
   {
     "slug": "hbcht",
@@ -1842,7 +1781,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.2964549280004576
+    "time": 1.0624899999820627
   },
   {
     "slug": "jelly",
@@ -1851,7 +1790,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.3844075319939293
+    "time": 1.8229479999863543
   },
   {
     "slug": "jellyfish",
@@ -1860,7 +1799,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.26737891999073327
+    "time": 1.3225139999995008
   },
   {
     "slug": "width",
@@ -1869,7 +1808,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.20965387098840438
+    "time": 1.5047550000017509
   },
   {
     "slug": "asciidots",
@@ -1879,7 +1818,7 @@
       "/usr/bin/asciidots",
       "/bin/uname"
     ],
-    "time": 0.6337465109827463
+    "time": 0.8848949999955948
   },
   {
     "slug": "picfunge",
@@ -1888,7 +1827,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.40693336600088514
+    "time": 1.1631639999977779
   },
   {
     "slug": "iwashi",
@@ -1897,7 +1836,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.2883194090100005
+    "time": 0.7643439999956172
   },
   {
     "slug": "hypertorus",
@@ -1906,7 +1845,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.2450846050051041
+    "time": 0.84831000000122
   },
   {
     "slug": "gaia",
@@ -1915,7 +1854,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.436504495999543
+    "time": 2.0769799999834504
   },
   {
     "slug": "triangularity",
@@ -1924,7 +1863,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.21248964799451642
+    "time": 0.8418869999877643
   },
   {
     "slug": "backhand",
@@ -1933,7 +1872,7 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.22995418298523873
+    "time": 0.8429849999956787
   },
   {
     "slug": "mines",
@@ -1942,7 +1881,10 @@
       "/bin/cat",
       "/usr/bin/python3"
     ],
-    "time": 0.30424731600214727
+    "time": 1.2982410000113305
+  },
+  {
+    "slug": "mao"
   },
   {
     "slug": "cmd",
@@ -1984,7 +1926,7 @@
       "/usr/bin/wine",
       "/bin/rm"
     ],
-    "time": 34.00908731800155
+    "time": 95.21893599999021
   },
   {
     "slug": "lua",
@@ -1993,7 +1935,7 @@
       "/bin/cat",
       "/usr/bin/lua5.3"
     ],
-    "time": 0.16241400100989267
+    "time": 0.20020699998713098
   },
   {
     "slug": "rprogn",
@@ -2002,7 +1944,7 @@
       "/bin/cat",
       "/usr/bin/lua5.3"
     ],
-    "time": 0.16166680402238853
+    "time": 0.20045900001423433
   },
   {
     "slug": "ocaml",
@@ -2011,7 +1953,7 @@
       "/bin/cat",
       "/usr/bin/ocaml"
     ],
-    "time": 0.18044343698420562
+    "time": 0.22650200000498444
   },
   {
     "slug": "coq",
@@ -2047,15 +1989,15 @@
       "/usr/bin/as",
       "/bin/sh",
       "/usr/bin/gcc",
-      "/usr/libexec/gcc/x86_64-alpine-linux-musl/9.3.0/collect2",
-      "/usr/lib/gcc/x86_64-alpine-linux-musl/9.3.0/../../../../x86_64-alpine-linux-musl/bin/ld",
+      "/usr/libexec/gcc/x86_64-alpine-linux-musl/10.2.1/collect2",
+      "/usr/lib/gcc/x86_64-alpine-linux-musl/10.2.1/../../../../x86_64-alpine-linux-musl/bin/ld",
       "/bin/sh",
       "/bin/ln",
       "/bin/cat",
       "./main.native",
       "/bin/rm"
     ],
-    "time": 6.517237468011444
+    "time": 31.963334999978542
   },
   {
     "slug": "haskell",
@@ -2063,16 +2005,116 @@
       "/bin/sh",
       "/bin/cat",
       "/usr/bin/runghc",
-      "/usr/lib/ghc-8.8.3/bin/runghc",
-      "/usr/bin/ghc-8.8.3",
-      "/usr/lib/ghc-8.8.3/bin/ghc",
+      "/usr/lib/ghc-8.8.4/bin/runghc",
+      "/usr/bin/ghc-8.8.4",
+      "/usr/lib/ghc-8.8.4/bin/ghc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
       "/bin/gcc",
       "/usr/local/sbin/gcc",
       "/usr/local/bin/gcc",
       "/usr/sbin/gcc",
       "/usr/bin/gcc"
     ],
-    "time": 0.4569546280254144
+    "time": 2.564602999977069
   },
   {
     "slug": "squared-cool"
@@ -2090,16 +2132,116 @@
       "/usr/local/bin/runhaskell",
       "/usr/sbin/runhaskell",
       "/usr/bin/runhaskell",
-      "/usr/lib/ghc-8.8.3/bin/runghc",
-      "/usr/bin/ghc-8.8.3",
-      "/usr/lib/ghc-8.8.3/bin/ghc",
+      "/usr/lib/ghc-8.8.4/bin/runghc",
+      "/usr/bin/ghc-8.8.4",
+      "/usr/lib/ghc-8.8.4/bin/ghc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
+      "/bin/gcc",
+      "/usr/local/sbin/gcc",
+      "/usr/local/bin/gcc",
+      "/usr/sbin/gcc",
+      "/usr/bin/gcc",
       "/bin/gcc",
       "/usr/local/sbin/gcc",
       "/usr/local/bin/gcc",
       "/usr/sbin/gcc",
       "/usr/bin/gcc"
     ],
-    "time": 4.5070930770016275
+    "time": 18.589152000000468
   },
   {
     "slug": "whitespace",
@@ -2108,7 +2250,7 @@
       "/bin/cat",
       "/usr/bin/whitespace"
     ],
-    "time": 0.15571335298591293
+    "time": 0.4644470000057481
   },
   {
     "slug": "erlang",
@@ -2117,14 +2259,14 @@
       "/bin/cat",
       "/usr/bin/escript",
       "/usr/bin/erl",
-      "/usr/lib/erlang/erts-10.6.4/bin/erlexec",
-      "/usr/lib/erlang/erts-10.6.4/bin/beam.smp",
+      "/usr/lib/erlang/erts-11.1.3/bin/erlexec",
+      "/usr/lib/erlang/erts-11.1.3/bin/beam.smp",
       "/bin/sed",
-      "/usr/lib/erlang/erts-10.6.4/bin/erl_child_setup",
+      "/usr/lib/erlang/erts-11.1.3/bin/erl_child_setup",
       "/bin/sh",
-      "/usr/lib/erlang/erts-10.6.4/bin/inet_gethost"
+      "/usr/lib/erlang/erts-11.1.3/bin/inet_gethost"
     ],
-    "time": 5.592906573001528
+    "time": 6.6624020000163
   },
   {
     "slug": "elixir",
@@ -2137,8 +2279,8 @@
       "/usr/local/bin/erl",
       "/usr/sbin/erl",
       "/usr/bin/erl",
-      "/usr/lib/erlang/erts-10.6.4/bin/erlexec",
-      "/usr/lib/erlang/erts-10.6.4/bin/beam.smp",
+      "/usr/lib/erlang/erts-11.1.3/bin/erlexec",
+      "/usr/lib/erlang/erts-11.1.3/bin/beam.smp",
       "/usr/bin/dirname",
       "/usr/bin/basename",
       "/usr/bin/readlink",
@@ -2146,11 +2288,11 @@
       "/usr/bin/basename",
       "/usr/bin/dirname",
       "/bin/sed",
-      "/usr/lib/erlang/erts-10.6.4/bin/erl_child_setup",
+      "/usr/lib/erlang/erts-11.1.3/bin/erl_child_setup",
       "/bin/sh",
-      "/usr/lib/erlang/erts-10.6.4/bin/inet_gethost"
+      "/usr/lib/erlang/erts-11.1.3/bin/inet_gethost"
     ],
-    "time": 6.429131123004481
+    "time": 7.945547000010265
   },
   {
     "slug": "05ab1e",
@@ -2160,14 +2302,14 @@
       "/bin/cat",
       "/usr/bin/escript",
       "/usr/bin/erl",
-      "/usr/lib/erlang/erts-10.6.4/bin/erlexec",
-      "/usr/lib/erlang/erts-10.6.4/bin/beam.smp",
+      "/usr/lib/erlang/erts-11.1.3/bin/erlexec",
+      "/usr/lib/erlang/erts-11.1.3/bin/beam.smp",
       "/bin/sed",
-      "/usr/lib/erlang/erts-10.6.4/bin/erl_child_setup",
+      "/usr/lib/erlang/erts-11.1.3/bin/erl_child_setup",
       "/bin/sh",
-      "/usr/lib/erlang/erts-10.6.4/bin/inet_gethost"
+      "/usr/lib/erlang/erts-11.1.3/bin/inet_gethost"
     ],
-    "time": 6.711967310024193
+    "time": 9.416712000005646
   },
   {
     "slug": "awk",
@@ -2176,7 +2318,7 @@
       "/bin/cat",
       "/usr/bin/gawk"
     ],
-    "time": 0.17857289197854698
+    "time": 0.16779500001575798
   },
   {
     "slug": "perl6",
@@ -2185,7 +2327,7 @@
       "/bin/cat",
       "/usr/bin/perl6"
     ],
-    "time": 0.7077883290185127
+    "time": 1.4449829999939539
   },
   {
     "slug": "ballerina",
@@ -2199,7 +2341,7 @@
       "/usr/bin/dirname",
       "/usr/bin/readlink",
       "/bin/cat",
-      "/root/ballerina/bin/../distributions/jballerina-1.2.2/bin/./ballerina",
+      "/root/ballerina/bin/../distributions/jballerina-1.2.13/bin/./ballerina",
       "/bin/uname",
       "/usr/bin/dirname",
       "/usr/lib/jvm/java-1.8-openjdk/bin/java",
@@ -2207,14 +2349,10 @@
       "/bin/grep",
       "/usr/lib/jvm/java-1.8-openjdk/bin/java",
       "/usr/lib/jvm/java-1.8-openjdk/bin/java",
-      "/bin/java",
-      "/usr/local/sbin/java",
-      "/usr/local/bin/java",
-      "/usr/sbin/java",
-      "/usr/bin/java",
+      "/usr/lib/jvm/java-1.8-openjdk/bin/java",
       "/bin/rm"
     ],
-    "time": 24.3470098709804
+    "time": 27.61490000001504
   },
   {
     "slug": "sed",
@@ -2223,7 +2361,7 @@
       "/bin/cat",
       "/usr/bin/sed"
     ],
-    "time": 0.15457838197471574
+    "time": 0.12274999999999636
   },
   {
     "slug": "riscv"
@@ -2235,7 +2373,7 @@
       "/bin/cat",
       "/usr/bin/m4"
     ],
-    "time": 0.15994339197641239
+    "time": 0.1672019999823533
   },
   {
     "slug": "racket",
@@ -2244,7 +2382,7 @@
       "/bin/cat",
       "/usr/bin/racket"
     ],
-    "time": 0.3533494779840112
+    "time": 4.989363000000594
   },
   {
     "slug": "gnuplot",
@@ -2253,7 +2391,7 @@
       "/bin/cat",
       "/usr/bin/gnuplot"
     ],
-    "time": 0.18107567200786434
+    "time": 0.8107460000028368
   },
   {
     "slug": "golang",
@@ -2264,9 +2402,6 @@
       "/usr/bin/go",
       "/usr/lib/go/pkg/tool/linux_amd64/compile",
       "/usr/lib/go/pkg/tool/linux_amd64/compile",
-      "/usr/lib/go/pkg/tool/linux_amd64/compile",
-      "/usr/lib/go/pkg/tool/linux_amd64/compile",
-      "/usr/lib/go/pkg/tool/linux_amd64/asm",
       "/usr/lib/go/pkg/tool/linux_amd64/asm",
       "/usr/lib/go/pkg/tool/linux_amd64/asm",
       "/usr/lib/go/pkg/tool/linux_amd64/compile",
@@ -2276,7 +2411,7 @@
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 1.2369329160137568
+    "time": 10.262927000003401
   },
   {
     "slug": "braintwist",
@@ -2289,7 +2424,20 @@
       "/usr/bin/go",
       "/bin/rm"
     ],
-    "time": 0.18953211201005615
+    "time": 0.6492500000167638
+  },
+  {
+    "slug": "tsp",
+    "execs": [
+      "/bin/sh",
+      "/usr/bin/realpath",
+      "/bin/ln",
+      "/bin/cat",
+      "/root/go/bin/tsp",
+      "/usr/bin/go",
+      "/bin/rm"
+    ],
+    "time": 0.4373889999999392
   },
   {
     "slug": "oh",
@@ -2297,64 +2445,83 @@
       "/bin/sh",
       "/bin/cat",
       "/root/go/bin/oh",
-      "/usr/bin/go"
+      "/usr/bin/go",
+      "/bin/echo"
     ],
-    "time": 0.5074980670178775
+    "time": 0.8343210000020918
   },
   {
-    "slug": "zen",
+    "slug": "zig",
     "execs": [
       "/bin/sh",
+      "/usr/bin/realpath",
+      "/bin/ln",
+      "/root/zig-linux-x86_64-0.7.1/zig",
+      "/root/zig-linux-x86_64-0.7.1/zig",
       "/bin/cat",
-      "/root/zen-linux-x86_64-0.8.20191124+552247019/zen",
-      "/root/.cache/zen/stage1/o/lZtnB1ugQ6lvg8SlJUWhV93vX4mli45_X_arp1cMdrwfM4e1rsFiRNnUHMzdDfKf/run"
+      "/tmp/code",
+      "/bin/rm",
+      "/bin/rm"
     ],
-    "time": 14.31238350100466
+    "time": 29.322877999999946
+  },
+  {
+    "slug": "ada",
+    "execs": [
+      "/bin/sh",
+      "/bin/ln",
+      "/bin/gnat",
+      "/bin/x86_64-linux-gnu-gnatmake-9",
+      "//bin/x86_64-linux-gnu-gcc-9",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/gnat1",
+      "//bin/as",
+      "//bin/x86_64-linux-gnu-gnatbind-9",
+      "//bin/x86_64-linux-gnu-gnatlink-9",
+      "/usr/bin/x86_64-linux-gnu-gcc-9",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/gnat1",
+      "/usr/bin/as",
+      "/usr/bin/x86_64-linux-gnu-gcc-9",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/collect2",
+      "/usr/bin/ld",
+      "./program",
+      "/bin/rm"
+    ],
+    "time": 1.983604000000014
   },
   {
     "slug": "crystal",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/bin/crystal",
+      "/usr/bin/crystal-interpreter",
       "/usr/bin/../lib/crystal/bin/crystal",
-      "/usr/bin/dirname",
+      "/bin/dirname",
       "/bin/readlink",
-      "/usr/bin/dirname",
-      "/usr/bin/basename",
-      "/usr/bin/../lib/crystal/bin/ldd",
+      "/bin/dirname",
+      "/bin/basename",
+      "/usr/bin/../lib/crystal/bin/crystal",
       "/bin/ldd",
-      "/usr/local/sbin/ldd",
-      "/usr/local/bin/ldd",
-      "/usr/sbin/ldd",
-      "/usr/bin/ldd",
-      "/usr/bin/../lib/crystal/bin/which",
-      "/bin/which",
+      "/bin/pkg-config",
+      "/bin/pkg-config",
+      "/bin/pkg-config",
+      "/bin/pkg-config",
+      "/bin/pkg-config",
+      "/bin/pkg-config",
+      "/bin/pkg-config",
+      "/bin/pkg-config",
       "/bin/sh",
-      "/usr/bin/pkg-config",
-      "/bin/sh",
-      "/usr/bin/pkg-config",
-      "/bin/sh",
-      "/usr/bin/pkg-config",
-      "/bin/sh",
-      "/usr/bin/pkg-config",
-      "/bin/sh",
-      "/usr/bin/pkg-config",
-      "/bin/sh",
-      "/usr/bin/pkg-config",
-      "/bin/sh",
-      "/usr/bin/cc",
-      "/usr/lib/gcc/x86_64-linux-gnu/7/collect2",
-      "/usr/bin/ld",
+      "/bin/cc",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/collect2",
+      "/bin/ld",
       "/root/.cache/crystal/crystal-run-CODE.tmp"
     ],
-    "time": 5.149374401982641
+    "time": 13.490028000000166
   },
   {
     "slug": "d-dmd",
     "execs": [
       "/bin/sh",
-      "/usr/bin/realpath",
+      "/bin/realpath",
       "/bin/ln",
       "/bin/cat",
       "/usr/bin/rdmd",
@@ -2362,36 +2529,31 @@
       "/usr/bin/dmd",
       "/usr/bin/dmd",
       "/bin/cc",
-      "/usr/local/sbin/cc",
-      "/usr/local/bin/cc",
-      "/usr/sbin/cc",
-      "/usr/bin/cc",
-      "/usr/lib/gcc/x86_64-linux-gnu/7/collect2",
-      "/usr/bin/ld",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/collect2",
+      "/bin/ld",
       "/bin/rm"
     ],
-    "time": 3.6022941329865716
+    "time": 8.847325000009732
   },
   {
-    "slug": "d-gdc",
+    "slug": "d-gdc"
+  },
+  {
+    "slug": "emojicode",
     "execs": [
       "/bin/sh",
-      "/usr/bin/realpath",
+      "/bin/realpath",
       "/bin/ln",
-      "/usr/bin/gdc",
-      "/usr/lib/gcc/x86_64-linux-gnu/8/cc1d",
-      "/bin/as",
-      "/usr/local/sbin/as",
-      "/usr/local/bin/as",
-      "/usr/sbin/as",
-      "/usr/bin/as",
-      "/usr/lib/gcc/x86_64-linux-gnu/8/collect2",
-      "/usr/bin/ld",
+      "/usr/local/bin/emojicodec",
+      "/bin/sh",
+      "/bin/c++",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/collect2",
+      "/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.5120944050140679
+    "time": 4.69702199997846
   },
   {
     "slug": "powershell",
@@ -2400,7 +2562,19 @@
       "/bin/cat",
       "/usr/bin/pwsh"
     ],
-    "time": 1.2124143870023545
+    "time": 5.649131000012858
+  },
+  {
+    "slug": "ed",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/bin/cat",
+      "/bin/ed-original",
+      "/bin/cat",
+      "/bin/rm"
+    ],
+    "time": 0.23041599999999107
   },
   {
     "slug": "ruby0.49",
@@ -2409,53 +2583,49 @@
       "/bin/cat",
       "/bin/ruby"
     ],
-    "time": 0.1477613690076396
+    "time": 0.23707800000556745
   },
   {
     "slug": "fugue",
     "execs": [
       "/bin/sh",
-      "/usr/bin/realpath",
+      "/bin/realpath",
       "/bin/ln",
       "/root/fugue",
       "/bin/sed",
       "/bin/sed",
-      "/usr/bin/gcc",
-      "/usr/lib/gcc/x86_64-linux-gnu/7/cc1",
+      "/bin/gcc",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/cc1",
       "/bin/as",
-      "/usr/local/sbin/as",
-      "/usr/local/bin/as",
-      "/usr/sbin/as",
-      "/usr/bin/as",
-      "/usr/lib/gcc/x86_64-linux-gnu/7/collect2",
-      "/usr/bin/ld",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/collect2",
+      "/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.4180843069916591
+    "time": 3.4789400000008754
   },
   {
     "slug": "x86asm-nasm",
     "execs": [
       "/bin/sh",
-      "/usr/bin/realpath",
+      "/bin/realpath",
       "/bin/ln",
-      "/usr/bin/nasm",
-      "/usr/bin/gcc",
-      "/usr/lib/gcc/x86_64-linux-gnu/7/collect2",
-      "/usr/bin/ld",
+      "/bin/nasm",
+      "/bin/gcc",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/collect2",
+      "/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.20333590501104482
+    "time": 0.4413409999979194
   },
   {
     "slug": "swift",
     "execs": [
       "/bin/sh",
-      "/usr/bin/realpath",
+      "/bin/realpath",
       "/bin/ln",
       "/root/.swiftenv/shims/swiftc",
       "/bin/bash",
@@ -2464,10 +2634,10 @@
       "/root/.swiftenv/libexec/../libexec/swiftenv-exec",
       "/root/.swiftenv/libexec/../libexec/bash",
       "/bin/bash",
-      "/root/.swiftenv/versions/4.2.1-RELEASE/usr/bin/swiftc",
-      "/usr/bin/dirname",
+      "/root/.swiftenv/versions/5.3.3-RELEASE/usr/bin/swiftc",
+      "/bin/dirname",
+      "/bin/dirname",
       "/bin/readlink",
-      "/usr/bin/dirname",
       "/root/.swiftenv/libexec/../libexec/swiftenv-which",
       "/root/.swiftenv/libexec/../libexec/bash",
       "/bin/bash",
@@ -2498,15 +2668,15 @@
       "/root/.swiftenv/libexec/../libexec/bash",
       "/bin/bash",
       "/bin/cat",
-      "/root/.swiftenv/versions/4.2.1-RELEASE/usr/bin/swift",
-      "/root/.swiftenv/versions/4.2.1-RELEASE/usr/bin/swift-autolink-extract",
-      "/usr/bin/clang++",
-      "/usr/bin/ld.gold",
+      "/root/.swiftenv/versions/5.3.3-RELEASE/usr/bin/swift",
+      "/root/.swiftenv/versions/5.3.3-RELEASE/usr/bin/swift-autolink-extract",
+      "/root/.swiftenv/versions/5.3.3-RELEASE/usr/bin/clang",
+      "/bin/ld.gold",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 0.8805628109839745
+    "time": 3.019527000025846
   },
   {
     "slug": "hack"
@@ -2515,41 +2685,41 @@
     "slug": "cpp-clang",
     "execs": [
       "/bin/sh",
-      "/usr/bin/realpath",
+      "/bin/realpath",
       "/bin/ln",
-      "/usr/bin/clang-9",
-      "/usr/lib/llvm-9/bin/clang",
+      "/usr/bin/clang-11",
+      "/usr/lib/llvm-11/bin/clang",
       "/usr/bin/ld",
       "/bin/cat",
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 1.1995288129837718
+    "time": 3.536747000005562
   },
   {
     "slug": "cpp-compile-time-clang",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/bin/tr",
-      "/usr/bin/fold",
-      "/usr/bin/head",
+      "/bin/tr",
+      "/bin/fold",
+      "/bin/head",
       "/bin/cat",
       "/bin/hex",
       "/bin/cat",
-      "/usr/bin/realpath",
+      "/bin/realpath",
       "/bin/cat",
-      "/usr/bin/tr",
+      "/bin/tr",
       "/bin/sed",
       "/bin/sed",
-      "/usr/bin/clang-9",
-      "/usr/lib/llvm-9/bin/clang",
+      "/usr/bin/clang-11",
+      "/usr/lib/llvm-11/bin/clang",
       "/usr/bin/ld",
       "/tmp/code",
       "/bin/cat",
       "/bin/rm"
     ],
-    "time": 0.9496373879956082
+    "time": 30.210935000010068
   },
   {
     "slug": "perl1",
@@ -2558,31 +2728,19 @@
       "/bin/cat",
       "/usr/bin/perl"
     ],
-    "time": 0.16220151199377142
+    "time": 0.2356290000025183
   },
   {
     "slug": "moo",
     "execs": [
       "/bin/sh",
       "/bin/cat",
-      "/usr/bin/moo"
+      "/usr/bin/moo-interpreter"
     ],
-    "time": 0.17402020801091567
+    "time": 0.3901159999950323
   },
   {
-    "slug": "clisp-sbcl",
-    "execs": [
-      "/bin/sh",
-      "/bin/cat",
-      "/usr/local/bin/ros",
-      "/root/.roswell/impls/x86-64/linux/sbcl-bin/2.0.4/bin/sbcl",
-      "/bin/sh",
-      "/bin/sh",
-      "/bin/sh",
-      "/usr/local/bin/ros",
-      "/bin/sh"
-    ],
-    "time": 1.3406650430115405
+    "slug": "clisp-sbcl"
   },
   {
     "slug": "abc",
@@ -2591,7 +2749,7 @@
       "/bin/cat",
       "/root/ABC/abc"
     ],
-    "time": 0.16037610301282257
+    "time": 0.3132340000011027
   },
   {
     "slug": "emacs"
@@ -2607,33 +2765,96 @@
       "/bin/sed",
       "/bin/sed",
       "/bin/sed",
-      "/bin/rm",
-      "/bin/rm",
-      "/bin/rm",
       "/bin/rm"
     ],
-    "time": 0.2020065139804501
+    "time": 0.6972229999955744
+  },
+  {
+    "slug": "bibtex",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/bin/cp",
+      "/bin/cp",
+      "/bin/cat",
+      "/usr/local/texlive/2020/bin/x86_64-linux/bibtex",
+      "/bin/cat",
+      "/bin/rm"
+    ],
+    "time": 0.4042670000000044
   },
   {
     "slug": "egison",
     "execs": [
       "/bin/sh",
-      "/usr/bin/realpath",
+      "/bin/realpath",
       "/bin/ln",
       "/bin/cat",
-      "/usr/bin/egison",
+      "/usr/bin/egison-interpreter",
       "/bin/rm"
     ],
-    "time": 1.8669035419879947
+    "time": 12.207488999993075
   },
   {
     "slug": "alif"
+  },
+  {
+    "slug": "sqlite3",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/bin/cat",
+      "/usr/bin/sqlite3"
+    ],
+    "time": 0.3669039999949746
+  },
+  {
+    "slug": "imagemagick"
+  },
+  {
+    "slug": "apache2-rewrite"
+  },
+  {
+    "slug": "nim-lang",
+    "execs": [
+      "/bin/sh",
+      "/bin/realpath",
+      "/bin/cp",
+      "/bin/cat",
+      "/root/.nimble/bin/nim",
+      "/root/.choosenim/toolchains/nim-1.4.4/bin/nim",
+      "/bin/sh",
+      "/bin/gcc",
+      "/bin/sh",
+      "/bin/sh",
+      "/bin/g++",
+      "/bin/g++",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/cc1plus",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/cc1plus",
+      "/bin/as",
+      "/bin/sh",
+      "/bin/g++",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/cc1plus",
+      "/bin/as",
+      "/bin/as",
+      "/bin/sh",
+      "/bin/g++",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/collect2",
+      "/bin/ld",
+      "/bin/sh",
+      "/root/code",
+      "/bin/rm"
+    ],
+    "time": 9.018034000000057
+  },
+  {
+    "slug": "csound"
   },
   {
     "slug": "brainfuck-bfi",
     "execs": [
       "/bin/bfi"
     ],
-    "time": 0.12513792698155157
+    "time": 0.17371500001172535
   }
 ]

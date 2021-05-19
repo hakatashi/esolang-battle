@@ -13,7 +13,7 @@ mongoose.Promise = global.Promise;
 
 	await User.updateMany({admin: true}, {$set: {admin: false}});
 
-	for (const id of ['__fiord', 'gh_end_', 'hideo54', 'naan112358', 'n4o847']) {
+	for (const id of ['sitositositoo', 'u6606u5e03', 'n4o847', 'hideo54', 'kuromunori', 'ishitatsuyuki']) {
 		const user = await User.findOne({email: `${id}@twitter.com`});
 		if (user) {
 			user.admin = true;
@@ -22,46 +22,12 @@ mongoose.Promise = global.Promise;
 	}
 
 	await Contest.updateOne(
-		{id: 'hello'},
+		{id: 'mayfes2021-practice1'},
 		{
-			name: 'Hello Contest',
-			id: 'hello',
-			start: new Date('2020-09-15T00:00:00+0900'),
-			end: new Date('2020-09-21T11:00:00+0900'),
-			description: {
-				ja: stripIndent`
-				"hello" と出力せよ。
-				`,
-				en: '',
-			},
-		},
-		{upsert: true},
-	);
-
-	await Contest.updateOne(
-		{id: 'hello2'},
-		{
-			name: 'Hello Contest 2',
-			id: 'hello2',
-			start: new Date('2020-09-15T00:00:00+0900'),
-			end: new Date('2020-09-20T09:00:00+0900'),
-			description: {
-				ja: stripIndent`
-				"hello" と出力せよ。
-				`,
-				en: '',
-			},
-		},
-		{upsert: true},
-	);
-
-	await Contest.updateOne(
-		{id: 'mayfes2020-day1'},
-		{
-			name: '五月祭2020 Live CodeGolf Contest Day1',
-			id: 'mayfes2020-day1',
-			start: new Date('2020-09-20T14:03:00+0900'),
-			end: new Date('2020-09-20T15:18:00+0900'),
+			name: 'Practice Contest 1',
+			id: 'mayfes2021-practice1',
+			start: new Date('2021-04-30T00:00:00+0900'),
+			end: new Date('2021-05-14T00:00:00+0900'),
 			description: {
 				ja: stripIndent`
 				\`\`\`
@@ -95,7 +61,7 @@ mongoose.Promise = global.Promise;
 				\`\`\`
 				11100000011100000111100010
 				\`\`\`
-			`,
+				`,
 				en: '',
 			},
 		},
@@ -103,12 +69,12 @@ mongoose.Promise = global.Promise;
 	);
 
 	await Contest.updateOne(
-		{id: 'mayfes2020-day2'},
+		{id: 'mayfes2021-practice2'},
 		{
-			name: '五月祭2020 Live CodeGolf Contest Day2',
-			id: 'mayfes2020-day2',
-			start: new Date('2020-09-21T12:03:00+0900'),
-			end: new Date('2020-09-21T13:18:00+0900'),
+			name: 'Practice Contest 2',
+			id: 'mayfes2021-practice2',
+			start: new Date('2021-04-30T00:00:00+0900'),
+			end: new Date('2021-05-14T00:00:00+0900'),
 			description: {
 				ja: stripIndent`
 				\`\`\`
@@ -185,7 +151,130 @@ mongoose.Promise = global.Promise;
 				\`\`\`
 				11000000000001000000000001000000000000000000000000
 				\`\`\`
-			`,
+				`,
+				en: '',
+			},
+		},
+		{upsert: true},
+	);
+
+	await Contest.updateOne(
+		{id: 'mayfes2021-day1'},
+		{
+			name: '[TSG LIVE! 6] Live CodeGolf Contest Day1',
+			id: 'mayfes2021-day1',
+			start: new Date('2021-05-15T13:33:00+0900'),
+			end: new Date('2021-05-15T14:48:00+0900'),
+			description: {
+				ja: stripIndent`
+				\`\`\`
+				季節が巡る向きを判定せよ
+				\`\`\`
+				昆布くんの趣味は時間旅行ですが、気まぐれに旅をするので、いつも自分が未来へ進んでいるのか過去へ遡っているのか分からなくなってしまいます。
+				しかし、昆布くんはとても風流なので、四季の訪れを正確に感じとることができます。昆布くんは春が訪れたら0を、夏なら1を、秋なら2を、冬なら3をメモします。
+				4つの季節を体験した時点で、昆布くんはメモを見て自分が向かっている方向が未来なのか過去なのかを判断します。
+				例えば春、夏、秋、冬の順に体験した場合、メモには0123と書かれ、未来へ進んでいると判断できます。
+				
+				昆布くんは32回旅行しました。それぞれのメモが与えられるので、昆布くんが未来に進んでいるときは1を、過去に遡っているときは0を出力してください。
+				## 入力
+				* \`0\`以上\`4\`以下の数字を4つ並べた文字列が32個、改行区切りで与えられる。
+				* 入力の最後には改行が付与される。
+				## 出力
+				* 各行について\`0123\`, \`1230\`, \`2301\`, \`3012\`のいずれかであれば1、\`3210\`, \`0321\`, \`1032\`, \`2103\`のいずれかであれば0を出力せよ。
+				* 出力された文字列に含まれる空白文字（改行含む）は無視される。
+				## 制約
+				* 入力の各行は\`0123\`, \`1230\`, \`2301\`, \`3012\`, \`3210\`, \`0321\`, \`1032\`, \`2103\`のいずれかであり、かつこれら全てが1回以上現れる。
+				## 入出力例
+				### 入力
+				\`\`\`
+				2103
+				2301
+				3012
+				1032
+				0123
+				0321
+				2103
+				0123
+				3012
+				1032
+				2301
+				0123
+				0123
+				2103
+				2301
+				3012
+				2301
+				0123
+				1230
+				1032
+				3012
+				3210
+				2103
+				0321
+				3012
+				3012
+				0123
+				1032
+				0321
+				3210
+				3210
+				2301
+				
+				\`\`\`
+				### 出力
+				\`\`\`
+				01101001101110111110100011100001
+				\`\`\`
+				`,
+				en: '',
+			},
+		},
+		{upsert: true},
+	);
+
+	await Contest.updateOne(
+		{id: 'mayfes2021-day2'},
+		{
+			name: '[TSG LIVE! 6] Live CodeGolf Contest Day2',
+			id: 'mayfes2021-day2',
+			start: new Date('2021-05-16T12:33:00+0900'),
+			end: new Date('2021-05-16T13:48:00+0900'),
+			description: {
+				ja: stripIndent`
+				\`\`\`
+				東京か京都、好きな方を数えよ。
+				\`\`\`
+				## 入力
+				* \`to\` と \`kyo\` をそれぞれ10個ずつランダムに並べた50文字の文字列が与えられる。
+				* 入力の最後には改行が付与される。
+				## 出力
+				* 以下のどちらか一方を選んで、出力せよ。
+					1. 与えられた入力全体の中に含まれる \`tokyo\` の数だけ \`T\` あるいは \`t\` を出力する。
+						* \`T\` と \`t\` が混在していても良い。
+					2. 与えられた入力全体の中に含まれる \`kyoto\` の数だけ \`K\` あるいは \`k\` を出力する。
+						* \`K\` と \`k\` が混在していても良い。
+				* 出力中の空白文字は無視される。
+					* 改行は空白文字に含まれる。
+				* 指定されたもの以外の文字を出力してはならない。
+				* **提出するプログラムは、入力されうるすべてのテストケースに正しく出力できるものでなければならない。つまり確率解を禁止する。**
+				## 入出力例
+				### 入力1
+				\`\`\`
+				kyototokyototokyokyototototokyokyokyokyokyototokyo
+				\`\`\`
+				### 出力1
+				\`\`\`
+				TTTT
+				\`\`\`
+				### 入力2
+				\`\`\`
+				kyokyototokyokyokyototokyotokyototokyotokyokyototo
+				\`\`\`
+				### 出力2
+				\`\`\`
+				   k            k      k    k      k       k      
+				\`\`\`
+				`,
 				en: '',
 			},
 		},

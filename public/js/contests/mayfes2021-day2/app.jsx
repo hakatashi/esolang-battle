@@ -10,6 +10,7 @@ const {
 	Input,
 } = require('reactstrap');
 const api = require('../../api.js');
+const Map = require('./map.js');
 
 class App extends React.Component {
 	constructor(props, context) {
@@ -19,25 +20,11 @@ class App extends React.Component {
 			.querySelector('meta[name=contest-id]')
 			.getAttribute('content');
 
-		this.size = (() => {
-			if (['mayfes2018-day1', 'mayfes2018-day2'].includes(this.contestId)) {
-				return 3;
-			}
-
-			if (
-				['komabasai2018-day1', 'komabasai2018-day2'].includes(this.contestId)
-			) {
-				return 4;
-			}
-
-			return 5;
-		})();
-
 		this.state = {
 			code: '',
 			files: [],
+			faces: [],
 			languages: [],
-			languageColors: Array(this.size ** 2).fill('white'),
 			selectedLanguage: null,
 			isPending: false,
 			message: null,
@@ -64,65 +51,46 @@ class App extends React.Component {
 
 	updateLanguages = async () => {
 		const languages = await api('GET', `/contests/${this.contestId}/languages`);
-		this.setState({
-			languages,
-			languageColors: languages.map((language) => {
-				if (language.type === 'unknown') {
-					return 'black';
-				}
-
-				if (language.team === undefined) {
-					if (language.available === true) {
-						return 'white';
+		this.setState({languages});
+		this.map &&
+			this.map.setFaceColors(
+				languages.map((language) => {
+					if (language.type === 'unknown') {
+						return 'black';
 					}
-					return 'grey';
-				}
 
-				return ['red', 'blue'][language.team];
-			}),
-		});
+					if (language.team === undefined) {
+						if (language.available === true) {
+							return 'white';
+						}
+						return 'grey';
+					}
+
+					return ['red', 'blue'][language.team];
+				}),
+			);
 	};
 
-	isEmpty = (cell) => {
-		if (this.contestId === 'komabasai2018-day1') {
-			return [0, 3, 12, 15].includes(cell);
+	handleRefCanvas = (node) => {
+		this.canvas = node;
+		if (!this.mapInited) {
+			this.mapInited = true;
+			this.map = new Map(
+				this.canvas,
+				this.handleFacesUpdate,
+				this.handleClickFace,
+			);
 		}
-		if (this.contestId === 'komabasai2018-day2') {
-			return [3, 12].includes(cell);
-		}
-		if (['mayfes2019-day1', 'mayfes2019-day2'].includes(this.contestId)) {
-			return [0, 3, 4, 5, 19, 20, 21, 24].includes(cell);
-		}
-		if (this.contestId === 'komabasai2019') {
-			return [0, 4, 20, 24].includes(cell);
-		}
-		if (this.contestId === 'mayfes2020-day1') {
-			return [0, 4, 5, 9, 10, 14, 15, 19, 20, 24].includes(cell);
-		}
-		if (['mayfes2021-day1', 'mayfes2021-practice1'].includes(this.contestId)) {
-			return [0, 4, 5, 9, 10, 14, 15, 19, 20, 24].includes(cell);
-		}
-		return false;
 	};
 
-	isEnded = () => [
-		'4',
-		'mayfes2018-day1',
-		'mayfes2018-day2',
-		'hackathon2018',
-		'komabasai2018-day1',
-		'komabasai2018-day2',
-		'mayfes2019-day1',
-		'mayfes2019-day2',
-	].includes(this.contestId);
+	handleFacesUpdate = (faces) => {
+		this.setState({faces});
+	};
 
-	handleClickCell = (event) => {
-		const cellIndex = parseInt(
-			event.target.closest('.cell').getAttribute('data-index'),
-		);
+	handleClickFace = (faceIndex) => {
 		this.setState(({languages}) => {
-			const language = languages[cellIndex];
-			if (!language || (!this.isEnded() && language.available !== true)) {
+			const language = languages[faceIndex];
+			if (!language || !language.available) {
 				return {};
 			}
 			return {selectedLanguage: language};
@@ -187,13 +155,9 @@ class App extends React.Component {
 		}
 
 		this.pendingSubmission = null;
-		const submission = await api(
-			'GET',
-			`/contests/${this.contestId}/submission`,
-			{
-				_id: data._id,
-			},
-		);
+		const submission = await api('GET', `/contests/${this.contestId}/submission`, {
+			_id: data._id,
+		});
 
 		if (submission.status === 'failed') {
 			this.setState({
@@ -223,84 +187,70 @@ class App extends React.Component {
 		this.updateLanguages();
 	};
 
-	renderTeam = (color, index) => {
-		const cellCounts = Array(this.size)
+	render() {
+		const selectedLanguage = this.state.selectedLanguage || {};
+		const cellCounts = Array(2)
 			.fill()
 			.map(
 				(_, index) => this.state.languages.filter((language) => language.team === index)
 					.length,
 			);
 		const totalCellCounts = cellCounts.reduce((a, b) => a + b);
-		return (
-			<div key={color} className={`team ${color.toLowerCase()}`}>
-				<div
-					className="bar"
-					style={{
-						flexBasis: `${(cellCounts[index] / totalCellCounts) * 100}%`,
-					}}
-				>
-					<div className="count">{cellCounts[index]}</div>
-					<div className="team-name">{color}</div>
-				</div>
-			</div>
-		);
-	};
-
-	render() {
-		const selectedLanguage = this.state.selectedLanguage || {};
 
 		return (
 			<div className="world">
-				<div className="teams left">{this.renderTeam('Blue', 1)}</div>
+				<div className="spacer"/>
 				<div className="map">
-					{Array(this.size)
-						.fill()
-						.map((_, y) => (
-							<div key={y} className="row">
-								{Array(this.size)
-									.fill()
-									.map((_, x) => this.isEmpty(y * this.size + x) ? (
-										<div key={x} className="cell white empty"/>
-									) : (
-										<div
-											key={x}
-											className={`cell ${
-												this.state.languageColors[y * this.size + x]
-											}`}
-											onClick={this.handleClickCell}
-											style={{
-												cursor: this.state.languages[y * this.size + x]
-													? 'pointer'
-													: '',
-												color:
-														this.state.languages[y * this.size + x] &&
-														this.state.languages[y * this.size + x].team ===
-															undefined
-															? '#222'
-															: 'white',
-											}}
-											data-index={y * this.size + x}
-										>
-											<div className="language-label">
-												<div className="language-name">
-													{this.state.languages[y * this.size + x]
-														? this.state.languages[y * this.size + x].name
-														: ''}
-												</div>
-												<div className="language-size">
-													{this.state.languages[y * this.size + x] &&
-														this.state.languages[y * this.size + x].solution
-														? this.state.languages[y * this.size + x].solution
-															.size
-														: ''}
-												</div>
-											</div>
-										</div>
-									))}
-							</div>
-						))}
+					<div className="canvas-wrap" ref={this.handleRefCanvas}/>
+					<div className="language-labels">
+						{[...this.state.faces.entries()]
+							.filter(([, face]) => face.z < 0.99945)
+							.map(([index, face]) => (
+								<div
+									key={index}
+									className="language-label"
+									style={{
+										color:
+											this.state.languages[index] &&
+											this.state.languages[index].team === undefined
+												? '#222'
+												: 'white',
+										transform: `translate(${face.x}px, ${
+											face.y
+										}px) translate(-50%, -50%) scale(${(0.99945 - face.z) *
+											5000})`,
+									}}
+								>
+									<div className="language-name">
+										{this.state.languages[index]
+											? this.state.languages[index].name
+											: ''}
+									</div>
+									<div className="language-size">
+										{this.state.languages[index] &&
+										this.state.languages[index].solution
+											? this.state.languages[index].solution.size
+											: ''}
+									</div>
+								</div>
+							))}
+					</div>
 				</div>
-				<div className="teams right">{this.renderTeam('Red', 0)}</div>
+				<div className="teams">
+					{['Red', 'Blue'].map((color, index) => (
+						<div key={color} className={`team ${color.toLowerCase()}`}>
+							<div
+								className="bar"
+								style={{
+									flexBasis: `${(cellCounts[index] / totalCellCounts) * 100}%`,
+								}}
+							>
+								<div className="count">{cellCounts[index]}</div>
+								<div className="team-name">{color}</div>
+							</div>
+						</div>
+					))}
+				</div>
 				<Modal
 					isOpen={this.state.selectedLanguage !== null}
 					toggle={this.handleCloseModal}
@@ -322,10 +272,11 @@ class App extends React.Component {
 									{selectedLanguage.team})
 								</p>
 								<p>
-									Solution:
+									{'Solution: '}
 									<a
-										href={`/contests/${this.contestId}/submissions/${selectedLanguage.solution._id}`}
-										target="_blank" rel="noopener noreferrer"
+										href={`/contests/mayfes2021-day2/submissions/${selectedLanguage.solution._id}`}
+										target="_blank"
+										rel="noopener noreferrer"
 									>
 										{selectedLanguage.solution._id}
 									</a>
@@ -374,10 +325,11 @@ class App extends React.Component {
 								{this.state.message}
 								{this.state.messageDetail && (
 									<>
-										Check out the detail
+										{' Check out the detail '}
 										<a
-											href={`/contests/${this.contestId}/submissions/${this.state.messageDetail}`}
-											target="_blank" rel="noopener noreferrer"
+											href={`/contests/mayfes2021-day2/submissions/${this.state.messageDetail}`}
+											target="_blank"
+											rel="noopener noreferrer"
 										>
 											here
 										</a>

@@ -21,12 +21,12 @@ block content
           span.checker-count 0
           = ' '
           | bytes
-        textarea.form-control.code.checker-code(name='code')
+        textarea.form-control.code.checker-code(name='code', spellcheck='false')
       .form-group
         input.form-contril-file.checker-file(type='file')
       .form-group
         label stdin
-        textarea.form-control.code.checker-stdin(name='stdin')
+        textarea.form-control.code.checker-stdin(name='stdin', spellcheck='false')
       button.btn.btn-primary.checker-submit(type='button') Submit
       hr
       .alert.alert-danger.checker-alert(style={display: 'none'})
