@@ -20,7 +20,6 @@ const lusca = require('lusca');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const multer = require('multer');
-const sass = require('node-sass-middleware');
 const passport = require('passport');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -64,6 +63,7 @@ const upload = multer({
  */
 const app = express();
 const io = require('./lib/socket-io');
+const sassMiddleware = require('./lib/sass-middleware');
 
 /*
  * Connect to MongoDB.
@@ -87,12 +87,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(compression());
-app.use(
-	sass({
-		src: path.join(__dirname, 'public'),
-		dest: path.join(__dirname, 'public'),
-	}),
-);
+app.use(sassMiddleware);
 app.use(
 	webpackDevMiddleware(compiler, {publicPath: webpackConfig.output.publicPath}),
 );

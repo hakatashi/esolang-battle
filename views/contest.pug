@@ -2,37 +2,36 @@ extends layout
 
 block head
   if contest.isStarted() || (user && user.admin)
-    style
-      if contest.id === '1'
-        include:scss maps/1.scss
-      else if contest.id === '2'
-        include:scss maps/2.scss
-      else if contest.id === '3'
-        include:scss maps/3.scss
-      else if contest.id === '4'
-        include:scss maps/4.scss
-      else if ['mayfes2018-day1', 'mayfes2018-day2'].includes(contest.id)
-        include:scss maps/mayfes2018.scss
-      else if contest.id === 'hackathon2018'
-        include:scss maps/hackathon2018.scss
-      else if ['komabasai2018-day1', 'komabasai2018-day2'].includes(contest.id)
-        include:scss maps/mayfes2018.scss
-      else if ['mayfes2019-day1', 'mayfes2019-day2'].includes(contest.id)
-        include:scss maps/mayfes2018.scss
-      else if contest.id === '5'
-        include:scss maps/5.scss
-      else if ['komabasai2019'].includes(contest.id)
-        include:scss maps/mayfes2018.scss
-      else if contest.id === '6'
-        include:scss maps/6.scss
-      else if contest.id === 'mayfes2020-day1'
-        include:scss maps/mayfes2018.scss
-      else if contest.id === 'mayfes2020-day2'
-        include:scss maps/mayfes2020-day2.scss
-      else if ['mayfes2021-day1', 'mayfes2021-practice1'].includes(contest.id)
-        include:scss maps/mayfes2018.scss
-      else if ['mayfes2021-day2', 'mayfes2021-practice2'].includes(contest.id)
-        include:scss maps/4.scss
+    if contest.id === '1'
+      link(rel='stylesheet', href='/css/contests/1.css')
+    else if contest.id === '2'
+      link(rel='stylesheet', href='/css/contests/2.css')
+    else if contest.id === '3'
+      link(rel='stylesheet', href='/css/contests/3.css')
+    else if contest.id === '4'
+      link(rel='stylesheet', href='/css/contests/4.css')
+    else if ['mayfes2018-day1', 'mayfes2018-day2'].includes(contest.id)
+      link(rel='stylesheet', href='/css/contests/mayfes2018.css')
+    else if contest.id === 'hackathon2018'
+      link(rel='stylesheet', href='/css/contests/hackathon2018.css')
+    else if ['komabasai2018-day1', 'komabasai2018-day2'].includes(contest.id)
+      link(rel='stylesheet', href='/css/contests/mayfes2018.css')
+    else if ['mayfes2019-day1', 'mayfes2019-day2'].includes(contest.id)
+      link(rel='stylesheet', href='/css/contests/mayfes2018.css')
+    else if contest.id === '5'
+      link(rel='stylesheet', href='/css/contests/5.css')
+    else if ['komabasai2019'].includes(contest.id)
+      link(rel='stylesheet', href='/css/contests/mayfes2018.css')
+    else if contest.id === '6'
+      link(rel='stylesheet', href='/css/contests/6.css')
+    else if contest.id === 'mayfes2020-day1'
+      link(rel='stylesheet', href='/css/contests/mayfes2018.css')
+    else if contest.id === 'mayfes2020-day2'
+      link(rel='stylesheet', href='/css/contests/mayfes2020-day2.css')
+    else if ['mayfes2021-day1', 'mayfes2021-practice1'].includes(contest.id)
+      link(rel='stylesheet', href='/css/contests/mayfes2018.css')
+    else if ['mayfes2021-day2', 'mayfes2021-practice2'].includes(contest.id)
+      link(rel='stylesheet', href='/css/contests/4.css')
 
     if contest.id === '4'
       script(src='/js/contest-4.js', defer)
