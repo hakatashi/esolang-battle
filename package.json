@@ -49,7 +49,7 @@
     "express-promise-router": "^4.1.0",
     "express-session": "^1.17.2",
     "express-validator": "^6.12.0",
-    "firebase-admin": "^9.10.0",
+    "firebase-admin": "^9.11.0",
     "garlicjs": "^1.4.2",
     "hexdump-stream": "pose/hexdump-stream",
     "lodash": "^4.17.21",
