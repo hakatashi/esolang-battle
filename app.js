@@ -116,7 +116,22 @@ app.use((req, res, next) => {
 	lusca.csrf()(req, res, next);
 });
 app.use(lusca.xframe('SAMEORIGIN'));
+app.use(lusca.csp({
+	policy: {
+		'default-src': '\'self\'',
+		'script-src': '\'self\' \'unsafe-eval\' https://www.googletagmanager.com https://maxcdn.bootstrapcdn.com https://cdnjs.cloudflare.com https://code.jquery.com',
+		'style-src': '\'self\' \'unsafe-inline\' https://fonts.googleapis.com',
+		// THIS IS INSECURE https://security.stackexchange.com/questions/94993/is-including-the-data-scheme-in-your-content-security-policy-safe
+		'img-src': '\'self\' https://gravatar.com data:',
+		'object-src': '\'self\'',
+	},
+}));
+// TODO
+// app.use(lusca.p3p("Privacy Policy"));
+app.use(lusca.hsts({maxAge: 31536000}));
 app.use(lusca.xssProtection(true));
+app.use(lusca.nosniff());
+app.use(lusca.referrerPolicy('same-origin'));
 app.use(async (req, res, next) => {
 	const hash = await util
 		.promisify(fs.readFile)(path.resolve(__dirname, '.git/refs/heads/master'))
@@ -234,6 +249,14 @@ router.get(
 		res.redirect(req.session.returnTo || '/');
 	},
 );
+
+// GitHub authentication routes.
+app.get('/auth/github', passport.authenticate('github', {scope: ['']}));
+app.get('/auth/github/callback',
+	passport.authenticate('github', {successRedirect: '/', failureRedirect: '/login'}),
+	(req, res) => {
+		res.redirect(req.session.returnTo || '/');
+	});
 
 app.use(router);
 

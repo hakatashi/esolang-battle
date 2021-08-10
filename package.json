@@ -15,7 +15,7 @@
     "lint": "prettier-eslint **/*.js **/*.jsx --ignore public/js/lib/** --write && eslint **/*.js --ignore-pattern public/js/lib/**"
   },
   "engines": {
-    "node": "^11.0.0"
+    "node": ">=11.0.0"
   },
   "dependencies": {
     "@babel/core": "^7.14.6",
@@ -39,6 +39,7 @@
     "compression": "^1.7.4",
     "concat-stream": "^2.0.0",
     "connect-mongo": "^4.4.1",
+    "core-js": "3",
     "discord.js": "^12.5.3",
     "dockerode": "^3.3.0",
     "dotenv": "^9.0.2",
@@ -52,6 +53,7 @@
     "firebase-admin": "^9.11.0",
     "garlicjs": "^1.4.2",
     "hexdump-stream": "pose/hexdump-stream",
+    "jstransformer-scss": "^1.0.0",
     "lodash": "^4.17.21",
     "lusca": "^1.7.0",
     "markdown-it": "^12.1.0",
@@ -62,6 +64,7 @@
     "morgan": "^1.10.0",
     "multer": "^2.0.0-alpha.6",
     "passport": "^0.4.1",
+    "passport-github2": "^0.1.12",
     "passport-twitter": "^1.0.4",
     "prop-types": "^15.7.2",
     "pug": "^3.0.2",

@@ -141,6 +141,7 @@ module.exports.getLanguageMap = async ({team = null, contest} = {}) => {
 	});
 };
 
+// コード長の制限; 言語ごとに指定
 const getCodeLimit = (languageId) => {
 	if (['fernando', 'pure-folders'].includes(languageId)) {
 		return 1024 * 1024;
@@ -165,6 +166,7 @@ const getCodeLimit = (languageId) => {
 
 module.exports.getCodeLimit = getCodeLimit;
 
+// タイムアウト; 言語ごとに指定
 module.exports.getTimeLimit = (languageId) => {
 	if (['kotlin', 'husk'].includes(languageId)) {
 		return 30 * 1000;

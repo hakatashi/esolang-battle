@@ -20,14 +20,17 @@ mongoose.Promise = global.Promise;
 			await user.save();
 		}
 	}
+	const user = await User.findOne({email: 'hiromi-mi@github.com'});
+	user.admin = true;
+	await user.save();
 
 	await Contest.updateOne(
-		{id: 'mayfes2021-practice1'},
+		{id: '7'},
 		{
-			name: 'Practice Contest 1',
-			id: 'mayfes2021-practice1',
-			start: new Date('2021-04-30T00:00:00+0900'),
-			end: new Date('2021-05-14T00:00:00+0900'),
+			name: 'Esolang Codegolf Contest #7',
+			id: '7',
+			start: new Date('2021-02-09T13:00:00+0900'),
+			end: new Date('2021-02-20T21:00:00+0900'),
 			description: {
 				ja: stripIndent`
 				\`\`\`
@@ -174,7 +177,7 @@ mongoose.Promise = global.Promise;
 				しかし、昆布くんはとても風流なので、四季の訪れを正確に感じとることができます。昆布くんは春が訪れたら0を、夏なら1を、秋なら2を、冬なら3をメモします。
 				4つの季節を体験した時点で、昆布くんはメモを見て自分が向かっている方向が未来なのか過去なのかを判断します。
 				例えば春、夏、秋、冬の順に体験した場合、メモには0123と書かれ、未来へ進んでいると判断できます。
-				
+
 				昆布くんは32回旅行しました。それぞれのメモが与えられるので、昆布くんが未来に進んでいるときは1を、過去に遡っているときは0を出力してください。
 				## 入力
 				* \`0\`以上\`4\`以下の数字を4つ並べた文字列が32個、改行区切りで与えられる。
@@ -219,7 +222,7 @@ mongoose.Promise = global.Promise;
 				3210
 				3210
 				2301
-				
+
 				\`\`\`
 				### 出力
 				\`\`\`
@@ -272,7 +275,7 @@ mongoose.Promise = global.Promise;
 				\`\`\`
 				### 出力2
 				\`\`\`
-				   k            k      k    k      k       k      
+				   k            k      k    k      k       k
 				\`\`\`
 				`,
 				en: '',

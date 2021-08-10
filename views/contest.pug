@@ -24,6 +24,8 @@ block head
       link(rel='stylesheet', href='/css/contests/mayfes2018.css')
     else if contest.id === '6'
       link(rel='stylesheet', href='/css/contests/6.css')
+    else if contest.id === '7'
+      link(rel='stylesheet', href='/css/contests/7.css')
     else if contest.id === 'mayfes2020-day1'
       link(rel='stylesheet', href='/css/contests/mayfes2018.css')
     else if contest.id === 'mayfes2020-day2'
@@ -48,6 +50,8 @@ block head
     else if ['komabasai2019'].includes(contest.id)
     else if contest.id === '6'
       script(src='/js/contest-6.js', defer)
+    else if contest.id === '7'
+      script(src='/js/contest-7.js', defer)
     else if contest.id === 'mayfes2020-day1'
       script(src='/js/contest-mayfes2018.js', defer)
     else if contest.id === 'mayfes2020-day2'
@@ -57,13 +61,12 @@ block head
     else if ['mayfes2021-day2', 'mayfes2021-practice2'].includes(contest.id)
       script(src='/js/contest-mayfes2021-day2.js', defer)
 
-
 block content
   if !contest.isStarted() && (!user || !user.admin)
     .container
       .content
         include partials/countdown.pug
-  else if ['4', '5', '6', 'mayfes2018-day1', 'mayfes2018-day2', 'hackathon2018', 'komabasai2018-day1', 'komabasai2018-day2', 'mayfes2019-day1', 'mayfes2019-day2', 'komabasai2019', 'mayfes2020-day1', 'mayfes2020-day2', 'mayfes2021-day1', 'mayfes2021-day2', 'mayfes2021-practice1', 'mayfes2021-practice2'].includes(contest.id)
+  else if ['4', '5', '6', '7', 'mayfes2018-day1', 'mayfes2018-day2', 'hackathon2018', 'komabasai2018-day1', 'komabasai2018-day2', 'mayfes2019-day1', 'mayfes2019-day2', 'komabasai2019', 'mayfes2020-day1', 'mayfes2020-day2', 'mayfes2021-day1', 'mayfes2021-day2', 'mayfes2021-practice1', 'mayfes2021-practice2'].includes(contest.id)
     #app
   else
     .container

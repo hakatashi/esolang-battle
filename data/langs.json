@@ -937,7 +937,7 @@
   },
   {
     "slug": "compile-time-typescript",
-    "name": "CompileTime TypeScript",
+    "name": "Compile-time TypeScript",
     "link": "https://github.com/n4o847/compile-time-typescript",
     "disasm": false
   },

@@ -1,6 +1,7 @@
 const contest4 = require('./4');
 const contest5 = require('./5');
 const contest6 = require('./6');
+const contest7 = require('./7');
 const hackathon2018 = require('./hackathon2018');
 const komabasai2018Day1 = require('./komabasai2018-day1');
 const komabasai2018Day2 = require('./komabasai2018-day2');
@@ -15,6 +16,7 @@ const mayfes2021Day1 = require('./mayfes2021-day1');
 const mayfes2021Day2 = require('./mayfes2021-day2');
 const mayfes2021Practice1 = require('./mayfes2021-practice1');
 const mayfes2021Practice2 = require('./mayfes2021-practice2');
+
 
 module.exports = {
 	4: contest4,
@@ -34,4 +36,5 @@ module.exports = {
 	'mayfes2021-day2': mayfes2021Day2,
 	'mayfes2021-practice1': mayfes2021Practice1,
 	'mayfes2021-practice2': mayfes2021Practice2,
+	7: contest7,
 };
