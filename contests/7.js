@@ -8,28 +8,27 @@ const shuffle = require('lodash/shuffle');
 const times = require('lodash/times');
 const zip = require('lodash/zip');
 
-const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const patterns = [
-	'AA AA',
-	'AA AB',
-	'AA BA',
-	'AA BB',
-	'AA BC',
-	'AB AA',
-	'AB AB',
-	'AB AC',
-	'AB BA',
-	'AB BB',
-	'AB BC',
-	'AB CA',
-	'AB CB',
-	'AB CC',
-	'AB CD',
-];
-
 const WIDTH = 11;
 const HEIGHT = 13;
 const xy = (x, y) => y * WIDTH + x;
+
+const patterns = [
+['110', '000', '000'],
+['100', '010', '000'],
+['100', '100', '000'],
+['111', '000', '000'],
+['110', '001', '000'],
+['110', '100', '000'],
+['100', '010', '001'],
+['100', '100', '100'],
+['100', '100', '010'],
+['111', '100', '000'],
+['110', '110', '000'],
+['110', '101', '000'],
+['110', '100', '100'],
+['110', '100', '010'],
+['110', '100', '001'],
+['110', '001', '001']];
 
 module.exports.getPrecedingIndices = (cellIndex) => {
 	const x = cellIndex % WIDTH;
@@ -71,52 +70,18 @@ module.exports.getPrecedingIndices = (cellIndex) => {
 	return precedings;
 };
 
-const ngRegex = /(\d)\1\1/;
-
-module.exports.generateInput = () => {
-	const lines = [];
-	for (const pattern of patterns) {
-		const generated = [];
-		while (generated.length < 2) {
-			const selectedDigits = shuffle(sampleSize(digits, 4));
-			const line = sample(digits).toString() + pattern
-				.replace(/A/g, selectedDigits[0])
-				.replace(/B/g, selectedDigits[1])
-				.replace(/C/g, selectedDigits[2])
-				.replace(/D/g, selectedDigits[3]) + sample(digits).toString();
-			if (!line.match(ngRegex) && !generated.includes(line)) {
-				generated.push(line);
-			}
-		}
-		lines.push(...generated);
-	}
-
-	while (lines.length < 32) {
-		const selectedDigits = times(6, () => sample(digits));
-		const line = `${selectedDigits.slice(0, 3).join('')} ${selectedDigits.slice(3, 6).join('')}`;
-		if (!line.match(ngRegex) && !lines.includes(line)) {
-			lines.push(line);
-		}
-	}
-
-	return shuffle(lines).map((line) => `${line}\n`).join('');
+const doubleShuffle = (pattern) => {
+   const rowids = shuffle(Array.from({length: pattern.length}, (_,i) => i));
+   return shuffle(pattern.map(col => rowids.map(d => col[d]).join('')));
 };
 
-const countScore = (line, digit) => {
-	const cells = [line[0], line[1], line[2], digit.toString(), line[4], line[5], line[6]];
-	const continuousLength = [1];
-	for (const [i, cell] of cells.entries()) {
-		if (i === 0) {
-			continue;
-		}
-		if (cells[i - 1] === cell) {
-			continuousLength.push(last(continuousLength) + 1);
-		} else {
-			continuousLength.push(1);
-		}
+module.exports.generateInput = () => {
+	let generatedPatterns = [];
+	for (const pattern of patterns) {
+           generatedPatterns.push(doubleShuffle(pattern));
 	}
-	const maximumContinuation = max(continuousLength);
-	return maximumContinuation >= 3 ? maximumContinuation : 0;
+        const shuffledGeneratedPatterns = shuffle(generatedPatterns);
+        return shuffledGeneratedPatterns.flat().join('\n');
 };
 
 module.exports.isValidAnswer = (input, output) => {
@@ -125,26 +90,23 @@ module.exports.isValidAnswer = (input, output) => {
 	}
 
 	const trimmedOutput = output.toString().replace(/\s/g, '').split('');
-	if (trimmedOutput.length !== 32) {
+	if (trimmedOutput.length !== patterns.length) {
 		console.log('info: length not valid');
 		return false;
 	}
 
 	const inputLines = input.split('\n').filter((line) => line.length > 0);
-	assert(inputLines.length === 32);
+        const onePatternLength = patterns[0].length
+	assert(inputLines.length === patterns.length * onePatternLength);
 
-	for (const [char, line] of zip(trimmedOutput, inputLines)) {
-		if (!digits.map((d) => d.toString()).includes(char)) {
-			console.log('1');
-			return false;
-		}
-		const digit = parseInt(char);
-		const maximumScore = max(digits.map((d) => countScore(line, d)));
-		if (countScore(line, digit) !== maximumScore) {
-			console.log('2');
-			return false;
-		}
-	}
+        for (let i = 0; i < patterns.length; i++) {
+           const patternAsInt = inputLines.slice(3*i, 3*i+3).map(l => parseInt(l, 2));
+           const isNifu = patternAsInt.reduce((acc, item) => acc + item) > patternAsInt.reduce((acc, item) => acc | item);
+           if (isNifu !== Boolean(Number(trimmedOutput[i]))) {
+            console.log('failedinfo:', {input, output, trimmedOutput});
+              return false;
+           }
+        }
 
 	console.log('info:', {input, output, trimmedOutput});
 

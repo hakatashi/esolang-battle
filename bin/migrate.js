@@ -11,7 +11,11 @@ mongoose.Promise = global.Promise;
 (async () => {
 	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
 
-	await User.updateMany({admin: true}, {$set: {admin: false}});
+	/*
+	await User.updateMany(
+		{admin: true},
+		{$set: {admin: false}},
+	);
 
 	for (const id of ['sitositositoo', 'u6606u5e03', 'n4o847', 'hideo54', 'kuromunori', 'ishitatsuyuki']) {
 		const user = await User.findOne({email: `${id}@twitter.com`});
@@ -23,6 +27,7 @@ mongoose.Promise = global.Promise;
 	const user = await User.findOne({email: 'hiromi-mi@github.com'});
 	user.admin = true;
 	await user.save();
+	*/
 
 	await Contest.updateOne(
 		{id: '7'},
@@ -284,12 +289,8 @@ mongoose.Promise = global.Promise;
 		{upsert: true},
 	);
 
-	for (const slug of [
-		'whitespace',
-		'pure-folders',
-		'concise-folders',
-		'produire',
-	]) {
+	/*
+	for (const slug of ['whitespace', 'pure-folders', 'concise-folders', 'produire']) {
 		const languages = await Language.find({slug});
 		for (const language of languages) {
 			const submissions = await Submission.find({language});
@@ -316,6 +317,7 @@ mongoose.Promise = global.Promise;
 			}
 		}
 	}
+	*/
 
 	mongoose.connection.close();
 })();

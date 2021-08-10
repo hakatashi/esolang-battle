@@ -20,7 +20,15 @@ module.exports.getSubmissions = async (req, res) => {
 		});
 		if (author) {
 			query.user = author._id;
-		}
+		} else {
+                   // TODO : GitHub
+                  const author = await User.findOne({
+                           email: `${req.query.author}@github.com`,
+                  });
+                  if (author) {
+                           query.user = author._id;
+                  }
+                }
 	}
 
 	if (req.query.language) {
