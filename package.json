@@ -50,7 +50,7 @@
     "express-promise-router": "^4.1.0",
     "express-session": "^1.17.2",
     "express-validator": "^6.12.1",
-    "firebase-admin": "^9.11.0",
+    "firebase-admin": "^9.11.1",
     "garlicjs": "^1.4.2",
     "hexdump-stream": "pose/hexdump-stream",
     "jstransformer-scss": "^1.0.0",
