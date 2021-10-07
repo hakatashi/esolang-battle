@@ -58,7 +58,7 @@
     "lusca": "^1.7.0",
     "markdown-it": "^12.2.0",
     "material-colors": "^1.2.6",
-    "mathjs": "^9.4.4",
+    "mathjs": "^9.4.5",
     "moment": "^2.29.1",
     "mongoose": "^6.0.5",
     "morgan": "^1.10.0",
