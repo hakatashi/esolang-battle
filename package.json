@@ -80,7 +80,7 @@
     "tmp": "^0.2.1",
     "utf-8-validate": "^5.0.6",
     "uuid": "^8.3.2",
-    "validator": "^13.6.0",
+    "validator": "^13.7.0",
     "webpack": "^5.58.1",
     "webpack-cli": "^4.8.0",
     "webpack-dev-middleware": "^4.3.0",
