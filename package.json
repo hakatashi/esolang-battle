@@ -60,7 +60,7 @@
     "material-colors": "^1.2.6",
     "mathjs": "^10.0.0",
     "moment": "^2.29.1",
-    "mongoose": "^6.0.12",
+    "mongoose": "^6.0.13",
     "morgan": "^1.10.0",
     "multer": "^2.0.0-alpha.6",
     "passport": "^0.5.0",
