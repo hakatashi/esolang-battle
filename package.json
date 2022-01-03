@@ -29,7 +29,7 @@
     "async-mutex": "^0.3.2",
     "babel-loader": "^8.2.3",
     "bcryptjs": "^2.4.3",
-    "bignumber.js": "^9.0.1",
+    "bignumber.js": "^9.0.2",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.1",
     "bootstrap": "^5.1.3",
