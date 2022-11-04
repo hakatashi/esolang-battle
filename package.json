@@ -27,7 +27,7 @@
     "@slack/web-api": "^6.5.1",
     "array-shuffle": "^2.0.0",
     "async-mutex": "^0.3.2",
-    "babel-loader": "^8.2.3",
+    "babel-loader": "^8.2.4",
     "bcryptjs": "^2.4.3",
     "bignumber.js": "^9.0.2",
     "bluebird": "^3.7.2",
