@@ -3,9 +3,9 @@ const flatten = require('lodash/flatten');
 const langsData = require('../langs.json');
 
 const languages = [
-	['', 'brainfuck-esotope', 'produire', 'cpp-clang', ''],
+	['', 'fish', 'produire', 'cpp-clang', ''],
 	['', '', 'haskell', '', ''],
-	['', 'c-gcc', 'fish', 'python3', ''],
+	['', 'c-gcc', 'brainfuck-esomer', 'python3', ''],
 	['', '', 'node', '', ''],
 	['', 'ruby', 'aheui', 'ocaml', ''],
 ];
