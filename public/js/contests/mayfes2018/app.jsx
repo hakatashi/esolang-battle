@@ -99,7 +99,7 @@ class App extends React.Component {
 		if (this.contestId === 'mayfes2020-day1') {
 			return [0, 4, 5, 9, 10, 14, 15, 19, 20, 24].includes(cell);
 		}
-		if (['mayfes2021-day1', 'mayfes2021-practice1', 'komabasai2022-practice'].includes(this.contestId)) {
+		if (['mayfes2021-day1', 'mayfes2021-practice1', 'komabasai2022', 'komabasai2022-practice'].includes(this.contestId)) {
 			return [0, 4, 5, 9, 10, 14, 15, 19, 20, 24].includes(cell);
 		}
 		return false;
