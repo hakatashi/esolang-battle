@@ -1475,4 +1475,10 @@
     "link": "http://esoteric.sange.fi/brainfuck/impl/interp/BFI.c",
     "disasm": false
   }
+  {
+    "slug": "brainfuck-esomer",
+    "name": "Brainfuck (esomer)",
+    "link": "http://esoteric.sange.fi/brainfuck/impl/interp/BFI.c",
+    "disasm": false
+  }
 ]
