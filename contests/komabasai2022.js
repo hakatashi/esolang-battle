@@ -45,6 +45,6 @@ module.exports.generateInput = () => {
 
 module.exports.isValidAnswer = (input, output) => {
 	const ansArray = input.trim().split('\n').map((d) => (d.slice(0, (d.indexOf('__') + 10) % 10 + 1).match(/\|/g) || []).length);
-	const outArray = output.trim().split(/\s+/).map((s) => parseInt(s));
+	const outArray = output.toString().trim().split(/\s+/).map((s) => parseInt(s));
 	return ansArray.toString() === outArray.toString();
 };
