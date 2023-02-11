@@ -94,7 +94,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.2",
     "mocha": "^8.4.0",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.20",
     "prettier-eslint-cli": "^5.0.1",
     "sinon": "^7",
     "sinon-mongoose": "^2.3.0",
