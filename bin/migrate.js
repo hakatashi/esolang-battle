@@ -11,31 +11,23 @@ mongoose.Promise = global.Promise;
 (async () => {
 	await mongoose.connect('mongodb://localhost:27017/esolang-battle');
 
-	/*
-	await User.updateMany(
-		{admin: true},
-		{$set: {admin: false}},
-	);
+	await User.updateMany({admin: true}, {$set: {admin: false}});
 
-	for (const id of ['sitositositoo', 'u6606u5e03', 'n4o847', 'hideo54', 'kuromunori', 'ishitatsuyuki']) {
+	for (const id of ['sitositositoo', 'u6606u5e03', 'n4o847', 'hideo54', 'kuromunori', 'ishitatsuyuki', 'hakatashi', 'syobon_hinata']) {
 		const user = await User.findOne({email: `${id}@twitter.com`});
 		if (user) {
 			user.admin = true;
 			await user.save();
 		}
 	}
-	const user = await User.findOne({email: 'hiromi-mi@github.com'});
-	user.admin = true;
-	await user.save();
-	*/
 
 	await Contest.updateOne(
-		{id: '7'},
+		{id: 'komabasai2022-practice'},
 		{
-			name: 'Esolang Codegolf Contest #7',
-			id: '7',
-			start: new Date('2021-02-09T13:00:00+0900'),
-			end: new Date('2021-02-20T21:00:00+0900'),
+			name: '駒場祭2022 Practice Contest',
+			id: 'komabasai2022-practice',
+			start: new Date('2022-11-18T00:00:00+0900'),
+			end: new Date('2022-11-20T00:00:00+0900'),
 			description: {
 				ja: stripIndent`
 				\`\`\`
@@ -77,247 +69,93 @@ mongoose.Promise = global.Promise;
 	);
 
 	await Contest.updateOne(
-		{id: 'mayfes2021-practice2'},
+		{id: 'komabasai2022'},
 		{
-			name: 'Practice Contest 2',
-			id: 'mayfes2021-practice2',
-			start: new Date('2021-04-30T00:00:00+0900'),
-			end: new Date('2021-05-14T00:00:00+0900'),
+			name: '[TSG LIVE! 9] Live CodeGolf Contest',
+			id: 'komabasai2022',
+			start: new Date('2022-11-19T13:03:00+0900'),
+			end: new Date('2022-11-19T14:33:00+0900'),
 			description: {
 				ja: stripIndent`
-				\`\`\`
-				それ以前のどの数値よりも真に小さいか判定せよ
-				\`\`\`
-				Szkiくんは甘いものに目がなく、毎日おやつを食べていました。
-				しかし最近Szkiくんは太ってしまったので、ダイエットのためおやつに制限を設けることにしました。
-				制限は、「その日のおやつのカロリーが以前のおやつたちのカロリーのいずれよりも真に小さいとき、おやつを食べる」というものです。
-				今日から50日ぶんのおやつのカロリーが2桁の数値で与えられるので、Szkiくんがおやつを食べた日は1、食べなかった日は0を出力してください。
-				## 入力
-				* 2桁の数値(\`10\`以上\`99\`以下)が50個、改行区切りで与えられる。
-				* 入力の最後には改行が付与される。
-				## 出力
-				* 与えられた数値それぞれについて、それ以前に与えられた数値のいずれよりも真に小さいとき1、そうでないとき0を出力せよ。
-				## 制約
-				* 同じ数値は2度出現しない。
-				* 入力の数値は10以上99以下である。
-				* 初日については1を出力すること。
-				## 入出力例
-				### 入力1
-				\`\`\`
-				88
-				18
-				21
-				41
-				55
-				46
-				64
-				58
-				67
-				86
-				89
-				28
-				72
-				12
-				77
-				83
-				93
-				61
-				23
-				15
-				53
-				34
-				35
-				81
-				96
-				10
-				76
-				82
-				19
-				51
-				49
-				47
-				59
-				84
-				24
-				87
-				71
-				33
-				20
-				94
-				45
-				56
-				90
-				39
-				85
-				50
-				40
-				26
-				69
-				68
-				\`\`\`
-				### 出力1
-				\`\`\`
-				11000000000001000000000001000000000000000000000000
-				\`\`\`
+					\`\`\`
+					ドミノ倒しで倒れるドミノの数を数えよ。
+					\`\`\`
+
+					# 入力
+
+					入力は30行からなる。
+
+					入力の各行は、\`|\`か\`_\`を10文字並べた文字列である。
+
+					各行（最終行を含む）の末尾には、改行（\`\\n\`）が付与される。
+
+					各行の$n$文字目は点$n-1$に対応する。\`|\`はドミノが存在する点を、\`_\`はドミノが存在しない点を意味する。
+
+					ドミノの高さは2.5、各点の間隔は1であり、ドミノの厚みは無視できるものとする。
+
+					# 出力
+
+					点0のドミノを点1の方向に倒したときに、倒れるドミノの個数を各行ごとに出力せよ。出力は空白(改行含む)で区切ること。
+
+					ただし、ここでいう「空白」は、JavaScriptの正規表現で\`\\s\`にマッチする文字のことを指す。
+
+					# 制約
+
+					点0にドミノが存在することは保証されている。
+
+					# 入力例
+
+					\`\`\`
+					|___|_|_|_
+					||||_|__|_
+					|____|_||_
+					||||___|||
+					|||___||||
+					|||_|_|___
+					|__|_||___
+					|_||______
+					|_|||__||_
+					|_|_|||___
+					|__||__||_
+					|___||||_|
+					|||_|_||__
+					|___|||_||
+					|_____|_||
+					|____|||||
+					||__||||||
+					|||_||__|_
+					|_||||||__
+					||_||__|||
+					|_|||_|___
+					||_|__|||_
+					|__|__||||
+					|||__|||__
+					|||||_|||_
+					|___|_||_|
+					|||||__|||
+					|__|_____|
+					||__||__||
+					||||||_|||
+					\`\`\`
+
+					# 出力例
+
+					\`\`\`
+					1 5 1 4 3
+					5 1 3 4 5
+					1 1 6 1 1
+					1 2 5 7 4
+					5 3 1 3 8
+					1 5 1 2 9
+					\`\`\`
+
+					たとえば2行目の\`||||_|__|_\`の場合、点0,1,2,3,5の合計5つのドミノが倒れる。
 				`,
 				en: '',
 			},
 		},
 		{upsert: true},
 	);
-
-	await Contest.updateOne(
-		{id: 'mayfes2021-day1'},
-		{
-			name: '[TSG LIVE! 6] Live CodeGolf Contest Day1',
-			id: 'mayfes2021-day1',
-			start: new Date('2021-05-15T13:33:00+0900'),
-			end: new Date('2021-05-15T14:48:00+0900'),
-			description: {
-				ja: stripIndent`
-				\`\`\`
-				季節が巡る向きを判定せよ
-				\`\`\`
-				昆布くんの趣味は時間旅行ですが、気まぐれに旅をするので、いつも自分が未来へ進んでいるのか過去へ遡っているのか分からなくなってしまいます。
-				しかし、昆布くんはとても風流なので、四季の訪れを正確に感じとることができます。昆布くんは春が訪れたら0を、夏なら1を、秋なら2を、冬なら3をメモします。
-				4つの季節を体験した時点で、昆布くんはメモを見て自分が向かっている方向が未来なのか過去なのかを判断します。
-				例えば春、夏、秋、冬の順に体験した場合、メモには0123と書かれ、未来へ進んでいると判断できます。
-
-				昆布くんは32回旅行しました。それぞれのメモが与えられるので、昆布くんが未来に進んでいるときは1を、過去に遡っているときは0を出力してください。
-				## 入力
-				* \`0\`以上\`4\`以下の数字を4つ並べた文字列が32個、改行区切りで与えられる。
-				* 入力の最後には改行が付与される。
-				## 出力
-				* 各行について\`0123\`, \`1230\`, \`2301\`, \`3012\`のいずれかであれば1、\`3210\`, \`0321\`, \`1032\`, \`2103\`のいずれかであれば0を出力せよ。
-				* 出力された文字列に含まれる空白文字（改行含む）は無視される。
-				## 制約
-				* 入力の各行は\`0123\`, \`1230\`, \`2301\`, \`3012\`, \`3210\`, \`0321\`, \`1032\`, \`2103\`のいずれかであり、かつこれら全てが1回以上現れる。
-				## 入出力例
-				### 入力
-				\`\`\`
-				2103
-				2301
-				3012
-				1032
-				0123
-				0321
-				2103
-				0123
-				3012
-				1032
-				2301
-				0123
-				0123
-				2103
-				2301
-				3012
-				2301
-				0123
-				1230
-				1032
-				3012
-				3210
-				2103
-				0321
-				3012
-				3012
-				0123
-				1032
-				0321
-				3210
-				3210
-				2301
-
-				\`\`\`
-				### 出力
-				\`\`\`
-				01101001101110111110100011100001
-				\`\`\`
-				`,
-				en: '',
-			},
-		},
-		{upsert: true},
-	);
-
-	await Contest.updateOne(
-		{id: 'mayfes2021-day2'},
-		{
-			name: '[TSG LIVE! 6] Live CodeGolf Contest Day2',
-			id: 'mayfes2021-day2',
-			start: new Date('2021-05-16T12:33:00+0900'),
-			end: new Date('2021-05-16T13:48:00+0900'),
-			description: {
-				ja: stripIndent`
-				\`\`\`
-				東京か京都、好きな方を数えよ。
-				\`\`\`
-				## 入力
-				* \`to\` と \`kyo\` をそれぞれ10個ずつランダムに並べた50文字の文字列が与えられる。
-				* 入力の最後には改行が付与される。
-				## 出力
-				* 以下のどちらか一方を選んで、出力せよ。
-					1. 与えられた入力全体の中に含まれる \`tokyo\` の数だけ \`T\` あるいは \`t\` を出力する。
-						* \`T\` と \`t\` が混在していても良い。
-					2. 与えられた入力全体の中に含まれる \`kyoto\` の数だけ \`K\` あるいは \`k\` を出力する。
-						* \`K\` と \`k\` が混在していても良い。
-				* 出力中の空白文字は無視される。
-					* 改行は空白文字に含まれる。
-				* 指定されたもの以外の文字を出力してはならない。
-				* **提出するプログラムは、入力されうるすべてのテストケースに正しく出力できるものでなければならない。つまり確率解を禁止する。**
-				## 入出力例
-				### 入力1
-				\`\`\`
-				kyototokyototokyokyototototokyokyokyokyokyototokyo
-				\`\`\`
-				### 出力1
-				\`\`\`
-				TTTT
-				\`\`\`
-				### 入力2
-				\`\`\`
-				kyokyototokyokyokyototokyotokyototokyotokyokyototo
-				\`\`\`
-				### 出力2
-				\`\`\`
-				   k            k      k    k      k       k
-				\`\`\`
-				`,
-				en: '',
-			},
-		},
-		{upsert: true},
-	);
-
-	/*
-	for (const slug of ['whitespace', 'pure-folders', 'concise-folders', 'produire']) {
-		const languages = await Language.find({slug});
-		for (const language of languages) {
-			const submissions = await Submission.find({language});
-			for (const submission of submissions) {
-				console.log('procceing:', submission);
-
-				const disasmInfo = await docker({
-					id: slug,
-					code: submission.code,
-					stdin: '',
-					trace: false,
-					disasm: true,
-				});
-				console.log({
-					stdout: disasmInfo.stdout.toString(),
-					stderr: disasmInfo.stderr.toString(),
-				});
-
-				const result = await Submission.update(
-					{_id: submission._id},
-					{$set: {disasm: disasmInfo.stdout}},
-				);
-				console.log({result});
-			}
-		}
-	}
-	*/
 
 	mongoose.connection.close();
 })();

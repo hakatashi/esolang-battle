@@ -1,7 +1,6 @@
 const _ = require('lodash');
 const passport = require('passport');
 const TwitterStrategy = require('passport-twitter').Strategy;
-const GitHubStrategy = require('passport-github2').Strategy;
 
 const User = require('../models/User');
 
@@ -27,36 +26,6 @@ passport.deserializeUser((id, done) => {
 	});
 });
 
-passport.use(new GitHubStrategy({
-   clientID: process.env.GITHUB_CLIENT_ID,
-   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-   callbackURL: `${process.env.SERVER_ORIGIN}/auth/github/callback`,
-   state: true
-},
-   async(accessToken, refreshToken, profile, cb) => {
-      const count = User.count({});
-      const existingUser = await User.findOne({email: `${profile.username}@github.com`});
-      if (existingUser) {
-         cb(null, existingUser);
-         return;
-      }
-
-      const user = new User();
-      // GitHub will not provide an email address.  Period.
-      // But a person’s github username is guaranteed to be unique
-      // so we can "fake" a github email address as follows:
-      user.email = `${profile.username}@github.com`;
-      user.color = colors[count % colors.length];
-      user.github = profile.username;
-      user.tokens.push({kind: 'github', accessToken, refreshToken});
-      user.profile.name = profile.displayName;
-      user.name = profile.username;
-      //user.profile.location = profile._json.location;
-      user.profile.picture = profile.avatar_url;
-      await user.save();
-      return cb(null, user);
-   }
-));
 // Sign in with Twitter.
 
 passport.use(
@@ -71,7 +40,7 @@ passport.use(
 		async (req, accessToken, tokenSecret, profile, done) => {
 			try {
 				if (req.user) {
-					const existingUser = await User.findOne({email: `${profile.username}@twitter.com`});
+					const existingUser = await User.findOne({twitter: profile.id});
 
 					if (existingUser) {
 						req.flash('errors', {

@@ -4,11 +4,11 @@ const languages3 = require('./3.js');
 const languages4 = require('./4.js');
 const languages5 = require('./5.js');
 const languages6 = require('./6.js');
-const languages7 = require('./7.js');
 const hackathon2018 = require('./hackathon2018');
 const komabasai2018Day1 = require('./komabasai2018-day1');
 const komabasai2018Day2 = require('./komabasai2018-day2');
 const komabasai2019 = require('./komabasai2019');
+const komabasai2022 = require('./komabasai2022');
 const mayfes2018Day1 = require('./mayfes2018-day1');
 const mayfes2018Day2 = require('./mayfes2018-day2');
 const mayfes2019Day1 = require('./mayfes2019-day1');
@@ -26,7 +26,6 @@ module.exports = {
 	4: languages4,
 	5: languages5,
 	6: languages6,
-	7: languages7,
 	'mayfes2018-day1': mayfes2018Day1,
 	'mayfes2018-day2': mayfes2018Day2,
 	hackathon2018,
@@ -41,4 +40,6 @@ module.exports = {
 	'mayfes2021-day2': mayfes2021Day2,
 	'mayfes2021-practice1': mayfes2021Practice1,
 	'mayfes2021-practice2': mayfes2021Day2,
+	'komabasai2022-practice': komabasai2022,
+	komabasai2022,
 };

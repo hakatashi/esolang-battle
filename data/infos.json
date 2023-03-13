@@ -9,6 +9,18 @@
     "time": 0.237267000018619
   },
   {
+    "slug": "osecpu"
+  },
+  {
+    "slug": "osecpu-aska"
+  },
+  {
+    "slug": "rescript"
+  },
+  {
+    "slug": "reasonml"
+  },
+  {
     "slug": "codemania",
     "execs": [
       "/bin/sh",
@@ -65,7 +77,7 @@
       "/root/cfunge",
       "/bin/rm"
     ],
-    "time": 0.39388200000394136
+    "time": 1.0765619999999672
   },
   {
     "slug": "brainfuck-esotope",
@@ -262,7 +274,7 @@
       "/tmp/code",
       "/bin/rm"
     ],
-    "time": 2.1245420000050217
+    "time": 1.6166140000000269
   },
   {
     "slug": "copos-rb",
@@ -564,23 +576,6 @@
     "time": 3.210525000002235
   },
   {
-    "slug": "emojicode",
-    "execs": [
-      "/bin/sh",
-      "/bin/realpath",
-      "/bin/ln",
-      "/usr/local/bin/emojicodec",
-      "/bin/sh",
-      "/bin/c++",
-      "/usr/lib/gcc/x86_64-linux-gnu/9/collect2",
-      "/bin/ld",
-      "/bin/cat",
-      "/tmp/code",
-      "/bin/rm"
-    ],
-    "time": 4.69702199997846
-  },
-  {
     "slug": "intercal",
     "execs": [
       "/bin/sh",
@@ -616,16 +611,6 @@
       "/usr/bin/iminus"
     ],
     "time": 0.2794690000009723
-  },
-  {
-    "slug": "sqlite3",
-    "execs": [
-      "/bin/sh",
-      "/bin/cat",
-      "/bin/cat",
-      "/usr/bin/sqlite3"
-    ],
-    "time": 0.3669039999949746
   },
   {
     "slug": "taxi",
@@ -779,6 +764,9 @@
   },
   {
     "slug": "fsharp-dotnet"
+  },
+  {
+    "slug": "visualbasic-dotnet"
   },
   {
     "slug": "fortran",
@@ -951,13 +939,14 @@
       "/bin/sh",
       "/usr/bin/realpath",
       "/bin/cp",
-      "/usr/bin/javac",
+      "/usr/lib/jvm/default-jvm/bin/javac",
+      "/usr/lib/jvm/java-15-openjdk/bin/javac",
       "/bin/cat",
       "/usr/bin/java",
       "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/bin/rm"
     ],
-    "time": 0.8081319999764673
+    "time": 19.54243100000167
   },
   {
     "slug": "arnoidc",
@@ -972,7 +961,7 @@
       "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/bin/rm"
     ],
-    "time": 5.6424669999978505
+    "time": 14.660282000004372
   },
   {
     "slug": "evil",
@@ -983,7 +972,7 @@
       "/usr/bin/java",
       "/usr/lib/jvm/java-15-openjdk/bin/java"
     ],
-    "time": 1.437445999996271
+    "time": 3.7078869999968447
   },
   {
     "slug": "js-rhino",
@@ -993,7 +982,7 @@
       "/usr/bin/java",
       "/usr/lib/jvm/java-15-openjdk/bin/java"
     ],
-    "time": 2.133903999987524
+    "time": 7.658888999998453
   },
   {
     "slug": "floater",
@@ -1004,7 +993,7 @@
       "/usr/bin/java",
       "/usr/lib/jvm/java-15-openjdk/bin/java"
     ],
-    "time": 2.3072070000052918
+    "time": 5.855288999999175
   },
   {
     "slug": "cjam",
@@ -1014,7 +1003,7 @@
       "/usr/bin/java",
       "/usr/lib/jvm/java-15-openjdk/bin/java"
     ],
-    "time": 2.2972069999959785
+    "time": 6.739312999998219
   },
   {
     "slug": "convex",
@@ -1024,7 +1013,7 @@
       "/usr/bin/java",
       "/usr/lib/jvm/java-15-openjdk/bin/java"
     ],
-    "time": 2.7128979999979492
+    "time": 6.495555000001332
   },
   {
     "slug": "kotlin",
@@ -1043,7 +1032,7 @@
       "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/bin/rm"
     ],
-    "time": 42.58978800001205
+    "time": 112.709357000007
   },
   {
     "slug": "whenever",
@@ -1055,7 +1044,7 @@
       "/usr/lib/jvm/java-15-openjdk/bin/java",
       "/usr/bin/tail"
     ],
-    "time": 1.6283910000056494
+    "time": 2.597042000001238
   },
   {
     "slug": "xslt",
@@ -1071,7 +1060,7 @@
       "/bin/cat",
       "/bin/rm"
     ],
-    "time": 14.692378000007011
+    "time": 38.512439999998605
   },
   {
     "slug": "python2",
@@ -1112,7 +1101,19 @@
     "time": 13.057101999991573
   },
   {
-    "slug": "pure-folders"
+    "slug": "pure-folders",
+    "execs": [
+      "/bin/sh",
+      "/usr/bin/realpath",
+      "/bin/ln",
+      "/bin/mkdir",
+      "/bin/tar",
+      "/root/cat.sh",
+      "/bin/cat",
+      "/usr/bin/python3",
+      "/bin/rm"
+    ],
+    "time": 1.5404010000000312
   },
   {
     "slug": "concise-folders"
@@ -1202,7 +1203,7 @@
       "/bin/cat",
       "/usr/bin/python"
     ],
-    "time": 1.7068150000122841
+    "time": 0.6049960000000283
   },
   {
     "slug": "zombie",
@@ -1214,15 +1215,6 @@
     "time": 3.121084999991581
   },
   {
-    "slug": "ffb",
-    "execs": [
-      "/bin/sh",
-      "/bin/cat",
-      "/usr/bin/python3"
-    ],
-    "time": 2.31546799998614
-  },
-  {
     "slug": "aubergine",
     "execs": [
       "/bin/sh",
@@ -1230,15 +1222,6 @@
       "/usr/bin/python"
     ],
     "time": 0.44284100001095794
-  },
-  {
-    "slug": "ubergenes",
-    "execs": [
-      "/bin/sh",
-      "/bin/cat",
-      "/usr/bin/python3"
-    ],
-    "time": 1.2116110000060871
   },
   {
     "slug": "path",
@@ -1328,15 +1311,6 @@
   },
   {
     "slug": "fish-shell-pure"
-  },
-  {
-    "slug": "ezhil",
-    "execs": [
-      "/bin/sh",
-      "/bin/cat",
-      "/usr/bin/ezhili"
-    ],
-    "time": 3.1974389999813866
   },
   {
     "slug": "snusp",
@@ -1548,9 +1522,6 @@
     "time": 2.4841270000033546
   },
   {
-    "slug": "reasonml"
-  },
-  {
     "slug": "encapsulation",
     "execs": [
       "/bin/sh",
@@ -1625,6 +1596,20 @@
     "time": 54.62011899999925
   },
   {
+    "slug": "emojifunge",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "./node_modules/.bin/ts-node",
+      "/bin/node",
+      "/usr/local/sbin/node",
+      "/usr/local/bin/node",
+      "/usr/sbin/node",
+      "/usr/bin/node"
+    ],
+    "time": 34.48345100000006
+  },
+  {
     "slug": "octave"
   },
   {
@@ -1693,10 +1678,37 @@
     "time": 0.463621000002604
   },
   {
+    "slug": "ffb",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/usr/bin/python3"
+    ],
+    "time": 2.31546799998614
+  },
+  {
+    "slug": "ezhil",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/usr/bin/ezhili"
+    ],
+    "time": 3.1974389999813866
+  },
+  {
     "slug": "exchangeif"
   },
   {
     "slug": "trumpscript"
+  },
+  {
+    "slug": "ubergenes",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/usr/bin/python3"
+    ],
+    "time": 1.2116110000060871
   },
   {
     "slug": "2sable",
@@ -1870,6 +1882,9 @@
       "/usr/bin/python3"
     ],
     "time": 1.2982410000113305
+  },
+  {
+    "slug": "mao"
   },
   {
     "slug": "cmd",
@@ -2346,7 +2361,7 @@
       "/bin/cat",
       "/usr/bin/sed"
     ],
-    "time": 0.18970300001092255
+    "time": 0.12274999999999636
   },
   {
     "slug": "riscv"
@@ -2412,6 +2427,19 @@
     "time": 0.6492500000167638
   },
   {
+    "slug": "tsp",
+    "execs": [
+      "/bin/sh",
+      "/usr/bin/realpath",
+      "/bin/ln",
+      "/bin/cat",
+      "/root/go/bin/tsp",
+      "/usr/bin/go",
+      "/bin/rm"
+    ],
+    "time": 0.4373889999999392
+  },
+  {
     "slug": "oh",
     "execs": [
       "/bin/sh",
@@ -2423,7 +2451,42 @@
     "time": 0.8343210000020918
   },
   {
-    "slug": "zen"
+    "slug": "zig",
+    "execs": [
+      "/bin/sh",
+      "/usr/bin/realpath",
+      "/bin/ln",
+      "/root/zig-linux-x86_64-0.7.1/zig",
+      "/root/zig-linux-x86_64-0.7.1/zig",
+      "/bin/cat",
+      "/tmp/code",
+      "/bin/rm",
+      "/bin/rm"
+    ],
+    "time": 29.322877999999946
+  },
+  {
+    "slug": "ada",
+    "execs": [
+      "/bin/sh",
+      "/bin/ln",
+      "/bin/gnat",
+      "/bin/x86_64-linux-gnu-gnatmake-9",
+      "//bin/x86_64-linux-gnu-gcc-9",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/gnat1",
+      "//bin/as",
+      "//bin/x86_64-linux-gnu-gnatbind-9",
+      "//bin/x86_64-linux-gnu-gnatlink-9",
+      "/usr/bin/x86_64-linux-gnu-gcc-9",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/gnat1",
+      "/usr/bin/as",
+      "/usr/bin/x86_64-linux-gnu-gcc-9",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/collect2",
+      "/usr/bin/ld",
+      "./program",
+      "/bin/rm"
+    ],
+    "time": 1.983604000000014
   },
   {
     "slug": "crystal",
@@ -2476,6 +2539,23 @@
     "slug": "d-gdc"
   },
   {
+    "slug": "emojicode",
+    "execs": [
+      "/bin/sh",
+      "/bin/realpath",
+      "/bin/ln",
+      "/usr/local/bin/emojicodec",
+      "/bin/sh",
+      "/bin/c++",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/collect2",
+      "/bin/ld",
+      "/bin/cat",
+      "/tmp/code",
+      "/bin/rm"
+    ],
+    "time": 4.69702199997846
+  },
+  {
     "slug": "powershell",
     "execs": [
       "/bin/sh",
@@ -2483,6 +2563,18 @@
       "/usr/bin/pwsh"
     ],
     "time": 5.649131000012858
+  },
+  {
+    "slug": "ed",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/bin/cat",
+      "/bin/ed-original",
+      "/bin/cat",
+      "/bin/rm"
+    ],
+    "time": 0.23041599999999107
   },
   {
     "slug": "ruby0.49",
@@ -2627,7 +2719,7 @@
       "/bin/cat",
       "/bin/rm"
     ],
-    "time": 4.210935000010068
+    "time": 30.210935000010068
   },
   {
     "slug": "perl1",
@@ -2678,6 +2770,20 @@
     "time": 0.6972229999955744
   },
   {
+    "slug": "bibtex",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/bin/cp",
+      "/bin/cp",
+      "/bin/cat",
+      "/usr/local/texlive/2020/bin/x86_64-linux/bibtex",
+      "/bin/cat",
+      "/bin/rm"
+    ],
+    "time": 0.4042670000000044
+  },
+  {
     "slug": "egison",
     "execs": [
       "/bin/sh",
@@ -2693,10 +2799,68 @@
     "slug": "alif"
   },
   {
+    "slug": "sqlite3",
+    "execs": [
+      "/bin/sh",
+      "/bin/cat",
+      "/bin/cat",
+      "/usr/bin/sqlite3"
+    ],
+    "time": 0.3669039999949746
+  },
+  {
+    "slug": "imagemagick"
+  },
+  {
+    "slug": "apache2-rewrite"
+  },
+  {
+    "slug": "nim-lang",
+    "execs": [
+      "/bin/sh",
+      "/bin/realpath",
+      "/bin/cp",
+      "/bin/cat",
+      "/root/.nimble/bin/nim",
+      "/root/.choosenim/toolchains/nim-1.4.4/bin/nim",
+      "/bin/sh",
+      "/bin/gcc",
+      "/bin/sh",
+      "/bin/sh",
+      "/bin/g++",
+      "/bin/g++",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/cc1plus",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/cc1plus",
+      "/bin/as",
+      "/bin/sh",
+      "/bin/g++",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/cc1plus",
+      "/bin/as",
+      "/bin/as",
+      "/bin/sh",
+      "/bin/g++",
+      "/usr/lib/gcc/x86_64-linux-gnu/9/collect2",
+      "/bin/ld",
+      "/bin/sh",
+      "/root/code",
+      "/bin/rm"
+    ],
+    "time": 9.018034000000057
+  },
+  {
+    "slug": "csound"
+  },
+  {
     "slug": "brainfuck-bfi",
     "execs": [
       "/bin/bfi"
     ],
     "time": 0.17371500001172535
+  },
+  {
+    "slug": "brainfuck-esomer",
+    "execs": [
+    ],
+    "time": 0
   }
 ]

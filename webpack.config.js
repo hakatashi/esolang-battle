@@ -14,7 +14,6 @@ module.exports = (env, argv = {}) => {
 			browsers,
 		},
 		useBuiltIns: 'entry',
-		corejs: 3,
 		shippedProposals: true,
 		debug: true,
 	};
@@ -36,7 +35,6 @@ module.exports = (env, argv = {}) => {
 					'contest-mayfes2021-day2',
 					'js/contests/mayfes2021-day2/index.babel.js',
 				],
-				['contest-7', 'js/contests/7/index.babel.js'],
 			].map(([name, entry]) => ({
 				[name]: [
 					...(argv.mode === 'development'

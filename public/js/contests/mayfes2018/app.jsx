@@ -99,7 +99,7 @@ class App extends React.Component {
 		if (this.contestId === 'mayfes2020-day1') {
 			return [0, 4, 5, 9, 10, 14, 15, 19, 20, 24].includes(cell);
 		}
-		if (['mayfes2021-day1', 'mayfes2021-practice1'].includes(this.contestId)) {
+		if (['mayfes2021-day1', 'mayfes2021-practice1', 'komabasai2022', 'komabasai2022-practice'].includes(this.contestId)) {
 			return [0, 4, 5, 9, 10, 14, 15, 19, 20, 24].includes(cell);
 		}
 		return false;
@@ -325,7 +325,8 @@ class App extends React.Component {
 									Solution:
 									<a
 										href={`/contests/${this.contestId}/submissions/${selectedLanguage.solution._id}`}
-										target="_blank" rel="noopener noreferrer"
+										target="_blank"
+										rel="noopener noreferrer"
 									>
 										{selectedLanguage.solution._id}
 									</a>
@@ -377,7 +378,8 @@ class App extends React.Component {
 										Check out the detail
 										<a
 											href={`/contests/${this.contestId}/submissions/${this.state.messageDetail}`}
-											target="_blank" rel="noopener noreferrer"
+											target="_blank"
+											rel="noopener noreferrer"
 										>
 											here
 										</a>

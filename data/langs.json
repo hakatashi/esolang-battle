@@ -937,7 +937,7 @@
   },
   {
     "slug": "compile-time-typescript",
-    "name": "Compile-time TypeScript",
+    "name": "CompileTime TypeScript",
     "link": "https://github.com/n4o847/compile-time-typescript",
     "disasm": false
   },
@@ -1472,6 +1472,12 @@
   {
     "slug": "brainfuck-bfi",
     "name": "Brainfuck (BFI)",
+    "link": "http://esoteric.sange.fi/brainfuck/impl/interp/BFI.c",
+    "disasm": false
+  },
+  {
+    "slug": "brainfuck-esomer",
+    "name": "Brainfuck (esomer)",
     "link": "http://esoteric.sange.fi/brainfuck/impl/interp/BFI.c",
     "disasm": false
   }
