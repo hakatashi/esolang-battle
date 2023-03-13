@@ -1,6 +1,6 @@
 const THREE = require('three');
 const OrbitControls = require('three-orbitcontrols');
-const TrackballControls = require('three-trackballcontrols');
+const {default: TrackballControls} = require('three-trackballcontrols');
 
 const snubDodecahedron = require('../../../../data/snub-dodecahedron.js');
 
