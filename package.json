@@ -1,12 +1,13 @@
 {
-  "name": "hackathon-starter",
-  "version": "4.3.0",
-  "description": "A boilerplate for Node.js web applications",
+  "name": "esolang-battler",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Esolang codegolf battling platform",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sahat/hackathon-starter.git"
+    "url": "https://github.com/hakatashi/esolang-battle.git"
   },
-  "author": "Sahat Yalkabov",
+  "author": "Koki Takahashi <hakatasiloving@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "node app.js",
