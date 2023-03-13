@@ -1,5 +1,5 @@
 const assert = require('assert');
-const shuffle = require('array-shuffle');
+const shuffle = require('lodash/shuffle');
 const chunk = require('lodash/chunk');
 const random = require('lodash/random');
 const math = require('mathjs');

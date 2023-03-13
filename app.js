@@ -9,7 +9,7 @@ const chalk = require('chalk');
 const compression = require('compression');
 const MongoStore = require('connect-mongo');
 const dotenv = require('dotenv');
-const dotenvExpand = require('dotenv-expand');
+const {expand: dotenvExpand} = require('dotenv-expand');
 const errorHandler = require('errorhandler');
 const express = require('express');
 const flash = require('express-flash');
@@ -69,8 +69,6 @@ const sassMiddleware = require('./lib/sass-middleware');
  * Connect to MongoDB.
  */
 mongoose.Promise = global.Promise;
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
 mongoose.connection.on('error', () => {
 	throw new Error(
