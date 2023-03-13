@@ -17,8 +17,11 @@ module.exports.getLogin = (req, res) => {
  * Log out.
  */
 module.exports.logout = (req, res) => {
-	req.logout();
-	res.redirect('/');
+	req.logout((error) => {
+		if (!error) {
+			res.redirect('/');
+		}
+	});
 };
 
 /*
