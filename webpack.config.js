@@ -48,6 +48,12 @@ module.exports = (env, argv = {}) => {
 		output: {
 			publicPath: '/js',
 			filename: '[name].js',
+			hashFunction: 'xxhash64',
+		},
+		resolve: {
+			fallback: {
+				querystring: require.resolve('querystring-es3'),
+			},
 		},
 		devtool:
 			argv.mode === 'production'
