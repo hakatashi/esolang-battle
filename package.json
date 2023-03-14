@@ -70,7 +70,7 @@
     "reactstrap": "^8.9.0",
     "sass": "^1.34.1",
     "shell-escape": "^0.2.0",
-    "socket.io": "^4.1.1",
+    "socket.io": "^4.6.1",
     "three": "^0.125.2",
     "three-orbitcontrols": "^2.110.3",
     "three-trackballcontrols": "0.0.8",
