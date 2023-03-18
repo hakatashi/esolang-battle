@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const chalk = require('chalk');
 const compression = require('compression');
 const MongoStore = require('connect-mongo');
+const crypto = require('crypto');
 const dotenv = require('dotenv');
 const {expand: dotenvExpand} = require('dotenv-expand');
 const errorHandler = require('errorhandler');
@@ -65,6 +66,8 @@ const app = express();
 const io = require('./lib/socket-io');
 const sassMiddleware = require('./lib/sass-middleware');
 
+const apiKey = process.env.API_KEY || crypto.randomBytes(64).toString('hex');
+
 /*
  * Connect to MongoDB.
  */
@@ -111,7 +114,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-	lusca.csrf()(req, res, next);
+	lusca.csrf({
+		blocklist: ['/api/execution'],
+	})(req, res, next);
 });
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
@@ -195,6 +200,11 @@ router.get(
 
 router.get('/submissions/:submission', submissionController.getOldSubmission);
 
+router.post(
+	'/api/execution',
+	check('token', 'Please specify valid token').equals(apiKey),
+	apiController.postExecution,
+);
 router.get(
 	'/api/contests/:contest/submission',
 	passportConfig.isAuthenticated,
@@ -213,7 +223,7 @@ router.post(
 	check('language', 'Please Specify language').exists(),
 	passportConfig.isAuthenticated,
 	apiController.contest,
-	apiController.postExecution,
+	apiController.postContestExecution,
 );
 router.get(
 	'/api/contests/:contest/languages',

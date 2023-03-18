@@ -8,6 +8,9 @@ const Contest = require('../models/Contest');
 const Execution = require('../models/Execution');
 const Language = require('../models/Language');
 const Submission = require('../models/Submission');
+const {Mutex} = require('async-mutex');
+
+const executionMutex = new Mutex();
 
 /*
  * Middleware for all /api/contest/:contest routes
@@ -66,9 +69,66 @@ module.exports.getSubmission = (req, res, next) => {
 };
 
 /*
- * POST /api/contest/:contest/execution
+ * POST /api/execution
  */
 module.exports.postExecution = async (req, res) => {
+	try {
+		const code = Buffer.from(req.body.code ?? '', 'base64');
+
+		assert(code.length >= 1, 'Code cannot be empty');
+		assert(
+			code.length <= getCodeLimit(req.body.language),
+			'Code cannot be longer than 10,000 bytes',
+		);
+
+		const input = req.body.input ?? '';
+
+		assert(input.length <= 10000, 'Input cannot be longer than 10,000 bytes');
+
+		const info = await executionMutex.runExclusive(() => docker({
+			id: req.body.language,
+			code,
+			stdin: input,
+			trace: true,
+		}));
+
+		if (typeof info !== 'object') {
+			throw new Error('info is not object');
+		}
+
+		const {stdout, stderr, duration, error} = info;
+
+		if (error) {
+			throw error;
+		}
+
+		const executionRecord = new Execution({
+			language: null,
+			user: null,
+			code,
+			input,
+			stdout: stdout.toString(),
+			stderr: stderr.toString(),
+			duration,
+		});
+
+		await executionRecord.save();
+
+		res.json({
+			stdout: stdout.toString(),
+			stderr: stderr.toString(),
+			duration,
+		});
+	} catch (error) {
+		// eslint-disable-next-line callback-return
+		res.status(400).json({error: error.message});
+	}
+};
+
+/*
+ * POST /api/contest/:contest/execution
+ */
+module.exports.postContestExecution = async (req, res) => {
 	try {
 		if (!req.contest.isOpen()) {
 			throw new Error('Competition has closed');
@@ -139,12 +199,12 @@ module.exports.postExecution = async (req, res) => {
 			});
 		});
 
-		const info = await docker({
+		const info = await executionMutex.runExclusive(() => docker({
 			id: language.slug,
 			code,
 			stdin: input,
 			trace: false,
-		});
+		}));
 
 		if (typeof info !== 'object') {
 			throw new Error('info is not object');
