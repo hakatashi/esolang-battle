@@ -28,8 +28,10 @@ module.exports = async ({
 	stdin,
 	trace: traceOption,
 	disasm = false,
+	imageId,
 }) => {
 	assert(typeof id === 'string');
+	assert(imageId === undefined || typeof imageId === 'string');
 	assert(Buffer.isBuffer(code));
 	assert(typeof stdin === 'string');
 	assert(code.length <= getCodeLimit(id));
@@ -116,7 +118,7 @@ module.exports = async ({
 						`/volume/${filename}`,
 					])} < /volume/INPUT`,
 				],
-				Image: `esolang/${id}`,
+				Image: imageId || `esolang/${id}`,
 				Volumes: {
 					'/volume': {},
 				},

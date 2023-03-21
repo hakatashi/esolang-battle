@@ -90,6 +90,7 @@ module.exports.postExecution = async (req, res) => {
 			code,
 			stdin: input,
 			trace: true,
+			imageId: req.body.imageId,
 		}));
 
 		if (typeof info !== 'object') {
