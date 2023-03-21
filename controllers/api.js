@@ -1,4 +1,5 @@
 const assert = require('assert');
+const crypto = require('crypto');
 const concatStream = require('concat-stream');
 const {getLanguageMap, getCodeLimit} = require('../controllers/utils');
 const languages = require('../data/languages');
