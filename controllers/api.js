@@ -11,6 +11,7 @@ const Submission = require('../models/Submission');
 const {Mutex} = require('async-mutex');
 
 const executionMutex = new Mutex();
+const apiKey = process.env.API_KEY || crypto.randomBytes(64).toString('hex');
 
 /*
  * Middleware for all /api/contest/:contest routes
@@ -73,6 +74,8 @@ module.exports.getSubmission = (req, res, next) => {
  */
 module.exports.postExecution = async (req, res) => {
 	try {
+		assert(req.body.token === apiKey, 'Please provide valid token');
+
 		const code = Buffer.from(req.body.code ?? '', 'base64');
 
 		assert(code.length >= 1, 'Code cannot be empty');
