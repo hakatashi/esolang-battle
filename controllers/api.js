@@ -215,7 +215,7 @@ module.exports.postContestExecution = async (req, res) => {
 			throw new Error('info is not object');
 		}
 
-		const {stdout, stderr, duration, error} = info;
+		const {stdout, stderr, duration, error, trace} = info;
 
 		if (error) {
 			throw error;
@@ -237,6 +237,7 @@ module.exports.postContestExecution = async (req, res) => {
 			stdout: stdout.toString(),
 			stderr: stderr.toString(),
 			duration,
+			trace,
 		});
 	} catch (error) {
 		// eslint-disable-next-line callback-return
