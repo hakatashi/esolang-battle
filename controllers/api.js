@@ -123,7 +123,7 @@ module.exports.postExecution = async (req, res) => {
 			stdout: stdout.toString(),
 			stderr: stderr.toString(),
 			duration,
-			trace: trace.toString('base64'),
+			trace: trace ? trace.toString('base64') : trace,
 		});
 	} catch (error) {
 		// eslint-disable-next-line callback-return
