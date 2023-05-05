@@ -81,7 +81,7 @@
     "validator": "^13.9.0",
     "webpack": "^5.82.0",
     "webpack-cli": "^5.0.2",
-    "webpack-dev-middleware": "^6.0.1",
+    "webpack-dev-middleware": "^6.1.0",
     "webpack-hot-middleware": "^2.25.3"
   },
   "devDependencies": {
