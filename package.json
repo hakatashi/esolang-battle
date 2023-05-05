@@ -58,7 +58,7 @@
     "material-colors": "^1.2.6",
     "mathjs": "^11.6.0",
     "moment": "^2.29.4",
-    "mongoose": "^7.0.1",
+    "mongoose": "^7.1.0",
     "morgan": "^1.10.0",
     "multer": "^2.0.0-alpha.6",
     "passport": "^0.6.0",
