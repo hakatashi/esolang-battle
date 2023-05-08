@@ -48,7 +48,7 @@
     "express-flash": "^0.0.2",
     "express-promise-router": "^4.1.1",
     "express-session": "^1.17.3",
-    "express-validator": "^6.15.0",
+    "express-validator": "^7.0.1",
     "firebase-admin": "^11.8.0",
     "garlicjs": "^1.4.2",
     "hexdump-stream": "pose/hexdump-stream",
