@@ -39,7 +39,7 @@
     "compression": "^1.7.4",
     "concat-stream": "^2.0.0",
     "connect-mongo": "^5.0.0",
-    "discord.js": "^14.8.0",
+    "discord.js": "^14.11.0",
     "dockerode": "^3.3.5",
     "dotenv": "^16.0.3",
     "dotenv-expand": "^10.0.0",
