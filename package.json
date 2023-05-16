@@ -13,7 +13,7 @@
     "start": "node app.js",
     "test": "mocha --reporter spec --exit",
     "dev": "nodemon app.js --ignore public",
-    "lint": "prettier-eslint **/*.js **/*.jsx --ignore public/js/lib/** --write && eslint **/*.js --ignore-pattern public/js/lib/**"
+    "lint": "prettier-eslint '**/*.js' '**/*.jsx' --ignore 'public/js/lib/**' --write && eslint '**/*.js' --ignore-pattern 'public/js/lib/**'"
   },
   "engines": {
     "node": "^11.0.0"
@@ -86,29 +86,13 @@
   },
   "devDependencies": {
     "@hakatashi/eslint-config": "^1.19.0",
-    "babel-eslint": "^10.1.0",
     "chai": "^4.3.7",
     "eslint": "^8.40.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5",
     "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
     "prettier-eslint-cli": "^7.1.0",
     "sinon": "^7",
     "sinon-mongoose": "^2.3.0",
     "supertest": "^6.3.3"
-  },
-  "eslintConfig": {
-    "extends": "airbnb-base",
-    "rules": {
-      "comma-dangle": 0,
-      "consistent-return": 0,
-      "linebreak-style": 0,
-      "no-param-reassign": 0,
-      "no-underscore-dangle": 0,
-      "no-shadow": 0,
-      "no-console": 0,
-      "no-plusplus": 0
-    }
   }
 }

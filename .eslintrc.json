@@ -1,10 +1,12 @@
 {
     "extends": "@hakatashi",
     "parserOptions": {
-        "parser": "babel-eslint",
-        "ecmaVersion": 9
+        "ecmaVersion": "latest"
     },
     "rules": {
+        // removed in eslint-plugin-vue 9
+        "vue/name-property-casing": "off",
+        "vue/experimental-script-setup-vars": "off",
         "camelcase": "off",
         "no-console": "off",
         "max-len": "off",
