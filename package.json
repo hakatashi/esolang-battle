@@ -86,11 +86,8 @@
   },
   "devDependencies": {
     "@hakatashi/eslint-config": "^1.19.0",
-    "babel-eslint": "^10.1.0",
     "chai": "^4.3.7",
     "eslint": "^8.40.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5",
     "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
     "prettier-eslint-cli": "^7.1.0",
