@@ -1,10 +1,8 @@
-const qs = require('querystring');
-
 module.exports = async (method, endpoint, params = {}) => {
 	const url = `/api${endpoint}`;
 
 	if (method === 'GET') {
-		const res = await fetch(`${url}?${qs.encode(params)}`, {
+		const res = await fetch(`${url}?${new URLSearchParams(params).toString()}`, {
 			method: 'GET',
 			credentials: 'include',
 		});
