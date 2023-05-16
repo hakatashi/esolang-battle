@@ -91,7 +91,7 @@
     "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
     "prettier-eslint-cli": "^7.1.0",
-    "sinon": "^7",
+    "sinon": "^15",
     "sinon-mongoose": "^2.3.0",
     "supertest": "^6.3.3"
   }
