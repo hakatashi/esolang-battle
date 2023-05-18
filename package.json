@@ -50,7 +50,6 @@
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
     "firebase-admin": "^11.8.0",
-    "garlicjs": "^1.4.2",
     "hexdump-stream": "pose/hexdump-stream",
     "lodash": "^4.17.21",
     "lusca": "^1.7.0",
