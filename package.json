@@ -84,7 +84,7 @@
     "webpack-hot-middleware": "^2.25.3"
   },
   "devDependencies": {
-    "@hakatashi/eslint-config": "^1.19.0",
+    "@hakatashi/eslint-config": "^1.20.0",
     "chai": "^4.3.7",
     "eslint": "^8.40.0",
     "mocha": "^10.2.0",
