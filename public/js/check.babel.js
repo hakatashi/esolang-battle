@@ -1,6 +1,5 @@
 import '@babel/polyfill';
 
-import 'garlicjs';
 import api from './api.js';
 
 const checkerEl = document.getElementById('checker');
@@ -13,6 +12,20 @@ const stdoutEl = checkerEl.querySelector('.checker-stdout');
 const stderrEl = checkerEl.querySelector('.checker-stderr');
 const submitEl = checkerEl.querySelector('.checker-submit');
 const alertEl = checkerEl.querySelector('.checker-alert');
+
+const autoSaveInput = (element, id) => {
+	const storedValue = localStorage.getItem(`${location.pathname}#${id}`);
+	if (storedValue) {
+		element.value = storedValue;
+	}
+	element.addEventListener('input', () => {
+		localStorage.setItem(`${location.pathname}#${id}`, element.value);
+	});
+};
+
+autoSaveInput(languageEl, 'language');
+autoSaveInput(codeEl, 'code');
+autoSaveInput(stdinEl, 'stdin');
 
 const contestId = document
 	.querySelector('meta[name=contest-id]')
