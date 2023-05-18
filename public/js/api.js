@@ -1,4 +1,4 @@
-module.exports = async (method, endpoint, params = {}) => {
+export default async (method, endpoint, params = {}) => {
 	const url = `/api${endpoint}`;
 
 	if (method === 'GET') {

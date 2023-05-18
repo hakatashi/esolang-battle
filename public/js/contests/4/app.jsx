@@ -1,5 +1,5 @@
-const React = require('react');
-const {
+import React from 'react';
+import {
 	Button,
 	Modal,
 	ModalHeader,
@@ -8,11 +8,11 @@ const {
 	Form,
 	FormGroup,
 	Input,
-} = require('reactstrap');
-const api = require('../../api.js');
-const Map = require('./map.js');
+} from 'reactstrap';
+import api from '../../api.js';
+import Map from './map.js';
 
-class App extends React.Component {
+export default class App extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 
@@ -331,5 +331,3 @@ class App extends React.Component {
 		);
 	}
 }
-
-module.exports = App;

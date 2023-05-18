@@ -1,6 +1,6 @@
-const range = require('lodash/range');
-const React = require('react');
-const {
+import range from 'lodash/range';
+import React from 'react';
+import {
 	Button,
 	Modal,
 	ModalHeader,
@@ -9,8 +9,8 @@ const {
 	Form,
 	FormGroup,
 	Input,
-} = require('reactstrap');
-const api = require('../../api.js');
+} from 'reactstrap';
+import api from '../../api.js';
 
 const boardShape = [
 	'        *****           ',
@@ -57,7 +57,7 @@ const getColor = (language) => {
 	return 'gray';
 };
 
-class App extends React.Component {
+export default class App extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 
@@ -483,5 +483,3 @@ class App extends React.Component {
 		);
 	}
 }
-
-module.exports = App;

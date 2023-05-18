@@ -1,7 +1,7 @@
 import '@babel/polyfill';
 
-require('garlicjs');
-const api = require('./api.js');
+import 'garlicjs';
+import api from './api.js';
 
 const checkerEl = document.getElementById('checker');
 const languageEl = checkerEl.querySelector('.checker-language');

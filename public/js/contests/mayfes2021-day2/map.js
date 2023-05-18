@@ -1,10 +1,10 @@
-const THREE = require('three');
-const OrbitControls = require('three-orbitcontrols');
-const {default: TrackballControls} = require('three-trackballcontrols');
+import * as THREE from 'three';
+import OrbitControls from 'three-orbitcontrols';
+import TrackballControls from 'three-trackballcontrols';
 
-const truncatedCuboctahedron = require('../../../../data/truncated-cuboctahedron');
+import truncatedCuboctahedron from '../../../../data/truncated-cuboctahedron';
 
-module.exports = class {
+export default class {
 	constructor(element, onFacesUpdate, onClick) {
 		this.onFacesUpdate = onFacesUpdate;
 		this.onClick = onClick;

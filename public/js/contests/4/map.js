@@ -1,10 +1,10 @@
-const THREE = require('three');
-const OrbitControls = require('three-orbitcontrols');
-const {default: TrackballControls} = require('three-trackballcontrols');
+import * as THREE from 'three';
+import OrbitControls from 'three-orbitcontrols';
+import TrackballControls from 'three-trackballcontrols';
 
-const snubDodecahedron = require('../../../../data/snub-dodecahedron.js');
+import snubDodecahedron from '../../../../data/snub-dodecahedron.js';
 
-module.exports = class {
+export default class {
 	constructor(element, onFacesUpdate, onClick) {
 		this.onFacesUpdate = onFacesUpdate;
 		this.onClick = onClick;
@@ -190,4 +190,4 @@ module.exports = class {
 			}
 		}
 	};
-};
+}
