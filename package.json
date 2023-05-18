@@ -77,13 +77,13 @@
     "utf-8-validate": "^6.0.3",
     "uuid": "^9.0.0",
     "validator": "^13.9.0",
-    "webpack": "^5.82.1",
+    "webpack": "^5.83.1",
     "webpack-cli": "^5.1.1",
     "webpack-dev-middleware": "^6.1.1",
     "webpack-hot-middleware": "^2.25.3"
   },
   "devDependencies": {
-    "@hakatashi/eslint-config": "^1.19.0",
+    "@hakatashi/eslint-config": "^1.20.0",
     "chai": "^4.3.7",
     "eslint": "^8.40.0",
     "mocha": "^10.2.0",
