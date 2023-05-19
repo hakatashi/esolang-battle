@@ -1,13 +1,12 @@
 /* eslint-env browser */
 
 const assert = require('assert');
+const fs = require('fs/promises');
 const path = require('path');
-const Promise = require('bluebird');
 const concatStream = require('concat-stream');
 const Docker = require('dockerode');
 const shellescape = require('shell-escape');
 const tmp = require('tmp');
-const fs = Promise.promisifyAll(require('fs'));
 const {getCodeLimit, getTimeLimit} = require('../controllers/utils.js');
 const langInfos = require('../data/infos.json');
 
@@ -21,6 +20,13 @@ class MemoryLimitExceededError extends Error {
 		this.name = 'MemoryLimitExceededError';
 	}
 }
+
+const timeout = (promise, msec) => {
+	const timeoutPromise = new Promise((_, reject) => {
+		setTimeout(() => reject(new Error('operation timed out')), msec);
+	});
+	return Promise.race([promise, timeoutPromise]);
+};
 
 module.exports = async ({
 	id,
@@ -68,8 +74,8 @@ module.exports = async ({
 	const codePath = path.join(tmpPath, filename);
 
 	await Promise.all([
-		fs.writeFileAsync(stdinPath, stdin),
-		fs.writeFileAsync(codePath, code),
+		fs.writeFile(stdinPath, stdin),
+		fs.writeFile(codePath, code),
 	]);
 
 	let container = null;
@@ -158,13 +164,14 @@ module.exports = async ({
 		]);
 
 		const executionStart = Date.now();
-		const [stdout, stderr, containerData] = await runner.timeout(
+		const [stdout, stderr, containerData] = await timeout(
+			runner,
 			getTimeLimit(id),
 		);
 		const executionEnd = Date.now();
 
 		const tracePath = path.join(tmpPath, 'strace.log');
-		const traceLog = trace && (await fs.readFileAsync(tracePath));
+		const traceLog = trace && (await fs.readFile(tracePath));
 
 		cleanup();
 
