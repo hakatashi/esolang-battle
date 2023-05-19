@@ -4,7 +4,6 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
-const bodyParser = require('body-parser');
 const chalk = require('chalk');
 const compression = require('compression');
 const MongoStore = require('connect-mongo');
@@ -96,8 +95,8 @@ if (process.env.NODE_ENV === 'development') {
 	app.use(webpackHotMiddleware(compiler));
 }
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(upload.fields([{name: 'file', maxCount: 1}]));
 app.use(
 	session({
