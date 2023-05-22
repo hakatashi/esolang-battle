@@ -49,25 +49,25 @@ module.exports.getLanguages = async (req, res, next) => {
 /*
  * GET /api/contests/:contest/submission
  */
-module.exports.getSubmission = (req, res, next) => {
-	Submission.findOne({_id: req.query._id})
-		.populate('user')
-		.populate('language')
-		.exec((error, submission) => {
-			if (error) {
-				return next(error);
-			}
+module.exports.getSubmission = async (req, res, next) => {
+	try {
+		const submission = await Submission.findOne({_id: req.query._id})
+			.populate('user')
+			.populate('language')
+			.exec();
 
-			if (submission === null) {
-				return res.sendStatus(404);
-			}
+		if (submission === null) {
+			return res.sendStatus(404);
+		}
 
-			if (!submission.user._id.equals(req.user._id)) {
-				return res.sendStatus(403);
-			}
+		if (!submission.user._id.equals(req.user._id)) {
+			return res.sendStatus(403);
+		}
 
-			return res.json(submission);
-		});
+		return res.json(submission);
+	} catch (error) {
+		return next(error);
+	}
 };
 
 /*
