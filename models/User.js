@@ -1,5 +1,4 @@
 const crypto = require('crypto');
-const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema(
@@ -25,48 +24,6 @@ const userSchema = new mongoose.Schema(
 	},
 	{timestamps: true},
 );
-
-/*
- * Password hash middleware.
- */
-userSchema.pre('save', async function(next) {
-	if (!this.isModified('password')) {
-		next();
-		return;
-	}
-
-	const salt = await new Promise((resolve, reject) => {
-		bcrypt.genSalt(10, (error, dSalt) => {
-			if (error) {
-				reject(error);
-			} else {
-				resolve(dSalt);
-			}
-		});
-	});
-
-	const hash = await new Promise((resolve, reject) => {
-		bcrypt.hash(this.password, salt, null, (error, dHash) => {
-			if (error) {
-				reject(error);
-			} else {
-				resolve(dHash);
-			}
-		});
-	});
-
-	this.password = hash;
-	next();
-});
-
-/*
- * Helper method for validating user's password.
- */
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
-	bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-		cb(err, isMatch);
-	});
-};
 
 userSchema.methods.name = function() {
 	return `@${this.email.replace(/@.+$/, '')}`;
