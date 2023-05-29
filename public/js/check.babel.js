@@ -1,6 +1,6 @@
 import '@babel/polyfill';
 
-const api = require('./api.js');
+import api from './api.js';
 
 const checkerEl = document.getElementById('checker');
 const languageEl = checkerEl.querySelector('.checker-language');
