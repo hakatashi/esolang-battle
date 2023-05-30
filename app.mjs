@@ -1,56 +1,60 @@
 /*
  * Module dependencies.
  */
-const fs = require('fs');
-const path = require('path');
-const util = require('util');
-const chalk = require('chalk');
-const compression = require('compression');
-const MongoStore = require('connect-mongo');
-const crypto = require('crypto');
-const dotenv = require('dotenv');
-const {expand: dotenvExpand} = require('dotenv-expand');
-const errorHandler = require('errorhandler');
-const express = require('express');
-const flash = require('express-flash');
-const Router = require('express-promise-router');
-const session = require('express-session');
-const {check} = require('express-validator');
-const lusca = require('lusca');
-const mongoose = require('mongoose');
-const logger = require('morgan');
-const multer = require('multer');
-const passport = require('passport');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import util from 'node:util';
+import chalk from 'chalk';
+import compression from 'compression';
+import MongoStore from 'connect-mongo';
+import errorHandler from 'errorhandler';
+import express from 'express';
+import flash from 'express-flash';
+import Router from 'express-promise-router';
+import session from 'express-session';
+import {check} from 'express-validator';
+import lusca from 'lusca';
+import mongoose from 'mongoose';
+import logger from 'morgan';
+import multer from 'multer';
+import passport from 'passport';
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 
 /*
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
-dotenvExpand(dotenv.config({path: '.env'}));
-
-/*
- * Controllers (route handlers).
- */
-const apiController = require('./controllers/api');
-const contestController = require('./controllers/contest');
-const homeController = require('./controllers/home');
-const submissionController = require('./controllers/submission');
-const userController = require('./controllers/user');
-
-/*
- * Build-up Webpack compiler
- */
-const webpackConfigGenerator = require('./webpack.config.js');
-
-const webpackConfig = webpackConfigGenerator({}, {mode: process.env.NODE_ENV});
-const compiler = webpack(webpackConfig);
+import 'dotenv-expand/config';
 
 /*
  * API keys and Passport configuration.
  */
-const passportConfig = require('./config/passport');
+import passportConfig from './config/passport.js';
+
+/*
+ * Controllers (route handlers).
+ */
+import apiController from './controllers/api.js';
+import contestController from './controllers/contest.js';
+import homeController from './controllers/home.js';
+import submissionController from './controllers/submission.js';
+import userController from './controllers/user.js';
+
+import sassMiddleware from './lib/sass-middleware.js';
+import io from './lib/socket-io.js';
+
+import webpackConfigGenerator from './webpack.config.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+/*
+ * Build-up Webpack compiler
+ */
+const webpackConfig = webpackConfigGenerator({}, {mode: process.env.NODE_ENV});
+const compiler = webpack(webpackConfig);
 
 const upload = multer({
 	limits: {
@@ -62,8 +66,6 @@ const upload = multer({
  * Create Express server.
  */
 const app = express();
-const io = require('./lib/socket-io');
-const sassMiddleware = require('./lib/sass-middleware');
 
 const apiKey = process.env.API_KEY || crypto.randomBytes(64).toString('hex');
 
@@ -266,4 +268,4 @@ const server = app.listen(app.get('port'), () => {
 
 io.attach(server);
 
-module.exports = app;
+export default app;
