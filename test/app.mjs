@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 
-const request = require('supertest');
-const app = require('../app.js');
+import request from 'supertest';
+import app from '../app.mjs';
 
 describe('Router', function () {
 	this.timeout(10000);

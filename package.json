@@ -10,10 +10,10 @@
   "author": "Koki Takahashi <hakatasiloving@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node app.js",
+    "start": "node app.mjs",
     "test": "mocha --reporter spec --exit",
-    "dev": "nodemon app.js --ignore public",
-    "lint": "prettier-eslint '**/*.js' '**/*.jsx' --ignore 'public/js/lib/**' --write && eslint '**/*.js' --ignore-pattern 'public/js/lib/**'"
+    "dev": "nodemon app.mjs --ignore public",
+    "lint": "prettier-eslint '**/*.js' '**/*.mjs' '**/*.jsx' --ignore 'public/js/lib/**' --write && eslint '**/*.js' --ignore-pattern 'public/js/lib/**'"
   },
   "engines": {
     "node": "^11.0.0"
