@@ -9,8 +9,6 @@ import util from 'node:util';
 import chalk from 'chalk';
 import compression from 'compression';
 import MongoStore from 'connect-mongo';
-import dotenv from 'dotenv';
-import {expand as dotenvExpand} from 'dotenv-expand';
 import errorHandler from 'errorhandler';
 import express from 'express';
 import flash from 'express-flash';
@@ -25,6 +23,16 @@ import passport from 'passport';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+
+/*
+ * Load environment variables from .env file, where API keys and passwords are configured.
+ */
+import 'dotenv-expand/config';
+
+/*
+ * API keys and Passport configuration.
+ */
+import passportConfig from './config/passport.js';
 
 /*
  * Controllers (route handlers).
@@ -43,20 +51,10 @@ import webpackConfigGenerator from './webpack.config.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /*
- * Load environment variables from .env file, where API keys and passwords are configured.
- */
-dotenvExpand(dotenv.config({path: '.env'}));
-
-/*
  * Build-up Webpack compiler
  */
 const webpackConfig = webpackConfigGenerator({}, {mode: process.env.NODE_ENV});
 const compiler = webpack(webpackConfig);
-
-/*
- * API keys and Passport configuration.
- */
-const passportConfig = await import('./config/passport.js');
 
 const upload = multer({
 	limits: {
