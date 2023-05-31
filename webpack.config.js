@@ -52,7 +52,7 @@ module.exports = (env, argv = {}) => {
 		},
 		devtool:
 			argv.mode === 'production'
-				? 'source-map'
+				? false
 				: 'eval-cheap-module-source-map',
 		module: {
 			rules: [
