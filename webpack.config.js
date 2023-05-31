@@ -5,7 +5,7 @@ module.exports = (env, argv = {}) => {
 	const browsers = [
 		'last 2 chrome versions',
 		...(argv.mode === 'production'
-			? ['last 2 firefox versions', 'safari >= 9', 'last 2 edge versions']
+			? ['last 2 firefox versions', 'last 3 safari versions', 'last 2 edge versions']
 			: []),
 	];
 
