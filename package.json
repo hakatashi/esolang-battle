@@ -20,7 +20,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.22.1",
-    "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.22.4",
     "@babel/preset-react": "^7.22.3",
     "@slack/web-api": "^6.8.1",
@@ -33,6 +32,7 @@
     "compression": "^1.7.4",
     "concat-stream": "^2.0.0",
     "connect-mongo": "^5.0.0",
+    "core-js": "^3.30.2",
     "discord.js": "^14.11.0",
     "dockerode": "^3.3.5",
     "dotenv": "^16.1.0",

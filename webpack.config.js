@@ -14,6 +14,7 @@ module.exports = (env, argv = {}) => {
 			browsers,
 		},
 		useBuiltIns: 'entry',
+		corejs: require('core-js/package.json').version,
 		shippedProposals: true,
 		debug: true,
 	};
