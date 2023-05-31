@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import OrbitControls from 'three-orbitcontrols';
-import TrackballControls from 'three-trackballcontrols';
+import {OrbitControls} from 'three/addons/controls/OrbitControls';
+import {TrackballControls} from 'three/addons/controls/TrackballControls';
 
 import truncatedCuboctahedron from '../../../../data/truncated-cuboctahedron';
 
