@@ -5,7 +5,7 @@ module.exports = (env, argv = {}) => {
 	const browsers = [
 		'last 2 chrome versions',
 		...(argv.mode === 'production'
-			? ['last 2 firefox versions', 'safari >= 9', 'last 2 edge versions']
+			? ['last 2 firefox versions', 'last 3 safari versions', 'last 2 edge versions']
 			: []),
 	];
 
@@ -14,6 +14,7 @@ module.exports = (env, argv = {}) => {
 			browsers,
 		},
 		useBuiltIns: 'entry',
+		corejs: require('core-js/package.json').version,
 		shippedProposals: true,
 		debug: true,
 	};
@@ -52,7 +53,7 @@ module.exports = (env, argv = {}) => {
 		},
 		devtool:
 			argv.mode === 'production'
-				? 'source-map'
+				? false
 				: 'eval-cheap-module-source-map',
 		module: {
 			rules: [
@@ -65,10 +66,6 @@ module.exports = (env, argv = {}) => {
 							presets: [
 								['@babel/preset-env', envConfig],
 								'@babel/preset-react',
-							],
-							plugins: [
-								'@babel/plugin-proposal-class-properties',
-								'@babel/plugin-proposal-object-rest-spread',
 							],
 						},
 					},
