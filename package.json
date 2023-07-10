@@ -80,7 +80,7 @@
     "chai": "^4.3.7",
     "eslint": "^8.44.0",
     "mocha": "^10.2.0",
-    "nodemon": "^2.0.22",
+    "nodemon": "^3.0.1",
     "prettier-eslint-cli": "^7.1.0",
     "sinon": "^7",
     "sinon-mongoose": "^2.3.0",
