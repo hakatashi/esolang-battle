@@ -77,7 +77,7 @@
   },
   "devDependencies": {
     "@hakatashi/eslint-config": "^1.20.0",
-    "chai": "^4.3.7",
+    "chai": "^4.3.8",
     "eslint": "^8.47.0",
     "mocha": "^10.2.0",
     "nodemon": "^3.0.1",
