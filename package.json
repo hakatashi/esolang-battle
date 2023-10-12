@@ -36,7 +36,7 @@
     "concat-stream": "^2.0.0",
     "connect-mongo": "^5.0.0",
     "discord.js": "^14.13.0",
-    "dockerode": "^3.3.5",
+    "dockerode": "^4.0.0",
     "dotenv": "^16.3.1",
     "dotenv-expand": "^10.0.0",
     "errorhandler": "^1.5.1",
